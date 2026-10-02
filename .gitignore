@@ -34,3 +34,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# java / spring boot
+backend/target/
+
+# editors
+.idea/
+*.iml
+.vscode/
