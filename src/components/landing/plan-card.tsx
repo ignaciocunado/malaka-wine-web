@@ -1,0 +1,38 @@
+import { ButtonLink } from "@/components/ui/button";
+import { cn } from "@/components/ui/cn";
+import { WineGlassIcon } from "@/components/ui/icons";
+import { formatEuros } from "@/lib/format";
+import type { Plan } from "@/lib/types";
+
+export function PlanCard({ plan }: { plan: Plan }) {
+  return (
+    <article
+      className={cn(
+        "relative flex flex-col rounded-3xl bg-elevated p-7 transition-transform duration-300 ease-ios hover:scale-[1.015]",
+        plan.featured ? "ring-2 ring-tint" : "ring-1 ring-separator/40",
+      )}
+    >
+      {plan.featured && (
+        <span className="absolute -top-3 left-7 rounded-full bg-tint px-3 py-1 text-caption font-semibold text-tint-contrast">
+          El más elegido
+        </span>
+      )}
+      <WineGlassIcon className="size-8 text-tint" />
+      <h3 className="mt-4 text-title2">{plan.name}</h3>
+      <p className="mt-1 text-subheadline text-label-secondary">{plan.tagline}</p>
+      <p className="mt-6 flex items-baseline gap-1">
+        <span className="text-large-title">{formatEuros(plan.priceCents)}</span>
+        <span className="text-subheadline text-label-secondary">/ mes</span>
+      </p>
+      {/* flex-1 keeps the buttons aligned across cards with taglines of different lengths */}
+      <p className="mt-2 flex-1 text-footnote text-label-secondary">{plan.contents}</p>
+      <ButtonLink
+        href={`/taste?plan=${plan.code}`}
+        variant={plan.featured ? "filled" : "tinted"}
+        className="mt-7 w-full"
+      >
+        Elegir {plan.name}
+      </ButtonLink>
+    </article>
+  );
+}
