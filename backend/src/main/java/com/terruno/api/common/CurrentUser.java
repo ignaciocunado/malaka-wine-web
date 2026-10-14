@@ -20,6 +20,6 @@ public class CurrentUser {
 
     public User require(Jwt jwt) {
         return users.findById(Long.valueOf(jwt.getSubject()))
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Account no longer exists"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "La cuenta ya no existe"));
     }
 }

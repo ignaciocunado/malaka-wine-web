@@ -4,14 +4,10 @@ import type { TasteProfile } from "./types";
 
 /** Mirrors the API's TasteProfileDto validation, so bad input is caught before it leaves the browser/server. */
 export const tasteProfileSchema = z.object({
-  productPreference: z.enum(["WINE", "OLIVE_OIL", "BOTH"]),
   wineStyles: z.array(z.enum(["RED", "WHITE", "ROSE", "SWEET", "SPARKLING"])),
   wineBody: z.int().min(1).max(5),
   wineSweetness: z.enum(["DRY", "OFF_DRY", "SWEET"]),
   adventurousness: z.int().min(1).max(5),
-  oilIntensity: z.enum(["DELICATE", "MEDIUM", "ROBUST"]),
-  oliveVarieties: z.array(z.enum(["HOJIBLANCA", "VERDIAL", "PICUAL", "ARBEQUINA", "LECHIN"])),
-  oilUses: z.array(z.enum(["DRESSING", "COOKING", "FINISHING", "BREAD"])),
   bottlesPerBox: z.int().min(2).max(6),
   deliveryFrequency: z.enum(["MONTHLY", "BIMONTHLY"]),
   monthlyBudgetEur: z.int().min(20).max(300),

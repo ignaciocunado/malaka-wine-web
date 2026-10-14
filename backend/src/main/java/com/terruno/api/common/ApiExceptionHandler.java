@@ -28,7 +28,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             errors.putIfAbsent(error.getField(), error.getDefaultMessage());
         }
-        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Some fields are invalid");
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Algunos campos no son válidos");
         problem.setProperty("errors", errors);
         return ResponseEntity.badRequest().body(problem);
     }
@@ -36,11 +36,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     /** Unique-constraint races (e.g. two sign-ups with the same email at once). */
     @ExceptionHandler(DataIntegrityViolationException.class)
     ProblemDetail handleConflict(DataIntegrityViolationException ex) {
-        return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, "This conflicts with existing data");
+        return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, "Entra en conflicto con datos existentes");
     }
 
     @ExceptionHandler(AuthenticationException.class)
     ProblemDetail handleBadCredentials(AuthenticationException ex) {
-        return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, "Incorrect email or password");
+        return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, "Correo o contraseña incorrectos");
     }
 }

@@ -15,14 +15,14 @@ export function CancelSubscription() {
   if (!confirming) {
     return (
       <Button variant="plain-destructive" onClick={() => setConfirming(true)}>
-        Cancel subscription
+        Cancelar suscripción
       </Button>
     );
   }
 
   return (
     <div className="w-full rounded-xl bg-grouped-secondary p-4 text-center">
-      <p className="text-subheadline">Cancel your subscription? Boxes already shipped will still arrive.</p>
+      <p className="text-subheadline">¿Cancelar tu suscripción? Las cajas ya enviadas llegarán igualmente.</p>
       {error && (
         <div className="mt-3">
           <Alert>{error}</Alert>
@@ -30,7 +30,7 @@ export function CancelSubscription() {
       )}
       <div className="mt-4 flex justify-center gap-3">
         <Button variant="gray" onClick={() => setConfirming(false)} disabled={pending}>
-          Keep it
+          Mantenerla
         </Button>
         <Button
           variant="destructive"
@@ -43,7 +43,7 @@ export function CancelSubscription() {
             })
           }
         >
-          {pending ? "Cancelling…" : "Cancel subscription"}
+          {pending ? "Cancelando…" : "Cancelar suscripción"}
         </Button>
       </div>
     </div>

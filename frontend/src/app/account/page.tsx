@@ -14,18 +14,9 @@ import { ChevronRightIcon } from "@/components/ui/icons";
 import { ApiError, api } from "@/lib/api";
 import { FALLBACK_PLANS } from "@/lib/catalog";
 import { formatDate, formatEuros } from "@/lib/format";
-import {
-  OIL_INTENSITY_OPTIONS,
-  PRODUCT_OPTIONS,
-  RECOMMENDED_PLAN,
-  WINE_STYLE_OPTIONS,
-  labelOf,
-  labelsOf,
-  wantsOil,
-  wantsWine,
-} from "@/lib/taste";
+import { SWEETNESS_OPTIONS, WINE_STYLE_OPTIONS, labelOf, labelsOf, recommendedPlan } from "@/lib/taste";
 
-export const metadata: Metadata = { title: "Your account" };
+export const metadata: Metadata = { title: "Tu cuenta" };
 
 export default async function AccountPage({ searchParams }: PageProps<"/account">) {
   // proxy.ts already guards this route; checking here too keeps the page safe on its own.
@@ -45,7 +36,7 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
     if (error instanceof ApiError && error.status === 401) redirect("/login?callbackUrl=/account");
     return (
       <AccountShell name={session.user.name}>
-        <Alert>We couldn&apos;t reach our servers just now. Please refresh in a moment.</Alert>
+        <Alert>No hemos podido conectar con nuestros servidores. Vuelve a cargar la página en un momento.</Alert>
       </AccountShell>
     );
   }
@@ -54,73 +45,66 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
   const preselected =
     (typeof requestedPlan === "string" && plans.some((p) => p.code === requestedPlan) && requestedPlan) ||
     subscription?.planCode ||
-    (tasteProfile && RECOMMENDED_PLAN[tasteProfile.productPreference]) ||
+    (tasteProfile && recommendedPlan(tasteProfile)) ||
     plans.find((p) => p.featured)?.code ||
     plans[0]?.code;
 
   return (
     <AccountShell name={session.user.name}>
-      <GroupedSection header="Subscription">
+      <GroupedSection header="Suscripción">
         {subscription ? (
           <>
             <ListRow label="Plan">
               <span className="text-label-secondary">{subscription.planName}</span>
             </ListRow>
-            <ListRow label="Price">
-              <span className="text-label-secondary">{formatEuros(subscription.priceCents)} / month</span>
+            <ListRow label="Precio">
+              <span className="text-label-secondary">{formatEuros(subscription.priceCents)} / mes</span>
             </ListRow>
             {subscription.nextBoxDate && (
-              <ListRow label="Next box">
+              <ListRow label="Próxima caja">
                 <span className="text-label-secondary">{formatDate(subscription.nextBoxDate)}</span>
               </ListRow>
             )}
           </>
         ) : (
           <ListRow>
-            <span className="text-label-secondary">You don&apos;t have an active subscription yet.</span>
+            <span className="text-label-secondary">Todavía no tienes una suscripción activa.</span>
           </ListRow>
         )}
       </GroupedSection>
 
       <GroupedSection
-        header={subscription ? "Change plan" : "Choose your plan"}
-        footer="This starter has no payment step yet — subscribing is free while you build it out."
+        header={subscription ? "Cambiar de plan" : "Elige tu plan"}
+        footer="Esta versión aún no incluye pagos: suscribirse es gratis mientras terminamos de construirla."
       >
         <PlanPicker plans={plans} currentPlan={subscription?.planCode} defaultPlan={preselected} />
       </GroupedSection>
 
-      <GroupedSection header="Taste profile">
+      <GroupedSection header="Perfil de gustos">
         {tasteProfile ? (
           <>
-            <ListRow label="Box contents">
-              <span className="text-label-secondary">{labelOf(PRODUCT_OPTIONS, tasteProfile.productPreference)}</span>
+            <ListRow label="Estilos">
+              <span className="text-right text-label-secondary">
+                {labelsOf(WINE_STYLE_OPTIONS, tasteProfile.wineStyles)}
+              </span>
             </ListRow>
-            {wantsWine(tasteProfile) && (
-              <ListRow label="Wine styles">
-                <span className="text-right text-label-secondary">
-                  {labelsOf(WINE_STYLE_OPTIONS, tasteProfile.wineStyles)}
-                </span>
-              </ListRow>
-            )}
-            {wantsOil(tasteProfile) && (
-              <ListRow label="Olive oil">
-                <span className="text-label-secondary">
-                  {labelOf(OIL_INTENSITY_OPTIONS, tasteProfile.oilIntensity)}
-                </span>
-              </ListRow>
-            )}
-            <ListRow label="Budget">
-              <span className="text-label-secondary">€{tasteProfile.monthlyBudgetEur} per box</span>
+            <ListRow label="Dulzor">
+              <span className="text-label-secondary">{labelOf(SWEETNESS_OPTIONS, tasteProfile.wineSweetness)}</span>
             </ListRow>
-            <TasteLink>Update taste profile</TasteLink>
+            <ListRow label="Presupuesto">
+              <span className="text-label-secondary">
+                {formatEuros(tasteProfile.monthlyBudgetEur * 100)} por caja
+              </span>
+            </ListRow>
+            <TasteLink>Actualizar perfil de gustos</TasteLink>
           </>
         ) : (
-          <TasteLink>Take the taste quiz</TasteLink>
+          <TasteLink>Hacer el test de gustos</TasteLink>
         )}
       </GroupedSection>
 
-      <GroupedSection header="Account">
-        <ListRow label="Email">
+      <GroupedSection header="Cuenta">
+        <ListRow label="Correo">
           <span className="truncate text-label-secondary">{session.user.email}</span>
         </ListRow>
       </GroupedSection>
@@ -129,7 +113,7 @@ export default async function AccountPage({ searchParams }: PageProps<"/account"
         {subscription && <CancelSubscription />}
         <form action={logout}>
           <Button type="submit" variant="gray">
-            Sign out
+            Cerrar sesión
           </Button>
         </form>
       </div>
@@ -143,7 +127,7 @@ function AccountShell({ name, children }: { name?: string | null; children: Reac
       <div className="mx-auto max-w-2xl space-y-8">
         <header className="px-4">
           <h1 className="text-large-title">Hola{name ? `, ${name}` : ""}.</h1>
-          <p className="mt-2 text-body text-label-secondary">Your box, your taste and your account.</p>
+          <p className="mt-2 text-body text-label-secondary">Tu caja, tus gustos y tu cuenta.</p>
         </header>
         {children}
       </div>

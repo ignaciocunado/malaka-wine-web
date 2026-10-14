@@ -14,11 +14,11 @@ export type AuthFormState = {
 };
 
 const signupSchema = z.object({
-  firstName: z.string().trim().min(1, "Enter your first name").max(100),
+  firstName: z.string().trim().min(1, "Introduce tu nombre").max(100),
   lastName: z.string().trim().max(100).optional(),
-  email: z.email("Enter a valid email address").max(255),
-  password: z.string().min(8, "Use at least 8 characters").max(72, "Use at most 72 characters"),
-  adultConfirmed: z.literal("on", "Please confirm you're 18 or older"),
+  email: z.email("Introduce un correo electrónico válido").max(255),
+  password: z.string().min(8, "Usa al menos 8 caracteres").max(72, "Usa como máximo 72 caracteres"),
+  adultConfirmed: z.literal("on", "Confirma que tienes 18 años o más"),
 });
 
 async function signInAndRedirect(email: string, password: string, callbackUrl: string): Promise<AuthFormState> {
@@ -31,8 +31,8 @@ async function signInAndRedirect(email: string, password: string, callbackUrl: s
       return {
         error:
           error.type === "CredentialsSignin"
-            ? "Incorrect email or password."
-            : "We couldn't sign you in right now. Please try again in a moment.",
+            ? "Correo o contraseña incorrectos."
+            : "No hemos podido iniciar tu sesión. Inténtalo de nuevo en un momento.",
         values: { email },
       };
     }
@@ -43,7 +43,7 @@ async function signInAndRedirect(email: string, password: string, callbackUrl: s
 export async function login(_prev: AuthFormState, formData: FormData): Promise<AuthFormState> {
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
-  if (!email || !password) return { error: "Enter your email and password.", values: { email } };
+  if (!email || !password) return { error: "Introduce tu correo y tu contraseña.", values: { email } };
   return signInAndRedirect(email, password, safeCallbackUrl(formData.get("callbackUrl")));
 }
 
@@ -62,12 +62,12 @@ export async function signup(_prev: AuthFormState, formData: FormData): Promise<
     await api.register({ firstName, lastName: lastName || undefined, email, password, adultConfirmed: true });
   } catch (error) {
     if (error instanceof ApiError && error.status === 409) {
-      return { fieldErrors: { email: "An account with this email already exists" }, values };
+      return { fieldErrors: { email: "Ya existe una cuenta con este correo" }, values };
     }
     if (error instanceof ApiError && error.status === 400) {
       return { error: error.message, fieldErrors: error.fieldErrors, values };
     }
-    return { error: "We couldn't create your account right now. Please try again in a moment.", values };
+    return { error: "No hemos podido crear tu cuenta. Inténtalo de nuevo en un momento.", values };
   }
 
   return signInAndRedirect(email, password, safeCallbackUrl(formData.get("callbackUrl")));

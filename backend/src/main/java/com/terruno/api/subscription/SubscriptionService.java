@@ -40,8 +40,8 @@ public class SubscriptionService {
 
     @Transactional
     public SubscriptionResponse subscribe(User user, String planCode) {
-        Plan plan = plans.findByCode(planCode)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unknown plan: " + planCode));
+        Plan plan = plans.findByCodeAndActiveTrue(planCode)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Este plan no está disponible"));
         Subscription subscription = active(user).orElse(null);
         if (subscription == null) {
             subscription = subscriptions.save(new Subscription(user, plan, nextBoxDate()));

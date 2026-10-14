@@ -19,8 +19,8 @@ export function SignupForm({ callbackUrl }: { callbackUrl: string }) {
   return (
     <>
       <AuthHeader
-        title="Create your account"
-        subtitle="One account for your taste profile, your box and your deliveries."
+        title="Crea tu cuenta"
+        subtitle="Una sola cuenta para tu perfil de gustos, tu caja y tus envíos."
       />
       <form action={action} className="space-y-6" noValidate>
         <input type="hidden" name="callbackUrl" value={callbackUrl} />
@@ -28,7 +28,7 @@ export function SignupForm({ callbackUrl }: { callbackUrl: string }) {
 
         <GroupedSection>
           <TextField
-            label="First name"
+            label="Nombre"
             name="firstName"
             autoComplete="given-name"
             required
@@ -36,7 +36,7 @@ export function SignupForm({ callbackUrl }: { callbackUrl: string }) {
             error={errors.firstName}
           />
           <TextField
-            label="Last name (optional)"
+            label="Apellidos (opcional)"
             name="lastName"
             autoComplete="family-name"
             defaultValue={state.values?.lastName}
@@ -44,19 +44,19 @@ export function SignupForm({ callbackUrl }: { callbackUrl: string }) {
           />
         </GroupedSection>
 
-        <GroupedSection footer="Use at least 8 characters.">
+        <GroupedSection footer="Usa al menos 8 caracteres.">
           <TextField
-            label="Email"
+            label="Correo electrónico"
             name="email"
             type="email"
             autoComplete="email"
             required
-            placeholder="name@example.com"
+            placeholder="nombre@ejemplo.com"
             defaultValue={state.values?.email}
             error={errors.email}
           />
           <TextField
-            label="Password"
+            label="Contraseña"
             name="password"
             type="password"
             autoComplete="new-password"
@@ -75,19 +75,19 @@ export function SignupForm({ callbackUrl }: { callbackUrl: string }) {
         >
           <input type="checkbox" name="adultConfirmed" className="mt-0.5 size-5 shrink-0 accent-tint" />
           <span>
-            I confirm I am 18 or older. Wine is only sold and delivered to adults.
+            Confirmo que tengo 18 años o más. Solo vendemos y entregamos vino a adultos.
             {errors.adultConfirmed && <span className="mt-1 block text-system-red">{errors.adultConfirmed}</span>}
           </span>
         </label>
 
         <Button type="submit" size="lg" className="w-full" disabled={pending}>
-          {pending ? "Creating account…" : "Continue"}
+          {pending ? "Creando cuenta…" : "Continuar"}
         </Button>
       </form>
       <p className="mt-8 text-center text-subheadline text-label-secondary">
-        Already have an account?{" "}
+        ¿Ya tienes cuenta?{" "}
         <Link href={`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`} className="text-tint hover:underline">
-          Sign in
+          Inicia sesión
         </Link>
       </p>
     </>

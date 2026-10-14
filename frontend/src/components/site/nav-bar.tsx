@@ -7,10 +7,10 @@ import { PersonIcon } from "@/components/ui/icons";
 import { Logo } from "./logo";
 
 const links = [
-  { href: "/#how-it-works", label: "How it works" },
-  { href: "/#plans", label: "Plans" },
-  { href: "/#producers", label: "Producers" },
-  { href: "/taste", label: "Taste quiz" },
+  { href: "/#como-funciona", label: "Cómo funciona" },
+  { href: "/#planes", label: "Planes" },
+  { href: "/#bodegas", label: "Bodegas" },
+  { href: "/taste", label: "Test de gustos" },
 ];
 
 /** Translucent top bar using the HIG "material" effect (blur + saturation over content). */
@@ -33,15 +33,15 @@ export async function NavBar() {
           {session ? (
             <ButtonLink href="/account" variant="gray" size="sm">
               <PersonIcon className="size-4" />
-              {session.user.name ?? "Account"}
+              {session.user.name ?? "Mi cuenta"}
             </ButtonLink>
           ) : (
             <>
-              <Link href="/login" className="px-2 text-footnote text-label/80 hover:text-label">
-                Sign in
+              <Link href="/login" className="px-2 text-footnote whitespace-nowrap text-label/80 hover:text-label">
+                Iniciar sesión
               </Link>
               <ButtonLink href="/signup" size="sm">
-                Join
+                Únete
               </ButtonLink>
             </>
           )}

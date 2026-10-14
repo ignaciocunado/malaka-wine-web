@@ -19,7 +19,7 @@ export function Stepper({ label, value, min, max, onChange }: Props) {
       <button
         type="button"
         className={`${button} rounded-l-lg`}
-        aria-label={`Decrease ${label.toLowerCase()}`}
+        aria-label={`Reducir ${label.toLowerCase()}`}
         disabled={value <= min}
         onClick={() => onChange(value - 1)}
       >
@@ -29,7 +29,7 @@ export function Stepper({ label, value, min, max, onChange }: Props) {
       <button
         type="button"
         className={`${button} rounded-r-lg`}
-        aria-label={`Increase ${label.toLowerCase()}`}
+        aria-label={`Aumentar ${label.toLowerCase()}`}
         disabled={value >= max}
         onClick={() => onChange(value + 1)}
       >

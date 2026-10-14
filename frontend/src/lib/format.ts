@@ -1,11 +1,14 @@
-const euro = new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+const euro = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+const longDate = new Intl.DateTimeFormat("es-ES", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 
+/** e.g. "39 €" */
 export function formatEuros(cents: number) {
   return euro.format(cents / 100);
 }
 
+/** e.g. "1 de noviembre de 2026" */
 export function formatDate(isoDate: string) {
-  return new Date(isoDate).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  return longDate.format(new Date(isoDate));
 }
 
 /** Keeps post-login redirects on this site: only the path, query and hash of the URL are used. */

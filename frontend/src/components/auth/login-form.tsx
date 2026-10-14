@@ -16,30 +16,30 @@ export function LoginForm({ callbackUrl }: { callbackUrl: string }) {
 
   return (
     <>
-      <AuthHeader title="Sign in to Terruño" subtitle="Manage your box, your taste profile and your deliveries." />
+      <AuthHeader title="Inicia sesión en Terruño" subtitle="Gestiona tu caja, tu perfil de gustos y tus envíos." />
       <form action={action} className="space-y-5">
         <input type="hidden" name="callbackUrl" value={callbackUrl} />
         {state.error && <Alert>{state.error}</Alert>}
         <GroupedSection>
           <TextField
-            label="Email"
+            label="Correo electrónico"
             name="email"
             type="email"
             autoComplete="email"
             required
             defaultValue={state.values?.email}
-            placeholder="name@example.com"
+            placeholder="nombre@ejemplo.com"
           />
-          <TextField label="Password" name="password" type="password" autoComplete="current-password" required />
+          <TextField label="Contraseña" name="password" type="password" autoComplete="current-password" required />
         </GroupedSection>
         <Button type="submit" size="lg" className="w-full" disabled={pending}>
-          {pending ? "Signing in…" : "Sign in"}
+          {pending ? "Iniciando sesión…" : "Iniciar sesión"}
         </Button>
       </form>
       <p className="mt-8 text-center text-subheadline text-label-secondary">
-        New to Terruño?{" "}
+        ¿Nuevo en Terruño?{" "}
         <Link href={`/signup?callbackUrl=${encodeURIComponent(callbackUrl)}`} className="text-tint hover:underline">
-          Create an account
+          Crea una cuenta
         </Link>
       </p>
     </>

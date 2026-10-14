@@ -47,20 +47,6 @@ export const WineGlassIcon = (props: IconProps) => (
   </Icon>
 );
 
-export const OliveIcon = (props: IconProps) => (
-  <Icon {...props}>
-    <path d="M4 20c4-1 8-5 10-10" />
-    <ellipse cx="16.5" cy="6.5" rx="3.2" ry="4.6" transform="rotate(40 16.5 6.5)" />
-    <path d="M9 15.5c-2.8-.4-4.6-2.3-5-5 2.8.2 4.7 2 5 5z" />
-  </Icon>
-);
-
-export const DropIcon = (props: IconProps) => (
-  <Icon {...props}>
-    <path d="M12 3.5c3.2 4 5.5 7.2 5.5 10.2a5.5 5.5 0 0 1-11 0c0-3 2.3-6.2 5.5-10.2z" />
-  </Icon>
-);
-
 export const BoxIcon = (props: IconProps) => (
   <Icon {...props}>
     <path d="M3.5 7.5L12 3.5l8.5 4v9L12 20.5l-8.5-4v-9z" />

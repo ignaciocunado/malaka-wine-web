@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlanRepository extends JpaRepository<Plan, Long> {
 
-    List<Plan> findAllByOrderBySortOrderAsc();
+    List<Plan> findAllByActiveTrueOrderBySortOrderAsc();
 
-    Optional<Plan> findByCode(String code);
+    Optional<Plan> findByCodeAndActiveTrue(String code);
 }

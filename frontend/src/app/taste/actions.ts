@@ -12,12 +12,14 @@ export type SaveTasteResult =
   | { status: "unauthenticated" }
   | { status: "error"; message: string };
 
+const INVALID_ANSWERS = "Algunas respuestas no son válidas. Revísalas e inténtalo de nuevo.";
+
 export async function saveTasteProfile(profile: TasteProfile): Promise<SaveTasteResult> {
   const session = await auth();
   if (!session) return { status: "unauthenticated" };
 
   const parsed = tasteProfileSchema.safeParse(profile);
-  if (!parsed.success) return { status: "error", message: "Some answers look off. Please review them and try again." };
+  if (!parsed.success) return { status: "error", message: INVALID_ANSWERS };
 
   try {
     await api.saveTasteProfile(session.accessToken, parsed.data);
@@ -25,8 +27,8 @@ export async function saveTasteProfile(profile: TasteProfile): Promise<SaveTaste
     if (error instanceof ApiError && error.status === 401) return { status: "unauthenticated" };
     const message =
       error instanceof ApiError && error.status === 400
-        ? "Some answers look off. Please review them and try again."
-        : "We couldn't save your profile right now. Please try again in a moment.";
+        ? INVALID_ANSWERS
+        : "No hemos podido guardar tu perfil. Inténtalo de nuevo en un momento.";
     return { status: "error", message };
   }
 
