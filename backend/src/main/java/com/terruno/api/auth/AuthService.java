@@ -33,7 +33,7 @@ public class AuthService {
     public AuthResponse register(RegisterRequest request) {
         String email = normalize(request.email());
         if (users.existsByEmail(email)) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "An account with this email already exists");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Ya existe una cuenta con este correo electrónico");
         }
         User user = users.save(new User(
                 email,

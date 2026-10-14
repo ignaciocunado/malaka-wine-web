@@ -2,21 +2,15 @@ package com.terruno.api.catalog;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-/** A small Málaga winery or olive mill whose products can go in a box. */
+/** A small Málaga winery whose wines can go in a box. */
 @Entity
 @Table(name = "producers")
 public class Producer {
-
-    public enum Kind {
-        WINERY, OLIVE_MILL
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +21,6 @@ public class Producer {
 
     @Column(nullable = false, length = 120)
     private String name;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
-    private Kind kind;
 
     @Column(nullable = false, length = 80)
     private String town;
@@ -57,10 +47,6 @@ public class Producer {
 
     public String getName() {
         return name;
-    }
-
-    public Kind getKind() {
-        return kind;
     }
 
     public String getTown() {

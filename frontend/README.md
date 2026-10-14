@@ -1,6 +1,6 @@
 # Terruño — frontend
 
-Next.js 16 (App Router) site for the Terruño subscription. See the [root README](../README.md) for the full picture.
+Next.js 16 (App Router) site for the Terruño wine subscription, in Spanish. See the [root README](../README.md) for the full picture.
 
 ```bash
 cp .env.example .env.local   # then set AUTH_SECRET (npx auth secret)

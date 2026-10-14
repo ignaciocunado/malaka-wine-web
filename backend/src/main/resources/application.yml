@@ -18,6 +18,10 @@ spring:
   mvc:
     problemdetails:
       enabled: true
+  web:
+    # The site is in Spanish, so built-in validation messages are too (whatever the client's Accept-Language).
+    locale: es
+    locale-resolver: fixed
 
 server:
   port: ${PORT:8080}

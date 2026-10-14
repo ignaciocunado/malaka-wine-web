@@ -25,7 +25,7 @@ export function PlanPicker({ plans, currentPlan, defaultPlan }: Props) {
   return (
     <form action={action}>
       <fieldset>
-        <legend className="sr-only">Plans</legend>
+        <legend className="sr-only">Planes</legend>
         {plans.map((plan) => (
           <label
             key={plan.code}
@@ -46,11 +46,11 @@ export function PlanPicker({ plans, currentPlan, defaultPlan }: Props) {
             <span className="flex-1">
               <span className="block text-body">
                 {plan.name}
-                {plan.code === currentPlan && <span className="ml-2 text-footnote text-label-secondary">Current</span>}
+                {plan.code === currentPlan && <span className="ml-2 text-footnote text-label-secondary">Actual</span>}
               </span>
               <span className="block text-footnote text-label-secondary">{plan.contents}</span>
             </span>
-            <span className="text-subheadline text-label-secondary">{formatEuros(plan.priceCents)}/mo</span>
+            <span className="text-subheadline text-label-secondary">{formatEuros(plan.priceCents)}/mes</span>
             <CheckIcon
               className={cn("size-5 text-tint", selected === plan.code ? "opacity-100" : "opacity-0")}
               strokeWidth={2.5}
@@ -62,7 +62,7 @@ export function PlanPicker({ plans, currentPlan, defaultPlan }: Props) {
         {state.error && <Alert>{state.error}</Alert>}
         {state.success && unchanged && <Alert tone="info">{state.success}</Alert>}
         <Button type="submit" className="w-full" disabled={pending || !selected || unchanged}>
-          {pending ? "Saving…" : currentPlan ? "Switch plan" : "Start my subscription"}
+          {pending ? "Guardando…" : currentPlan ? "Cambiar de plan" : "Empezar mi suscripción"}
         </Button>
       </div>
     </form>

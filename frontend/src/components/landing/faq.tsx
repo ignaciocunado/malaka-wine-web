@@ -2,24 +2,24 @@ import { ChevronRightIcon } from "@/components/ui/icons";
 
 const QUESTIONS = [
   {
-    q: "Who are the producers?",
-    a: "Family wineries and olive mills across the province of Málaga — the Axarquía, Montes de Málaga, Serranía de Ronda and Antequera — making small batches you rarely find outside their village.",
+    q: "¿Quiénes son las bodegas?",
+    a: "Bodegas familiares de toda la provincia de Málaga (Axarquía, Montes de Málaga, Serranía de Ronda, Costa Occidental y Norte) que elaboran pequeñas partidas difíciles de encontrar fuera de su pueblo.",
   },
   {
-    q: "How do you choose what goes in my box?",
-    a: "Your taste profile sets the styles, intensity and budget. Each month we match it against what our producers have just released, and include tasting cards so you know what you're opening.",
+    q: "¿Cómo elegís los vinos de mi caja?",
+    a: "Tu perfil de gustos marca los estilos, el cuerpo y el presupuesto. Cada mes lo cruzamos con las novedades de nuestras bodegas e incluimos fichas de cata para que sepas qué estás abriendo.",
   },
   {
-    q: "When does my box arrive?",
-    a: "Boxes ship in the first week of each month (or every other month, if you prefer) to addresses in mainland Spain.",
+    q: "¿Cuándo llega mi caja?",
+    a: "Las cajas salen la primera semana de cada mes (o cada dos meses, si lo prefieres) a cualquier dirección de la España peninsular.",
   },
   {
-    q: "Can I pause or cancel?",
-    a: "Yes. Change your plan or cancel at any time from your account, with no commitment.",
+    q: "¿Puedo cambiar de plan o cancelar?",
+    a: "Sí. Cambia de plan o cancela cuando quieras desde tu cuenta, sin permanencia.",
   },
   {
-    q: "Is there an age requirement?",
-    a: "Yes. Wine is only sold to adults aged 18 and over, and an adult must sign for delivery.",
+    q: "¿Hay una edad mínima?",
+    a: "Sí. Solo vendemos vino a mayores de 18 años, y la entrega debe recogerla un adulto.",
   },
 ];
 

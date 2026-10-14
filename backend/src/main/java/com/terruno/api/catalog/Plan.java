@@ -2,8 +2,6 @@ package com.terruno.api.catalog;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,10 +27,6 @@ public class Plan {
     @Column(nullable = false)
     private String contents;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "product_type", nullable = false, length = 20)
-    private ProductType productType;
-
     @Column(name = "price_cents", nullable = false)
     private int priceCents;
 
@@ -41,6 +35,10 @@ public class Plan {
 
     @Column(name = "sort_order", nullable = false)
     private int sortOrder;
+
+    /** Retired plans stay in the table for past subscriptions but can't be chosen any more. */
+    @Column(nullable = false)
+    private boolean active;
 
     protected Plan() {
     }
@@ -65,10 +63,6 @@ public class Plan {
         return contents;
     }
 
-    public ProductType getProductType() {
-        return productType;
-    }
-
     public int getPriceCents() {
         return priceCents;
     }
@@ -79,5 +73,9 @@ public class Plan {
 
     public int getSortOrder() {
         return sortOrder;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 }

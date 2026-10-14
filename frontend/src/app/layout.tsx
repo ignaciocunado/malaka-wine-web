@@ -11,23 +11,20 @@ const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Terruño — Málaga wine & olive oil, delivered monthly",
+    default: "Terruño — Vino de Málaga, cada mes en tu casa",
     template: "%s · Terruño",
   },
-  description:
-    "A monthly box of wine and extra virgin olive oil from the small producers of Málaga, matched to your taste.",
+  description: "Una caja al mes con los vinos de las pequeñas bodegas de Málaga, elegidos según tus gustos.",
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-  ],
+  themeColor: "#ffffff",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="es" className={inter.variable}>
       <body className="flex min-h-dvh flex-col font-sans">
         <NavBar />
         <main className="flex-1">{children}</main>

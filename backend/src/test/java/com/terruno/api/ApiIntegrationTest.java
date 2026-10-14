@@ -1,7 +1,10 @@
 package com.terruno.api;
 
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -32,14 +35,17 @@ class ApiIntegrationTest {
     MockMvc mvc;
 
     @Test
-    void catalogIsPublic() throws Exception {
+    void catalogIsPublicAndOnlyListsActiveWinePlans() throws Exception {
         mvc.perform(get("/api/plans"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
-                .andExpect(jsonPath("$[*].code", containsInAnyOrder("VINO", "MESA", "ACEITE")));
+                .andExpect(jsonPath("$[*].code", contains("VINO", "BODEGA", "RESERVA")))
+                .andExpect(jsonPath("$[0].name").value("Descubre"));
         mvc.perform(get("/api/producers"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(6)));
+                .andExpect(jsonPath("$", hasSize(6)))
+                .andExpect(jsonPath("$[*].slug", hasItem("lomas-de-rome")))
+                .andExpect(jsonPath("$[*].slug", not(hasItem("finca-las-encinas"))));
     }
 
     @Test
@@ -77,7 +83,7 @@ class ApiIntegrationTest {
                                 {"email": "%s", "password": "wrong-password"}
                                 """.formatted(email)))
                 .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.detail").value("Incorrect email or password"));
+                .andExpect(jsonPath("$.detail").value("Correo o contraseña incorrectos"));
         mvc.perform(post("/api/auth/login").contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {"email": "nobody@example.com", "password": "whatever-123"}
@@ -95,7 +101,13 @@ class ApiIntegrationTest {
         mvc.perform(post("/api/auth/register").contentType(MediaType.APPLICATION_JSON)
                         .content(registration(uniqueEmail(), false)))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.errors.adultConfirmed").exists());
+                .andExpect(jsonPath("$.errors.adultConfirmed").value("Debes ser mayor de 18 años para suscribirte"));
+        mvc.perform(post("/api/auth/register").contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"email": "%s", "password": "%s", "firstName": "", "adultConfirmed": true}
+                                """.formatted(uniqueEmail(), PASSWORD)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.errors.firstName").value("no debe estar vacío"));
     }
 
     @Test
@@ -104,23 +116,23 @@ class ApiIntegrationTest {
         mvc.perform(get("/api/taste-profile").header("Authorization", auth)).andExpect(status().isNotFound());
 
         mvc.perform(put("/api/taste-profile").header("Authorization", auth).contentType(MediaType.APPLICATION_JSON)
-                        .content(tasteProfile("BOTH", "[\"RED\", \"SWEET\"]")))
+                        .content(tasteProfile("[\"RED\", \"SWEET\"]")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.wineStyles", containsInAnyOrder("RED", "SWEET")))
                 .andExpect(jsonPath("$.updatedAt").isNotEmpty());
 
         mvc.perform(put("/api/taste-profile").header("Authorization", auth).contentType(MediaType.APPLICATION_JSON)
-                        .content(tasteProfile("WINE", "[\"WHITE\"]")))
+                        .content(tasteProfile("[\"WHITE\"]")))
                 .andExpect(status().isOk());
 
         mvc.perform(get("/api/taste-profile").header("Authorization", auth))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.productPreference").value("WINE"))
                 .andExpect(jsonPath("$.wineStyles", containsInAnyOrder("WHITE")))
-                .andExpect(jsonPath("$.oliveVarieties", containsInAnyOrder("VERDIAL")));
+                .andExpect(jsonPath("$.notes").value("Nada de blancos con madera, por favor"))
+                .andExpect(jsonPath("$.oliveVarieties").doesNotExist());
 
         mvc.perform(put("/api/taste-profile").header("Authorization", auth).contentType(MediaType.APPLICATION_JSON)
-                        .content(tasteProfile("WINE", "[\"FORTIFIED\"]")))
+                        .content(tasteProfile("[\"FORTIFIED\"]")))
                 .andExpect(status().isBadRequest());
     }
 
@@ -137,13 +149,18 @@ class ApiIntegrationTest {
                 .andExpect(jsonPath("$.nextBoxDate").isNotEmpty());
 
         mvc.perform(put("/api/subscription").header("Authorization", auth).contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"planCode\": \"MESA\"}"))
+                        .content("{\"planCode\": \"BODEGA\"}"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.planCode").value("MESA"));
+                .andExpect(jsonPath("$.planCode").value("BODEGA"))
+                .andExpect(jsonPath("$.planName").value("Bodega"));
 
-        mvc.perform(put("/api/subscription").header("Authorization", auth).contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"planCode\": \"NOPE\"}"))
-                .andExpect(status().isBadRequest());
+        // Unknown and retired (olive oil) plans can't be chosen.
+        for (String code : new String[] {"NOPE", "MESA", "ACEITE"}) {
+            mvc.perform(put("/api/subscription").header("Authorization", auth).contentType(MediaType.APPLICATION_JSON)
+                            .content("{\"planCode\": \"%s\"}".formatted(code)))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.detail").value("Este plan no está disponible"));
+        }
 
         mvc.perform(delete("/api/subscription").header("Authorization", auth)).andExpect(status().isNoContent());
         mvc.perform(get("/api/subscription").header("Authorization", auth)).andExpect(status().isNotFound());
@@ -163,23 +180,19 @@ class ApiIntegrationTest {
                 """.formatted(email, PASSWORD, adult);
     }
 
-    private static String tasteProfile(String preference, String wineStyles) {
+    private static String tasteProfile(String wineStyles) {
         return """
                 {
-                  "productPreference": "%s",
                   "wineStyles": %s,
                   "wineBody": 3,
                   "wineSweetness": "DRY",
                   "adventurousness": 4,
-                  "oilIntensity": "MEDIUM",
-                  "oliveVarieties": ["VERDIAL"],
-                  "oilUses": ["DRESSING", "BREAD"],
                   "bottlesPerBox": 2,
                   "deliveryFrequency": "MONTHLY",
                   "monthlyBudgetEur": 50,
-                  "notes": "No oaky whites, please"
+                  "notes": "Nada de blancos con madera, por favor"
                 }
-                """.formatted(preference, wineStyles);
+                """.formatted(wineStyles);
     }
 
     private static String uniqueEmail() {

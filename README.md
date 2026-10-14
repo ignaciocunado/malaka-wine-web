@@ -1,31 +1,36 @@
 # Terruño · Málaga
 
-Starter project for a monthly subscription box of **wine and extra virgin olive oil from small producers in Málaga**.
-Subscribers take a taste quiz, pick a plan (wine, olive oil, or both) and get a curated box every month.
+Starter project for a monthly subscription box of **wine from small producers in Málaga**.
+Subscribers take a taste quiz, pick a plan (Descubre, Bodega or Reserva) and get a curated box every month.
+The site is in **Spanish** (es-ES).
 
 | Layer | Stack |
 | --- | --- |
-| Frontend | Next.js 16 (App Router, React 19, TypeScript), Tailwind CSS 4 styled after Apple's Human Interface Guidelines |
+| Frontend | Next.js 16 (App Router, React 19, TypeScript), Tailwind CSS 4 styled after Apple's Human Interface Guidelines, in Spanish |
 | Auth | [Auth.js](https://authjs.dev) (NextAuth v5) on the frontend, Spring Security + OAuth2 Resource Server (JWT) on the API |
 | Backend | Java 21, Spring Boot 4.1, Spring Data JPA, Bean Validation, Flyway |
 | Database | MySQL 8 |
 
 ## What's included
 
-- **Landing page**: hero, how it works, the four producing areas (Axarquía, Montes de Málaga, Serranía de Ronda, Antequera), plans, producers and FAQ. Plans and producers come from the API, and the page falls back to built-in sample plans if the API is down.
-- **Taste quiz** (`/taste`): a 5-step form (what to send, wine styles/body/sweetness/adventurousness, olive oil intensity/varieties/uses, box size/frequency/budget/notes, then review). You can take it without an account. When you save, you're sent to sign-up and your answers come back with you.
+- **Landing page**: hero, how it works, the four wine areas (Axarquía, Montes de Málaga, Serranía de Ronda, Norte de Málaga), plans, producers and FAQ. Plans and producers come from the API, and the page falls back to built-in sample plans if the API is down.
+- **Taste quiz** (`/taste`): a 4-step form (wine styles and sweetness, body and adventurousness, box size/frequency/budget/notes, then review). You can take it without an account. When you save, you're sent to sign-up and your answers come back with you. Afterwards it recommends a plan.
 - **Sign up / sign in**: email + password through Auth.js. Sign-up requires confirming you're 18+, since the box contains alcohol.
 - **Account** (`/account`, protected): start, switch or cancel a subscription, see your taste profile, sign out.
 - **REST API** with validation, problem-detail errors, Flyway migrations with seed data, and integration tests.
 
 > Producers, prices and plans in the seed data are **fictional samples**. Replace them before launch.
+>
+> The project started out selling wine and olive oil. Migration `V3__wine_only_spanish_catalog.sql` retires the oil
+> plans (rather than deleting them, so past subscriptions keep their history), moves active wine + oil subscribers to
+> the two-bottle wine plan, cancels oil-only subscriptions, drops the oil columns, and translates the catalog.
 
 ## Design: Apple Human Interface Guidelines
 
 Apple doesn't publish a web component framework, so the UI implements the **HIG** directly:
 
 - **System fonts**: SF Pro on Apple devices via `-apple-system`, with Inter as the fallback elsewhere. SF Pro is not bundled, because its license doesn't allow that.
-- **HIG color system** in `src/app/globals.css`: label/secondary label, fills, grouped backgrounds, separators and system colors, with full light and dark mode. A wine-red tint replaces systemBlue as the app tint color.
+- **HIG color system** in `src/app/globals.css`: label/secondary label, fills, grouped backgrounds, separators and system colors. The site always uses the light (white) appearance, even when the visitor's device is in dark mode. A wine-red tint replaces systemBlue as the app tint color.
 - **HIG text styles**: `text-large-title`, `text-title1…3`, `text-headline`, `text-body`, `text-callout`, `text-subheadline`, `text-footnote`, `text-caption`.
 - **HIG controls** in `src/components/ui/`: segmented control, toggle chips, iOS-style slider, stepper, inset grouped lists and form rows, plus a translucent "material" navigation bar.
 - Native inputs under the hood, so keyboard navigation and screen readers work. Focus rings and `prefers-reduced-motion` are respected.
@@ -104,7 +109,8 @@ cd frontend && npx tsc --noEmit && npm run lint && npm run build
 | `GET / PUT / DELETE /api/subscription` | Bearer | Current subscription; `PUT {planCode}` starts or switches it; `DELETE` cancels it |
 | `GET /actuator/health` | none | Health check |
 
-Errors are [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457) problem details. Validation errors include an `errors` map of field → message.
+Errors are [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457) problem details, with messages in Spanish (the API's locale
+is fixed to `es`, see `spring.web.locale` in `application.yml`). Validation errors include an `errors` map of field → message.
 
 ## Project layout
 
@@ -124,7 +130,8 @@ docker-compose.yml           MySQL + API + site
 ## Suggested next steps
 
 - **Payments**: Stripe Checkout/Billing for subscriptions (`SubscriptionService.subscribe` is the hook).
-- **Spanish translation** (next-intl) and an address/shipping step.
+- **Address/shipping step** at sign-up or checkout.
+- **English version**: the copy is written directly in Spanish; adding a second language would mean moving it to a library such as next-intl.
 - **Email**: welcome and shipping notifications, password reset, email verification.
 - **Login hardening**: rate limiting and lockout on `/api/auth/login`.
 - **Admin**: curate monthly boxes, manage producers and stock.
