@@ -8,7 +8,7 @@ export function PlanCard({ plan }: { plan: Plan }) {
   return (
     <article
       className={cn(
-        "relative flex flex-col rounded-3xl bg-elevated p-7 transition-transform duration-300 ease-ios hover:scale-[1.015]",
+        "relative flex flex-col rounded-3xl bg-elevated p-7",
         plan.featured ? "ring-2 ring-tint" : "ring-1 ring-separator/40",
       )}
     >

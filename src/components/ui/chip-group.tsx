@@ -26,7 +26,8 @@ export function ChipGroup<T extends string>({ label, options, value, onChange }:
             title={option.hint}
             className={cn(
               "inline-flex min-h-9 cursor-pointer items-center gap-1.5 rounded-full px-4 text-subheadline select-none",
-              "transition-colors duration-200 ease-ios has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-system-blue/60",
+              "transition duration-300 ease-spring active:duration-0 motion-safe:active:scale-[0.96]",
+              "has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-system-blue/60",
               selected ? "bg-tint text-tint-contrast" : "bg-fill-tertiary text-label hover:bg-fill-secondary",
             )}
           >

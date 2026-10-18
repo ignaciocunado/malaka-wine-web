@@ -29,11 +29,11 @@ export function Faq() {
       {QUESTIONS.map(({ q, a }) => (
         <details
           key={q}
-          className="group relative before:absolute before:top-0 before:right-0 before:left-5 before:h-px before:bg-separator before:content-[''] first:before:hidden"
+          className="disclosure group relative before:absolute before:top-0 before:right-0 before:left-5 before:h-px before:bg-separator before:content-[''] first:before:hidden"
         >
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-headline [&::-webkit-details-marker]:hidden">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-headline transition-colors duration-300 ease-spring select-none active:bg-fill-quaternary active:duration-0 [&::-webkit-details-marker]:hidden">
             {q}
-            <ChevronRightIcon className="size-4 shrink-0 text-label-tertiary transition-transform duration-200 group-open:rotate-90" />
+            <ChevronRightIcon className="size-4 shrink-0 text-label-tertiary transition-transform duration-500 ease-spring group-open:rotate-90" />
           </summary>
           <p className="px-5 pb-5 text-body text-label-secondary">{a}</p>
         </details>

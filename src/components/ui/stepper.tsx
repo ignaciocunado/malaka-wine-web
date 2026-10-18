@@ -13,7 +13,8 @@ type Props = {
 /** HIG stepper: a compact −/+ pair for small numeric adjustments. */
 export function Stepper({ label, value, min, max, onChange }: Props) {
   const button =
-    "flex h-8 w-11 items-center justify-center text-label transition active:bg-fill disabled:text-label-tertiary";
+    "flex h-8 w-11 items-center justify-center text-label transition duration-300 ease-spring active:bg-fill " +
+    "active:duration-0 disabled:text-label-tertiary";
   return (
     <div role="group" aria-label={label} className="inline-flex items-center rounded-lg bg-fill-tertiary">
       <button
