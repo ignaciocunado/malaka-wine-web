@@ -6,9 +6,11 @@ import { cn } from "./cn";
 type Variant = "filled" | "tinted" | "gray" | "plain";
 type Size = "sm" | "md" | "lg";
 
+// Press feedback lands instantly on pointer-down (active:duration-0) and springs back on release.
 const base =
   "inline-flex items-center justify-center gap-1.5 rounded-full font-normal whitespace-nowrap select-none " +
-  "transition duration-200 ease-ios active:opacity-60 disabled:pointer-events-none disabled:opacity-40";
+  "transition duration-300 ease-spring active:opacity-75 active:duration-0 motion-safe:active:scale-[0.97] " +
+  "disabled:pointer-events-none disabled:opacity-40";
 
 const variants: Record<Variant, string> = {
   filled: "bg-tint text-tint-contrast hover:brightness-110",

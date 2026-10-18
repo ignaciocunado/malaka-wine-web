@@ -12,12 +12,12 @@ export function Footer() {
           <p>© {new Date().getFullYear()} Terruño Málaga. Hecho en Málaga.</p>
           <ul className="flex gap-5">
             <li>
-              <Link href="/#planes" className="hover:text-label">
+              <Link href="/#planes" className="transition-colors hover:text-label">
                 Planes
               </Link>
             </li>
             <li>
-              <Link href="/taste" className="hover:text-label">
+              <Link href="/taste" className="transition-colors hover:text-label">
                 Test de gustos
               </Link>
             </li>

@@ -116,18 +116,85 @@
   --text-caption--line-height: 1rem;
 
   --ease-ios: cubic-bezier(0.25, 0.1, 0.25, 1);
+  /*
+   * Apple's default UI spring: critically damped (damping 1.0, no overshoot), response 0.4s, sampled into linear().
+   * Pair with duration-500; shorter durations keep the shape and just make it snappier.
+   */
+  --ease-spring: linear(0, 0.06, 0.186, 0.329, 0.466, 0.584, 0.682, 0.76, 0.821, 0.868, 0.903, 0.929, 0.949, 0.963, 0.973, 0.981, 0.986, 0.99, 0.993, 0.995, 1);
+
+  /* Steps enter from the side they come from, so forward and back read as one continuous path. */
+  --animate-step-forward: step-in-forward 500ms var(--ease-spring) both;
+  --animate-step-back: step-in-back 500ms var(--ease-spring) both;
+  --animate-materialize: materialize 500ms var(--ease-spring) both;
+}
+
+@keyframes step-in-forward {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+@keyframes step-in-back {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+@keyframes materialize {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
 }
 
 html {
   color-scheme: light;
   -webkit-text-size-adjust: 100%;
+  /* Lets height transitions run to `auto` (the FAQ disclosures). */
+  interpolate-size: allow-keywords;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
   background: var(--system-bg);
   color: var(--label);
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/*
+ * Controls give their own press feedback on pointer-down, so drop the browser's gray tap flash and the
+ * double-tap-to-zoom wait that delays every tap.
+ */
+a,
+button,
+label,
+summary,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /* HIG focus ring: system blue, offset from the control. */
@@ -188,11 +255,74 @@ body {
     0 6px 13px rgba(0, 0, 0, 0.12);
 }
 
+/*
+ * Bar material: a translucent layer the page scrolls under. Its hairline is a scroll edge effect, shown only once
+ * content actually sits beneath the bar; browsers without scroll-driven animations keep it always on.
+ */
+.bar-material {
+  background: var(--material);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 0.5px 0 var(--separator);
+}
+@supports (animation-timeline: scroll()) {
+  .bar-material {
+    animation: bar-edge linear both;
+    animation-timeline: scroll();
+    animation-range: 0 32px;
+  }
+}
+@keyframes bar-edge {
+  from {
+    box-shadow: 0 0.5px 0 transparent;
+  }
+}
+
+/* Disclosure that grows open on the spring instead of popping (where ::details-content is supported). */
+.disclosure::details-content {
+  block-size: 0;
+  overflow-y: clip;
+  transition:
+    block-size 500ms var(--ease-spring),
+    content-visibility 500ms allow-discrete;
+}
+.disclosure[open]::details-content {
+  block-size: auto;
+}
+
+/* Reduced motion keeps feedback but swaps movement for cross-fades; color and opacity changes stay. */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+  .animate-step-forward,
+  .animate-step-back,
+  .animate-materialize {
+    animation: fade-in 200ms ease both;
+  }
+  .disclosure::details-content {
+    transition: none;
+  }
+}
+
+/* Reduced transparency: the bar turns solid. */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --material: var(--system-bg);
+  }
+  .bar-material {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Increased contrast: stronger secondary text and separators, solid bar with a defined edge. */
+@media (prefers-contrast: more) {
+  :root {
+    --label-secondary: rgba(60, 60, 67, 0.85);
+    --label-tertiary: rgba(60, 60, 67, 0.6);
+    --separator: rgba(60, 60, 67, 0.6);
+    --material: var(--system-bg);
+  }
+  .bar-material {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }

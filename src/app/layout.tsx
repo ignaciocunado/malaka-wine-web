@@ -31,7 +31,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={inter.variable}>
+    <html lang="es" className={inter.variable} data-scroll-behavior="smooth">
       <body className="flex min-h-dvh flex-col font-sans">
         <NavBar />
         <main className="flex-1">{children}</main>

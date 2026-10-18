@@ -47,12 +47,17 @@ export function TasteForm() {
   const [profile, setProfile] = useState<TasteProfile>(DEFAULT_TASTE_PROFILE);
   const [stepId, setStepId] = useState<StepId>("styles");
   const [result, setResult] = useState<Result | null>(null);
+  // Which way the last step change went; null on first render so the opening step doesn't animate in.
+  const [direction, setDirection] = useState<"forward" | "back" | null>(null);
 
   const stepIndex = STEPS.indexOf(stepId);
   const update = (patch: Partial<TasteProfile>) => setProfile((current) => ({ ...current, ...patch }));
+  // Smooth or instant comes from the CSS scroll-behavior, which honours prefers-reduced-motion.
+  const scrollToTop = () => window.scrollTo({ top: 0 });
   const goTo = (id: StepId) => {
+    setDirection(STEPS.indexOf(id) < stepIndex ? "back" : "forward");
     setStepId(id);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToTop();
   };
 
   const finish = () => {
@@ -61,13 +66,13 @@ export function TasteForm() {
     const chosen = PLANS.find((plan) => plan.code === requested);
     const recommended = PLANS.find((plan) => plan.code === recommendedPlan(profile)) ?? PLANS[0];
     setResult({ plan: chosen ?? recommended, chosen: !!chosen });
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToTop();
   };
 
   if (result) {
     const { plan, chosen } = result;
     return (
-      <Card className="text-center">
+      <Card className="animate-materialize text-center">
         <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-system-green text-white">
           <CheckIcon className="size-9" strokeWidth={2.5} />
         </span>
@@ -96,7 +101,8 @@ export function TasteForm() {
             variant="plain"
             onClick={() => {
               setResult(null);
-              goTo("review");
+              setDirection("back");
+              scrollToTop();
             }}
           >
             Editar mis respuestas
@@ -123,117 +129,123 @@ export function TasteForm() {
           aria-valuenow={stepIndex + 1}
         >
           <div
-            className="h-full rounded-full bg-tint transition-[width] duration-500 ease-ios"
+            className="h-full rounded-full bg-tint transition-[width] duration-500 ease-spring"
             style={{ width: `${((stepIndex + 1) / STEPS.length) * 100}%` }}
           />
         </div>
       </div>
 
-      <Card>
-        <h2 className="text-title2">{STEP_TITLES[stepId].title}</h2>
-        <p className="mt-1 text-subheadline text-label-secondary">{STEP_TITLES[stepId].subtitle}</p>
+      <Card className="overflow-hidden">
+        {/* Keyed so each step mounts fresh and enters from the side matching the direction of travel. */}
+        <div
+          key={stepId}
+          className={cn(direction === "forward" && "animate-step-forward", direction === "back" && "animate-step-back")}
+        >
+          <h2 className="text-title2">{STEP_TITLES[stepId].title}</h2>
+          <p className="mt-1 text-subheadline text-label-secondary">{STEP_TITLES[stepId].subtitle}</p>
 
-        <div className="mt-8 space-y-9">
-          {stepId === "styles" && (
-            <>
-              <Question title="Estilos" hint="Elige todos los que quieras.">
-                <ChipGroup
-                  label="Estilos de vino"
-                  options={WINE_STYLE_OPTIONS}
-                  value={profile.wineStyles}
-                  onChange={(wineStyles) => update({ wineStyles })}
-                />
-              </Question>
-              <Question title="¿Seco o dulce?">
-                <SegmentedControl
-                  label="Dulzor"
-                  options={SWEETNESS_OPTIONS}
-                  value={profile.wineSweetness}
-                  onChange={(wineSweetness) => update({ wineSweetness })}
-                />
-              </Question>
-            </>
-          )}
-
-          {stepId === "palate" && (
-            <>
-              <Question title="¿Con cuánto cuerpo?" value={BODY_LABELS[profile.wineBody - 1]}>
-                <Slider
-                  label="Cuerpo"
-                  min={1}
-                  max={5}
-                  value={profile.wineBody}
-                  onChange={(wineBody) => update({ wineBody })}
-                  minLabel="Ligero y fresco"
-                  maxLabel="Intenso y con cuerpo"
-                  valueText={BODY_LABELS[profile.wineBody - 1]}
-                />
-              </Question>
-              <Question title="¿Cuánto te gusta arriesgar?" value={ADVENTURE_LABELS[profile.adventurousness - 1]}>
-                <Slider
-                  label="Ganas de probar cosas nuevas"
-                  min={1}
-                  max={5}
-                  value={profile.adventurousness}
-                  onChange={(adventurousness) => update({ adventurousness })}
-                  minLabel="Mis favoritos de siempre"
-                  maxLabel="Uvas raras como la Romé"
-                  valueText={ADVENTURE_LABELS[profile.adventurousness - 1]}
-                />
-              </Question>
-            </>
-          )}
-
-          {stepId === "box" && (
-            <>
-              <Question title="Botellas por caja">
-                <div className="flex items-center justify-between rounded-xl bg-fill-quaternary px-4 py-3">
-                  <span className="text-body">{profile.bottlesPerBox} botellas</span>
-                  <Stepper
-                    label="Botellas por caja"
-                    value={profile.bottlesPerBox}
-                    min={2}
-                    max={6}
-                    onChange={(bottlesPerBox) => update({ bottlesPerBox })}
+          <div className="mt-8 space-y-9">
+            {stepId === "styles" && (
+              <>
+                <Question title="Estilos" hint="Elige todos los que quieras.">
+                  <ChipGroup
+                    label="Estilos de vino"
+                    options={WINE_STYLE_OPTIONS}
+                    value={profile.wineStyles}
+                    onChange={(wineStyles) => update({ wineStyles })}
                   />
-                </div>
-              </Question>
-              <Question title="¿Cada cuánto?">
-                <SegmentedControl
-                  label="Frecuencia de envío"
-                  options={FREQUENCY_OPTIONS}
-                  value={profile.deliveryFrequency}
-                  onChange={(deliveryFrequency) => update({ deliveryFrequency })}
-                />
-              </Question>
-              <Question title="Presupuesto por caja" value={euros(profile.monthlyBudgetEur)}>
-                <Slider
-                  label="Presupuesto por caja"
-                  min={20}
-                  max={150}
-                  step={5}
-                  value={profile.monthlyBudgetEur}
-                  onChange={(monthlyBudgetEur) => update({ monthlyBudgetEur })}
-                  minLabel={euros(20)}
-                  maxLabel={euros(150)}
-                  valueText={`${profile.monthlyBudgetEur} euros`}
-                />
-              </Question>
-              <Question title="¿Algo que debamos saber?" hint="Alergias, cosas que no te gustan, una bodega favorita…">
-                <textarea
-                  value={profile.notes}
-                  onChange={(event) => update({ notes: event.target.value })}
-                  maxLength={1000}
-                  rows={3}
-                  aria-label="Notas"
-                  placeholder="p. ej., nada de blancos con madera."
-                  className="block w-full resize-none rounded-xl bg-fill-quaternary px-4 py-3 text-body outline-none placeholder:text-label-tertiary focus:ring-2 focus:ring-tint/40"
-                />
-              </Question>
-            </>
-          )}
+                </Question>
+                <Question title="¿Seco o dulce?">
+                  <SegmentedControl
+                    label="Dulzor"
+                    options={SWEETNESS_OPTIONS}
+                    value={profile.wineSweetness}
+                    onChange={(wineSweetness) => update({ wineSweetness })}
+                  />
+                </Question>
+              </>
+            )}
 
-          {stepId === "review" && <Review profile={profile} onEdit={goTo} />}
+            {stepId === "palate" && (
+              <>
+                <Question title="¿Con cuánto cuerpo?" value={BODY_LABELS[profile.wineBody - 1]}>
+                  <Slider
+                    label="Cuerpo"
+                    min={1}
+                    max={5}
+                    value={profile.wineBody}
+                    onChange={(wineBody) => update({ wineBody })}
+                    minLabel="Ligero y fresco"
+                    maxLabel="Intenso y con cuerpo"
+                    valueText={BODY_LABELS[profile.wineBody - 1]}
+                  />
+                </Question>
+                <Question title="¿Cuánto te gusta arriesgar?" value={ADVENTURE_LABELS[profile.adventurousness - 1]}>
+                  <Slider
+                    label="Ganas de probar cosas nuevas"
+                    min={1}
+                    max={5}
+                    value={profile.adventurousness}
+                    onChange={(adventurousness) => update({ adventurousness })}
+                    minLabel="Mis favoritos de siempre"
+                    maxLabel="Uvas raras como la Romé"
+                    valueText={ADVENTURE_LABELS[profile.adventurousness - 1]}
+                  />
+                </Question>
+              </>
+            )}
+
+            {stepId === "box" && (
+              <>
+                <Question title="Botellas por caja">
+                  <div className="flex items-center justify-between rounded-xl bg-fill-quaternary px-4 py-3">
+                    <span className="text-body">{profile.bottlesPerBox} botellas</span>
+                    <Stepper
+                      label="Botellas por caja"
+                      value={profile.bottlesPerBox}
+                      min={2}
+                      max={6}
+                      onChange={(bottlesPerBox) => update({ bottlesPerBox })}
+                    />
+                  </div>
+                </Question>
+                <Question title="¿Cada cuánto?">
+                  <SegmentedControl
+                    label="Frecuencia de envío"
+                    options={FREQUENCY_OPTIONS}
+                    value={profile.deliveryFrequency}
+                    onChange={(deliveryFrequency) => update({ deliveryFrequency })}
+                  />
+                </Question>
+                <Question title="Presupuesto por caja" value={euros(profile.monthlyBudgetEur)}>
+                  <Slider
+                    label="Presupuesto por caja"
+                    min={20}
+                    max={150}
+                    step={5}
+                    value={profile.monthlyBudgetEur}
+                    onChange={(monthlyBudgetEur) => update({ monthlyBudgetEur })}
+                    minLabel={euros(20)}
+                    maxLabel={euros(150)}
+                    valueText={`${profile.monthlyBudgetEur} euros`}
+                  />
+                </Question>
+                <Question title="¿Algo que debamos saber?" hint="Alergias, cosas que no te gustan, una bodega favorita…">
+                  <textarea
+                    value={profile.notes}
+                    onChange={(event) => update({ notes: event.target.value })}
+                    maxLength={1000}
+                    rows={3}
+                    aria-label="Notas"
+                    placeholder="p. ej., nada de blancos con madera."
+                    className="block w-full resize-none rounded-xl bg-fill-quaternary px-4 py-3 text-body outline-none placeholder:text-label-tertiary focus:ring-2 focus:ring-tint/40"
+                  />
+                </Question>
+              </>
+            )}
+
+            {stepId === "review" && <Review profile={profile} onEdit={goTo} />}
+          </div>
         </div>
 
         <div className="mt-10 flex items-center justify-between gap-3">
@@ -286,7 +298,11 @@ function Review({ profile, onEdit }: { profile: TasteProfile; onEdit: (step: Ste
   const header = (title: string, step: StepId) => (
     <span className="flex items-center justify-between">
       {title}
-      <button type="button" onClick={() => onEdit(step)} className="text-subheadline font-normal normal-case text-tint">
+      <button
+        type="button"
+        onClick={() => onEdit(step)}
+        className="text-subheadline font-normal normal-case text-tint transition-opacity duration-300 active:opacity-60 active:duration-0"
+      >
         Editar
       </button>
     </span>
