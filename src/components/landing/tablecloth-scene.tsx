@@ -91,7 +91,7 @@ function clothTexture(maxAnisotropy: number) {
 }
 
 /** Paints a wine's label. The label mesh's UVs cover the whole image; only the middle faces the viewer. */
-function labelTexture(wine: Wine, aspect: number, maxAnisotropy: number) {
+function labelTexture(wine: Wine, aspect: number, maxAnisotropy: number, serif: string) {
   const width = 768;
   const height = Math.round(width / aspect);
   const canvas = document.createElement("canvas");
@@ -124,7 +124,7 @@ function labelTexture(wine: Wine, aspect: number, maxAnisotropy: number) {
     const middle = spaces.reduce((best, at) => (Math.abs(at - wine.name.length / 2) < Math.abs(best - wine.name.length / 2) ? at : best));
     lines = [wine.name.slice(0, middle), wine.name.slice(middle + 1)];
   }
-  const nameFont = (size: number) => `600 ${size}px Georgia, "Times New Roman", serif`;
+  const nameFont = (size: number) => `600 ${size}px ${serif}`;
   let nameSize = height * (lines.length > 1 ? 0.19 : 0.22);
   ctx.font = nameFont(nameSize);
   const widest = Math.max(...lines.map((line) => ctx.measureText(line).width));
@@ -345,7 +345,11 @@ export default function TableclothScene({ stages }: { stages: BottleStage[] }) {
       dirty = moving;
     }
 
-    new GLTFLoader().load(MODEL_URL, (gltf) => {
+    // Labels are set in the site's display serif. A canvas only draws a web font once it has loaded, so wait for it.
+    const serif = `${getComputedStyle(document.documentElement).getPropertyValue("--font-fraunces") || "Georgia"}, Georgia, serif`;
+    const modelFile = new GLTFLoader().loadAsync(MODEL_URL);
+    const font = document.fonts.load(`600 40px ${serif}`).catch(() => undefined);
+    Promise.all([modelFile, font]).then(([gltf]) => {
       if (disposed) return;
       stages.forEach((stage, stageIndex) => {
         stage.wines.forEach((wine, index) => {
@@ -386,7 +390,7 @@ export default function TableclothScene({ stages }: { stages: BottleStage[] }) {
               const box = child.geometry.boundingBox!;
               // The label's bounding box gives its chord; its true width is the arc around the glass.
               const arc = (box.max.x / Math.sin(LABEL_ARC / 2)) * LABEL_ARC;
-              const map = labelTexture(wine, arc / (box.max.y - box.min.y), anisotropy);
+              const map = labelTexture(wine, arc / (box.max.y - box.min.y), anisotropy, serif);
               textures.push(map);
               child.material = new THREE.MeshStandardMaterial({ map, roughness: 0.82, metalness: 0 });
             }
@@ -418,7 +422,7 @@ export default function TableclothScene({ stages }: { stages: BottleStage[] }) {
       layout();
       introStart = performance.now();
       setReady(true);
-    });
+    }).catch(() => undefined); // Model failed to load: the page keeps its plain cloth color.
 
     layout();
     frame = requestAnimationFrame(render);

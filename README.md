@@ -29,22 +29,33 @@ npm run dev        # http://localhost:3000
 
 Checks: `npm run typecheck`, `npm run lint`, `npm run build`.
 
-## Deploy to Vercel (free Hobby plan)
+## Deploy to Cloudflare
 
-No configuration or environment variables are needed.
+The site is a static export (`output: "export"` in `next.config.ts`): `npm run build` writes plain HTML, CSS and JS
+to `out/`. `wrangler.jsonc` tells Cloudflare to serve that folder as static assets; there is no Worker script and
+no environment variables are needed.
 
-1. Push this repository to GitHub.
-2. On [vercel.com/new](https://vercel.com/new), import the repository. Vercel detects Next.js. Keep the default settings and click **Deploy**.
-3. Every push to `main` deploys to production, and every pull request gets its own preview URL.
+The repository is connected to a Cloudflare Worker through Workers Builds (**Workers & Pages → the Worker →
+Settings → Build**), with these settings:
 
-Because every page is static, the site is served from Vercel's CDN without using serverless functions, so it stays
-well within the Hobby plan's limits.
+- **Build command**: `npm run build`
+- **Deploy command** (production branch): `npx wrangler deploy`
+- **Non-production branch deploy command**: `npx wrangler preview`
+
+Every push to the production branch deploys to production, and every other branch gets its own preview URL. The
+`name` in `wrangler.jsonc` must match the Worker's name in the dashboard, and the empty `previews` block has to stay:
+`wrangler preview` refuses to run without it.
+
+Files in `public/` (such as the 3D model) keep their names between deploys, so rename one when you replace it or
+purge the cache, otherwise visitors may get the old copy for a while.
 
 ## Design: Apple Human Interface Guidelines
 
 Apple doesn't publish a web component framework, so the UI implements the HIG directly:
 
-- **System fonts**: SF Pro on Apple devices via `-apple-system`, with Inter (`next/font`) as the fallback elsewhere.
+- **Fonts**: body text and controls use SF Pro on Apple devices via `-apple-system`, with Inter (`next/font`) as the
+  fallback elsewhere. Headlines (`text-hero` down to `text-title2`) and the bottle labels use the Fraunces serif, a
+  deliberate departure from the HIG for a wine-label feel.
 - **HIG color system** in `src/app/globals.css`: labels, fills, grouped backgrounds, separators and system colors.
   The site always uses the light (white) appearance, even when the visitor's device is in dark mode. A wine-red tint
   replaces systemBlue as the app tint color.
