@@ -8,7 +8,7 @@ export const PLANS: Plan[] = [
     name: "Descubre",
     tagline: "Dos vinos de pequeñas bodegas malagueñas cada mes.",
     contents: "2 botellas · fichas de cata",
-    priceCents: 3900,
+    priceCents: 4000,
     featured: false,
   },
   {
@@ -16,7 +16,7 @@ export const PLANS: Plan[] = [
     name: "Bodega",
     tagline: "Tres vinos para recorrer la provincia, de los blancos de Moscatel a los tintos de Ronda.",
     contents: "3 botellas · fichas de cata · maridajes",
-    priceCents: 5400,
+    priceCents: 5500,
     featured: true,
   },
   {
@@ -24,7 +24,7 @@ export const PLANS: Plan[] = [
     name: "Reserva",
     tagline: "Vinos de producción muy limitada, crianzas y dulces de añada.",
     contents: "3 botellas de edición limitada · fichas de cata",
-    priceCents: 8900,
+    priceCents: 7000,
     featured: false,
   },
 ];
