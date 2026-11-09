@@ -1,0 +1,15 @@
+// Cloudflare Workers configuration. The site is a static export (see next.config.ts): `npm run build` writes it to
+// `out/`, and Cloudflare serves that folder as static assets. There is no Worker script.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Must match the Worker's name in the Cloudflare dashboard.
+  "name": "malaka-wine-web",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./out",
+    // Unknown URLs get the exported 404.html with a 404 status.
+    "not_found_handling": "404-page"
+  },
+  // Required (even when empty) for `wrangler preview`, which deploys a preview of each non-production branch.
+  "previews": {}
+}

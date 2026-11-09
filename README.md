@@ -29,22 +29,25 @@ npm run dev        # http://localhost:3000
 
 Checks: `npm run typecheck`, `npm run lint`, `npm run build`.
 
-## Deploy to Cloudflare Pages
+## Deploy to Cloudflare
 
 The site is a static export (`output: "export"` in `next.config.ts`): `npm run build` writes plain HTML, CSS and JS
-to `out/`. No environment variables, adapter or `wrangler` file are needed.
+to `out/`. `wrangler.jsonc` tells Cloudflare to serve that folder as static assets; there is no Worker script and
+no environment variables are needed.
 
-1. Push this repository to GitHub.
-2. In the Cloudflare dashboard, go to **Workers & Pages → Create → Pages → Connect to Git** and pick the repository.
-3. Use these build settings:
-   - **Framework preset**: Next.js (Static HTML Export)
-   - **Build command**: `npm run build`
-   - **Build output directory**: `out`
-4. Every push to the production branch deploys to production, and every other branch gets its own preview URL.
+The repository is connected to a Cloudflare Worker through Workers Builds (**Workers & Pages → the Worker →
+Settings → Build**), with these settings:
 
-Because every page is static, the site is served from Cloudflare's CDN without running any Functions. Files in
-`public/` (such as the 3D model) keep their names between deploys, so rename one when you replace it or purge the
-cache, otherwise visitors may get the old copy for a while.
+- **Build command**: `npm run build`
+- **Deploy command** (production branch): `npx wrangler deploy`
+- **Non-production branch deploy command**: `npx wrangler preview`
+
+Every push to the production branch deploys to production, and every other branch gets its own preview URL. The
+`name` in `wrangler.jsonc` must match the Worker's name in the dashboard, and the empty `previews` block has to stay:
+`wrangler preview` refuses to run without it.
+
+Files in `public/` (such as the 3D model) keep their names between deploys, so rename one when you replace it or
+purge the cache, otherwise visitors may get the old copy for a while.
 
 ## Design: Apple Human Interface Guidelines
 
