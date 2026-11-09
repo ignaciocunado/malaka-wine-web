@@ -37,7 +37,7 @@ export const DEFAULT_TASTE_PROFILE: TasteProfile = {
 
 /** The plan that best fits the answers: a bigger budget means Reserva, more bottles means Bodega. */
 export function recommendedPlan(profile: Pick<TasteProfile, "bottlesPerBox" | "monthlyBudgetEur">) {
-  if (profile.monthlyBudgetEur >= 80) return "RESERVA";
+  if (profile.monthlyBudgetEur >= 70) return "RESERVA";
   if (profile.bottlesPerBox >= 3) return "BODEGA";
   return "VINO";
 }
