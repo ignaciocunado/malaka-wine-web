@@ -77,3 +77,15 @@ src/
 An earlier version had a Spring Boot + MySQL API with sign-up/login (Auth.js), saved taste profiles and
 subscriptions. It was removed to keep this demo front-end only. The code is in git history: commit `d4ce9e7` on
 `main` has the complete stack (`backend/`, `frontend/`, `docker-compose.yml`) to start from.
+
+## 3D bottles on the homepage
+
+The homepage background is a three.js scene (`src/components/landing/tablecloth-scene.tsx`): a tablecloth with wine
+bottles that roll into place as you scroll. The bottle models are built in Blender by a script:
+
+```bash
+blender --background --python assets/blender/build_bottles.py
+```
+
+It writes `assets/blender/bottles.blend` (the editable source) and `public/models/bottles.glb` (what the site loads).
+Glass colors and labels are applied at runtime from the wines in `src/lib/catalog.ts`.

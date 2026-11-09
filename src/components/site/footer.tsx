@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-system-secondary text-caption text-label-secondary">
+    <footer className="relative bg-system-secondary text-caption text-label-secondary">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <p className="border-b border-separator pb-4 leading-relaxed">
           Malaka solo vende bebidas alcohólicas a mayores de 18 años. Bebe con moderación. Las bodegas, los precios

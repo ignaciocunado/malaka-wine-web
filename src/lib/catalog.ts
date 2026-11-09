@@ -1,4 +1,4 @@
-import type { Plan, Producer } from "./types";
+import type { Plan, Producer, Region, Wine } from "./types";
 
 // Demo content: plans, prices and producers are fictional samples. Replace them before launch.
 
@@ -86,25 +86,57 @@ export const PRODUCERS: Producer[] = [
   },
 ];
 
-export const REGIONS = [
+export const REGIONS: Region[] = [
   {
     name: "Axarquía",
     detail: "Laderas de pizarra sobre el mar. Moscatel de Alejandría y la Romé, la uva tinta autóctona.",
-    gradient: "from-[#f6c27a] to-[#e2735a]",
+    accent: "#e2735a",
+    wines: [
+      { name: "Moscatel seco", producer: "Viñas de la Cuesta, Cómpeta", shape: "Borgona", glass: "gold", foil: "gold" },
+      { name: "Moscatel dulce", producer: "Viñas de la Cuesta, Cómpeta", shape: "Borgona", glass: "amber", foil: "wine" },
+      { name: "Rosado de Romé", producer: "Lomas de Romé, Moclinejo", shape: "Borgona", glass: "rose", foil: "black" },
+    ],
   },
   {
     name: "Montes de Málaga",
     detail: "Los montes que rodean la ciudad, cuna de los clásicos vinos dulces de Pedro Ximénez asoleado.",
-    gradient: "from-[#c98a6b] to-[#7b2d3f]",
+    accent: "#7b2d3f",
+    wines: [
+      { name: "Pedro Ximénez dulce", producer: "Lagar Montes Verdes, Málaga", shape: "Bordelesa", glass: "mahogany", foil: "black" },
+      { name: "Pedro Ximénez dulce", producer: "Lagar Montes Verdes, Málaga", shape: "Bordelesa", glass: "mahogany", foil: "gold" },
+    ],
   },
   {
     name: "Serranía de Ronda",
     detail: "Viñedos de montaña de hasta 1000 metros. Tintos frescos y con estructura.",
-    gradient: "from-[#8aa1b8] to-[#3e4f6b]",
+    accent: "#3e4f6b",
+    wines: [
+      { name: "Tempranillo", producer: "Bodega Tajo Alto, Ronda", shape: "Bordelesa", glass: "green", foil: "wine" },
+      { name: "Syrah", producer: "Bodega Tajo Alto, Ronda", shape: "Bordelesa", glass: "ink", foil: "black" },
+      { name: "Petit Verdot", producer: "Bodega Tajo Alto, Ronda", shape: "Bordelesa", glass: "green", foil: "gold" },
+    ],
   },
   {
     name: "Norte de Málaga",
     detail: "Las llanuras de Antequera y Mollina: Pedro Ximénez, rosados y tintos jóvenes para el día a día.",
-    gradient: "from-[#d9b98c] to-[#8c5a3c]",
+    accent: "#8c5a3c",
+    wines: [
+      { name: "Rosado de Syrah", producer: "Lagar Vega Norte, Mollina", shape: "Borgona", glass: "rose", foil: "wine" },
+      { name: "Tinto joven", producer: "Lagar Vega Norte, Mollina", shape: "Bordelesa", glass: "ink", foil: "gold" },
+    ],
   },
 ];
+
+/** The three bottles that roll onto the tablecloth next to the hero. */
+export const HERO_WINES: Wine[] = [
+  { ...REGIONS[0].wines[0], origin: REGIONS[0].name, accent: REGIONS[0].accent },
+  { ...REGIONS[2].wines[0], origin: REGIONS[2].name, accent: REGIONS[2].accent },
+  { ...REGIONS[1].wines[0], origin: REGIONS[1].name, accent: REGIONS[1].accent },
+];
+
+/**
+ * Ids that tie a group of 3D bottles to the spot on the homepage where it rests: the page puts the id on an element
+ * (`data-bottle-stage`) and the tablecloth scene looks that element up.
+ */
+export const HERO_STAGE_ID = "hero";
+export const regionStageId = (index: number) => `region-${index}`;
