@@ -44,7 +44,7 @@ export function HeroArt({ className }: { className?: string }) {
       <rect x="160" y="182" width="9" height="170" rx="4.5" fill="url(#hero-shine)" />
       <rect x="158" y="236" width="74" height="86" rx="4" fill="#f5ede0" />
       <text x="195" y="262" textAnchor="middle" fontSize="10" fontWeight="700" letterSpacing="2" fill="#7a1631">
-        TERRUÑO
+        MALAKA
       </text>
       <line x1="172" y1="272" x2="218" y2="272" stroke="#7a1631" strokeOpacity="0.4" />
       <text x="195" y="290" textAnchor="middle" fontSize="11" fontStyle="italic" fill="#3a2a22">
@@ -63,7 +63,7 @@ export function HeroArt({ className }: { className?: string }) {
       <rect x="273" y="232" width="7" height="122" rx="3.5" fill="url(#hero-shine)" />
       <rect x="272" y="262" width="56" height="64" rx="4" fill="#fbf6e9" />
       <text x="300" y="282" textAnchor="middle" fontSize="8" fontWeight="700" letterSpacing="1.5" fill="#8a5a12">
-        TERRUÑO
+        MALAKA
       </text>
       <text x="300" y="300" textAnchor="middle" fontSize="10" fontStyle="italic" fill="#3a2a22">
         Moscatel

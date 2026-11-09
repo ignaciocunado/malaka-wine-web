@@ -1,6 +1,6 @@
-# Terruño · Málaga
+# Malaka · Málaga
 
-Demo landing site for **Terruño**, a monthly subscription box of wine from small producers in Málaga.
+Demo landing site for **Malaka Wines**, a monthly subscription box of wine from small producers in Málaga.
 The site is in Spanish (es-ES) and styled after Apple's Human Interface Guidelines.
 
 This is a **front-end-only demo**: there is no backend, database or login. Plans and producers are static data in the
@@ -39,9 +39,6 @@ No configuration or environment variables are needed.
 
 Because every page is static, the site is served from Vercel's CDN without using serverless functions, so it stays
 well within the Hobby plan's limits.
-
-> Vercel's Hobby plan is for personal, non-commercial use. That's fine for a demo. Once Terruño starts selling,
-> move the project to a Pro plan.
 
 ## Design: Apple Human Interface Guidelines
 

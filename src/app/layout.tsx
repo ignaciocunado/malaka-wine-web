@@ -11,14 +11,14 @@ const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Terruño — Vino de Málaga, cada mes en tu casa",
-    template: "%s · Terruño",
+    default: "Malaka Wine — Vino de Málaga, cada mes en tu casa",
+    template: "%s · Malaka",
   },
   description: "Una caja al mes con los vinos de las pequeñas bodegas de Málaga, elegidos según tus gustos.",
   openGraph: {
-    title: "Terruño — Vino de Málaga, cada mes en tu casa",
+    title: "Malaka — Vino de Málaga, cada mes en tu casa",
     description: "Una caja al mes con los vinos de las pequeñas bodegas de Málaga, elegidos según tus gustos.",
-    siteName: "Terruño",
+    siteName: "Malaka",
     locale: "es_ES",
     type: "website",
   },
