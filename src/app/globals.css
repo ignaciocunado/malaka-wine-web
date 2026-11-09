@@ -115,6 +115,9 @@
   --text-caption: 0.75rem;
   --text-caption--line-height: 1rem;
 
+  /* A sheet of paper lying on the tablecloth. */
+  --shadow-paper: 0 1px 1px rgba(74, 52, 20, 0.2), 0 22px 30px -16px rgba(74, 52, 20, 0.45);
+
   --ease-ios: cubic-bezier(0.25, 0.1, 0.25, 1);
   /*
    * Apple's default UI spring: critically damped (damping 1.0, no overshoot), response 0.4s, sampled into linear().
@@ -195,6 +198,17 @@ input,
 textarea {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+}
+
+/*
+ * The homepage sits on a beige tablecloth, drawn in 3D by `TableclothScene`. This is the cloth's color as the scene renders it, shown
+ * until the scene loads (and instead of it without WebGL), with the tokens retuned to read on beige.
+ */
+.tablecloth {
+  --label-secondary: #4f4a41;
+  --separator: rgba(74, 52, 20, 0.3);
+  --elevated-bg: #fbf7ee;
+  background: #f1e2c6;
 }
 
 /* HIG focus ring: system blue, offset from the control. */
