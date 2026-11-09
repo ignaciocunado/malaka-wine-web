@@ -40,6 +40,8 @@
     -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", var(--font-inter), "Helvetica Neue",
     Helvetica, Arial, sans-serif;
 
+  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, "Times New Roman", serif;
+
   --color-label: var(--label);
   --color-label-secondary: var(--label-secondary);
   --color-label-tertiary: var(--label-tertiary);
@@ -68,23 +70,23 @@
 @theme {
   --text-hero: clamp(2.75rem, 7vw, 5rem);
   --text-hero--line-height: 1.05;
-  --text-hero--letter-spacing: -0.025em;
-  --text-hero--font-weight: 700;
+  --text-hero--letter-spacing: -0.03em;
+  --text-hero--font-weight: 400;
 
   --text-large-title: clamp(2rem, 4.5vw, 3rem);
   --text-large-title--line-height: 1.08;
-  --text-large-title--letter-spacing: -0.02em;
-  --text-large-title--font-weight: 700;
+  --text-large-title--letter-spacing: -0.028em;
+  --text-large-title--font-weight: 400;
 
   --text-title1: 1.75rem;
   --text-title1--line-height: 2.125rem;
-  --text-title1--letter-spacing: -0.015em;
-  --text-title1--font-weight: 600;
+  --text-title1--letter-spacing: -0.02em;
+  --text-title1--font-weight: 450;
 
   --text-title2: 1.375rem;
   --text-title2--line-height: 1.75rem;
-  --text-title2--letter-spacing: -0.012em;
-  --text-title2--font-weight: 600;
+  --text-title2--letter-spacing: -0.015em;
+  --text-title2--font-weight: 500;
 
   --text-title3: 1.25rem;
   --text-title3--line-height: 1.5625rem;
@@ -180,6 +182,17 @@ h1,
 h2,
 h3 {
   text-wrap: balance;
+}
+
+/*
+ * The four largest text styles are set in the display serif (Fraunces); everything from title3 down stays in the
+ * system sans. This departs from the HIG, which uses one family throughout, to give headlines a wine-label character.
+ */
+.text-hero,
+.text-large-title,
+.text-title1,
+.text-title2 {
+  font-family: var(--font-display);
 }
 
 p {

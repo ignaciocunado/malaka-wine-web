@@ -50,7 +50,9 @@ cache, otherwise visitors may get the old copy for a while.
 
 Apple doesn't publish a web component framework, so the UI implements the HIG directly:
 
-- **System fonts**: SF Pro on Apple devices via `-apple-system`, with Inter (`next/font`) as the fallback elsewhere.
+- **Fonts**: body text and controls use SF Pro on Apple devices via `-apple-system`, with Inter (`next/font`) as the
+  fallback elsewhere. Headlines (`text-hero` down to `text-title2`) and the bottle labels use the Fraunces serif, a
+  deliberate departure from the HIG for a wine-label feel.
 - **HIG color system** in `src/app/globals.css`: labels, fills, grouped backgrounds, separators and system colors.
   The site always uses the light (white) appearance, even when the visitor's device is in dark mode. A wine-red tint
   replaces systemBlue as the app tint color.
