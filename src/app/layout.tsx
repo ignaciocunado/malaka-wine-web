@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 
+import { AgeGate } from "@/components/site/age-gate";
 import { Footer } from "@/components/site/footer";
 import { NavBar } from "@/components/site/nav-bar";
 
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <NavBar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <AgeGate />
       </body>
     </html>
   );
