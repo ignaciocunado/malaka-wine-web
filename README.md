@@ -29,16 +29,22 @@ npm run dev        # http://localhost:3000
 
 Checks: `npm run typecheck`, `npm run lint`, `npm run build`.
 
-## Deploy to Vercel (free Hobby plan)
+## Deploy to Cloudflare Pages
 
-No configuration or environment variables are needed.
+The site is a static export (`output: "export"` in `next.config.ts`): `npm run build` writes plain HTML, CSS and JS
+to `out/`. No environment variables, adapter or `wrangler` file are needed.
 
 1. Push this repository to GitHub.
-2. On [vercel.com/new](https://vercel.com/new), import the repository. Vercel detects Next.js. Keep the default settings and click **Deploy**.
-3. Every push to `main` deploys to production, and every pull request gets its own preview URL.
+2. In the Cloudflare dashboard, go to **Workers & Pages → Create → Pages → Connect to Git** and pick the repository.
+3. Use these build settings:
+   - **Framework preset**: Next.js (Static HTML Export)
+   - **Build command**: `npm run build`
+   - **Build output directory**: `out`
+4. Every push to the production branch deploys to production, and every other branch gets its own preview URL.
 
-Because every page is static, the site is served from Vercel's CDN without using serverless functions, so it stays
-well within the Hobby plan's limits.
+Because every page is static, the site is served from Cloudflare's CDN without running any Functions. Files in
+`public/` (such as the 3D model) keep their names between deploys, so rename one when you replace it or purge the
+cache, otherwise visitors may get the old copy for a while.
 
 ## Design: Apple Human Interface Guidelines
 
