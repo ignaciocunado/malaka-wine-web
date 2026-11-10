@@ -10,32 +10,17 @@ import { CheckIcon, ChevronLeftIcon } from "@/components/ui/icons";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { Slider } from "@/components/ui/slider";
 import { Stepper } from "@/components/ui/stepper";
-import { PLANS } from "@/lib/catalog";
+import { getCatalog } from "@/lib/catalog";
+import { getDictionary, type Dictionary } from "@/lib/content";
 import { formatEuros } from "@/lib/format";
-import {
-  ADVENTURE_LABELS,
-  BODY_LABELS,
-  DEFAULT_TASTE_PROFILE,
-  FREQUENCY_OPTIONS,
-  SWEETNESS_OPTIONS,
-  WINE_STYLE_OPTIONS,
-  labelOf,
-  labelsOf,
-  recommendedPlan,
-} from "@/lib/taste";
+import { homeAnchor, type Lang } from "@/lib/site";
+import { DEFAULT_TASTE_PROFILE, optionsOf, recommendedPlan } from "@/lib/taste";
 import type { Plan, TasteProfile } from "@/lib/types";
 
 const STEPS = ["styles", "palate", "box", "review"] as const;
 type StepId = (typeof STEPS)[number];
 
-const STEP_TITLES: Record<StepId, { title: string; subtitle: string }> = {
-  styles: { title: "¿Qué vinos te gustan?", subtitle: "Del Moscatel de la Axarquía a los tintos de altura de Ronda." },
-  palate: { title: "Tu paladar", subtitle: "Así sabremos por dónde empezar." },
-  box: { title: "Tu caja", subtitle: "Cuánto, cada cuánto y lo que debamos saber." },
-  review: { title: "Revisa tus respuestas", subtitle: "Comprueba que todo está bien antes de terminar." },
-};
-
-const euros = (amount: number) => formatEuros(amount * 100);
+type TasteText = Dictionary["taste"];
 
 type Result = { plan: Plan; chosen: boolean };
 
@@ -43,7 +28,10 @@ type Result = { plan: Plan; chosen: boolean };
  * Demo taste quiz: everything happens in the browser and nothing is stored. It ends with the plan picked on the
  * landing page (`/taste?plan=BODEGA`) or, when none was picked, the one recommended for the answers.
  */
-export function TasteForm() {
+export function TasteForm({ lang }: { lang: Lang }) {
+  const text = getDictionary(lang).taste;
+  const { plans } = getCatalog(lang);
+  const euros = (amount: number) => formatEuros(amount * 100, lang);
   const [profile, setProfile] = useState<TasteProfile>(DEFAULT_TASTE_PROFILE);
   const [stepId, setStepId] = useState<StepId>("styles");
   const [result, setResult] = useState<Result | null>(null);
@@ -63,8 +51,8 @@ export function TasteForm() {
   const finish = () => {
     // Read in the click handler rather than with useSearchParams, so the page can stay fully static.
     const requested = new URLSearchParams(window.location.search).get("plan");
-    const chosen = PLANS.find((plan) => plan.code === requested);
-    const recommended = PLANS.find((plan) => plan.code === recommendedPlan(profile)) ?? PLANS[0];
+    const chosen = plans.find((plan) => plan.code === requested);
+    const recommended = plans.find((plan) => plan.code === recommendedPlan(profile)) ?? plans[0];
     setResult({ plan: chosen ?? recommended, chosen: !!chosen });
     scrollToTop();
   };
@@ -76,26 +64,24 @@ export function TasteForm() {
         <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-system-green text-white">
           <CheckIcon className="size-9" strokeWidth={2.5} />
         </span>
-        <h2 className="mt-6 text-title1">{chosen ? `Tu caja ${plan.name}, a tu gusto.` : `Te recomendamos ${plan.name}.`}</h2>
+        <h2 className="mt-6 text-title1">{chosen ? text.result.chosenTitle(plan.name) : text.result.recommendedTitle(plan.name)}</h2>
         <p className="mx-auto mt-2 max-w-sm text-body text-label-secondary">
-          {chosen
-            ? "Con tus respuestas elegiremos cada botella de tu caja."
-            : "Es el plan que mejor encaja con tus respuestas."}
+          {chosen ? text.result.chosenBody : text.result.recommendedBody}
         </p>
         <div className="mx-auto mt-8 max-w-sm rounded-2xl bg-fill-quaternary p-5 text-left">
           <p className="text-headline">{plan.name}</p>
           <p className="mt-1 text-subheadline text-label-secondary">{plan.contents}</p>
           <p className="mt-3 flex items-baseline gap-1">
-            <span className="text-title1">{formatEuros(plan.priceCents)}</span>
-            <span className="text-subheadline text-label-secondary">/ mes</span>
+            <span className="text-title1">{formatEuros(plan.priceCents, lang)}</span>
+            <span className="text-subheadline text-label-secondary">{text.result.perMonth}</span>
           </p>
         </div>
         <p className="mx-auto mt-6 max-w-sm text-footnote text-label-secondary">
-          Esto es una demo: las suscripciones abrirán muy pronto.
+          {text.result.demo}
         </p>
         <div className="mt-8 flex flex-col items-center gap-3">
-          <ButtonLink href="/#planes" size="lg">
-            Ver todos los planes
+          <ButtonLink href={homeAnchor(lang, "plans")} size="lg">
+            {text.result.allPlans}
           </ButtonLink>
           <Button
             variant="plain"
@@ -105,7 +91,7 @@ export function TasteForm() {
               scrollToTop();
             }}
           >
-            Editar mis respuestas
+            {text.result.editAnswers}
           </Button>
         </div>
       </Card>
@@ -116,14 +102,12 @@ export function TasteForm() {
     <div>
       <div className="mb-5 px-1">
         <div className="flex items-center justify-between text-footnote text-label-secondary">
-          <span>
-            Paso {stepIndex + 1} de {STEPS.length}
-          </span>
+          <span>{text.progress(stepIndex + 1, STEPS.length)}</span>
         </div>
         <div
           className="mt-2 h-1 overflow-hidden rounded-full bg-fill-secondary"
           role="progressbar"
-          aria-label="Progreso del test"
+          aria-label={text.progressLabel}
           aria-valuemin={1}
           aria-valuemax={STEPS.length}
           aria-valuenow={stepIndex + 1}
@@ -141,24 +125,24 @@ export function TasteForm() {
           key={stepId}
           className={cn(direction === "forward" && "animate-step-forward", direction === "back" && "animate-step-back")}
         >
-          <h2 className="text-title2">{STEP_TITLES[stepId].title}</h2>
-          <p className="mt-1 text-subheadline text-label-secondary">{STEP_TITLES[stepId].subtitle}</p>
+          <h2 className="text-title2">{text.steps[stepId].title}</h2>
+          <p className="mt-1 text-subheadline text-label-secondary">{text.steps[stepId].subtitle}</p>
 
           <div className="mt-8 space-y-9">
             {stepId === "styles" && (
               <>
-                <Question title="Estilos" hint="Elige todos los que quieras.">
+                <Question title={text.styles.title} hint={text.styles.hint}>
                   <ChipGroup
-                    label="Estilos de vino"
-                    options={WINE_STYLE_OPTIONS}
+                    label={text.styles.label}
+                    options={optionsOf(text.styles.options)}
                     value={profile.wineStyles}
                     onChange={(wineStyles) => update({ wineStyles })}
                   />
                 </Question>
-                <Question title="¿Seco o dulce?">
+                <Question title={text.sweetness.title}>
                   <SegmentedControl
-                    label="Dulzor"
-                    options={SWEETNESS_OPTIONS}
+                    label={text.sweetness.label}
+                    options={optionsOf(text.sweetness.options)}
                     value={profile.wineSweetness}
                     onChange={(wineSweetness) => update({ wineSweetness })}
                   />
@@ -168,28 +152,28 @@ export function TasteForm() {
 
             {stepId === "palate" && (
               <>
-                <Question title="¿Con cuánto cuerpo?" value={BODY_LABELS[profile.wineBody - 1]}>
+                <Question title={text.body_.title} value={text.body_.levels[profile.wineBody - 1]}>
                   <Slider
-                    label="Cuerpo"
+                    label={text.body_.label}
                     min={1}
                     max={5}
                     value={profile.wineBody}
                     onChange={(wineBody) => update({ wineBody })}
-                    minLabel="Ligero y fresco"
-                    maxLabel="Intenso y con cuerpo"
-                    valueText={BODY_LABELS[profile.wineBody - 1]}
+                    minLabel={text.body_.min}
+                    maxLabel={text.body_.max}
+                    valueText={text.body_.levels[profile.wineBody - 1]}
                   />
                 </Question>
-                <Question title="¿Cuánto te gusta arriesgar?" value={ADVENTURE_LABELS[profile.adventurousness - 1]}>
+                <Question title={text.adventure.title} value={text.adventure.levels[profile.adventurousness - 1]}>
                   <Slider
-                    label="Ganas de probar cosas nuevas"
+                    label={text.adventure.label}
                     min={1}
                     max={5}
                     value={profile.adventurousness}
                     onChange={(adventurousness) => update({ adventurousness })}
-                    minLabel="Mis favoritos de siempre"
-                    maxLabel="Uvas raras como la Romé"
-                    valueText={ADVENTURE_LABELS[profile.adventurousness - 1]}
+                    minLabel={text.adventure.min}
+                    maxLabel={text.adventure.max}
+                    valueText={text.adventure.levels[profile.adventurousness - 1]}
                   />
                 </Question>
               </>
@@ -197,11 +181,13 @@ export function TasteForm() {
 
             {stepId === "box" && (
               <>
-                <Question title="Botellas por caja">
+                <Question title={text.bottles.title}>
                   <div className="flex items-center justify-between rounded-xl bg-fill-quaternary px-4 py-3">
-                    <span className="text-body">{profile.bottlesPerBox} botellas</span>
+                    <span className="text-body">{text.bottles.count(profile.bottlesPerBox)}</span>
                     <Stepper
-                      label="Botellas por caja"
+                      label={text.bottles.title}
+                      decreaseLabel={text.bottles.decrease}
+                      increaseLabel={text.bottles.increase}
                       value={profile.bottlesPerBox}
                       min={2}
                       max={6}
@@ -209,17 +195,17 @@ export function TasteForm() {
                     />
                   </div>
                 </Question>
-                <Question title="¿Cada cuánto?">
+                <Question title={text.frequency.title}>
                   <SegmentedControl
-                    label="Frecuencia de envío"
-                    options={FREQUENCY_OPTIONS}
+                    label={text.frequency.label}
+                    options={optionsOf(text.frequency.options)}
                     value={profile.deliveryFrequency}
                     onChange={(deliveryFrequency) => update({ deliveryFrequency })}
                   />
                 </Question>
-                <Question title="Presupuesto por caja" value={euros(profile.monthlyBudgetEur)}>
+                <Question title={text.budget.title} value={euros(profile.monthlyBudgetEur)}>
                   <Slider
-                    label="Presupuesto por caja"
+                    label={text.budget.title}
                     min={20}
                     max={150}
                     step={5}
@@ -227,39 +213,39 @@ export function TasteForm() {
                     onChange={(monthlyBudgetEur) => update({ monthlyBudgetEur })}
                     minLabel={euros(20)}
                     maxLabel={euros(150)}
-                    valueText={`${profile.monthlyBudgetEur} euros`}
+                    valueText={text.budget.valueText(profile.monthlyBudgetEur)}
                   />
                 </Question>
-                <Question title="¿Algo que debamos saber?" hint="Alergias, cosas que no te gustan, una bodega favorita…">
+                <Question title={text.notes.title} hint={text.notes.hint}>
                   <textarea
                     value={profile.notes}
                     onChange={(event) => update({ notes: event.target.value })}
                     maxLength={1000}
                     rows={3}
-                    aria-label="Notas"
-                    placeholder="p. ej., nada de blancos con madera."
+                    aria-label={text.notes.label}
+                    placeholder={text.notes.placeholder}
                     className="block w-full resize-none rounded-xl bg-fill-quaternary px-4 py-3 text-body outline-none placeholder:text-label-tertiary focus:ring-2 focus:ring-tint/40"
                   />
                 </Question>
               </>
             )}
 
-            {stepId === "review" && <Review profile={profile} onEdit={goTo} />}
+            {stepId === "review" && <Review profile={profile} onEdit={goTo} text={text} euros={euros} />}
           </div>
         </div>
 
         <div className="mt-10 flex items-center justify-between gap-3">
           {stepIndex > 0 ? (
             <Button variant="gray" onClick={() => goTo(STEPS[stepIndex - 1])}>
-              <ChevronLeftIcon className="-ml-1 size-4" /> Atrás
+              <ChevronLeftIcon className="-ml-1 size-4" /> {text.back}
             </Button>
           ) : (
             <span />
           )}
           {stepId === "review" ? (
-            <Button onClick={finish}>Ver mi caja</Button>
+            <Button onClick={finish}>{text.finish}</Button>
           ) : (
-            <Button onClick={() => goTo(STEPS[stepIndex + 1])}>Continuar</Button>
+            <Button onClick={() => goTo(STEPS[stepIndex + 1])}>{text.next}</Button>
           )}
         </div>
       </Card>
@@ -294,7 +280,22 @@ function Question({
   );
 }
 
-function Review({ profile, onEdit }: { profile: TasteProfile; onEdit: (step: StepId) => void }) {
+function Review({
+  profile,
+  onEdit,
+  text,
+  euros,
+}: {
+  profile: TasteProfile;
+  onEdit: (step: StepId) => void;
+  text: TasteText;
+  euros: (amount: number) => string;
+}) {
+  const labels = text.review;
+  // Listed in the options' order, not the order the answers were picked in.
+  const styles = optionsOf(text.styles.options)
+    .filter((option) => profile.wineStyles.includes(option.value))
+    .map((option) => option.label);
   const header = (title: string, step: StepId) => (
     <span className="flex items-center justify-between">
       {title}
@@ -303,26 +304,26 @@ function Review({ profile, onEdit }: { profile: TasteProfile; onEdit: (step: Ste
         onClick={() => onEdit(step)}
         className="text-subheadline font-normal normal-case text-tint transition-opacity duration-300 active:opacity-60 active:duration-0"
       >
-        Editar
+        {text.edit}
       </button>
     </span>
   );
 
   return (
     <div className="space-y-7">
-      <GroupedSection header={header("Estilos", "styles")} className="[&>div]:bg-fill-quaternary">
-        <SummaryRow label="Vinos" value={labelsOf(WINE_STYLE_OPTIONS, profile.wineStyles)} />
-        <SummaryRow label="Dulzor" value={labelOf(SWEETNESS_OPTIONS, profile.wineSweetness)} />
+      <GroupedSection header={header(labels.styles, "styles")} className="[&>div]:bg-fill-quaternary">
+        <SummaryRow label={labels.wines} value={styles.length === 0 ? text.styles.none : styles.join(", ")} />
+        <SummaryRow label={labels.sweetness} value={text.sweetness.options[profile.wineSweetness]} />
       </GroupedSection>
-      <GroupedSection header={header("Paladar", "palate")} className="[&>div]:bg-fill-quaternary">
-        <SummaryRow label="Cuerpo" value={BODY_LABELS[profile.wineBody - 1]} />
-        <SummaryRow label="Novedades" value={ADVENTURE_LABELS[profile.adventurousness - 1]} />
+      <GroupedSection header={header(labels.palate, "palate")} className="[&>div]:bg-fill-quaternary">
+        <SummaryRow label={labels.body} value={text.body_.levels[profile.wineBody - 1]} />
+        <SummaryRow label={labels.adventure} value={text.adventure.levels[profile.adventurousness - 1]} />
       </GroupedSection>
-      <GroupedSection header={header("Caja", "box")} className="[&>div]:bg-fill-quaternary">
-        <SummaryRow label="Botellas" value={String(profile.bottlesPerBox)} />
-        <SummaryRow label="Envío" value={labelOf(FREQUENCY_OPTIONS, profile.deliveryFrequency)} />
-        <SummaryRow label="Presupuesto" value={`${euros(profile.monthlyBudgetEur)} por caja`} />
-        {profile.notes.trim() && <SummaryRow label="Notas" value={profile.notes.trim()} />}
+      <GroupedSection header={header(labels.box, "box")} className="[&>div]:bg-fill-quaternary">
+        <SummaryRow label={labels.bottles} value={String(profile.bottlesPerBox)} />
+        <SummaryRow label={labels.delivery} value={text.frequency.options[profile.deliveryFrequency]} />
+        <SummaryRow label={labels.budget} value={text.budget.perBox(euros(profile.monthlyBudgetEur))} />
+        {profile.notes.trim() && <SummaryRow label={labels.notes} value={profile.notes.trim()} />}
       </GroupedSection>
     </div>
   );

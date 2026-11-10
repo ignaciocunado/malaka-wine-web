@@ -1,0 +1,260 @@
+/** Every piece of Spanish text on the site outside the wine guide. `en.ts` mirrors this file key by key. */
+export const es = {
+  meta: {
+    home: {
+      title: "Vinos de Málaga a domicilio · Suscripción de vino | Malaka Wine",
+      description:
+        "Suscripción de vinos de Málaga: cada mes, una caja con vinos de pequeñas bodegas de la Axarquía, Ronda y los Montes de Málaga, elegidos según tus gustos. Envío gratis a la península.",
+      keywords: [
+        "vinos de Málaga",
+        "vino de Málaga",
+        "suscripción de vino",
+        "suscripción de vinos",
+        "club de vinos",
+        "caja de vino mensual",
+        "comprar vino de Málaga online",
+        "vino Moscatel de Málaga",
+        "vinos de Ronda",
+        "vinos de la Axarquía",
+        "regalar vino de Málaga",
+      ],
+    },
+    taste: {
+      title: "Test de gustos: descubre tu vino de Málaga | Malaka Wine",
+      description:
+        "Responde en dos minutos qué vinos te gustan (tinto, blanco, Moscatel, dulce o seco) y te recomendamos la caja de vinos de Málaga que mejor encaja contigo.",
+    },
+    notFound: { title: "Página no encontrada | Malaka Wine" },
+  },
+
+  nav: {
+    home: "Malaka, inicio",
+    howItWorks: "Cómo funciona",
+    plans: "Planes",
+    producers: "Bodegas",
+    guide: "Vinos de Málaga",
+    quiz: "Haz el test",
+    /** The link to the other language: its visible label and what it says to screen readers. */
+    switchLabel: "EN",
+    switchTitle: "Read this page in English",
+  },
+
+  footer: {
+    legal: "Malaka solo vende bebidas alcohólicas a mayores de 18 años. Bebe con moderación.",
+    sample: "Las bodegas, los precios y las cajas que aparecen en esta web son contenido de ejemplo.",
+    made: "Hecho en Málaga.",
+    plans: "Planes",
+    quiz: "Test de gustos",
+    guide: "Guía de vinos de Málaga",
+    otherLanguage: "English",
+  },
+
+  ageGate: {
+    title: "¿Tienes 18 años o más?",
+    body: "Malaka vende bebidas alcohólicas y solo puede mostrarte la web si eres mayor de edad.",
+    yes: "Sí, tengo 18 años o más",
+    no: "No, soy menor",
+    deniedTitle: "Lo sentimos",
+    deniedBody: "Malaka solo vende bebidas alcohólicas a mayores de 18 años, así que no puedes acceder a la web.",
+    back: "Volver",
+  },
+
+  notFound: {
+    eyebrow: "Error 404",
+    title: "No encontramos esta página.",
+    body: "Puede que el enlace esté mal o que la página ya no exista.",
+    cta: "Volver al inicio",
+  },
+
+  home: {
+    hero: {
+      eyebrow: "Suscripción de vinos de Málaga",
+      title: "Málaga, cada mes en tu copa.",
+      body: "Una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
+      cta: "Descubre tu gusto",
+      plans: "Ver planes",
+      bottles: "Tres botellas de vino de Málaga sobre el mantel",
+    },
+    why: {
+      title: "El sabor de la tierra.",
+      titleMuted: "Directo de quienes lo elaboran.",
+      features: [
+        {
+          title: "Solo pequeñas bodegas",
+          body: "Bodegas familiares que elaboran unos pocos miles de botellas al año. La mayoría nunca llega a un supermercado.",
+        },
+        {
+          title: "Elegido para ti",
+          body: "Cuéntanos qué te gusta y elegiremos cada caja según tu perfil: estilos, cuerpo y presupuesto.",
+        },
+        {
+          title: "Cada mes en tu puerta",
+          body: "Tu caja sale la primera semana de cada mes. Cambia de plan o cancela cuando quieras.",
+        },
+      ],
+    },
+    how: {
+      eyebrow: "Cómo funciona",
+      title: "Tres pasos hasta tu primera caja.",
+      steps: [
+        { title: "Haz el test de gustos", body: "Dos minutos sobre estilos, cuerpo y presupuesto." },
+        { title: "Elegimos tus vinos", body: "Botellas seleccionadas entre las novedades del mes de toda la provincia." },
+        { title: "Abre un trocito de Málaga", body: "Con fichas de cata, maridajes y la historia de cada bodega." },
+      ],
+      cta: "Haz el test de gustos",
+    },
+    regions: {
+      eyebrow: "Del viñedo a tu mesa",
+      title: "Cuatro rincones de una provincia.",
+      more: "Conoce la zona",
+      bottles: (region: string, wines: string) => `Botellas de ${region}: ${wines}`,
+    },
+    plans: {
+      eyebrow: "Planes",
+      title: "Elige tu caja de vinos de Málaga.",
+      body: "Envío gratis a la península. Cambia de plan o cancela cuando quieras.",
+      featured: "El más elegido",
+      perMonth: "/ mes",
+      choose: (plan: string) => `Elegir ${plan}`,
+    },
+    producers: {
+      eyebrow: "Quiénes lo hacen",
+      title: "Las bodegas de esta temporada.",
+    },
+    guide: {
+      eyebrow: "Guía",
+      title: "¿Qué vinos se hacen en Málaga?",
+      body: "Dulces de Moscatel y Pedro Ximénez con siglos de historia, blancos secos de la Axarquía y tintos de altura de la Serranía de Ronda. Te lo contamos zona por zona y uva por uva.",
+      cta: "Leer la guía de vinos de Málaga",
+    },
+    faq: {
+      title: "¿Preguntas? Respuestas.",
+      questions: [
+        {
+          q: "¿Qué es Malaka Wine?",
+          a: "Malaka Wine es una suscripción de vinos de Málaga: cada mes recibes en casa una caja de dos o tres botellas de pequeñas bodegas de la provincia, elegidas según tus gustos y acompañadas de fichas de cata.",
+        },
+        {
+          q: "¿Quiénes son las bodegas?",
+          a: "Bodegas familiares de toda la provincia de Málaga (Axarquía, Montes de Málaga, Serranía de Ronda, Costa Occidental y Norte) que elaboran pequeñas partidas difíciles de encontrar fuera de su pueblo.",
+        },
+        {
+          q: "¿Qué tipos de vino de Málaga puedo recibir?",
+          a: "Blancos secos y dulces de Moscatel de Alejandría, dulces tradicionales de Pedro Ximénez, rosados y tintos ligeros de Romé y tintos de altura de la Serranía de Ronda. No todo el vino de Málaga es dulce: tú eliges los estilos en el test de gustos.",
+        },
+        {
+          q: "¿Cómo elegís los vinos de mi caja?",
+          a: "Tu perfil de gustos marca los estilos, el cuerpo y el presupuesto. Cada mes lo cruzamos con las novedades de nuestras bodegas e incluimos fichas de cata para que sepas qué estás abriendo.",
+        },
+        {
+          q: "¿Cuándo llega mi caja?",
+          a: "Las cajas salen la primera semana de cada mes (o cada dos meses, si lo prefieres) a cualquier dirección de la España peninsular.",
+        },
+        {
+          q: "¿Puedo cambiar de plan o cancelar?",
+          a: "Sí. Cambia de plan o cancela cuando quieras desde tu cuenta, sin permanencia.",
+        },
+        {
+          q: "¿Hay una edad mínima?",
+          a: "Sí. Solo vendemos vino a mayores de 18 años, y la entrega debe recogerla un adulto.",
+        },
+      ],
+    },
+    closing: {
+      title: "Tu primera caja sale el día 1.",
+      body: "Dos minutos de preguntas ahora y un trocito de Málaga en tu mesa cada mes.",
+      cta: "Descubre tu gusto",
+    },
+  },
+
+  taste: {
+    eyebrow: "Test de gustos",
+    title: "Descubre tu gusto.",
+    body: "Unas preguntas rápidas para que cada caja parezca elegida solo para ti. Porque lo está.",
+    steps: {
+      styles: { title: "¿Qué vinos te gustan?", subtitle: "Del Moscatel de la Axarquía a los tintos de altura de Ronda." },
+      palate: { title: "Tu paladar", subtitle: "Así sabremos por dónde empezar." },
+      box: { title: "Tu caja", subtitle: "Cuánto, cada cuánto y lo que debamos saber." },
+      review: { title: "Revisa tus respuestas", subtitle: "Comprueba que todo está bien antes de terminar." },
+    },
+    progress: (step: number, total: number) => `Paso ${step} de ${total}`,
+    progressLabel: "Progreso del test",
+    back: "Atrás",
+    next: "Continuar",
+    finish: "Ver mi caja",
+    edit: "Editar",
+    styles: {
+      title: "Estilos",
+      hint: "Elige todos los que quieras.",
+      label: "Estilos de vino",
+      options: { RED: "Tinto", WHITE: "Blanco", ROSE: "Rosado", SWEET: "Dulce y Moscatel", SPARKLING: "Espumoso" },
+      none: "Sin preferencia",
+    },
+    sweetness: {
+      title: "¿Seco o dulce?",
+      label: "Dulzor",
+      options: { DRY: "Seco", OFF_DRY: "Semiseco", SWEET: "Dulce" },
+    },
+    body_: {
+      title: "¿Con cuánto cuerpo?",
+      label: "Cuerpo",
+      min: "Ligero y fresco",
+      max: "Intenso y con cuerpo",
+      levels: ["Muy ligero", "Ligero", "Medio", "Con cuerpo", "Muy intenso"],
+    },
+    adventure: {
+      title: "¿Cuánto te gusta arriesgar?",
+      label: "Ganas de probar cosas nuevas",
+      min: "Mis favoritos de siempre",
+      max: "Uvas raras como la Romé",
+      levels: ["Solo clásicos", "Sobre todo clásicos", "Un poco de todo", "Con curiosidad", "Sorpréndeme"],
+    },
+    bottles: {
+      title: "Botellas por caja",
+      count: (bottles: number) => `${bottles} botellas`,
+      decrease: "Reducir botellas por caja",
+      increase: "Aumentar botellas por caja",
+    },
+    frequency: {
+      title: "¿Cada cuánto?",
+      label: "Frecuencia de envío",
+      options: { MONTHLY: "Cada mes", BIMONTHLY: "Cada 2 meses" },
+    },
+    budget: {
+      title: "Presupuesto por caja",
+      valueText: (amount: number) => `${amount} euros`,
+      perBox: (amount: string) => `${amount} por caja`,
+    },
+    notes: {
+      title: "¿Algo que debamos saber?",
+      hint: "Alergias, cosas que no te gustan, una bodega favorita…",
+      label: "Notas",
+      placeholder: "p. ej., nada de blancos con madera.",
+    },
+    review: {
+      styles: "Estilos",
+      wines: "Vinos",
+      sweetness: "Dulzor",
+      palate: "Paladar",
+      body: "Cuerpo",
+      adventure: "Novedades",
+      box: "Caja",
+      bottles: "Botellas",
+      delivery: "Envío",
+      budget: "Presupuesto",
+      notes: "Notas",
+    },
+    result: {
+      chosenTitle: (plan: string) => `Tu caja ${plan}, a tu gusto.`,
+      recommendedTitle: (plan: string) => `Te recomendamos ${plan}.`,
+      chosenBody: "Con tus respuestas elegiremos cada botella de tu caja.",
+      recommendedBody: "Es el plan que mejor encaja con tus respuestas.",
+      perMonth: "/ mes",
+      demo: "Esto es una demo: las suscripciones abrirán muy pronto.",
+      allPlans: "Ver todos los planes",
+      editAnswers: "Editar mis respuestas",
+    },
+  },
+};
+
+export type Dictionary = typeof es;

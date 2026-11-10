@@ -1,0 +1,41 @@
+# Malaka Wine
+
+> Malaka Wine is a wine subscription from Málaga, Spain. Each month subscribers receive a box of two or three wines from small family wineries in the province of Málaga, chosen to match a taste profile they fill in online. The site is in Spanish (default) and English.
+
+Key facts:
+
+- Based in Málaga, Andalusia, Spain. Delivery to mainland Spain. Sales to adults (18+) only.
+- Wines come from the province's five wine areas: Axarquía, Montes de Málaga, Norte de Málaga, Manilva and Serranía de Ronda, under the DO Málaga and DO Sierras de Málaga appellations.
+- Typical styles: dry and sweet Moscatel de Alejandría, sweet Pedro Ximénez, rosés and light reds from the native Romé grape, and high-altitude reds from Ronda.
+- The service is pre-launch: the plans, prices and wineries currently shown on the homepage are sample content and should not be quoted as real offers.
+- The name comes from Malaka, the Phoenician name of the city of Málaga.
+
+## Main pages
+
+- [Inicio (español)](https://malakawine.com/): la suscripción, cómo funciona, planes y preguntas frecuentes
+- [Home (English)](https://malakawine.com/en): the subscription, how it works, plans and FAQ
+- [Test de gustos](https://malakawine.com/taste) / [Taste quiz](https://malakawine.com/en/taste): two-minute quiz that recommends a plan
+
+## Guide to Málaga wines (English)
+
+- [Málaga wines: regions, grapes and styles](https://malakawine.com/en/malaga-wines): appellations, areas, grapes, how the sweet wines are made, history and food pairings
+- [Axarquía](https://malakawine.com/en/malaga-wines/axarquia)
+- [Montes de Málaga](https://malakawine.com/en/malaga-wines/montes-de-malaga)
+- [Serranía de Ronda](https://malakawine.com/en/malaga-wines/serrania-de-ronda)
+- [Norte de Málaga](https://malakawine.com/en/malaga-wines/norte-de-malaga)
+- [Manilva](https://malakawine.com/en/malaga-wines/manilva)
+- [Moscatel de Alejandría](https://malakawine.com/en/malaga-wines/moscatel-de-alejandria)
+- [Pedro Ximénez](https://malakawine.com/en/malaga-wines/pedro-ximenez)
+- [Romé](https://malakawine.com/en/malaga-wines/rome)
+
+## Guía de vinos de Málaga (español)
+
+- [Vinos de Málaga: zonas, uvas y estilos](https://malakawine.com/vinos-de-malaga)
+- [Axarquía](https://malakawine.com/vinos-de-malaga/axarquia)
+- [Montes de Málaga](https://malakawine.com/vinos-de-malaga/montes-de-malaga)
+- [Serranía de Ronda](https://malakawine.com/vinos-de-malaga/serrania-de-ronda)
+- [Norte de Málaga](https://malakawine.com/vinos-de-malaga/norte-de-malaga)
+- [Manilva](https://malakawine.com/vinos-de-malaga/manilva)
+- [Moscatel de Alejandría](https://malakawine.com/vinos-de-malaga/moscatel-de-alejandria)
+- [Pedro Ximénez](https://malakawine.com/vinos-de-malaga/pedro-ximenez)
+- [Romé](https://malakawine.com/vinos-de-malaga/rome)

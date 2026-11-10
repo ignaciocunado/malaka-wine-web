@@ -4,6 +4,8 @@ import { MinusIcon, PlusIcon } from "./icons";
 
 type Props = {
   label: string;
+  decreaseLabel: string;
+  increaseLabel: string;
   value: number;
   min: number;
   max: number;
@@ -11,7 +13,7 @@ type Props = {
 };
 
 /** HIG stepper: a compact −/+ pair for small numeric adjustments. */
-export function Stepper({ label, value, min, max, onChange }: Props) {
+export function Stepper({ label, decreaseLabel, increaseLabel, value, min, max, onChange }: Props) {
   const button =
     "flex h-8 w-11 items-center justify-center text-label transition duration-300 ease-spring active:bg-fill " +
     "active:duration-0 disabled:text-label-tertiary";
@@ -20,7 +22,7 @@ export function Stepper({ label, value, min, max, onChange }: Props) {
       <button
         type="button"
         className={`${button} rounded-l-lg`}
-        aria-label={`Reducir ${label.toLowerCase()}`}
+        aria-label={decreaseLabel}
         disabled={value <= min}
         onClick={() => onChange(value - 1)}
       >
@@ -30,7 +32,7 @@ export function Stepper({ label, value, min, max, onChange }: Props) {
       <button
         type="button"
         className={`${button} rounded-r-lg`}
-        aria-label={`Aumentar ${label.toLowerCase()}`}
+        aria-label={increaseLabel}
         disabled={value >= max}
         onClick={() => onChange(value + 1)}
       >

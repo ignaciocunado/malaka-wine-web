@@ -26,6 +26,8 @@ export type RegionWine = {
 };
 
 export type Region = {
+  /** Also the slug of this area's page in the wine guide. */
+  slug: string;
   name: string;
   detail: string;
   /** Color of the band on this region's bottle labels. */
