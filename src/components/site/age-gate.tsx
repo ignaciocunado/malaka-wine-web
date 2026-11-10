@@ -3,6 +3,8 @@
 import { useEffect, useState, useSyncExternalStore } from "react";
 
 import { Button } from "@/components/ui/button";
+import { getDictionary } from "@/lib/content";
+import type { Lang } from "@/lib/site";
 
 import { Logo } from "./logo";
 
@@ -43,7 +45,8 @@ function useAgeConfirmed() {
 }
 
 /** Full-screen check that the visitor is 18 or older. The answer is remembered on this device. */
-export function AgeGate() {
+export function AgeGate({ lang }: { lang: Lang }) {
+  const text = getDictionary(lang).ageGate;
   const [confirmed, confirm] = useAgeConfirmed();
   const [denied, setDenied] = useState(false);
 
@@ -68,27 +71,25 @@ export function AgeGate() {
         className="w-full max-w-sm rounded-3xl bg-elevated p-8 text-center shadow-2xl ring-1 ring-separator"
       >
         <div className="mb-6 flex justify-center">
-          <Logo />
+          <Logo lang={lang} />
         </div>
         <h2 id="age-gate-title" className="text-title2">
-          {denied ? "Lo sentimos" : "¿Tienes 18 años o más?"}
+          {denied ? text.deniedTitle : text.title}
         </h2>
         <p id="age-gate-description" className="mt-2 text-callout text-label-secondary">
-          {denied
-            ? "Malaka solo vende bebidas alcohólicas a mayores de 18 años, así que no puedes acceder a la web."
-            : "Malaka vende bebidas alcohólicas y solo puede mostrarte la web si eres mayor de edad."}
+          {denied ? text.deniedBody : text.body}
         </p>
         {denied ? (
           <Button variant="gray" size="lg" className="mt-6 w-full" onClick={() => setDenied(false)}>
-            Volver
+            {text.back}
           </Button>
         ) : (
           <div className="mt-6 flex flex-col gap-2">
             <Button size="lg" className="w-full" onClick={confirm} autoFocus>
-              Sí, tengo 18 años o más
+              {text.yes}
             </Button>
             <Button variant="gray" size="lg" className="w-full" onClick={() => setDenied(true)}>
-              No, soy menor
+              {text.no}
             </Button>
           </div>
         )}

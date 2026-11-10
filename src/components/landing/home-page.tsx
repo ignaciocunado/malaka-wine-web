@@ -11,31 +11,13 @@ import {
   SparklesIcon,
   WineGlassIcon,
 } from "@/components/ui/icons";
-import { HERO_STAGE_ID, PLANS, PRODUCERS, REGIONS, regionStageId } from "@/lib/catalog";
+import { JsonLd } from "@/components/seo/json-ld";
+import { CATALOG_IS_SAMPLE, HERO_STAGE_ID, getCatalog, regionStageId } from "@/lib/catalog";
+import { getDictionary } from "@/lib/content";
+import { ANCHORS, pagePath, topicPath, type Lang } from "@/lib/site";
+import { homeFaqJsonLd, plansJsonLd } from "@/lib/structured-data";
 
-const FEATURES = [
-  {
-    icon: HandshakeIcon,
-    title: "Solo pequeñas bodegas",
-    body: "Bodegas familiares que elaboran unos pocos miles de botellas al año. La mayoría nunca llega a un supermercado.",
-  },
-  {
-    icon: SparklesIcon,
-    title: "Elegido para ti",
-    body: "Cuéntanos qué te gusta y elegiremos cada caja según tu perfil: estilos, cuerpo y presupuesto.",
-  },
-  {
-    icon: CalendarIcon,
-    title: "Cada mes en tu puerta",
-    body: "Tu caja sale la primera semana de cada mes. Cambia de plan o cancela cuando quieras.",
-  },
-];
-
-const STEPS = [
-  { title: "Haz el test de gustos", body: "Dos minutos sobre estilos, cuerpo y presupuesto." },
-  { title: "Elegimos tus vinos", body: "Botellas seleccionadas entre las novedades del mes de toda la provincia." },
-  { title: "Abre un trocito de Málaga", body: "Con fichas de cata, maridajes y la historia de cada bodega." },
-];
+const FEATURE_ICONS = [HandshakeIcon, SparklesIcon, CalendarIcon];
 
 /** Cards read as sheets of paper lying on the tablecloth, each a touch askew. */
 const PAPER = "rounded-md bg-elevated p-7 shadow-paper odd:-rotate-1 even:rotate-[0.6deg]";
@@ -56,54 +38,67 @@ function BottleStage({ id, side, label }: { id: string; side: "left" | "right"; 
   );
 }
 
-export default function Home() {
+/** The homepage in one language; `app/(es)/page.tsx` and `app/en/page.tsx` render it. */
+export function HomePage({ lang }: { lang: Lang }) {
+  const { home } = getDictionary(lang);
+  const { plans, producers, regions } = getCatalog(lang);
+  const anchors = ANCHORS[lang];
+  const tastePath = pagePath(lang, "taste");
   return (
     <div className="tablecloth relative isolate overflow-x-clip">
-      <Tablecloth />
+      <JsonLd data={homeFaqJsonLd(lang)} />
+      {!CATALOG_IS_SAMPLE && <JsonLd data={plansJsonLd(lang)} />}
+      <Tablecloth lang={lang} />
 
       {/* Hero */}
       <section className="mx-auto grid max-w-6xl items-center gap-8 px-4 pt-16 pb-8 sm:px-6 md:min-h-[42rem] md:grid-cols-2 md:pt-24 md:pb-16">
         <div className="text-center md:text-left">
-          <p className="text-headline text-tint">Suscripción de vino</p>
-          <h1 className="mt-3 text-hero">Málaga, cada mes en tu copa.</h1>
+          {/* One heading: the line that says what the site sells, then the headline. */}
+          <h1>
+            <span className="block font-sans text-headline text-tint">{home.hero.eyebrow}</span>
+            <span className="mt-3 block text-hero">{home.hero.title}</span>
+          </h1>
           <p className="mx-auto mt-5 max-w-md text-title3 font-normal text-label-secondary md:mx-0">
-            Una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.
+            {home.hero.body}
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-5 md:justify-start">
-            <ButtonLink href="/taste" size="lg">
-              Descubre tu gusto
+            <ButtonLink href={tastePath} size="lg">
+              {home.hero.cta}
             </ButtonLink>
-            <ButtonLink href="#planes" variant="plain">
-              Ver planes <ChevronRightIcon className="size-4" />
+            <ButtonLink href={`#${anchors.plans}`} variant="plain">
+              {home.hero.plans} <ChevronRightIcon className="size-4" />
             </ButtonLink>
           </div>
         </div>
-        <BottleStage id={HERO_STAGE_ID} side="right" label="Tres botellas de vino de Málaga sobre el mantel" />
+        <BottleStage id={HERO_STAGE_ID} side="right" label={home.hero.bottles} />
       </section>
 
       {/* Why */}
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <h2 className="max-w-2xl text-large-title">
-          El sabor de la tierra. <span className="text-label-secondary">Directo de quienes lo elaboran.</span>
+          {home.why.title} <span className="text-label-secondary">{home.why.titleMuted}</span>
         </h2>
         <div className="mt-12 grid gap-7 md:grid-cols-3">
-          {FEATURES.map(({ icon: Icon, title, body }) => (
-            <div key={title} className={PAPER}>
-              <Icon className="size-8 text-tint" />
-              <h3 className="mt-5 text-title3">{title}</h3>
-              <p className="mt-2 text-body text-label-secondary">{body}</p>
-            </div>
-          ))}
+          {home.why.features.map(({ title, body }, index) => {
+            const Icon = FEATURE_ICONS[index];
+            return (
+              <div key={title} className={PAPER}>
+                <Icon className="size-8 text-tint" />
+                <h3 className="mt-5 text-title3">{title}</h3>
+                <p className="mt-2 text-body text-label-secondary">{body}</p>
+              </div>
+            );
+          })}
         </div>
       </section>
 
       {/* How it works */}
-      <section id="como-funciona" className="scroll-mt-14">
+      <section id={anchors.how} className="scroll-mt-14">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <p className="text-headline text-tint">Cómo funciona</p>
-          <h2 className="mt-2 text-large-title">Tres pasos hasta tu primera caja.</h2>
+          <p className="text-headline text-tint">{home.how.eyebrow}</p>
+          <h2 className="mt-2 text-large-title">{home.how.title}</h2>
           <ol className="mt-12 grid gap-7 md:grid-cols-3">
-            {STEPS.map((step, index) => (
+            {home.how.steps.map((step, index) => (
               <li key={step.title} className={PAPER}>
                 <span className="flex size-9 items-center justify-center rounded-full bg-tint text-headline text-tint-contrast">
                   {index + 1}
@@ -114,8 +109,8 @@ export default function Home() {
             ))}
           </ol>
           <div className="mt-10">
-            <ButtonLink href="/taste" variant="plain">
-              Haz el test de gustos <ChevronRightIcon className="size-4" />
+            <ButtonLink href={tastePath} variant="plain">
+              {home.how.cta} <ChevronRightIcon className="size-4" />
             </ButtonLink>
           </div>
         </div>
@@ -123,15 +118,15 @@ export default function Home() {
 
       {/* Regions */}
       <section className="mx-auto max-w-6xl px-4 pt-20 sm:px-6">
-        <p className="text-headline text-tint">Del viñedo a tu mesa</p>
-        <h2 className="mt-2 max-w-3xl text-hero">Cuatro rincones de una provincia.</h2>
-        {REGIONS.map((region, index) => {
+        <p className="text-headline text-tint">{home.regions.eyebrow}</p>
+        <h2 className="mt-2 max-w-3xl text-hero">{home.regions.title}</h2>
+        {regions.map((region, index) => {
           const side = index % 2 === 0 ? "right" : "left";
           return (
             <div key={region.name} className="grid items-center gap-x-12 gap-y-4 py-14 md:min-h-[44rem] md:grid-cols-2 md:py-20">
               <div className={cn(side === "left" && "md:order-2")}>
                 <p className="text-footnote font-semibold tracking-widest text-label-secondary">
-                  0{index + 1} / 0{REGIONS.length}
+                  0{index + 1} / 0{regions.length}
                 </p>
                 <h3 className="mt-3 text-large-title md:text-[3.75rem] md:leading-none">{region.name}</h3>
                 <p className="mt-4 max-w-md text-title3 font-normal text-label-secondary">{region.detail}</p>
@@ -145,11 +140,14 @@ export default function Home() {
                       </li>
                     ))}
                 </ul>
+                <ButtonLink href={topicPath(lang, region.slug)} variant="plain" className="mt-5">
+                  {home.regions.more} <ChevronRightIcon className="size-4" />
+                </ButtonLink>
               </div>
               <BottleStage
                 id={regionStageId(index)}
                 side={side}
-                label={`Botellas de ${region.name}: ${region.wines.map((wine) => wine.name).join(", ")}`}
+                label={home.regions.bottles(region.name, region.wines.map((wine) => wine.name).join(", "))}
               />
             </div>
           );
@@ -157,29 +155,29 @@ export default function Home() {
       </section>
 
       {/* Plans */}
-      <section id="planes" className="scroll-mt-14">
+      <section id={anchors.plans} className="scroll-mt-14">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
           <div className="text-center">
-            <p className="text-headline text-tint">Planes</p>
-            <h2 className="mt-2 text-large-title">Elige tu caja.</h2>
+            <p className="text-headline text-tint">{home.plans.eyebrow}</p>
+            <h2 className="mt-2 text-large-title">{home.plans.title}</h2>
             <p className="mx-auto mt-3 max-w-xl text-body text-label-secondary">
-              Envío gratis a la península. Cambia de plan o cancela cuando quieras.
+              {home.plans.body}
             </p>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {PLANS.map((plan) => (
-              <PlanCard key={plan.code} plan={plan} />
+            {plans.map((plan) => (
+              <PlanCard key={plan.code} plan={plan} lang={lang} />
             ))}
           </div>
         </div>
       </section>
 
       {/* Producers */}
-      <section id="bodegas" className="mx-auto max-w-6xl scroll-mt-14 px-4 py-20 sm:px-6">
-        <p className="text-headline text-tint">Quiénes lo hacen</p>
-        <h2 className="mt-2 text-large-title">Las bodegas de esta temporada.</h2>
+      <section id={anchors.producers} className="mx-auto max-w-6xl scroll-mt-14 px-4 py-20 sm:px-6">
+        <p className="text-headline text-tint">{home.producers.eyebrow}</p>
+        <h2 className="mt-2 text-large-title">{home.producers.title}</h2>
         <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-          {PRODUCERS.map((producer) => (
+          {producers.map((producer) => (
             <article key={producer.slug} className={PAPER}>
               <div className="flex items-center gap-2 text-footnote text-label-secondary">
                 <WineGlassIcon className="size-4 text-tint" />
@@ -193,12 +191,24 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Wine guide */}
+      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+        <div className="max-w-2xl rounded-md bg-elevated p-7 shadow-paper sm:p-10">
+          <p className="text-headline text-tint">{home.guide.eyebrow}</p>
+          <h2 className="mt-2 text-large-title">{home.guide.title}</h2>
+          <p className="mt-4 text-body text-label-secondary">{home.guide.body}</p>
+          <ButtonLink href={pagePath(lang, "guide")} variant="plain" className="mt-6">
+            {home.guide.cta} <ChevronRightIcon className="size-4" />
+          </ButtonLink>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section>
         <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
-          <h2 className="text-center text-large-title">¿Preguntas? Respuestas.</h2>
+          <h2 className="text-center text-large-title">{home.faq.title}</h2>
           <div className="mt-10">
-            <Faq />
+            <Faq questions={home.faq.questions} />
           </div>
         </div>
       </section>
@@ -206,12 +216,12 @@ export default function Home() {
       {/* Closing CTA */}
       <section className="mx-auto max-w-6xl px-4 py-24 text-center sm:px-6">
         <BoxIcon className="mx-auto size-12 text-tint" />
-        <h2 className="mt-5 text-large-title">Tu primera caja sale el día 1.</h2>
+        <h2 className="mt-5 text-large-title">{home.closing.title}</h2>
         <p className="mx-auto mt-3 max-w-lg text-body text-label-secondary">
-          Dos minutos de preguntas ahora y un trocito de Málaga en tu mesa cada mes.
+          {home.closing.body}
         </p>
-        <ButtonLink href="/taste" size="lg" className="mt-8">
-          Descubre tu gusto
+        <ButtonLink href={tastePath} size="lg" className="mt-8">
+          {home.closing.cta}
         </ButtonLink>
       </section>
     </div>
