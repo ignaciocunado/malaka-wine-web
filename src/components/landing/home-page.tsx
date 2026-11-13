@@ -43,7 +43,7 @@ export function HomePage({ lang }: { lang: Lang }) {
   const { home } = getDictionary(lang);
   const { plans, producers, regions } = getCatalog(lang);
   const anchors = ANCHORS[lang];
-  const tastePath = pagePath(lang, "taste");
+  const interestPath = pagePath(lang, "interest");
   return (
     <div className="tablecloth relative isolate overflow-x-clip">
       <JsonLd data={homeFaqJsonLd(lang)} />
@@ -62,7 +62,7 @@ export function HomePage({ lang }: { lang: Lang }) {
             {home.hero.body}
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-5 md:justify-start">
-            <ButtonLink href={tastePath} size="lg">
+            <ButtonLink href={interestPath} size="lg">
               {home.hero.cta}
             </ButtonLink>
             <ButtonLink href={`#${anchors.plans}`} variant="plain">
@@ -109,7 +109,7 @@ export function HomePage({ lang }: { lang: Lang }) {
             ))}
           </ol>
           <div className="mt-10">
-            <ButtonLink href={tastePath} variant="plain">
+            <ButtonLink href={interestPath} variant="plain">
               {home.how.cta} <ChevronRightIcon className="size-4" />
             </ButtonLink>
           </div>
@@ -220,7 +220,7 @@ export function HomePage({ lang }: { lang: Lang }) {
         <p className="mx-auto mt-3 max-w-lg text-body text-label-secondary">
           {home.closing.body}
         </p>
-        <ButtonLink href={tastePath} size="lg" className="mt-8">
+        <ButtonLink href={interestPath} size="lg" className="mt-8">
           {home.closing.cta}
         </ButtonLink>
       </section>

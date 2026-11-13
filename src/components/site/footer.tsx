@@ -38,15 +38,20 @@ export function Footer({ lang }: { lang: Lang }) {
           <p>
             © {new Date().getFullYear()} Malaka Wine. {footer.made}
           </p>
-          <ul className="flex gap-5">
+          <ul className="flex flex-wrap gap-x-5 gap-y-2">
             <li>
               <Link href={homeAnchor(lang, "plans")} className={link}>
                 {footer.plans}
               </Link>
             </li>
             <li>
-              <Link href={pagePath(lang, "taste")} className={link}>
-                {footer.quiz}
+              <Link href={pagePath(lang, "interest")} className={link}>
+                {footer.register}
+              </Link>
+            </li>
+            <li>
+              <Link href={pagePath(lang, "privacy")} className={link}>
+                {footer.privacy}
               </Link>
             </li>
             <li>
