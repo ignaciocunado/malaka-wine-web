@@ -4,15 +4,17 @@ Demo landing site for **Malaka Wine**, a monthly subscription box of wine from s
 The site is in Spanish (the default, at `/`) and English (under `/en`), and styled after Apple's Human Interface
 Guidelines.
 
-This is a **front-end-only demo**: there is no backend, database or login. Plans and producers are static data in the
-code, and the taste quiz runs entirely in the browser. Nothing is stored or sent anywhere.
+This is a **front-end-only site**: there is no backend, database or login, and plans and producers are static data
+in the code. The only thing it sends anywhere is the email address from the "register your interest" form, which
+goes to a Google Sheet (see [Collecting emails](#collecting-emails)).
 
 ## Pages
 
 | Spanish | English | What it is |
 | --- | --- | --- |
 | `/` | `/en` | Landing page: hero, how it works, the four wine areas, plans, producers, FAQ |
-| `/taste` | `/en/taste` | Taste quiz (styles, palate, box, review). It ends on the plan picked on the landing page (`/taste?plan=BODEGA`) or, if none was picked, the plan recommended for the answers |
+| `/apuntate` | `/en/register` | "Register your interest" form: an email address and a consent box. The plan buttons on the landing page link here with `?plan=BODEGA`, which is saved with the sign-up |
+| `/privacidad` | `/en/privacy` | Privacy policy (GDPR) for the emails the form collects |
 | `/vinos-de-malaga` | `/en/malaga-wines` | Guide to Málaga wines: appellations, areas, grapes, styles, history, pairings |
 | `/vinos-de-malaga/<slug>` | `/en/malaga-wines/<slug>` | One page per wine area (Axarquía, Montes de Málaga, Serranía de Ronda, Norte de Málaga, Manilva) and grape (Moscatel de Alejandría, Pedro Ximénez, Romé) |
 
@@ -21,6 +23,32 @@ Every page is prerendered at build time (static HTML), so it can be served from 
 > Plans, prices and producers in `src/lib/catalog.ts` are **fictional samples**. Replace them before showing the
 > demo as the real thing, then set `CATALOG_IS_SAMPLE` to `false` in that file. The wine guide
 > (`src/lib/content/guide.ts`) is real reference content.
+
+The taste quiz that used to be at `/taste` is parked until launch: its code is still in `src/components/taste/` and
+`src/lib/taste.ts`, with no route pointing at it, and `public/_redirects` sends the old URLs to the form. To bring
+it back, add a `taste` path to `PATHS` in `src/lib/site.ts` and a route file under each language that renders
+`TastePage`.
+
+## Collecting emails
+
+There is no database. The form posts each sign-up to a Google Apps Script, which adds a row to a Google Sheet you
+own: time, email, language, plan of interest and the version of the privacy policy the person agreed to.
+
+Set it up once:
+
+1. Create a Google Sheet (ideally in a Google Workspace account, which comes with Google's data processing terms).
+2. In the Sheet, open **Extensions → Apps Script**, delete the sample code and paste in
+   `scripts/google-sheet/Code.gs`.
+3. **Deploy → New deployment → Web app**, with **Execute as: Me** and **Who has access: Anyone**. Approve the
+   permissions Google asks for.
+4. Copy the web app URL (it ends in `/exec`) into `INTEREST_ENDPOINT` in `src/lib/site.ts` and deploy the site.
+
+To get the list, open the Sheet, or **File → Download → Comma-separated values (.csv)**. To remove someone who asks,
+delete their row. If you change the script, publish it with **Deploy → Manage deployments → Edit → New version**.
+
+Before going live, fill in the `CONTROLLER` placeholders in `src/lib/site.ts` (the privacy policy prints them) and
+have the policy in `src/lib/content/privacy.ts` checked by someone qualified. When the policy changes, update
+`PRIVACY_UPDATED` in the same file.
 
 ## Languages
 
@@ -106,17 +134,21 @@ src/
     globals.css           HIG design tokens and text styles
   components/
     landing/              homepage, hero illustration, plan cards, FAQ
-    taste/                the quiz page and its form (client component)
+    interest/             the "register your interest" page and its form (client component)
+    legal/                the privacy policy page
+    taste/                the taste quiz, not routed for now
     guide/                the wine guide pages
     site/                 document shell, nav bar, footer, logo, language switch, age gate
     seo/json-ld.tsx       structured data script tag
     ui/                   HIG-style controls
   lib/
     site.ts               domain, languages, paths, metadata helper
-    content/              all text: es.ts, en.ts, guide.ts
+    content/              all text: es.ts, en.ts, guide.ts, privacy.ts
     catalog.ts            plans, producers and regions (static demo data)
     structured-data.ts    schema.org JSON-LD
     taste.ts              quiz defaults and plan recommendation
+scripts/google-sheet/     the Apps Script that saves sign-ups to a Google Sheet
+public/_redirects         Cloudflare redirects from the old quiz URLs
 ```
 
 ## Adding the full web app later

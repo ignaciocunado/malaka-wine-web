@@ -19,10 +19,15 @@ export const es = {
         "regalar vino de Málaga",
       ],
     },
-    taste: {
-      title: "Test de gustos: descubre tu vino de Málaga | Malaka Wine",
+    interest: {
+      title: "Apúntate: te avisamos cuando abramos | Malaka Wine",
       description:
-        "Responde en dos minutos qué vinos te gustan (tinto, blanco, Moscatel, dulce o seco) y te recomendamos la caja de vinos de Málaga que mejor encaja contigo.",
+        "Déjanos tu email y te avisaremos cuando abra Malaka Wine, la suscripción de vinos de pequeñas bodegas de Málaga.",
+    },
+    privacy: {
+      title: "Política de privacidad | Malaka Wine",
+      description:
+        "Qué datos personales recoge Malaka Wine cuando te apuntas a la lista de interesados, para qué los usa y cómo puedes ejercer tus derechos.",
     },
     notFound: { title: "Página no encontrada | Malaka Wine" },
   },
@@ -33,7 +38,7 @@ export const es = {
     plans: "Planes",
     producers: "Bodegas",
     guide: "Vinos de Málaga",
-    quiz: "Haz el test",
+    register: "Apúntate",
     /** The link to the other language: its visible label and what it says to screen readers. */
     switchLabel: "EN",
     switchTitle: "Read this page in English",
@@ -44,7 +49,8 @@ export const es = {
     sample: "Las bodegas, los precios y las cajas que aparecen en esta web son contenido de ejemplo.",
     made: "Hecho en Málaga.",
     plans: "Planes",
-    quiz: "Test de gustos",
+    register: "Apúntate",
+    privacy: "Privacidad",
     guide: "Guía de vinos de Málaga",
     otherLanguage: "English",
   },
@@ -71,7 +77,7 @@ export const es = {
       eyebrow: "Suscripción de vinos de Málaga",
       title: "Málaga, cada mes en tu copa.",
       body: "Una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
-      cta: "Descubre tu gusto",
+      cta: "Apúntate",
       plans: "Ver planes",
       bottles: "Tres botellas de vino de Málaga sobre el mantel",
     },
@@ -97,11 +103,11 @@ export const es = {
       eyebrow: "Cómo funciona",
       title: "Tres pasos hasta tu primera caja.",
       steps: [
-        { title: "Haz el test de gustos", body: "Dos minutos sobre estilos, cuerpo y presupuesto." },
+        { title: "Cuéntanos qué te gusta", body: "Dos minutos sobre estilos, cuerpo y presupuesto." },
         { title: "Elegimos tus vinos", body: "Botellas seleccionadas entre las novedades del mes de toda la provincia." },
         { title: "Abre un trocito de Málaga", body: "Con fichas de cata, maridajes y la historia de cada bodega." },
       ],
-      cta: "Haz el test de gustos",
+      cta: "Apúntate y te avisamos cuando abramos",
     },
     regions: {
       eyebrow: "Del viñedo a tu mesa",
@@ -140,7 +146,7 @@ export const es = {
         },
         {
           q: "¿Qué tipos de vino de Málaga puedo recibir?",
-          a: "Blancos secos y dulces de Moscatel de Alejandría, dulces tradicionales de Pedro Ximénez, rosados y tintos ligeros de Romé y tintos de altura de la Serranía de Ronda. No todo el vino de Málaga es dulce: tú eliges los estilos en el test de gustos.",
+          a: "Blancos secos y dulces de Moscatel de Alejandría, dulces tradicionales de Pedro Ximénez, rosados y tintos ligeros de Romé y tintos de altura de la Serranía de Ronda. No todo el vino de Málaga es dulce: tú eliges los estilos.",
         },
         {
           q: "¿Cómo elegís los vinos de mi caja?",
@@ -161,9 +167,35 @@ export const es = {
       ],
     },
     closing: {
-      title: "Tu primera caja sale el día 1.",
-      body: "Dos minutos de preguntas ahora y un trocito de Málaga en tu mesa cada mes.",
-      cta: "Descubre tu gusto",
+      title: "Abrimos muy pronto.",
+      body: "Déjanos tu email y serás de los primeros en saber cuándo sale la primera caja.",
+      cta: "Apúntate",
+    },
+  },
+
+  interest: {
+    eyebrow: "Muy pronto",
+    title: "Apúntate y te avisamos.",
+    body: "Malaka Wine todavía no ha abierto. Déjanos tu email y te escribiremos cuando puedas pedir tu primera caja.",
+    emailLabel: "Email",
+    emailPlaceholder: "tu@email.com",
+    /** The consent sentence is `consent` + a link reading `consentLink` + `consentEnd`. */
+    consent: "Tengo 18 años o más y acepto que Malaka Wine me escriba por email sobre su lanzamiento, según la ",
+    consentLink: "política de privacidad",
+    consentEnd: ".",
+    submit: "Apuntarme",
+    sending: "Enviando…",
+    note: "Solo te escribiremos sobre el lanzamiento. Puedes borrarte cuando quieras.",
+    errors: {
+      email: "Escribe un email válido.",
+      consent: "Marca la casilla para poder apuntarte.",
+      send: "No hemos podido apuntarte. Inténtalo de nuevo dentro de un momento.",
+    },
+    success: {
+      title: "Ya estás en la lista.",
+      body: "Te escribiremos en cuanto abramos. Mientras tanto, conoce los vinos de la provincia.",
+      guide: "Leer la guía de vinos de Málaga",
+      home: "Volver al inicio",
     },
   },
 

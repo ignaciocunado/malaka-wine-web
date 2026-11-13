@@ -30,7 +30,7 @@ export function PlanCard({ plan, lang }: { plan: Plan; lang: Lang }) {
       {/* flex-1 keeps the buttons aligned across cards with taglines of different lengths */}
       <p className="mt-2 flex-1 text-footnote text-label-secondary">{plan.contents}</p>
       <ButtonLink
-        href={`${pagePath(lang, "taste")}?plan=${plan.code}`}
+        href={`${pagePath(lang, "interest")}?plan=${plan.code}`}
         variant={plan.featured ? "filled" : "tinted"}
         className="mt-7 w-full"
       >

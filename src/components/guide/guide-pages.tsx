@@ -80,7 +80,7 @@ function Shell({ lang, children }: { lang: Lang; children: ReactNode }) {
         <aside className="mt-8 rounded-3xl bg-elevated p-8 text-center ring-1 ring-separator/40">
           <h2 className="text-title2">{cta.title}</h2>
           <p className="mx-auto mt-2 max-w-md text-body text-label-secondary">{cta.body}</p>
-          <ButtonLink href={pagePath(lang, "taste")} size="lg" className="mt-6">
+          <ButtonLink href={pagePath(lang, "interest")} size="lg" className="mt-6">
             {cta.button}
           </ButtonLink>
         </aside>

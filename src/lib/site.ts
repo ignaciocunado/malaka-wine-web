@@ -4,15 +4,35 @@ import type { Metadata } from "next";
 export const SITE_URL = "https://malakawine.com";
 export const SITE_NAME = "Malaka Wine";
 
+/**
+ * Where the "register your interest" form sends each sign-up: the `/exec` URL of the Google Apps Script web app in
+ * `scripts/google-sheet/Code.gs`, which adds a row to a Google Sheet (set-up steps are in the README). The URL is
+ * public by nature, since the browser posts to it. While it is empty the form shows an error instead of sending.
+ */
+export const INTEREST_ENDPOINT = "";
+
+/**
+ * Who is responsible for the personal data the site collects. The privacy policy prints these values.
+ * TODO: replace every "[…]" placeholder with the real details before the site goes live.
+ */
+export const CONTROLLER = {
+  name: "[NOMBRE O RAZÓN SOCIAL]",
+  taxId: "[NIF/CIF]",
+  address: "[DIRECCIÓN POSTAL]",
+  email: "[EMAIL DE CONTACTO]",
+};
+/** Date of the current privacy policy. It is saved with each sign-up as the version the person agreed to. */
+export const PRIVACY_UPDATED = "2026-11-13";
+
 /** Spanish is the default language and lives at the root; English lives under `/en`. */
 export const LANGS = ["es", "en"] as const;
 export type Lang = (typeof LANGS)[number];
 
-export type PageKey = "home" | "taste" | "guide";
+export type PageKey = "home" | "interest" | "guide" | "privacy";
 
 const PATHS: Record<Lang, Record<PageKey, string>> = {
-  es: { home: "/", taste: "/taste", guide: "/vinos-de-malaga" },
-  en: { home: "/en", taste: "/en/taste", guide: "/en/malaga-wines" },
+  es: { home: "/", interest: "/apuntate", guide: "/vinos-de-malaga", privacy: "/privacidad" },
+  en: { home: "/en", interest: "/en/register", guide: "/en/malaga-wines", privacy: "/en/privacy" },
 };
 
 export const pagePath = (lang: Lang, page: PageKey) => PATHS[lang][page];

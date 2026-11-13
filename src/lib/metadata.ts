@@ -10,8 +10,12 @@ export function homeMetadata(lang: Lang): Metadata {
   return pageMetadata({ lang, ...getDictionary(lang).meta.home, paths: paths("home") });
 }
 
-export function tasteMetadata(lang: Lang): Metadata {
-  return pageMetadata({ lang, ...getDictionary(lang).meta.taste, paths: paths("taste") });
+export function interestMetadata(lang: Lang): Metadata {
+  return pageMetadata({ lang, ...getDictionary(lang).meta.interest, paths: paths("interest") });
+}
+
+export function privacyMetadata(lang: Lang): Metadata {
+  return pageMetadata({ lang, ...getDictionary(lang).meta.privacy, paths: paths("privacy") });
 }
 
 export function guideMetadata(lang: Lang): Metadata {
