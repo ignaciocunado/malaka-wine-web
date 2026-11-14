@@ -10,7 +10,7 @@ export function PrivacyPage({ lang }: { lang: Lang }) {
     new Date(PRIVACY_UPDATED),
   );
   return (
-    <div className="bg-system-secondary">
+    <div>
       <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
         <header>
           <h1 className="text-large-title sm:text-[3rem] sm:leading-[1.05]">{policy.title}</h1>

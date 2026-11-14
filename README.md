@@ -1,26 +1,26 @@
 # Malaka · Málaga
 
 Demo landing site for **Malaka Wine**, a monthly subscription box of wine from small producers in Málaga.
-The site is in Spanish (the default, at `/`) and English (under `/en`), and styled after Apple's Human Interface
-Guidelines.
+The site is in Spanish (the default, at `/`) and English (under `/en`). It is dark, styled after Apple's Human
+Interface Guidelines, and built round live 3D scenes of Málaga (see [3D scenes](#3d-scenes)).
 
-This is a **front-end-only site**: there is no backend, database or login, and plans and producers are static data
-in the code. The only thing it sends anywhere is the email address from the "register your interest" form, which
+This is a **front-end-only site**: there is no backend, database or login, and the plans are static data in the
+code. The only thing it sends anywhere is the email address from the "register your interest" form, which
 goes to a Google Sheet (see [Collecting emails](#collecting-emails)).
 
 ## Pages
 
 | Spanish | English | What it is |
 | --- | --- | --- |
-| `/` | `/en` | Landing page: hero, how it works, the four wine areas, plans, producers, FAQ |
+| `/` | `/en` | Landing page: the bay seen from a vineyard, a walk down into the cellar for "how it works", the taste profile, plans, FAQ |
 | `/apuntate` | `/en/register` | "Register your interest" form: an email address and a consent box. The plan buttons on the landing page link here with `?plan=BODEGA`, which is saved with the sign-up |
 | `/privacidad` | `/en/privacy` | Privacy policy (GDPR) for the emails the form collects |
-| `/vinos-de-malaga` | `/en/malaga-wines` | Guide to Málaga wines: appellations, areas, grapes, styles, history, pairings |
+| `/vinos-de-malaga` | `/en/malaga-wines` | Guide to Málaga wines: a relief table of the province to explore the areas, then appellations, grapes, styles, history, pairings |
 | `/vinos-de-malaga/<slug>` | `/en/malaga-wines/<slug>` | One page per wine area (Axarquía, Montes de Málaga, Serranía de Ronda, Norte de Málaga, Manilva) and grape (Moscatel de Alejandría, Pedro Ximénez, Romé) |
 
 Every page is prerendered at build time (static HTML), so it can be served from a CDN with no server code.
 
-> Plans, prices and producers in `src/lib/catalog.ts` are **fictional samples**. Replace them before showing the
+> The plans and prices in `src/lib/catalog.ts` are **fictional samples**. Replace them before showing the
 > demo as the real thing, then set `CATALOG_IS_SAMPLE` to `false` in that file. The wine guide
 > (`src/lib/content/guide.ts`) is real reference content.
 
@@ -104,7 +104,7 @@ Every push to the production branch deploys to production, and every other branc
 `name` in `wrangler.jsonc` must match the Worker's name in the dashboard, and the empty `previews` block has to stay:
 `wrangler preview` refuses to run without it.
 
-Files in `public/` (such as the 3D model) keep their names between deploys, so rename one when you replace it or
+Files in `public/` (such as the 3D data and stills in `public/3d/`) keep their names between deploys, so rename one when you replace it or
 purge the cache, otherwise visitors may get the old copy for a while.
 
 ## Design: Apple Human Interface Guidelines
@@ -112,11 +112,12 @@ purge the cache, otherwise visitors may get the old copy for a while.
 Apple doesn't publish a web component framework, so the UI implements the HIG directly:
 
 - **Fonts**: body text and controls use SF Pro on Apple devices via `-apple-system`, with Inter (`next/font`) as the
-  fallback elsewhere. Headlines (`text-hero` down to `text-title2`) and the bottle labels use the Fraunces serif, a
-  deliberate departure from the HIG for a wine-label feel.
+  fallback elsewhere. Headlines (`text-hero` down to `text-title2`) use the Fraunces serif, a deliberate departure
+  from the HIG for a wine-label feel.
 - **HIG color system** in `src/app/globals.css`: labels, fills, grouped backgrounds, separators and system colors.
-  The site always uses the light (white) appearance, even when the visitor's device is in dark mode. A wine-red tint
-  replaces systemBlue as the app tint color.
+  The site is always dark, whatever the visitor's device is set to: its ground is the night sky of the homepage's
+  scene and its text the color of whitewash. Two brand colors sit on top: wine red (`tint`) fills buttons, and
+  amber (`accent`) is for text and rules that must stand out on the dark ground, where wine red is too dim to read.
 - **HIG text styles**: `text-large-title`, `text-title1…3`, `text-headline`, `text-body`, `text-subheadline`, `text-footnote`, `text-caption`.
 - **HIG controls** in `src/components/ui/`: segmented control, toggle chips, iOS-style slider, stepper, inset grouped
   lists, and a translucent "material" navigation bar. They are built on native inputs, so keyboard navigation and
@@ -133,21 +134,24 @@ src/
     sitemap.ts, robots.ts
     globals.css           HIG design tokens and text styles
   components/
-    landing/              homepage, hero illustration, plan cards, FAQ
+    landing/              homepage, its 3D stage, plan cards, FAQ
+    scene/                the three.js scenes, their baked data index and the device checks
     interest/             the "register your interest" page and its form (client component)
     legal/                the privacy policy page
     taste/                the taste quiz, not routed for now
-    guide/                the wine guide pages
+    guide/                the wine guide pages and the relief table
     site/                 document shell, nav bar, footer, logo, language switch, age gate
     seo/json-ld.tsx       structured data script tag
     ui/                   HIG-style controls
   lib/
     site.ts               domain, languages, paths, metadata helper
     content/              all text: es.ts, en.ts, guide.ts, privacy.ts
-    catalog.ts            plans, producers and regions (static demo data)
+    catalog.ts            plans (static demo data)
     structured-data.ts    schema.org JSON-LD
     taste.ts              quiz defaults and plan recommendation
 scripts/google-sheet/     the Apps Script that saves sign-ups to a Google Sheet
+scripts/3d/               bakes the 3D scenes' data and renders their stills
+public/3d/                what those scripts write: data files and still images
 public/_redirects         Cloudflare redirects from the old quiz URLs
 ```
 
@@ -157,14 +161,49 @@ An earlier version had a Spring Boot + MySQL API with sign-up/login (Auth.js), s
 subscriptions. It was removed to keep this demo front-end only. The code is in git history: commit `d4ce9e7` on
 `main` has the complete stack (`backend/`, `frontend/`, `docker-compose.yml`) to start from.
 
-## 3D bottles on the homepage
+## 3D scenes
 
-The homepage background is a three.js scene (`src/components/landing/tablecloth-scene.tsx`): a tablecloth with wine
-bottles that roll into place as you scroll. The bottle models are built in Blender by a script:
+The site has three live scenes, drawn with three.js. All three are models, built in code from real data, not
+photographs or downloaded meshes:
+
+- **The bay from a vineyard** (`src/components/scene/vineyard.ts`): the homepage's opening picture. Málaga at blue
+  hour seen from a ridge in the Montes, about 4.7 km north of the cathedral: vines either side of a track that leads
+  to a lagar, then Gibralfaro, the cathedral, the port and Sierra de Mijas across the bay. The terrain is real
+  elevation data and the landmarks stand at their real coordinates; the vineyard and the lagar are invented.
+- **The cellar** (`cellar.ts`): a solera cellar, behind "how it works". Scrolling the homepage walks the camera down
+  the track, through the lagar's door and along the aisle (`home-scene.ts` and `components/landing/home-stage.tsx`).
+- **The relief table** (`relief-scene.ts`): the province as a museum model, in the wine guide. Choosing an area turns
+  and zooms the table to it; each area's own page shows the table turned to that area.
+
+### Keeping them fast
+
+- **Stills first.** Every scene has still images rendered from the scene itself. Pages paint with those, and the
+  live scene (three.js plus its data) only starts loading once the browser is idle, then fades in over the still.
+- **Stills only, for some.** Visitors who ask for reduced motion or data saving, and browsers without WebGL 2, never
+  load three.js: the homepage's stills zoom and cross-fade with the scroll instead, and the guide's change with the
+  chosen area.
+- **Drawn only when something moves.** A scene draws a frame while its camera is moving and then stops; a page at
+  rest uses no GPU. Shadows are drawn once, since nothing in the scenes moves.
+- **Small downloads.** The bake script culls the bay to what the camera can see and stores only what can't be worked
+  out again: the vines and pines are one bit per position, and each building's windows are regenerated from its
+  number. The bay is about 200 KB and the province about 90 KB, already gzipped (hosts don't compress binary files).
+- **Less on slower devices.** Phones, tablets and computers that report little memory or few cores get fewer and
+  simpler vines, smaller shadow maps and a lower pixel ratio (`pickTier` in `scene/device.ts`). Any device that
+  can't keep up while scrolling lowers the scene's resolution by itself rather than stutter.
+
+### Changing a scene
 
 ```bash
-blender --background --python assets/blender/build_bottles.py
+node scripts/3d/bake.mjs       # terrain, city, vines, pines -> public/3d/*.bin and src/components/scene/data/*.json
+npm run build
+node scripts/3d/posters.mjs    # stills and the social cards -> public/3d/posters/, public/og-*.jpg
+npm run build                  # again, so the build picks up the new stills
 ```
 
-It writes `assets/blender/bottles.blend` (the editable source) and `public/models/bottles.glb` (what the site loads).
-Glass colors and labels are applied at runtime from the wines in `src/lib/catalog.ts`.
+Run the bake script when you change what it places (the viewpoint, the city, where vines grow). Run the posters
+script whenever a scene looks different, so the stills still match it. The posters script needs Playwright with
+Chromium (`npm i -D playwright && npx playwright install chromium`), which is not one of the site's dependencies;
+it renders in software, so it takes a few minutes and needs no GPU.
+
+Elevation data: [Mapzen Terrain Tiles](https://registry.opendata.aws/terrain-tiles/) on AWS Open Data (which
+combine SRTM, EU-DEM, GMTED and ETOPO1 among other sources). The site credits them in its footer.

@@ -224,7 +224,7 @@ export function TasteForm({ lang }: { lang: Lang }) {
                     rows={3}
                     aria-label={text.notes.label}
                     placeholder={text.notes.placeholder}
-                    className="block w-full resize-none rounded-xl bg-fill-quaternary px-4 py-3 text-body outline-none placeholder:text-label-tertiary focus:ring-2 focus:ring-tint/40"
+                    className="block w-full resize-none rounded-xl bg-fill-quaternary px-4 py-3 text-body outline-none placeholder:text-label-tertiary focus:ring-2 focus:ring-accent/60"
                   />
                 </Question>
               </>
@@ -272,7 +272,7 @@ function Question({
     <div>
       <div className="mb-3 flex items-baseline justify-between gap-4">
         <h3 className="text-headline">{title}</h3>
-        {value && <span className="shrink-0 text-subheadline font-medium text-tint">{value}</span>}
+        {value && <span className="shrink-0 text-subheadline font-medium text-accent">{value}</span>}
       </div>
       {hint && <p className="-mt-2 mb-3 text-footnote text-label-secondary">{hint}</p>}
       {children}
@@ -302,7 +302,7 @@ function Review({
       <button
         type="button"
         onClick={() => onEdit(step)}
-        className="text-subheadline font-normal normal-case text-tint transition-opacity duration-300 active:opacity-60 active:duration-0"
+        className="text-subheadline font-normal normal-case text-accent transition-opacity duration-300 active:opacity-60 active:duration-0"
       >
         {text.edit}
       </button>

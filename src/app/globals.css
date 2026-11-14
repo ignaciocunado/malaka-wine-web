@@ -1,38 +1,42 @@
 @import "tailwindcss";
 
 /*
- * Design tokens follow Apple's Human Interface Guidelines: the iOS/macOS system color palette
- * (labels, fills, grouped backgrounds, separators), the HIG text styles, and translucent "materials".
- * The brand tint (wine) replaces systemBlue as the app tint color, which HIG allows.
- * The site always uses the light appearance, whatever the visitor's system setting.
+ * Design tokens follow Apple's Human Interface Guidelines: the system color roles (labels, fills, grouped
+ * backgrounds, separators), the HIG text styles, and translucent "materials".
+ *
+ * The site is dark, always, whatever the visitor's system setting: its ground is the night sky of the homepage's 3D
+ * scene and its text the color of whitewash. Two brand colors sit on top. `--tint` (wine) fills buttons, as the app
+ * tint color the HIG allows. `--accent` (the amber of lamplight and Moscatel) is for text and lines that need to
+ * stand out on the dark ground, where wine red would be too dim to read.
  */
 :root {
-  --label: #1d1d1f;
-  --label-secondary: rgba(60, 60, 67, 0.6);
-  --label-tertiary: rgba(60, 60, 67, 0.3);
+  --label: #f1e9dc;
+  --label-secondary: rgba(241, 233, 220, 0.7);
+  --label-tertiary: rgba(241, 233, 220, 0.45);
 
-  --system-bg: #ffffff;
-  --system-bg-secondary: #f5f5f7;
-  --grouped-bg: #f2f2f7;
-  --grouped-bg-secondary: #ffffff;
-  --elevated-bg: #ffffff;
+  --system-bg: #0b0a17;
+  --system-bg-secondary: #0b0a17;
+  --grouped-bg: #0b0a17;
+  --grouped-bg-secondary: #15142a;
+  --elevated-bg: #15142a;
 
-  --separator: rgba(60, 60, 67, 0.29);
-  --fill: rgba(120, 120, 128, 0.2);
-  --fill-secondary: rgba(120, 120, 128, 0.16);
-  --fill-tertiary: rgba(118, 118, 128, 0.12);
-  --fill-quaternary: rgba(116, 116, 128, 0.08);
-  --segment-selected: #ffffff;
+  --separator: rgba(241, 233, 220, 0.16);
+  --fill: rgba(241, 233, 220, 0.22);
+  --fill-secondary: rgba(241, 233, 220, 0.16);
+  --fill-tertiary: rgba(241, 233, 220, 0.12);
+  --fill-quaternary: rgba(241, 233, 220, 0.08);
+  --segment-selected: #34315a;
 
-  --system-blue: #007aff;
-  --system-green: #34c759;
-  --system-red: #ff3b30;
-  --system-orange: #ff9500;
+  --system-blue: #6aa7ff;
+  --system-green: #4cd27a;
+  --system-red: #ff8076;
+  --system-orange: #ffab3d;
 
   --tint: #8e1c3b;
   --tint-contrast: #ffffff;
+  --accent: #e7a85a;
 
-  --material: rgba(255, 255, 255, 0.72);
+  --material: rgba(11, 10, 23, 0.72);
 }
 
 @theme inline {
@@ -63,6 +67,7 @@
   --color-system-orange: var(--system-orange);
   --color-tint: var(--tint);
   --color-tint-contrast: var(--tint-contrast);
+  --color-accent: var(--accent);
   --color-material: var(--material);
 }
 
@@ -117,9 +122,6 @@
   --text-caption: 0.75rem;
   --text-caption--line-height: 1rem;
 
-  /* A sheet of paper lying on the tablecloth. */
-  --shadow-paper: 0 1px 1px rgba(74, 52, 20, 0.2), 0 22px 30px -16px rgba(74, 52, 20, 0.45);
-
   --ease-ios: cubic-bezier(0.25, 0.1, 0.25, 1);
   /*
    * Apple's default UI spring: critically damped (damping 1.0, no overshoot), response 0.4s, sampled into linear().
@@ -158,7 +160,7 @@
 }
 
 html {
-  color-scheme: light;
+  color-scheme: dark;
   -webkit-text-size-adjust: 100%;
   /* Lets height transitions run to `auto` (the FAQ disclosures). */
   interpolate-size: allow-keywords;
@@ -213,20 +215,9 @@ textarea {
   touch-action: manipulation;
 }
 
-/*
- * The homepage sits on a beige tablecloth, drawn in 3D by `TableclothScene`. This is the cloth's color as the scene renders it, shown
- * until the scene loads (and instead of it without WebGL), with the tokens retuned to read on beige.
- */
-.tablecloth {
-  --label-secondary: #4f4a41;
-  --separator: rgba(74, 52, 20, 0.3);
-  --elevated-bg: #fbf7ee;
-  background: #f1e2c6;
-}
-
-/* HIG focus ring: system blue, offset from the control. */
+/* HIG focus ring, offset from the control, in the accent color so it shows on the dark ground. */
 :focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--system-blue) 60%, transparent);
+  outline: 3px solid color-mix(in srgb, var(--accent) 75%, transparent);
   outline-offset: 2px;
 }
 
@@ -343,13 +334,74 @@ textarea {
 /* Increased contrast: stronger secondary text and separators, solid bar with a defined edge. */
 @media (prefers-contrast: more) {
   :root {
-    --label-secondary: rgba(60, 60, 67, 0.85);
-    --label-tertiary: rgba(60, 60, 67, 0.6);
-    --separator: rgba(60, 60, 67, 0.6);
+    --label-secondary: rgba(241, 233, 220, 0.88);
+    --label-tertiary: rgba(241, 233, 220, 0.7);
+    --separator: rgba(241, 233, 220, 0.5);
     --material: var(--system-bg);
   }
   .bar-material {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
+}
+
+/*
+ * The homepage's 3D stage (see `HomeStage`): a full-screen picture that stays put while the hero and "how it works"
+ * scroll over it. The component's script publishes how far the visitor has scrolled as custom properties:
+ * `--walk` (0 in the vineyard, 1 at the lagar's door), `--inside` (1 once in the cellar), `--wash` (the amber light
+ * that covers the change of scene) and `--hero` (the opacity of the hero's text).
+ */
+.home-stage {
+  --walk: 0;
+  --inside: 0;
+  --wash: 0;
+  --hero: 1;
+}
+/* Until the live scene draws (and instead of it, for visitors who get the stills), the posters act out the walk. */
+.home-stage-vineyard {
+  transform: scale(calc(1 + var(--walk) * 1.4));
+  opacity: calc(1 - var(--inside));
+}
+.home-stage-cellar {
+  opacity: var(--inside);
+}
+/* Reduced motion: the stills change with the scroll but don't zoom. */
+@media (prefers-reduced-motion: reduce) {
+  .home-stage-vineyard {
+    transform: none;
+  }
+}
+.home-stage-wash {
+  opacity: var(--wash);
+  background: radial-gradient(circle at 50% 52%, #ffe1ad 0%, #f5a650 38%, #a34c1c 100%);
+}
+.home-stage-hero {
+  opacity: var(--hero);
+}
+.home-stage canvas {
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+.home-stage[data-live] canvas {
+  opacity: 1;
+}
+.home-stage[data-live] .home-stage-poster {
+  visibility: hidden;
+}
+
+/* The relief table in the wine guide (see `ReliefTable`): its canvas fades in over the still once it has drawn. */
+.relief canvas {
+  opacity: 0;
+  transition: opacity 500ms ease;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.relief canvas:active {
+  cursor: grabbing;
+}
+.relief[data-live] canvas {
+  opacity: 1;
+}
+.relief[data-live] .relief-poster {
+  visibility: hidden;
 }

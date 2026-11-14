@@ -8,19 +8,20 @@ type Size = "sm" | "md" | "lg";
 
 // Press feedback lands instantly on pointer-down (active:duration-0) and springs back on release.
 const base =
-  "inline-flex items-center justify-center gap-1.5 rounded-full font-normal whitespace-nowrap select-none " +
+  "inline-flex items-center justify-center gap-1.5 rounded-full font-semibold whitespace-nowrap select-none " +
   "transition duration-300 ease-spring active:opacity-75 active:duration-0 motion-safe:active:scale-[0.97] " +
   "disabled:pointer-events-none disabled:opacity-40";
 
 const variants: Record<Variant, string> = {
-  filled: "bg-tint text-tint-contrast hover:brightness-110",
-  tinted: "bg-tint/12 text-tint hover:bg-tint/18",
+  // A hairline of light on the wine fill keeps the button's edge visible on the dark ground.
+  filled: "bg-tint text-tint-contrast inset-ring inset-ring-white/15 hover:brightness-115",
+  tinted: "text-label inset-ring inset-ring-label/40 hover:bg-fill-quaternary",
   gray: "bg-fill-secondary text-label hover:bg-fill",
-  plain: "text-tint hover:underline underline-offset-4",
+  plain: "text-accent hover:underline underline-offset-4",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-8 px-3.5 text-footnote",
+  sm: "h-9 px-4 text-footnote",
   md: "h-11 px-5 text-callout",
   lg: "h-[52px] px-7 text-headline",
 };

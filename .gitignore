@@ -46,3 +46,6 @@ next-env.d.ts
 
 # cloudflare
 .wrangler
+
+# 3D bake: downloaded elevation tiles
+/scripts/3d/.cache/

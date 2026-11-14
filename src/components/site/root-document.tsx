@@ -23,8 +23,8 @@ export const rootMetadata: Metadata = {
 };
 
 export const rootViewport: Viewport = {
-  themeColor: "#ffffff",
-  colorScheme: "light",
+  themeColor: "#0b0a17",
+  colorScheme: "dark",
 };
 
 export function RootDocument({ lang, children }: { lang: Lang; children: ReactNode }) {

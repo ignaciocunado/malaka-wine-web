@@ -61,7 +61,7 @@ export function InterestForm({ lang }: { lang: Lang }) {
 
   if (status === "done") {
     return (
-      <div className="animate-materialize rounded-3xl bg-grouped-secondary p-6 text-center shadow-sm sm:p-9" role="status">
+      <div className="animate-materialize rounded-3xl bg-grouped-secondary/85 p-6 text-center ring-1 ring-separator backdrop-blur-md sm:p-9" role="status">
         <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-system-green text-white">
           <CheckIcon className="size-9" strokeWidth={2.5} />
         </span>
@@ -81,7 +81,7 @@ export function InterestForm({ lang }: { lang: Lang }) {
 
   const sending = status === "sending";
   return (
-    <form onSubmit={submit} noValidate className="rounded-3xl bg-grouped-secondary p-6 shadow-sm sm:p-9">
+    <form onSubmit={submit} noValidate className="rounded-3xl bg-grouped-secondary/85 p-6 ring-1 ring-separator backdrop-blur-md sm:p-9">
       <label htmlFor="interest-email" className="block text-headline">
         {text.emailLabel}
       </label>
@@ -98,7 +98,7 @@ export function InterestForm({ lang }: { lang: Lang }) {
         placeholder={text.emailPlaceholder}
         aria-invalid={error === "email"}
         aria-describedby={error ? "interest-error" : undefined}
-        className="mt-2 block h-12 w-full rounded-xl bg-fill-quaternary px-4 text-body outline-none placeholder:text-label-tertiary focus:ring-2 focus:ring-tint/40"
+        className="mt-2 block h-12 w-full rounded-xl bg-system/60 px-4 text-body ring-1 ring-label/30 outline-none placeholder:text-label-tertiary focus:ring-2 focus:ring-accent/60"
       />
 
       {/* Hidden from people and from screen readers; see the bot check in `submit`. */}
@@ -122,7 +122,7 @@ export function InterestForm({ lang }: { lang: Lang }) {
         />
         <span>
           {text.consent}
-          <Link href={pagePath(lang, "privacy")} className="text-tint underline underline-offset-2">
+          <Link href={pagePath(lang, "privacy")} className="text-accent underline underline-offset-2">
             {text.consentLink}
           </Link>
           {text.consentEnd}
