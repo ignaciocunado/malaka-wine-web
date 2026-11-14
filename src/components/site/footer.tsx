@@ -11,7 +11,7 @@ export function Footer({ lang }: { lang: Lang }) {
   const { footer } = getDictionary(lang);
   const link = "transition-colors hover:text-label";
   return (
-    <footer className="relative bg-system-secondary text-caption text-label-secondary">
+    <footer className="relative border-t border-separator text-caption text-label-secondary">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         {/* Links to every page of the wine guide, so visitors and crawlers can reach them from anywhere. */}
         <nav aria-label={footer.guide} className="border-b border-separator pb-4">
@@ -36,7 +36,7 @@ export function Footer({ lang }: { lang: Lang }) {
         </p>
         <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} Malaka Wine. {footer.made}
+            © {new Date().getFullYear()} Malaka Wine. {footer.made} {footer.credit}
           </p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             <li>

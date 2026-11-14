@@ -13,7 +13,6 @@ export function NavBar({ lang }: { lang: Lang }) {
   const links = [
     { href: homeAnchor(lang, "how"), label: nav.howItWorks },
     { href: homeAnchor(lang, "plans"), label: nav.plans },
-    { href: homeAnchor(lang, "producers"), label: nav.producers },
     { href: pagePath(lang, "guide"), label: nav.guide },
   ];
   return (

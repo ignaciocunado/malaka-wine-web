@@ -24,7 +24,7 @@ export default function GlobalNotFound() {
             const text = getDictionary(lang).notFound;
             return (
               <section key={lang} lang={lang}>
-                {lang === LANGS[0] && <p className="text-headline text-tint">{text.eyebrow}</p>}
+                {lang === LANGS[0] && <p className="text-headline text-accent">{text.eyebrow}</p>}
                 <h1 className="mt-2 text-large-title">{text.title}</h1>
                 <p className="mt-3 text-body text-label-secondary">{text.body}</p>
                 <ButtonLink href={pagePath(lang, "home")} className="mt-6">

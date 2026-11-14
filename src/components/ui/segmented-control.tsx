@@ -42,7 +42,7 @@ export function SegmentedControl<T extends string>({ label, options, value, onCh
           className={cn(
             "relative flex min-h-8 cursor-pointer items-center justify-center rounded-[7px] px-3 text-center",
             "text-footnote font-medium transition-colors duration-300 ease-spring active:duration-0",
-            "has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-system-blue/60",
+            "has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-accent/75",
             option.value === value ? "font-semibold" : "text-label hover:bg-fill-quaternary active:bg-fill-tertiary",
           )}
         >

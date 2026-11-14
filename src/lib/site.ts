@@ -40,9 +40,9 @@ export const pagePath = (lang: Lang, page: PageKey) => PATHS[lang][page];
 export const topicPath = (lang: Lang, slug: string) => `${PATHS[lang].guide}/${slug}`;
 
 /** Ids of the homepage sections that the navigation links to. */
-export const ANCHORS: Record<Lang, { how: string; plans: string; producers: string }> = {
-  es: { how: "como-funciona", plans: "planes", producers: "bodegas" },
-  en: { how: "how-it-works", plans: "plans", producers: "wineries" },
+export const ANCHORS: Record<Lang, { how: string; plans: string }> = {
+  es: { how: "como-funciona", plans: "planes" },
+  en: { how: "how-it-works", plans: "plans" },
 };
 /** A link to a section of the homepage, e.g. `homeAnchor("en", "plans")` is `/en#plans`. */
 export const homeAnchor = (lang: Lang, section: keyof (typeof ANCHORS)[Lang]) =>
@@ -65,7 +65,7 @@ export function alternatePath(pathname: string, target: Lang) {
 }
 
 const OG_LOCALE: Record<Lang, string> = { es: "es_ES", en: "en_GB" };
-/** The social card: the homepage hero in each language. Regenerate both if the hero or the bottles change. */
+/** The social card: the homepage hero in each language. `scripts/3d/posters.mjs` regenerates both. */
 export const ogImage = (lang: Lang) => ({ url: `/og-${lang}.jpg`, width: 1200, height: 630 });
 
 /**
