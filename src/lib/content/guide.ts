@@ -46,6 +46,8 @@ export type Guide = {
     related: string;
     backToGuide: string;
     updated: string;
+    /** The relief table of the province at the top of the areas section. */
+    table: { alt: string; hint: string; whole: string; city: string; credit: string };
   };
   topics: Topic[];
 };
@@ -140,6 +142,13 @@ const es: Guide = {
     related: "Sigue leyendo",
     backToGuide: "Guía de vinos de Málaga",
     updated: "Actualizado el",
+    table: {
+      alt: "Maqueta en relieve de la provincia de Málaga, hecha con datos reales de altitud, con una aguja luminosa en cada zona del vino",
+      hint: "Elige una zona y la maqueta gira hasta ella. Arrastra para girarla tú.",
+      whole: "Toda la provincia",
+      city: "Málaga",
+      credit: "Relieve real de la provincia, con la altura exagerada.",
+    },
   },
   topics: [
     {
@@ -535,6 +544,13 @@ const en: Guide = {
     related: "Keep reading",
     backToGuide: "Guide to Málaga wines",
     updated: "Updated",
+    table: {
+      alt: "A relief model of the province of Málaga, built from real elevation data, with a glowing needle on each wine area",
+      hint: "Pick an area and the table turns to it. Drag to turn it yourself.",
+      whole: "The whole province",
+      city: "Málaga",
+      credit: "The province's real relief, with the heights exaggerated.",
+    },
   },
   topics: [
     {

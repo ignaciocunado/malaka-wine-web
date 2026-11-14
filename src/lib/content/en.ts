@@ -38,7 +38,6 @@ export const en: Dictionary = {
     home: "Malaka, home",
     howItWorks: "How it works",
     plans: "Plans",
-    producers: "Wineries",
     guide: "Málaga wines",
     register: "Register interest",
     switchLabel: "ES",
@@ -49,6 +48,7 @@ export const en: Dictionary = {
     legal: "Malaka only sells alcoholic drinks to people aged 18 or over. Please drink responsibly.",
     sample: "The wineries, prices and boxes shown on this site are sample content.",
     made: "Made in Málaga.",
+    credit: "3D relief: open elevation data from Mapzen Terrain Tiles.",
     plans: "Plans",
     register: "Register your interest",
     privacy: "Privacy",
@@ -80,41 +80,32 @@ export const en: Dictionary = {
       body: "A box of wines from the province's best small wineries, chosen to match your taste.",
       cta: "Register your interest",
       plans: "See the plans",
-      bottles: "Three bottles of Málaga wine on the tablecloth",
-    },
-    why: {
-      title: "The taste of the land.",
-      titleMuted: "Straight from the people who make it.",
-      features: [
-        {
-          title: "Small wineries only",
-          body: "Family wineries that make a few thousand bottles a year. Most of them never reach a supermarket shelf.",
-        },
-        {
-          title: "Chosen for you",
-          body: "Tell us what you like and we'll pick every box to fit your profile: styles, body and budget.",
-        },
-        {
-          title: "At your door every month",
-          body: "Your box ships in the first week of each month. Change plan or cancel whenever you like.",
-        },
-      ],
+      scroll: "Scroll to walk down to the lagar",
+      scene:
+        "A 3D model of Málaga at dusk seen from a vineyard in the Montes: rows of vines either side of a track that leads down to a lit lagar, with Gibralfaro, the cathedral, the bay and Sierra de Mijas beyond.",
     },
     how: {
       eyebrow: "How it works",
-      title: "Three steps to your first box.",
+      title: "Every box teaches us your taste.",
+      body: "It starts with a two-minute taste test. After each box you tell us what you thought, and the next one gets closer.",
       steps: [
         { title: "Tell us what you like", body: "Two minutes on styles, body and budget." },
         { title: "We choose your wines", body: "Bottles picked from the month's new releases across the province." },
-        { title: "Open a little piece of Málaga", body: "With tasting notes, food pairings and the story of each winery." },
+        { title: "Tell us what you thought", body: "A few words on each bottle once you've opened it." },
+        { title: "Your next box fits better", body: "We update your profile with every answer, so each month is a closer match." },
       ],
       cta: "Register and we'll tell you when we open",
+      scene: "Inside the lagar: a 3D model of a solera cellar, with whitewashed arches, lanterns and barrels stacked three high.",
     },
-    regions: {
-      eyebrow: "From the vineyard to your table",
-      title: "Four corners of one province.",
-      more: "About this area",
-      bottles: (region: string, wines: string) => `Bottles from ${region}: ${wines}`,
+    profile: {
+      title: "Your taste profile, box by box.",
+      body: "The taste test gives us a wide range to pick from. Every answer narrows it, so the bottles we send sit closer to what you like.",
+      stages: [
+        { title: "After the taste test", body: "We know the styles you asked for, so we start wide." },
+        { title: "After your first box", body: "What you thought of each bottle moves the range and tightens it." },
+        { title: "After a few boxes", body: "We pick from a narrow band that is yours alone." },
+      ],
+      note: "An illustration of the idea, not a real profile.",
     },
     plans: {
       eyebrow: "Plans",
@@ -123,16 +114,6 @@ export const en: Dictionary = {
       featured: "Most popular",
       perMonth: "/ month",
       choose: (plan: string) => `Choose ${plan}`,
-    },
-    producers: {
-      eyebrow: "Who makes it",
-      title: "This season's wineries.",
-    },
-    guide: {
-      eyebrow: "Guide",
-      title: "What wines are made in Málaga?",
-      body: "Sweet Moscatel and Pedro Ximénez wines with centuries of history, dry whites from the Axarquía and high-altitude reds from the Serranía de Ronda. We explain them area by area and grape by grape.",
-      cta: "Read the guide to Málaga wines",
     },
     faq: {
       title: "Questions? Answers.",
@@ -151,7 +132,7 @@ export const en: Dictionary = {
         },
         {
           q: "How do you choose the wines in my box?",
-          a: "Your taste profile sets the styles, body and budget. Each month we match it against our wineries' new releases, and we include tasting notes so you know what you're opening.",
+          a: "Your taste profile sets the styles, body and budget. Each month we match it against our wineries' new releases, and we include tasting notes so you know what you're opening. After each box you can tell us what you thought, and we adjust your profile.",
         },
         {
           q: "When does my box arrive?",
@@ -166,11 +147,6 @@ export const en: Dictionary = {
           a: "Yes. We only sell wine to people aged 18 or over, and an adult must receive the delivery.",
         },
       ],
-    },
-    closing: {
-      title: "We open very soon.",
-      body: "Leave your email and you'll be among the first to know when the first box ships.",
-      cta: "Register your interest",
     },
   },
 

@@ -36,7 +36,6 @@ export const es = {
     home: "Malaka, inicio",
     howItWorks: "Cómo funciona",
     plans: "Planes",
-    producers: "Bodegas",
     guide: "Vinos de Málaga",
     register: "Apúntate",
     /** The link to the other language: its visible label and what it says to screen readers. */
@@ -48,6 +47,7 @@ export const es = {
     legal: "Malaka solo vende bebidas alcohólicas a mayores de 18 años. Bebe con moderación.",
     sample: "Las bodegas, los precios y las cajas que aparecen en esta web son contenido de ejemplo.",
     made: "Hecho en Málaga.",
+    credit: "Relieve 3D: datos de elevación abiertos de Mapzen Terrain Tiles.",
     plans: "Planes",
     register: "Apúntate",
     privacy: "Privacidad",
@@ -79,41 +79,35 @@ export const es = {
       body: "Una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
       cta: "Apúntate",
       plans: "Ver planes",
-      bottles: "Tres botellas de vino de Málaga sobre el mantel",
-    },
-    why: {
-      title: "El sabor de la tierra.",
-      titleMuted: "Directo de quienes lo elaboran.",
-      features: [
-        {
-          title: "Solo pequeñas bodegas",
-          body: "Bodegas familiares que elaboran unos pocos miles de botellas al año. La mayoría nunca llega a un supermercado.",
-        },
-        {
-          title: "Elegido para ti",
-          body: "Cuéntanos qué te gusta y elegiremos cada caja según tu perfil: estilos, cuerpo y presupuesto.",
-        },
-        {
-          title: "Cada mes en tu puerta",
-          body: "Tu caja sale la primera semana de cada mes. Cambia de plan o cancela cuando quieras.",
-        },
-      ],
+      scroll: "Baja hasta el lagar",
+      /** What the hero's 3D scene shows, for screen readers. */
+      scene:
+        "Maqueta 3D de Málaga al anochecer vista desde una viña de los Montes: hileras de cepas a los lados de un camino que baja hasta un lagar iluminado, con Gibralfaro, la catedral, la bahía y la sierra de Mijas al fondo.",
     },
     how: {
       eyebrow: "Cómo funciona",
-      title: "Tres pasos hasta tu primera caja.",
+      title: "Cada caja nos enseña tu gusto.",
+      body: "Empiezas con un test de dos minutos. Después de cada caja nos cuentas qué te ha parecido, y la siguiente se acerca más.",
       steps: [
         { title: "Cuéntanos qué te gusta", body: "Dos minutos sobre estilos, cuerpo y presupuesto." },
         { title: "Elegimos tus vinos", body: "Botellas seleccionadas entre las novedades del mes de toda la provincia." },
-        { title: "Abre un trocito de Málaga", body: "Con fichas de cata, maridajes y la historia de cada bodega." },
+        { title: "Cuéntanos qué te ha parecido", body: "Unas palabras sobre cada botella cuando la hayas abierto." },
+        { title: "Tu siguiente caja encaja mejor", body: "Ajustamos tu perfil con cada respuesta, así cada mes acertamos más." },
       ],
       cta: "Apúntate y te avisamos cuando abramos",
+      /** What the cellar scene behind this section shows, for screen readers. */
+      scene: "Dentro del lagar: maqueta 3D de una bodega de solera, con arcos encalados, faroles y botas apiladas en tres alturas.",
     },
-    regions: {
-      eyebrow: "Del viñedo a tu mesa",
-      title: "Cuatro rincones de una provincia.",
-      more: "Conoce la zona",
-      bottles: (region: string, wines: string) => `Botellas de ${region}: ${wines}`,
+    /** The picture of a taste profile narrowing box by box. Its three scales borrow their labels from `taste`. */
+    profile: {
+      title: "Tu perfil de gusto, caja a caja.",
+      body: "El test nos da un margen amplio donde elegir. Cada respuesta lo estrecha, y las botellas que te mandamos se acercan más a lo que te gusta.",
+      stages: [
+        { title: "Después del test", body: "Sabemos qué estilos has pedido, así que empezamos con margen." },
+        { title: "Después de tu primera caja", body: "Lo que te ha parecido cada botella mueve el margen y lo estrecha." },
+        { title: "Después de unas cuantas", body: "Elegimos dentro de una franja estrecha que es solo tuya." },
+      ],
+      note: "Es una ilustración de la idea, no un perfil real.",
     },
     plans: {
       eyebrow: "Planes",
@@ -122,16 +116,6 @@ export const es = {
       featured: "El más elegido",
       perMonth: "/ mes",
       choose: (plan: string) => `Elegir ${plan}`,
-    },
-    producers: {
-      eyebrow: "Quiénes lo hacen",
-      title: "Las bodegas de esta temporada.",
-    },
-    guide: {
-      eyebrow: "Guía",
-      title: "¿Qué vinos se hacen en Málaga?",
-      body: "Dulces de Moscatel y Pedro Ximénez con siglos de historia, blancos secos de la Axarquía y tintos de altura de la Serranía de Ronda. Te lo contamos zona por zona y uva por uva.",
-      cta: "Leer la guía de vinos de Málaga",
     },
     faq: {
       title: "¿Preguntas? Respuestas.",
@@ -150,7 +134,7 @@ export const es = {
         },
         {
           q: "¿Cómo elegís los vinos de mi caja?",
-          a: "Tu perfil de gustos marca los estilos, el cuerpo y el presupuesto. Cada mes lo cruzamos con las novedades de nuestras bodegas e incluimos fichas de cata para que sepas qué estás abriendo.",
+          a: "Tu perfil de gustos marca los estilos, el cuerpo y el presupuesto. Cada mes lo cruzamos con las novedades de nuestras bodegas e incluimos fichas de cata para que sepas qué estás abriendo. Después de cada caja puedes contarnos qué te ha parecido, y ajustamos tu perfil.",
         },
         {
           q: "¿Cuándo llega mi caja?",
@@ -165,11 +149,6 @@ export const es = {
           a: "Sí. Solo vendemos vino a mayores de 18 años, y la entrega debe recogerla un adulto.",
         },
       ],
-    },
-    closing: {
-      title: "Abrimos muy pronto.",
-      body: "Déjanos tu email y serás de los primeros en saber cuándo sale la primera caja.",
-      cta: "Apúntate",
     },
   },
 
