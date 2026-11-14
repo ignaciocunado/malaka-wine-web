@@ -182,7 +182,7 @@ function cityLights(data: number[], texture: THREE.Texture) {
     fragmentShader: `
       uniform sampler2D map; varying vec4 vColor;
       void main(){
-        float glow = texture2D(map, gl_PointCoord).a;
+        float glow = texture2D(map, gl_PointCoord).r;
         gl_FragColor = vec4(vColor.rgb * glow * vColor.a * 1.7, 1.0);
         #include <colorspace_fragment>
       }`,

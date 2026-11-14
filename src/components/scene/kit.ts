@@ -138,20 +138,32 @@ export function instances(
   return mesh;
 }
 
-/** A soft round glow, drawn additively wherever something should look like it gives off light. */
+/**
+ * A soft round glow, drawn additively wherever something should look like it gives off light.
+ *
+ * It is white fading to opaque black, not white fading to transparent, and is read by its brightness. A canvas
+ * stores colors multiplied by their opacity in 8 bits, so nearly transparent pixels lose their color; some browsers
+ * (Safari) hand them back as random hues, which showed as colored squares in the faint outer part of each glow.
+ */
 export function glowTexture() {
-  const size = 64;
+  const size = 128;
   const canvas = document.createElement("canvas");
   canvas.width = canvas.height = size;
   const ctx = canvas.getContext("2d")!;
+  ctx.fillStyle = "#000";
+  ctx.fillRect(0, 0, size, size);
   const gradient = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-  gradient.addColorStop(0, "rgba(255,255,255,1)");
-  gradient.addColorStop(0.18, "rgba(255,255,255,0.75)");
-  gradient.addColorStop(0.45, "rgba(255,255,255,0.18)");
-  gradient.addColorStop(1, "rgba(255,255,255,0)");
+  // Brightness goes through the sRGB curve when the texture is read, so these are the curve's values for
+  // 1, 0.75, 0.18 and 0 of the light.
+  gradient.addColorStop(0, "rgb(255,255,255)");
+  gradient.addColorStop(0.18, "rgb(225,225,225)");
+  gradient.addColorStop(0.45, "rgb(118,118,118)");
+  gradient.addColorStop(1, "rgb(0,0,0)");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, size, size);
-  return new THREE.CanvasTexture(canvas);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return texture;
 }
 
 /** A glow that always faces the camera. `size` is in scene units. */
