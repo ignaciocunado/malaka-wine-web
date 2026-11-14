@@ -130,8 +130,8 @@ const es: Guide = {
   ],
   cta: {
     title: "Prueba los vinos de Málaga en casa.",
-    body: "Haz el test de gustos en dos minutos y descubre qué caja encaja contigo.",
-    button: "Descubre tu gusto",
+    body: "Abrimos muy pronto. Déjanos tu email y te avisaremos.",
+    button: "Apúntate",
   },
   labels: {
     breadcrumbHome: "Inicio",
@@ -525,8 +525,8 @@ const en: Guide = {
   ],
   cta: {
     title: "Taste Málaga wines at home.",
-    body: "Take the two-minute taste quiz and see which box suits you.",
-    button: "Find your taste",
+    body: "We open very soon. Leave your email and we'll let you know.",
+    button: "Register your interest",
   },
   labels: {
     breadcrumbHome: "Home",

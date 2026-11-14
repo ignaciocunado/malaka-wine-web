@@ -21,10 +21,15 @@ export const en: Dictionary = {
         "Málaga wine gift",
       ],
     },
-    taste: {
-      title: "Wine Taste Quiz: Find Your Málaga Wine | Malaka Wine",
+    interest: {
+      title: "Register Your Interest | Malaka Wine",
       description:
-        "Tell us in two minutes which wines you like (red, white, Moscatel, sweet or dry) and we'll recommend the Málaga wine box that suits you best.",
+        "Leave your email and we'll let you know when Malaka Wine opens: a subscription of wines from small wineries in Málaga.",
+    },
+    privacy: {
+      title: "Privacy Policy | Malaka Wine",
+      description:
+        "What personal data Malaka Wine collects when you register your interest, what it is used for and how to exercise your rights.",
     },
     notFound: { title: "Page not found | Malaka Wine" },
   },
@@ -35,7 +40,7 @@ export const en: Dictionary = {
     plans: "Plans",
     producers: "Wineries",
     guide: "Málaga wines",
-    quiz: "Take the quiz",
+    register: "Register interest",
     switchLabel: "ES",
     switchTitle: "Leer esta página en español",
   },
@@ -45,7 +50,8 @@ export const en: Dictionary = {
     sample: "The wineries, prices and boxes shown on this site are sample content.",
     made: "Made in Málaga.",
     plans: "Plans",
-    quiz: "Taste quiz",
+    register: "Register your interest",
+    privacy: "Privacy",
     guide: "Guide to Málaga wines",
     otherLanguage: "Español",
   },
@@ -72,7 +78,7 @@ export const en: Dictionary = {
       eyebrow: "Málaga wine subscription",
       title: "Málaga in your glass, every month.",
       body: "A box of wines from the province's best small wineries, chosen to match your taste.",
-      cta: "Find your taste",
+      cta: "Register your interest",
       plans: "See the plans",
       bottles: "Three bottles of Málaga wine on the tablecloth",
     },
@@ -98,11 +104,11 @@ export const en: Dictionary = {
       eyebrow: "How it works",
       title: "Three steps to your first box.",
       steps: [
-        { title: "Take the taste quiz", body: "Two minutes on styles, body and budget." },
+        { title: "Tell us what you like", body: "Two minutes on styles, body and budget." },
         { title: "We choose your wines", body: "Bottles picked from the month's new releases across the province." },
         { title: "Open a little piece of Málaga", body: "With tasting notes, food pairings and the story of each winery." },
       ],
-      cta: "Take the taste quiz",
+      cta: "Register and we'll tell you when we open",
     },
     regions: {
       eyebrow: "From the vineyard to your table",
@@ -141,7 +147,7 @@ export const en: Dictionary = {
         },
         {
           q: "What kinds of Málaga wine can I get?",
-          a: "Dry and sweet whites from Moscatel de Alejandría, traditional sweet Pedro Ximénez, rosés and light reds from the Romé grape, and high-altitude reds from the Serranía de Ronda. Not all Málaga wine is sweet: you choose the styles in the taste quiz.",
+          a: "Dry and sweet whites from Moscatel de Alejandría, traditional sweet Pedro Ximénez, rosés and light reds from the Romé grape, and high-altitude reds from the Serranía de Ronda. Not all Málaga wine is sweet: you choose the styles.",
         },
         {
           q: "How do you choose the wines in my box?",
@@ -162,9 +168,34 @@ export const en: Dictionary = {
       ],
     },
     closing: {
-      title: "Your first box ships on the 1st.",
-      body: "Two minutes of questions now, and a little piece of Málaga on your table every month.",
-      cta: "Find your taste",
+      title: "We open very soon.",
+      body: "Leave your email and you'll be among the first to know when the first box ships.",
+      cta: "Register your interest",
+    },
+  },
+
+  interest: {
+    eyebrow: "Coming soon",
+    title: "Register your interest.",
+    body: "Malaka Wine isn't open yet. Leave your email and we'll write to you when you can order your first box.",
+    emailLabel: "Email",
+    emailPlaceholder: "you@email.com",
+    consent: "I'm 18 or over and I agree to Malaka Wine emailing me about its launch, as set out in the ",
+    consentLink: "privacy policy",
+    consentEnd: ".",
+    submit: "Register",
+    sending: "Sending…",
+    note: "We'll only write to you about the launch. You can be removed at any time.",
+    errors: {
+      email: "Enter a valid email address.",
+      consent: "Tick the box to register.",
+      send: "We couldn't register you. Please try again in a moment.",
+    },
+    success: {
+      title: "You're on the list.",
+      body: "We'll write to you as soon as we open. Until then, get to know the province's wines.",
+      guide: "Read the guide to Málaga wines",
+      home: "Back to the homepage",
     },
   },
 

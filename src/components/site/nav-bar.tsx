@@ -36,8 +36,8 @@ export function NavBar({ lang }: { lang: Lang }) {
             title={nav.switchTitle}
             className="text-footnote font-semibold text-label/80 transition-colors hover:text-label"
           />
-          <ButtonLink href={pagePath(lang, "taste")} size="sm">
-            {nav.quiz}
+          <ButtonLink href={pagePath(lang, "interest")} size="sm">
+            {nav.register}
           </ButtonLink>
         </div>
       </nav>
