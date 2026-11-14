@@ -9,17 +9,17 @@ export const SITE_NAME = "Malaka Wine";
  * `scripts/google-sheet/Code.gs`, which adds a row to a Google Sheet (set-up steps are in the README). The URL is
  * public by nature, since the browser posts to it. While it is empty the form shows an error instead of sending.
  */
-export const INTEREST_ENDPOINT = "";
+export const INTEREST_ENDPOINT = "https://script.google.com/macros/s/AKfycbwVdsLVFgoXWWYeG3cG0od7kFOK1Y5zBWozeUz8IZO459jrlwcvqXuFDzDtHTH_FzZqLg/exec";
 
 /**
  * Who is responsible for the personal data the site collects. The privacy policy prints these values.
  * TODO: replace every "[…]" placeholder with the real details before the site goes live.
  */
 export const CONTROLLER = {
-  name: "[NOMBRE O RAZÓN SOCIAL]",
+  name: "MalakaWine",
   taxId: "[NIF/CIF]",
-  address: "[DIRECCIÓN POSTAL]",
-  email: "[EMAIL DE CONTACTO]",
+  address: "29016, Malaga",
+  email: "info@malakawine.com",
 };
 /** Date of the current privacy policy. It is saved with each sign-up as the version the person agreed to. */
 export const PRIVACY_UPDATED = "2026-11-13";
