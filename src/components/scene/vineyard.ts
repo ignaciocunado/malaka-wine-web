@@ -107,7 +107,7 @@ function sky(sunDir: THREE.Vector3) {
         c += sunGlow * pow(max(0.0, dot(d, sunDir)), 40.0) * 0.4;
         c += sunGlow * pow(max(0.0, dot(d, sunDir)), 220.0) * 0.6;
         vec2 sp = vec2(atan(d.z, d.x), asin(d.y)) * 240.0;
-        float star = step(0.9965, h21(floor(sp))) * smoothstep(0.16, 0.5, y) * smoothstep(0.3, 0.05, length(fract(sp) - 0.5));
+        float star = step(0.9965, h21(floor(sp))) * smoothstep(0.16, 0.5, y) * (1.0 - smoothstep(0.05, 0.3, length(fract(sp) - 0.5)));
         c += vec3(0.9, 0.9, 1.0) * star * (0.35 + 0.65 * h21(floor(sp) + 3.1));
         gl_FragColor = vec4(c, 1.0);
         #include <tonemapping_fragment>
