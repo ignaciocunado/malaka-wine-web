@@ -169,9 +169,16 @@ photographs or downloaded meshes:
 - **The bay from a vineyard** (`src/components/scene/vineyard.ts`): the homepage's opening picture. Málaga at blue
   hour seen from a ridge in the Montes, about 4.7 km north of the cathedral: vines either side of a track that leads
   to a lagar, then Gibralfaro, the cathedral, the port and Sierra de Mijas across the bay. The terrain is real
-  elevation data and the landmarks stand at their real coordinates; the vineyard and the lagar are invented.
+  elevation data and the landmarks stand at their real coordinates; the vineyard is invented.
+- **The lagar** (`lagar.ts`): the press-house at the end of the track, modelled in metres: a thick front wall with a
+  stone-lined arched passage, lime plaster, clay tiles, shutters, studded doors, a lantern. Its plaster, tiles, stone
+  and timber are painted on canvases at start-up, each with a height map for bump.
 - **The cellar** (`cellar.ts`): a solera cellar, behind "how it works". Scrolling the homepage walks the camera down
-  the track, through the lagar's door and along the aisle (`home-scene.ts` and `components/landing/home-stage.tsx`).
+  the track, in through the lagar's door and along the aisle (`home-scene.ts` and `components/landing/home-stage.tsx`).
+  The walk has no cut: the passage's inner mouth is a portal, a window that writes to the stencil buffer. From the
+  track, the vineyard is drawn first and then the cellar, seen from the same camera moved into the cellar's
+  coordinates, only inside that window, so the lamplit nave shows through the door from afar and the camera simply
+  walks into it. Once the camera is past the window, only the cellar is drawn, and nothing changes on screen.
 - **The relief table** (`relief-scene.ts`): the province as a museum model, in the wine guide. Choosing an area turns
   and zooms the table to it; each area's own page shows the table turned to that area.
 
@@ -180,8 +187,8 @@ photographs or downloaded meshes:
 - **Stills first.** Every scene has still images rendered from the scene itself. Pages paint with those, and the
   live scene (three.js plus its data) only starts loading once the browser is idle, then fades in over the still.
 - **Stills only, for some.** Visitors who ask for reduced motion or data saving, and browsers without WebGL 2, never
-  load three.js: the homepage's stills zoom and cross-fade with the scroll instead, and the guide's change with the
-  chosen area.
+  load three.js: the homepage's stills (the track, the lagar's door, the cellar) zoom and cross-fade with the scroll
+  instead, and the guide's change with the chosen area.
 - **Drawn only when something moves.** A scene draws a frame while its camera is moving and then stops; a page at
   rest uses no GPU. Shadows are drawn once, since nothing in the scenes moves.
 - **Small downloads.** The bake script culls the bay to what the camera can see and stores only what can't be worked
@@ -196,7 +203,7 @@ photographs or downloaded meshes:
 ```bash
 node scripts/3d/bake.mjs       # terrain, city, vines, pines -> public/3d/*.bin and src/components/scene/data/*.json
 npm run build
-node scripts/3d/posters.mjs    # stills and the social cards -> public/3d/posters/, public/og-*.jpg
+node scripts/3d/posters.mjs    # stills and the social cards -> public/3d/posters/, public/og-*.jpg (add `home` or `relief` for one set)
 npm run build                  # again, so the build picks up the new stills
 ```
 

@@ -3,6 +3,8 @@ import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 
 import meta from "./data/bay.json";
 import { chance, glowTexture, halo, instances, lerp, lit, matte, rng, smoothstep, unpredict, type Instance, type Pack, type Tier } from "./kit";
+import { CELLAR_DOOR, CELLAR_START } from "./cellar";
+import { buildLagar, PORTAL_AT, SCALE } from "./lagar";
 
 /**
  * Málaga bay at blue hour, seen from a vineyard in the Montes: the homepage's opening scene.
@@ -14,8 +16,13 @@ import { chance, glowTexture, halo, instances, lerp, lit, matte, rng, smoothstep
 export type Vineyard = {
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
-  /** Places the camera for a point of the walk (0 = in the vineyard, 1 = in the lagar's doorway). */
+  /**
+   * Places the camera for a point of the walk: 0 is in the vineyard, and 1 is in the cellar's first bay, having gone
+   * in through the lagar's door.
+   */
   pose(t: number, aspect: number): void;
+  /** Where the camera is in the lagar's own frame (metres, door facing +Z), set by `pose`. */
+  view: { position: THREE.Vector3; quaternion: THREE.Quaternion; fov: number };
   /** Tells the city lights how tall the picture is, so they keep their size in pixels. */
   setViewport(height: number): void;
 };
@@ -26,10 +33,13 @@ const EX = meta.exaggeration;
 const [CX, , CZ] = meta.camera;
 const FWD = new THREE.Vector2(meta.forward[0], meta.forward[1]);
 const [LX, LY, LZ, LROT] = meta.lagar;
-/** The lagar is 27 units down the track; its front wall is 1.36 nearer. */
+/** The lagar's floor, and the camera's height above it in the cellar. */
+const FLOOR = LY + 0.2;
+/** The lagar is 27 units down the track, on its axis. */
 const LAGAR_AT = 27;
-const DOOR_AT = LAGAR_AT - 1.364;
 const FOG = 0.00042;
+/** Half the width of the sun's shadow map, in units. */
+const SHADOW = 80;
 
 function terrain(heights: Int16Array, colors: Uint16Array, grid: Grid, drop: number, seabed: number) {
   const { nx, nz, x0, dx, zs, hole } = grid;
@@ -224,69 +234,6 @@ function vineGeometry(detail: "full" | "light") {
   return mergeGeometries(parts);
 }
 
-/** The lagar at the end of the track: whitewashed, tiled, its arched door open on the lamplit cellar. */
-function lagar(glow: THREE.Texture) {
-  const group = new THREE.Group();
-  const wall = matte("#d9d2c8"), tile = matte("#8a4a32");
-  const W = 7.2, H = 2.9, D = 4.4;
-  const roofOn = (w: number, d: number, rise: number, x: number, y: number, z: number) => {
-    const roof = new THREE.Mesh(new THREE.CylinderGeometry(0.001, 1, 1, 4, 1), tile);
-    roof.rotation.y = Math.PI / 4;
-    roof.scale.set(w * 0.78, rise, d * 0.78);
-    roof.position.set(x, y, z);
-    return roof;
-  };
-  const body = new THREE.Mesh(new THREE.BoxGeometry(W, H, D), wall);
-  body.position.y = H / 2;
-  const wing = new THREE.Mesh(new THREE.BoxGeometry(3.4, 2.1, 3.2), wall);
-  wing.position.set(W / 2 + 1.5, 1.05, -0.4);
-  group.add(body, roofOn(W, D, 1.25, 0, H + 0.62, 0), wing, roofOn(3.4, 3.2, 0.9, W / 2 + 1.5, 2.55, -0.4));
-
-  const arch = (w: number, h: number) => {
-    const shape = new THREE.Shape();
-    shape.moveTo(-w / 2, 0); shape.lineTo(w / 2, 0); shape.lineTo(w / 2, h - w / 2);
-    shape.absarc(0, h - w / 2, w / 2, 0, Math.PI, false);
-    shape.lineTo(-w / 2, 0);
-    return new THREE.ShapeGeometry(shape, 16);
-  };
-  const front = D / 2;
-  const layer = (geometry: THREE.BufferGeometry, material: THREE.Material, y: number, z: number, x = 0) => {
-    const mesh = new THREE.Mesh(geometry, material);
-    mesh.position.set(x, y, front + z);
-    group.add(mesh);
-  };
-  layer(arch(1.95, 2.55), matte("#8c6f58"), 0, 0.01);
-  layer(arch(1.6, 2.35), lit("#ff8a2c", 0.5), 0, 0.02);
-  layer(arch(0.95, 1.75), lit("#ffb060", 0.9), 0.12, 0.03);
-  layer(new THREE.PlaneGeometry(1.6, 0.14), lit("#2a140a", 1), 0.07, 0.04);
-  for (const [x, y] of [[-0.58, 0.36], [0.58, 0.36], [-0.58, 0.98], [0.58, 0.98]]) {
-    layer(new THREE.CircleGeometry(0.3, 16), lit("#3a1c0c", 1), y, 0.05, x);
-    layer(new THREE.RingGeometry(0.2, 0.225, 16), lit("#6b3a18", 1), y, 0.06, x);
-  }
-  for (const x of [-2.5, 2.5]) {
-    layer(new THREE.PlaneGeometry(0.5, 0.75), lit("#ffb35c", 2.4), 1.75, 0.01, x);
-    const shine = halo(glow, "#ffa040", 2.6, 0.5);
-    shine.position.set(x, 1.75, front + 0.2);
-    group.add(shine);
-  }
-  const lantern = new THREE.Mesh(new THREE.SphereGeometry(0.11, 8, 6), lit("#ffd9a0", 5));
-  lantern.position.set(1.05, 2.15, front + 0.25);
-  const lanternGlow = halo(glow, "#ffb060", 2.2, 0.8);
-  lanternGlow.position.copy(lantern.position);
-  const doorGlow = halo(glow, "#ff9a40", 5, 0.35);
-  doorGlow.position.set(0, 1.1, front + 0.3);
-  group.add(lantern, lanternGlow, doorGlow);
-
-  group.traverse((object) => {
-    const mesh = object as THREE.Mesh;
-    if (mesh.isMesh && (mesh.material as THREE.Material).type === "MeshStandardMaterial") mesh.castShadow = mesh.receiveShadow = true;
-  });
-  group.scale.setScalar(0.62);
-  group.position.set(LX, LY + 0.2, LZ);
-  group.rotation.y = LROT;
-  return group;
-}
-
 export function buildVineyard(pack: Pack, tier: Tier): Vineyard {
   const scene = new THREE.Scene();
   const sunDir = new THREE.Vector3(meta.sun[0], 0.03, meta.sun[1]).normalize();
@@ -414,7 +361,12 @@ export function buildVineyard(pack: Pack, tier: Tier): Vineyard {
   }
 
   // The lagar, on a level pad cut into the slope, with its cypresses.
-  scene.add(lagar(glow));
+  const lagar = buildLagar(glow);
+  lagar.group.scale.setScalar(SCALE);
+  lagar.group.position.set(LX, FLOOR, LZ);
+  lagar.group.rotation.y = LROT;
+  lagar.group.updateMatrixWorld(true);
+  scene.add(lagar.group);
   const pad = new THREE.Mesh(new THREE.CylinderGeometry(5.2, 6.4, 3, 12), matte("#8a7150"));
   pad.position.set(LX, LY - 1.32, LZ);
   pad.receiveShadow = true;
@@ -429,12 +381,14 @@ export function buildVineyard(pack: Pack, tier: Tier): Vineyard {
   // Light: the sun is just under the horizon, so a low warm rake from the west-south-west plus a cool sky fill.
   scene.add(new THREE.HemisphereLight("#6a6fd0", "#3a2a3a", 2.0));
   const sun = new THREE.DirectionalLight("#ff8f58", 1.25);
-  const focus = new THREE.Vector3(CX + FWD.x * 70, 0, CZ + FWD.y * 70);
+  // The shadow map covers the walk and a little beyond the lagar rather than the whole view: the house and the vines
+  // beside the track get several times the detail, and far hills, too distant for shadows to show, go without.
+  const focus = new THREE.Vector3(CX + FWD.x * 36, 0, CZ + FWD.y * 36);
   sun.position.copy(new THREE.Vector3(sunDir.x, 0.19, sunDir.z).normalize().multiplyScalar(1500)).add(focus);
   sun.target.position.copy(focus);
   sun.castShadow = true;
   sun.shadow.mapSize.setScalar(tier === "high" ? 4096 : 2048);
-  Object.assign(sun.shadow.camera, { left: -150, right: 150, top: 150, bottom: -150, near: 10, far: 4000 });
+  Object.assign(sun.shadow.camera, { left: -SHADOW, right: SHADOW, top: SHADOW, bottom: -SHADOW, near: 10, far: 4000 });
   sun.shadow.bias = -0.0004;
   sun.shadow.normalBias = 0.12;
   const cityGlow = new THREE.PointLight("#ff9a55", 9000, 520, 1.5);
@@ -444,39 +398,64 @@ export function buildVineyard(pack: Pack, tier: Tier): Vineyard {
   scene.add(sun, sun.target, cityGlow, porch);
 
   const camera = new THREE.PerspectiveCamera(44, 1.6, 0.2, 30000);
-  const eye = new THREE.Vector3(), target = new THREE.Vector3(), doorTarget = new THREE.Vector3(LX, LY + 1.05, LZ);
+  const eye = new THREE.Vector3(), target = new THREE.Vector3(), aim = new THREE.Vector3();
   const ground = (v: number) => {
     const f = Math.min(track.length - 1.001, Math.max(0, v + 14)), i = Math.floor(f);
     return eye.copy(track[i]).lerp(track[i + 1], f - i);
   };
-  const STOP = DOOR_AT - 0.38; // just short of the doorway, when its light fills the frame
+  // The walk ends in the cellar's first bay: this far along the door's axis, which is `SCALE` units to a metre, and
+  // past the lagar's centre, since the nave lies beyond the passage.
+  const END = SCALE * (CELLAR_START.z - CELLAR_DOOR + PORTAL_AT);
+  const eyeEnd = FLOOR + SCALE * CELLAR_START.y;
+  const view = { position: new THREE.Vector3(), quaternion: new THREE.Quaternion(), fov: 44 };
   let viewportHeight = 1;
+
+  /** A cubic through two points with the slope given at each end (per unit of `u`). */
+  const hermite = (u: number, p0: number, m0: number, p1: number, m1: number) => {
+    const u2 = u * u, u3 = u2 * u;
+    return (2 * u3 - 3 * u2 + 1) * p0 + (u3 - 2 * u2 + u) * m0 + (-2 * u3 + 3 * u2) * p1 + (u3 - u2) * m1;
+  };
+  /**
+   * How far along the way in, 0 to 1. The camera eases off the mark, runs down the track and then slows steadily as
+   * it nears the door, with no change of speed between the two stretches, so the zoom is one continuous move.
+   */
+  const covered = (t: number) => (t < 0.66 ? hermite(t / 0.66, 0, 0, 0.78, 0.9 * 0.66) : hermite((t - 0.66) / 0.34, 0.78, 0.9 * 0.34, 1, 0.5 * 0.34));
 
   return {
     scene,
     camera,
+    view,
     setViewport(height) {
       viewportHeight = height;
     },
     pose(t, aspect) {
-      // Three quarters of the walk covers the track; the rest pushes slowly into the doorway.
-      const v = t < 0.72 ? smoothstep(0, 1, t / 0.72) * 21.6 : lerp(21.6, STOP, (t - 0.72) / 0.28);
+      const s = lerp(LAGAR_AT, END, covered(t)); // distance from the lagar's centre, along the track
+      const v = LAGAR_AT - s;
       const nearing = smoothstep(6, 21, v);
       ground(v);
-      // A slight rise mid-walk carries the camera over the lip of the ridge, then it settles at door height.
-      eye.y = lerp(eye.y + 1.05 + 1.2 * Math.sin(Math.PI * smoothstep(3, 21, v)), LY + 1.2, smoothstep(13, 22.5, v));
+      // A slight rise mid-walk carries the camera over the lip of the ridge, then it settles at standing height.
+      eye.y = lerp(eye.y + 1.05 + 1.2 * Math.sin(Math.PI * smoothstep(3, 21, v)), eyeEnd, smoothstep(13, 22.5, v));
       const portrait = aspect < 1;
       // Tall screens see a narrow slice, so they get a wider lens and turn a little towards the cathedral.
       const turn = portrait ? -0.1 : 0;
-      target.set(eye.x + (FWD.x - FWD.y * turn) * 200, eye.y - 12, eye.z + (FWD.y + FWD.x * turn) * 200).lerp(doorTarget, nearing);
+      target.set(eye.x + (FWD.x - FWD.y * turn) * 200, eye.y - 12, eye.z + (FWD.y + FWD.x * turn) * 200);
+      // Near the lagar the camera looks straight down the track at the door, and levels out as it reaches it.
+      aim.set(eye.x + FWD.x * 10, lerp(LY + 1.0, eye.y, smoothstep(5, 1.5, s)), eye.z + FWD.y * 10);
+      target.lerp(aim, nearing);
       camera.fov = portrait ? 60 : 44;
       camera.aspect = aspect;
       camera.position.copy(eye);
       camera.lookAt(target);
       camera.updateProjectionMatrix();
+      camera.updateMatrixWorld();
       water.material.uniforms.eye.value.copy(eye);
       // How many pixels one scene unit covers at a distance of one unit: it sizes the city's lights.
       cityPoints.material.uniforms.pixels.value = viewportHeight / (2 * Math.tan((camera.fov * Math.PI) / 360));
+      // The same camera in the lagar's own frame, for the cellar to be drawn through its door.
+      view.position.copy(eye);
+      lagar.group.worldToLocal(view.position);
+      view.quaternion.copy(lagar.group.quaternion).invert().multiply(camera.quaternion);
+      view.fov = camera.fov;
     },
   };
 }

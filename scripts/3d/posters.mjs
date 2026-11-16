@@ -2,11 +2,14 @@
  * Renders the still images of the site's 3D scenes from the scenes themselves, so a still and the live picture that
  * replaces it are the same frame:
  *
- *   npm run build && node scripts/3d/posters.mjs
+ *   npm run build && node scripts/3d/posters.mjs [home | relief]
+ *
+ * (`home` renders only the homepage's stills and social cards, `relief` only the wine guide's.)
  *
  * It serves the built site from `out/`, opens it in headless Chromium and saves, into `public/3d/posters/`:
  *
- * - `vineyard-*` and `cellar-*`: the homepage's two scenes, each in three shapes (see `ScenePoster`);
+ * - `vineyard-*`, `door-*` and `cellar-*`: the homepage's scenes (the track, the lagar's door, the cellar), each in
+ *   three shapes (see `ScenePoster`);
  * - `relief-overview` and `relief-<area>`: the wine guide's table, whole and turned to each area;
  * - and, in `public/`, `og-es.jpg` and `og-en.jpg`: the social cards, which are the homepage's first screen.
  *
@@ -25,6 +28,8 @@ const { chromium } = createRequire(import.meta.url)("playwright");
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const OUT = path.join(ROOT, "out");
 const POSTERS = path.join(ROOT, "public/3d/posters");
+const only = process.argv[2];
+const wants = (part) => !only || only === part;
 fs.mkdirSync(POSTERS, { recursive: true });
 if (!fs.existsSync(path.join(OUT, "index.html"))) throw new Error("Build the site first: npm run build");
 
@@ -56,21 +61,37 @@ async function open(url, width, height) {
 }
 const settle = (page, ms = 1800) => page.waitForTimeout(ms);
 // The scenes fill the window by the time they are captured, so a picture of the window is a picture of the scene.
-const shot = (page) => page.screenshot({ type: "png", timeout: 180000 });
+// Software rendering can still be mid-frame after the wait, which captures a blank canvas: so look again until it is not.
+async function shot(page) {
+  for (let attempt = 0; ; attempt++) {
+    const picture = await page.screenshot({ type: "png", timeout: 180000 });
+    const { channels } = await sharp(picture).stats();
+    if (channels.some((channel) => channel.stdev > 3) || attempt === 5) return picture;
+    await page.waitForTimeout(3000);
+  }
+}
 async function save(buffer, name) {
   await sharp(buffer).webp({ quality: 82 }).toFile(path.join(POSTERS, `${name}.webp`));
   await sharp(buffer).avif({ quality: 58 }).toFile(path.join(POSTERS, `${name}.avif`));
   console.log("wrote", name);
 }
 
-// The homepage's two scenes.
-for (const [shape, width, height] of [["wide", 2400, 1000], ["square", 1600, 1600], ["tall", 1080, 1800]]) {
+// The homepage's scenes.
+if (wants("home")) for (const [shape, width, height] of [["wide", 2400, 1000], ["square", 1600, 1600], ["tall", 1080, 1800]]) {
   const page = await open("/", width, height);
   await page.waitForSelector(".home-stage[data-live]", { timeout: 120000 });
   // Only the scene: no text, no shading, no navigation bar.
   await page.addStyleTag({ content: ".home-stage > div:last-child, .home-stage [aria-hidden]:not(canvas), body > header, footer { visibility: hidden !important }" });
   await settle(page);
   await save(await shot(page), `vineyard-${shape}`);
+  // The camera in the lagar's passage, the cellar's nave framed by the arch: where the page stops zooming the vineyard.
+  const doorScroll = await page.evaluate(() => {
+    const cellar = document.querySelector("[data-stage-cellar]");
+    return Math.max(innerHeight * 0.5, cellar.offsetTop - innerHeight * 0.75) * 0.7;
+  });
+  await page.evaluate((top) => window.scrollTo({ top, behavior: "instant" }), doorScroll);
+  await settle(page, 2600);
+  await save(await shot(page), `door-${shape}`);
   // Scroll to where the lamplight has just cleared inside the cellar.
   await page.evaluate(() => {
     const cellar = document.querySelector("[data-stage-cellar]");
@@ -82,7 +103,7 @@ for (const [shape, width, height] of [["wide", 2400, 1000], ["square", 1600, 160
 }
 
 // The wine guide's table: the whole province, then turned to each area.
-{
+if (wants("relief")) {
   const page = await open("/vinos-de-malaga", 1440, 900);
   await page.waitForSelector(".relief[data-live]", { timeout: 120000 });
   await page.addStyleTag({ content: ".relief { position: fixed !important; inset: 0 !important; z-index: 1000; aspect-ratio: auto !important; border-radius: 0 !important } .relief > :not(canvas) { visibility: hidden !important }" });
@@ -98,7 +119,7 @@ for (const [shape, width, height] of [["wide", 2400, 1000], ["square", 1600, 160
 }
 
 // The social cards: the homepage's first screen, in each language.
-for (const [lang, url] of [["es", "/"], ["en", "/en"]]) {
+if (wants("home")) for (const [lang, url] of [["es", "/"], ["en", "/en"]]) {
   const page = await open(url, 1200, 630);
   await page.waitForSelector(".home-stage[data-live]", { timeout: 120000 });
   await page.addStyleTag({ content: "body > header { visibility: hidden !important }" });

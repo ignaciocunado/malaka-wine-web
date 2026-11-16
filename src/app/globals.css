@@ -357,23 +357,36 @@ textarea {
   --wash: 0;
   --hero: 1;
 }
-/* Until the live scene draws (and instead of it, for visitors who get the stills), the posters act out the walk. */
+/*
+ * Until the live scene draws (and instead of it, for visitors who get the stills), the posters act out the walk: the
+ * vineyard zooms towards the lagar and gives way to the still of its door, which carries on in until the lamplight
+ * covers the change to the cellar.
+ */
 .home-stage-vineyard {
-  transform: scale(calc(1 + var(--walk) * 1.4));
-  opacity: calc(1 - var(--inside));
+  transform: scale(calc(1 + var(--walk) * 1.5));
+  opacity: clamp(0, calc((0.68 - var(--walk)) * 6), 1);
+}
+.home-stage-door {
+  transform: scale(max(1, calc(1 + (var(--walk) - 0.7) * 1.1)));
+  opacity: calc(clamp(0, calc((var(--walk) - 0.5) * 6), 1) * (1 - var(--inside)));
 }
 .home-stage-cellar {
   opacity: var(--inside);
 }
 /* Reduced motion: the stills change with the scroll but don't zoom. */
 @media (prefers-reduced-motion: reduce) {
-  .home-stage-vineyard {
+  .home-stage-vineyard,
+  .home-stage-door {
     transform: none;
   }
 }
 .home-stage-wash {
   opacity: var(--wash);
   background: radial-gradient(circle at 50% 52%, #ffe1ad 0%, #f5a650 38%, #a34c1c 100%);
+}
+/* Live, the cellar is drawn through the door itself, so nothing needs hiding: only a breath of lamplight remains. */
+.home-stage[data-live] .home-stage-wash {
+  opacity: calc(var(--wash) * 0.1);
 }
 .home-stage-hero {
   opacity: var(--hero);

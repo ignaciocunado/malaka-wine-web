@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import { glowTexture, halo, instances, lerp, matte, rng, type Instance, type Tier } from "./kit";
+import { glowTexture, halo, instances, lerp, matte, rng, smoothstep, type Instance, type Tier } from "./kit";
 
 /**
  * Inside the lagar: a traditional Málaga solera cellar, the scene behind "how it works" on the homepage.
@@ -12,8 +12,21 @@ import { glowTexture, halo, instances, lerp, matte, rng, type Instance, type Tie
 export type Cellar = {
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
+  /** Walks the camera down the aisle: `t` runs 0 to 1 from the first bay to the third. */
   pose(t: number, width: number, height: number): void;
+  /**
+   * Puts the camera at the lagar's door and beyond, in the cellar's own coordinates (metres, nave down -Z), and
+   * gives it the vineyard camera's lens (`fov`) turning into the cellar's own as `blend` goes 0 to 1.
+   */
+  enter(position: THREE.Vector3, quaternion: THREE.Quaternion, fov: number, blend: number, width: number, height: number): void;
+  /** While true the scene only draws where the lagar's portal has marked the stencil buffer. */
+  setPortal(on: boolean): void;
 };
+
+/** The doorway's plane in the cellar's coordinates. The nave opens beyond it and nothing stands on the near side. */
+export const CELLAR_DOOR = 4.6;
+/** Where the camera starts in the nave once it has come through the door. */
+export const CELLAR_START = new THREE.Vector3(0.4, 1.55, 1.1);
 
 const BAY = 6.3; // pillar to pillar
 const BAYS = 12;
@@ -24,6 +37,7 @@ const CEILING = 6.0;
 const R = 0.56; // barrel bilge radius
 const HALF = 0.85; // barrel half length
 const HEAD_X = ARCADE_X + 0.12; // barrel heads sit just behind the arcade line
+const FOG = 0.03;
 
 /** A bota lying along X, with raised iron hoops; colors are baked per face. */
 function botaGeometry(segments: number) {
@@ -182,9 +196,10 @@ function archGeometry(span: number, top: number, depth: number, rise?: number) {
 
 export function buildCellar(tier: Tier): Cellar {
   const rand = rng(21);
+  // No background: the scene is closed, and it is drawn into a window of the vineyard as well as full-screen.
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color("#07060d");
-  scene.fog = new THREE.FogExp2("#0b0914", 0.03);
+  const fog = new THREE.FogExp2("#0b0914", FOG);
+  scene.fog = fog;
   const END = -BAY * BAYS;
   const glow = glowTexture();
 
@@ -375,26 +390,56 @@ export function buildCellar(tier: Tier): Cellar {
   scene.add(entrance);
 
   const camera = new THREE.PerspectiveCamera(60, 1.6, 0.1, 200);
+  const level = new THREE.Quaternion();
+  const materials = new Set<THREE.Material>();
+  scene.traverse((object) => {
+    const material = (object as THREE.Mesh).material;
+    for (const each of Array.isArray(material) ? material : material ? [material] : []) materials.add(each);
+  });
+  let portal = false;
+
+  /** The lens: the vineyard's at `blend` 0, the cellar's at 1. Wide screens shift the picture like a view camera. */
+  const lens = (from: number, blend: number, width: number, height: number) => {
+    camera.aspect = width / height;
+    if (width > height * 1.15) {
+      // On wide screens the view is shifted so the vanishing point sits in the right third and the left, where the
+      // text is, stays on the dark near barrels.
+      const F = lerp(1, 1.4, blend);
+      camera.fov = lerp(from, 60, blend);
+      camera.setViewOffset(width * F, height * F, width * (F / 2 - lerp(0.5, 0.69, blend)), height * (F / 2 - lerp(0.5, 0.53, blend)), width, height);
+    } else {
+      camera.fov = lerp(from, 78, blend);
+      camera.clearViewOffset();
+    }
+    camera.updateProjectionMatrix();
+  };
+
   return {
     scene,
     camera,
     pose(t, width, height) {
       // One-point perspective down the aisle, drifting two and a half bays as the page scrolls.
-      const z = lerp(1.1, 1.1 - BAY * 2.5, t);
-      camera.position.set(0.4, 1.55, z);
-      camera.lookAt(0.4, 1.55, z - 50);
-      camera.aspect = width / height;
-      if (width > height * 1.15) {
-        // On wide screens the view is shifted like a view camera's, so the vanishing point sits in the right third
-        // and the left, where the text is, stays on the dark near barrels.
-        const F = 1.4;
-        camera.fov = 60;
-        camera.setViewOffset(width * F, height * F, width * (F / 2 - 0.69), height * (F / 2 - 0.53), width, height);
-      } else {
-        camera.fov = 78;
-        camera.clearViewOffset();
+      camera.position.set(CELLAR_START.x, CELLAR_START.y, lerp(CELLAR_START.z, CELLAR_START.z - BAY * 2.5, t));
+      camera.quaternion.copy(level);
+      fog.density = FOG;
+      lens(0, 1, width, height);
+    },
+    enter(position, quaternion, fov, blend, width, height) {
+      camera.position.copy(position);
+      camera.quaternion.copy(quaternion);
+      // Seen from outside, the nave is far off; its haze should not swallow it before the doorway is reached.
+      fog.density = FOG * lerp(1, 0.12, smoothstep(0, 14, position.z - CELLAR_DOOR));
+      lens(fov, blend, width, height);
+    },
+    setPortal(on) {
+      if (on === portal) return;
+      portal = on;
+      for (const material of materials) {
+        material.stencilWrite = on;
+        material.stencilRef = 1;
+        material.stencilFunc = THREE.EqualStencilFunc;
+        material.stencilFail = material.stencilZFail = material.stencilZPass = THREE.KeepStencilOp;
       }
-      camera.updateProjectionMatrix();
     },
   };
 }

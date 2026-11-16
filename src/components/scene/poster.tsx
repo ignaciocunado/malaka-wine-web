@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 
 /**
- * A still of one of the homepage's scenes, pre-rendered from the live scene by `scripts/3d/posters.mjs`. Each comes
+ * A still of one of the homepage's scenes (the vineyard, the lagar's door, the cellar), pre-rendered from the live scene by `scripts/3d/posters.mjs`. Each comes
  * in three shapes so that any screen crops it only at the sides, which is also how the live camera frames a
  * narrower window; that keeps the still and the live picture lined up when one replaces the other.
  */
@@ -11,7 +11,7 @@ const SHAPES = [
   ["wide", undefined],
 ] as const;
 
-export function ScenePoster({ name, className, eager, style }: { name: "vineyard" | "cellar"; className?: string; eager?: boolean; style?: CSSProperties }) {
+export function ScenePoster({ name, className, eager, style }: { name: "vineyard" | "door" | "cellar"; className?: string; eager?: boolean; style?: CSSProperties }) {
   return (
     <picture>
       {SHAPES.flatMap(([shape, media]) =>
