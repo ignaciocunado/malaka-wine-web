@@ -8,13 +8,14 @@ import { ScenePoster } from "@/components/scene/poster";
 
 /**
  * The homepage's 3D stage: a full-screen picture that stays put while its children (the hero, a stretch of empty
- * scroll, then "how it works") move over it. Scrolling walks the camera down the vineyard track, through the
- * lagar's door and along the cellar.
+ * scroll, then "how it works") move over it. Scrolling walks the camera down the vineyard track, in through the
+ * lagar's door (the cellar is drawn through it, so there is no cut) and along the cellar.
  *
  * What the visitor sees is always the same; how it is drawn depends on the device:
  *
- * - First, still images of the vineyard and the cellar, pre-rendered from the scene itself, so the page paints at
- *   once. They zoom and cross-fade with the scroll (styles in globals.css, driven by the custom properties set here).
+ * - First, still images of the vineyard, the lagar's door and the cellar, pre-rendered from the scene itself, so the
+ *   page paints at once. They zoom and cross-fade with the scroll (styles in globals.css, driven by the custom
+ *   properties set here).
  * - Then, once the browser is idle, the live three.js scene loads and fades in over the stills. Visitors who asked
  *   for reduced motion or data saving, and browsers without WebGL 2, keep the stills.
  *
@@ -30,15 +31,16 @@ export function HomeStage({ description, children }: { description: string; chil
   const root = useRef<HTMLDivElement>(null);
   const backdrop = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
-  // The cellar still isn't needed until the visitor is well down the track, so it isn't downloaded before then.
-  const [cellarPoster, setCellarPoster] = useState(false);
+  // The door and cellar stills aren't needed until the visitor is well down the track, so they aren't downloaded before
+  // then, nor at all while the live scene is drawing.
+  const [laterPosters, setLaterPosters] = useState(false);
 
   useEffect(() => {
     const stage = root.current!, view = backdrop.current!;
     const cellar = stage.querySelector<HTMLElement>("[data-stage-cellar]")!;
     let scene: HomeScene | null = null;
     let frame = 0;
-    let wantsCellar = false;
+    let wantsLater = false;
 
     // Turns the scroll position into the walk's progress and publishes it to the styles and to the live scene.
     const update = () => {
@@ -57,9 +59,9 @@ export function HomeStage({ description, children }: { description: string; chil
       stage.style.setProperty("--inside", inside ? "1" : "0");
       stage.style.setProperty("--wash", wash.toFixed(3));
       stage.style.setProperty("--hero", clamp01(1 - walk * 4).toFixed(3));
-      if (walk > 0.4 && !wantsCellar) {
-        wantsCellar = true;
-        setCellarPoster(true);
+      if (walk > 0.2 && !wantsLater && !stage.hasAttribute("data-live")) {
+        wantsLater = true;
+        setLaterPosters(true);
       }
       scene?.setProgress(inside ? 1 : walk * 0.9999, aisle);
     };
@@ -113,7 +115,8 @@ export function HomeStage({ description, children }: { description: string; chil
     <div ref={root} className="home-stage relative">
       <div ref={backdrop} role="img" aria-label={description} className="sticky top-0 h-svh overflow-hidden bg-system">
         <ScenePoster name="vineyard" eager className="home-stage-poster home-stage-vineyard absolute inset-0 size-full object-cover" />
-        {cellarPoster && <ScenePoster name="cellar" className="home-stage-poster home-stage-cellar absolute inset-0 size-full object-cover" />}
+        {laterPosters && <ScenePoster name="door" className="home-stage-poster home-stage-door absolute inset-0 size-full object-cover" />}
+        {laterPosters && <ScenePoster name="cellar" className="home-stage-poster home-stage-cellar absolute inset-0 size-full object-cover" />}
         <canvas ref={canvas} aria-hidden className="absolute inset-0 size-full" />
         <div aria-hidden className="home-stage-wash pointer-events-none absolute inset-0" />
         {/* Shade for the text that scrolls over the picture: down the left on wide screens, all over on narrow ones. */}

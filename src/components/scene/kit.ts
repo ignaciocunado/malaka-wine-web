@@ -55,16 +55,18 @@ export function chance(a: number, b: number, salt: number) {
 /**
  * A renderer set up the way every scene here wants it. Shadows are static, so they are drawn once and reused
  * (`shadowMap.needsUpdate = true` redraws them). The pixel ratio is capped so a 4K or retina screen never pushes
- * more pixels than it can show a difference for.
+ * more pixels than it can show a difference for (a 1440 by 900 window at 2x is 5.2 million, drawn in full on the
+ * "high" tier). With `stencil`, the canvas keeps a stencil buffer, which the homepage uses to draw the cellar through
+ * the lagar's door.
  */
-export function createRenderer(canvas: HTMLCanvasElement, tier: Tier) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
+export function createRenderer(canvas: HTMLCanvasElement, tier: Tier, { stencil = false } = {}) {
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance", stencil });
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
   renderer.shadowMap.autoUpdate = false;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  const maxPixels = tier === "high" ? 3_700_000 : 1_600_000;
+  const maxPixels = tier === "high" ? 5_400_000 : 1_600_000;
   const fit = () => {
     const width = canvas.clientWidth || 1, height = canvas.clientHeight || 1;
     const ratio = Math.min(window.devicePixelRatio || 1, tier === "high" ? 2 : 1.5, Math.sqrt(maxPixels / (width * height)));

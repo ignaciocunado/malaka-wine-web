@@ -1,6 +1,9 @@
-import { buildCellar, type Cellar } from "./cellar";
+import * as THREE from "three";
+
+import { buildCellar, CELLAR_DOOR, CELLAR_START, type Cellar } from "./cellar";
 import { whenIdle } from "./device";
-import { createRenderer, disposeScene, loadPack, type Tier } from "./kit";
+import { createRenderer, disposeScene, loadPack, smoothstep, type Tier } from "./kit";
+import { PORTAL_AT } from "./lagar";
 import { BAY_PACK, buildVineyard } from "./vineyard";
 
 /**
@@ -9,11 +12,16 @@ import { BAY_PACK, buildVineyard } from "./vineyard";
  * The page tells it how far the visitor has scrolled (`setProgress`) and it moves the camera there. It only draws
  * while the camera is still catching up with the scroll; a page at rest costs nothing. If frames come slowly it
  * lowers its own resolution rather than stutter.
+ *
+ * The two scenes are one place. The lagar's door is a passage with the cellar's nave at the far end of it: from the
+ * track the vineyard is drawn first, then the cellar over it, only where the passage's mouth is (a stencil), seen from
+ * the same camera moved into the cellar's coordinates. Walking in is then an ordinary camera move; once the camera
+ * is past the mouth, only the cellar is drawn, and nothing changes on screen at the handover.
  */
 export type HomeScene = {
   /**
-   * `walk` runs 0 to 1 from the vineyard to the lagar's doorway; past 1 the cellar takes over and `aisle` (0 to 1)
-   * moves the camera down it.
+   * `walk` runs 0 to 1 from the vineyard, in through the lagar's door, to the first bay of the cellar; `aisle`
+   * (0 to 1) then moves the camera down the nave.
    */
   setProgress(walk: number, aisle: number): void;
   resize(): void;
@@ -24,7 +32,8 @@ type Options = { tier: Tier; signal: AbortSignal; onFirstFrame(): void; onContex
 
 export async function createHomeScene(canvas: HTMLCanvasElement, { tier, signal, onFirstFrame, onContextLost }: Options): Promise<HomeScene> {
   const pack = await loadPack(BAY_PACK.url, BAY_PACK.sections, signal);
-  const { renderer, fit } = createRenderer(canvas, tier);
+  const { renderer, fit } = createRenderer(canvas, tier, { stencil: true });
+  renderer.autoClear = false; // each frame clears once, then may draw two scenes into it
   const vineyard = buildVineyard(pack, tier);
   let cellar: Cellar | null = null;
   let size = fit();
@@ -44,41 +53,83 @@ export async function createHomeScene(canvas: HTMLCanvasElement, { tier, signal,
     return cellar;
   };
 
-  /** Draws the scene the scroll is in, with the camera where the easing has brought it. */
-  const paint = () => {
-    // The change of scene follows the scroll itself, not the eased camera: the page covers it with its wash of
-    // lamplight at exactly that point, so it must not lag behind.
-    const inside = target.walk >= 1;
-    const which = inside ? "cellar" : "vineyard";
-    // Nothing in either scene moves, so each one's shadows are drawn once, the first time it is shown.
-    if (!shadowed.has(which)) {
-      shadowed.add(which);
+  // The vineyard camera, carried into the cellar's coordinates: the cellar's doorway plane lies where the lagar's
+  // passage ends, and a metre is a metre in both.
+  const place = new THREE.Vector3(), turn = new THREE.Quaternion(), upright = new THREE.Quaternion();
+  const ENTRY_END = PORTAL_AT - CELLAR_DOOR + CELLAR_START.z; // the lagar-frame z at which the walk ends in the first bay
+
+  /** Clears, then draws the cellar alone: the camera is past the door, or has come to the nave. */
+  const drawCellar = (scene: Cellar) => {
+    if (!shadowed.has("cellar")) {
+      shadowed.add("cellar");
       renderer.shadowMap.needsUpdate = true;
     }
-    if (inside) {
+    scene.setPortal(false);
+    renderer.clear();
+    renderer.toneMappingExposure = 1;
+    renderer.render(scene.scene, scene.camera);
+  };
+
+  /** Draws the scene the scroll is in, with the camera where the easing has brought it. */
+  const paint = () => {
+    const { width, height } = size;
+    if (shown.walk >= 0.9995) {
+      // In the nave: the camera drifts down the aisle.
       const scene = ensureCellar();
-      scene.pose(shown.aisle, size.width, size.height);
+      scene.pose(shown.aisle, width, height);
+      drawCellar(scene);
+      return;
+    }
+
+    vineyard.pose(shown.walk, width / height);
+    const view = vineyard.view;
+    // The lagar's frame to the cellar's: one more metre into the passage is one more metre into the nave.
+    place.set(view.position.x, view.position.y, view.position.z - PORTAL_AT + CELLAR_DOOR);
+
+    if (view.position.z < PORTAL_AT) {
+      // Through the door. The camera settles to the nave's lens and its place in the first bay as it goes.
+      const blend = smoothstep(0, 1, (PORTAL_AT - view.position.z) / (PORTAL_AT - ENTRY_END));
+      place.x = THREE.MathUtils.lerp(view.position.x, CELLAR_START.x, blend);
+      place.y = THREE.MathUtils.lerp(view.position.y, CELLAR_START.y, blend);
+      turn.copy(view.quaternion).slerp(upright.identity(), blend);
+      const scene = ensureCellar();
+      scene.enter(place, turn, view.fov, blend, width, height);
+      drawCellar(scene);
+      return;
+    }
+
+    // Outside: the vineyard, with the cellar showing through the door once it is built.
+    if (!shadowed.has("vineyard")) {
+      shadowed.add("vineyard");
+      renderer.shadowMap.needsUpdate = true;
+    }
+    // The nave is wanted by the time the lagar is near enough for its doorway to show it.
+    if (!cellar && view.position.z < 16) ensureCellar();
+    const opening = view.open > 0.01; // behind a shut door there is nothing to draw
+    renderer.clear();
+    renderer.toneMappingExposure = 1.05;
+    renderer.render(vineyard.scene, vineyard.camera);
+    if (cellar && opening) {
+      if (!shadowed.has("cellar")) {
+        shadowed.add("cellar");
+        renderer.shadowMap.needsUpdate = true;
+      }
+      cellar.setPortal(true);
+      cellar.enter(place, view.quaternion, view.fov, 0, width, height);
+      renderer.clearDepth();
       renderer.toneMappingExposure = 1;
-      renderer.render(scene.scene, scene.camera);
-    } else {
-      vineyard.pose(shown.walk, size.width / size.height);
-      renderer.toneMappingExposure = 1.05;
-      renderer.render(vineyard.scene, vineyard.camera);
+      renderer.render(cellar.scene, cellar.camera);
     }
   };
 
   /**
    * Builds the cellar and draws it once, unseen, while the visitor is still reading the hero: its shaders, textures
    * and shadows are then ready, and walking through the door costs nothing. The vineyard is redrawn in the same
-   * breath, so the cellar frame never reaches the screen.
+   * breath, so the cellar frame never reaches the screen. (It then also shows through the lagar's door.)
    */
   const warmCellar = () => {
-    if (disposed || cellar || target.walk >= 1) return;
-    const scene = ensureCellar();
-    shadowed.add("cellar");
-    renderer.shadowMap.needsUpdate = true;
-    renderer.toneMappingExposure = 1;
-    renderer.render(scene.scene, scene.camera);
+    if (disposed || cellar || shown.walk >= 0.9995) return;
+    drawCellar(ensureCellar());
     paint();
   };
 
@@ -90,7 +141,6 @@ export async function createHomeScene(canvas: HTMLCanvasElement, { tier, signal,
     const ease = 1 - Math.exp(-dt * 11);
     shown.walk += (target.walk - shown.walk) * ease;
     shown.aisle += (target.aisle - shown.aisle) * ease;
-    if (target.walk >= 1) shown.walk = 1;
     const settled = Math.abs(target.walk - shown.walk) < 0.0004 && Math.abs(target.aisle - shown.aisle) < 0.0004;
     if (settled) Object.assign(shown, target);
 
@@ -134,9 +184,8 @@ export async function createHomeScene(canvas: HTMLCanvasElement, { tier, signal,
     setProgress(walk, aisle) {
       // Scrolling the rest of the page, with the stage out of sight, changes nothing here and draws nothing.
       if (walk === target.walk && aisle === target.aisle) return;
-      // Crossing the doorway in either direction starts the far side from the door, not from wherever it was left.
+      // Coming in through the door starts the nave from its first bay, not from wherever it was left.
       if (walk >= 1 && target.walk < 1) shown.aisle = 0;
-      if (walk < 1 && target.walk >= 1) shown.walk = 0.9999;
       target.walk = walk;
       target.aisle = aisle;
       invalidate();
