@@ -22,7 +22,7 @@ export type Vineyard = {
    */
   pose(t: number, aspect: number): void;
   /** Where the camera is in the lagar's own frame (metres, door facing +Z), set by `pose`. */
-  view: { position: THREE.Vector3; quaternion: THREE.Quaternion; fov: number };
+  view: { position: THREE.Vector3; quaternion: THREE.Quaternion; fov: number; open: number };
   /** Tells the city lights how tall the picture is, so they keep their size in pixels. */
   setViewport(height: number): void;
 };
@@ -407,7 +407,7 @@ export function buildVineyard(pack: Pack, tier: Tier): Vineyard {
   // past the lagar's centre, since the nave lies beyond the passage.
   const END = SCALE * (CELLAR_START.z - CELLAR_DOOR + PORTAL_AT);
   const eyeEnd = FLOOR + SCALE * CELLAR_START.y;
-  const view = { position: new THREE.Vector3(), quaternion: new THREE.Quaternion(), fov: 44 };
+  const view = { position: new THREE.Vector3(), quaternion: new THREE.Quaternion(), fov: 44, open: 0 };
   let viewportHeight = 1;
 
   /** A cubic through two points with the slope given at each end (per unit of `u`). */
@@ -456,6 +456,9 @@ export function buildVineyard(pack: Pack, tier: Tier): Vineyard {
       lagar.group.worldToLocal(view.position);
       view.quaternion.copy(lagar.group.quaternion).invert().multiply(camera.quaternion);
       view.fov = camera.fov;
+      // The doors swing in as the camera comes up to them, a few seconds of scrolling before it reaches the wall.
+      view.open = smoothstep(5.5, 1.9, s);
+      lagar.setDoor(view.open);
     },
   };
 }

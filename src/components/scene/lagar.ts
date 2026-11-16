@@ -7,20 +7,21 @@ import { halo, instances, lit, rng, type Instance } from "./kit";
  * The lagar at the end of the vineyard track: a whitewashed press-house with a clay-tile roof, its stone arch open
  * on the cellar. Everything is modelled in metres with the door facing +Z; `vineyard.ts` scales and places it.
  *
- * The arch is a real passage through a 75 cm wall, lined in dressed stone. Its inner mouth (`PORTAL_AT`) holds an
+ * The arch is a real passage through a 1.1 m wall, lined in dressed stone, with a pair of studded doors hung in it that
+ * swing in against its walls as the visitor arrives (`setDoor`). Its inner mouth (`PORTAL_AT`) holds an
  * invisible "portal": the cellar is drawn through it (see `home-scene.ts`), so the visitor sees the lamplit nave
  * from the track and walks into it without a cut. Without the cellar, a glowing plane behind the portal stands in.
  *
  * Surfaces are painted on canvases at start-up (plaster, tiles, stone, timber), each with a height map for bump.
  */
 export const SCALE = 0.62; // scene units per metre
-export const PORTAL_AT = 1.45; // z of the passage's inner mouth, in metres
+export const PORTAL_AT = 1.1; // z of the passage's inner mouth, in metres
 
 const W = 7.2; // width of the main house
 const H = 3.0; // height of its walls
 const D = 4.4; // depth
 const FRONT = D / 2;
-const WALL = 0.75; // thickness of the front wall, which is the length of the passage
+const WALL = 1.1; // thickness of the front wall, which is the length of the passage
 const ARCH = { half: 0.975, spring: 1.575 }; // the door: a semicircle on straight jambs
 const WINDOW_X = 3.0;
 const PITCH = (26 * Math.PI) / 180;
@@ -361,6 +362,8 @@ export type Lagar = {
   group: THREE.Group;
   /** The mouth of the passage: draws nothing, but marks where the cellar shows through. */
   portal: THREE.Mesh;
+  /** Swings the doors: 0 is shut, 1 is wide open. The light of the cellar spills out as they open. */
+  setDoor(open: number): void;
 };
 
 export function buildLagar(glow: THREE.Texture): Lagar {
@@ -405,22 +408,36 @@ export function buildLagar(glow: THREE.Texture): Lagar {
   place(box(2.5, 0.12, 0.62, 0.9, rand), stone, 0, 0.06, FRONT + 0.12 + 0.31);
   place(box(2.1, 0.06, 0.4, 0.9, rand), stone, 0, 0.03, FRONT + 0.12 + 0.62 + 0.2);
 
-  // The two leaves stand open against the wall, studded and strapped.
-  for (const s of [-1, 1]) {
-    const leaf = new THREE.Group();
-    leaf.add(new THREE.Mesh(box(0.96, 2.35, 0.06, 1, rand), oak));
-    for (const y of [-0.8, 0.8]) {
-      const strap = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.07, 0.015), iron);
-      strap.position.set(s * 0.17, y, 0.037);
-      leaf.add(strap);
+  // The doors: two arch-topped leaves of studded, strapped oak, hung just inside the lining. They are drawn shut;
+  // `setDoor` swings them in, to lie against the passage walls.
+  const hinge = ARCH.half - 0.025, leafW = hinge - 0.005;
+  const leaves = [-1, 1].map((s) => {
+    const shape = new THREE.Shape();
+    // The hinge is the origin and the leaf reaches towards the middle, so turning the group swings it.
+    const toward = -s;
+    shape.moveTo(0, 0);
+    shape.lineTo(toward * leafW, 0);
+    shape.lineTo(toward * leafW, ARCH.spring + leafW);
+    shape.absarc(toward * leafW, ARCH.spring, leafW, Math.PI / 2, s > 0 ? 0 : Math.PI, s > 0);
+    shape.closePath();
+    const pivot = new THREE.Group();
+    pivot.add(new THREE.Mesh(scaleUV(new THREE.ExtrudeGeometry(shape, { depth: 0.06, bevelEnabled: false, curveSegments: 18 }), 1, rand()), oak));
+    for (const y of [0.55, 1.6]) {
+      const strap = new THREE.Mesh(new THREE.BoxGeometry(leafW * 0.92, 0.07, 0.014), iron);
+      strap.position.set(toward * leafW * 0.46, y, 0.066);
+      pivot.add(strap);
     }
     const studs: Instance[] = [];
-    for (let row = 0; row < 7; row++) for (let col = 0; col < 3; col++) studs.push({ p: [(col - 1) * 0.3 + (s < 0 ? -0.02 : 0.02), -1.05 + row * 0.35, 0.04], s: 0.016 });
-    leaf.add(instances(new THREE.SphereGeometry(1, 6, 4), iron, studs, { cast: false }));
-    leaf.position.set(s * (ARCH.half + 0.32 + 0.48), 1.19, FRONT + 0.2);
-    leaf.traverse((child) => { if ((child as THREE.Mesh).isMesh) child.castShadow = child.receiveShadow = true; });
-    group.add(leaf);
-  }
+    for (let row = 0; row < 8; row++) for (let col = 0; col < 3; col++) studs.push({ p: [toward * (0.2 + col * 0.25), 0.28 + row * 0.27, 0.064], s: 0.016 });
+    pivot.add(instances(new THREE.SphereGeometry(1, 6, 4), iron, studs, { cast: false }));
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.008, 6, 14), iron);
+    ring.position.set(toward * (leafW - 0.09), 1.05, 0.07);
+    pivot.add(ring);
+    pivot.position.set(s * hinge, 0, FRONT - 0.1);
+    pivot.traverse((child) => { if ((child as THREE.Mesh).isMesh) child.castShadow = child.receiveShadow = true; });
+    group.add(pivot);
+    return { pivot, s };
+  });
 
   // Windows: stone sill and lintel, an iron grille, open shutters, and lamplight inside.
   const grilleBar = new THREE.CylinderGeometry(0.009, 0.009, 0.95, 5);
@@ -487,12 +504,13 @@ export function buildLagar(glow: THREE.Texture): Lagar {
   const light = new THREE.PointLight("#ffb060", 1.8, 3.4, 1.6);
   light.position.copy(lamp.group.position).add(lamp.flame).add(new THREE.Vector3(0, -0.05, 0.12));
   const passageLight = new THREE.PointLight("#ffa850", 1.2, 2.6, 1.6);
-  passageLight.position.set(0, 1.9, FRONT - 0.25);
+  passageLight.position.set(0, 1.9, FRONT - WALL / 2);
   group.add(light, passageLight);
 
   const backing = new THREE.Mesh(new THREE.ShapeGeometry(archShape(1.1, ARCH.spring - 0.1, 0), 20), lit("#ffa238", 1.7));
   backing.position.z = PORTAL_AT - 0.08;
   const doorGlow = halo(glow, "#ff9a40", 3.2, 0.22);
+  const glowColor = doorGlow.material.color.clone();
   doorGlow.position.set(0, 1.2, FRONT + 0.5);
   group.add(backing, doorGlow);
 
@@ -557,5 +575,14 @@ export function buildLagar(glow: THREE.Texture): Lagar {
   portal.renderOrder = 10;
   group.add(portal);
 
-  return { group, portal };
+  const setDoor = (open: number) => {
+    for (const { pivot, s } of leaves) pivot.rotation.y = -s * open * 1.5; // in, to just short of flat against the wall
+    // Behind a shut door the cellar's light stays in; it spills out as the door opens.
+    passageLight.intensity = 1.2 * open;
+    doorGlow.material.color.copy(glowColor).multiplyScalar(open);
+    doorGlow.visible = open > 0.002;
+  };
+  setDoor(0);
+
+  return { group, portal, setDoor };
 }

@@ -171,13 +171,14 @@ photographs or downloaded meshes:
   to a lagar, then Gibralfaro, the cathedral, the port and Sierra de Mijas across the bay. The terrain is real
   elevation data and the landmarks stand at their real coordinates; the vineyard is invented.
 - **The lagar** (`lagar.ts`): the press-house at the end of the track, modelled in metres: a thick front wall with a
-  stone-lined arched passage, lime plaster, clay tiles, shutters, studded doors, a lantern. Its plaster, tiles, stone
+  stone-lined arched passage, lime plaster, clay tiles, shutters, a lantern, and a pair of studded doors that are shut
+  at first and swing in as the camera arrives. Its plaster, tiles, stone
   and timber are painted on canvases at start-up, each with a height map for bump.
 - **The cellar** (`cellar.ts`): a solera cellar, behind "how it works". Scrolling the homepage walks the camera down
   the track, in through the lagar's door and along the aisle (`home-scene.ts` and `components/landing/home-stage.tsx`).
   The walk has no cut: the passage's inner mouth is a portal, a window that writes to the stencil buffer. From the
   track, the vineyard is drawn first and then the cellar, seen from the same camera moved into the cellar's
-  coordinates, only inside that window, so the lamplit nave shows through the door from afar and the camera simply
+  coordinates, only inside that window, so the lamplit nave shows through the door as it opens and the camera simply
   walks into it. Once the camera is past the window, only the cellar is drawn, and nothing changes on screen.
 - **The relief table** (`relief-scene.ts`): the province as a museum model, in the wine guide. Choosing an area turns
   and zooms the table to it; each area's own page shows the table turned to that area.

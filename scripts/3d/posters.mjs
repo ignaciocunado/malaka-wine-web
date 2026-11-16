@@ -84,10 +84,10 @@ if (wants("home")) for (const [shape, width, height] of [["wide", 2400, 1000], [
   await page.addStyleTag({ content: ".home-stage > div:last-child, .home-stage [aria-hidden]:not(canvas), body > header, footer { visibility: hidden !important }" });
   await settle(page);
   await save(await shot(page), `vineyard-${shape}`);
-  // The camera in the lagar's passage, the cellar's nave framed by the arch: where the page stops zooming the vineyard.
+  // The doors swung open and the camera at the arch, the cellar's nave framed by it: where the page stops zooming the vineyard.
   const doorScroll = await page.evaluate(() => {
     const cellar = document.querySelector("[data-stage-cellar]");
-    return Math.max(innerHeight * 0.5, cellar.offsetTop - innerHeight * 0.75) * 0.7;
+    return Math.max(innerHeight * 0.5, cellar.offsetTop - innerHeight * 0.75) * 0.76;
   });
   await page.evaluate((top) => window.scrollTo({ top, behavior: "instant" }), doorScroll);
   await settle(page, 2600);

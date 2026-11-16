@@ -105,10 +105,11 @@ export async function createHomeScene(canvas: HTMLCanvasElement, { tier, signal,
     }
     // The nave is wanted by the time the lagar is near enough for its doorway to show it.
     if (!cellar && view.position.z < 16) ensureCellar();
+    const opening = view.open > 0.01; // behind a shut door there is nothing to draw
     renderer.clear();
     renderer.toneMappingExposure = 1.05;
     renderer.render(vineyard.scene, vineyard.camera);
-    if (cellar) {
+    if (cellar && opening) {
       if (!shadowed.has("cellar")) {
         shadowed.add("cellar");
         renderer.shadowMap.needsUpdate = true;
