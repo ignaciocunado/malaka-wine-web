@@ -9,6 +9,7 @@ export type Plan = {
 
 export type WineStyle = "RED" | "WHITE" | "ROSE" | "SWEET" | "SPARKLING";
 export type WineSweetness = "DRY" | "OFF_DRY" | "SWEET";
+export type DeliveryFrequency = "MONTHLY" | "BIMONTHLY";
 
 export type TasteProfile = {
   wineStyles: WineStyle[];
@@ -16,6 +17,7 @@ export type TasteProfile = {
   wineSweetness: WineSweetness;
   adventurousness: number;
   bottlesPerBox: number;
-  budgetEur: number;
+  deliveryFrequency: DeliveryFrequency;
+  monthlyBudgetEur: number;
   notes: string;
 };

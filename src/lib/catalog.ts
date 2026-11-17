@@ -18,8 +18,8 @@ const PLANS: Localized<Plan, "tagline" | "contents">[] = [
     code: "VINO",
     name: "Descubre",
     tagline: {
-      es: "Dos vinos de pequeñas bodegas malagueñas cada dos meses.",
-      en: "Two wines from small Málaga wineries every two months.",
+      es: "Dos vinos de pequeñas bodegas malagueñas cada mes.",
+      en: "Two wines from small Málaga wineries every month.",
     },
     contents: { es: "2 botellas · fichas de cata", en: "2 bottles · tasting notes" },
     priceCents: 4000,
@@ -33,10 +33,10 @@ const PLANS: Localized<Plan, "tagline" | "contents">[] = [
       en: "Three wines to travel the province, from Moscatel whites to the reds of Ronda.",
     },
     contents: {
-      es: "3 botellas · fichas de cata",
-      en: "3 bottles · tasting notes",
+      es: "3 botellas · fichas de cata · maridajes",
+      en: "3 bottles · tasting notes · food pairings",
     },
-    priceCents: 6000,
+    priceCents: 5500,
     featured: true,
   },
   {
@@ -47,10 +47,10 @@ const PLANS: Localized<Plan, "tagline" | "contents">[] = [
       en: "Very limited releases, oak-aged wines and vintage sweet wines.",
     },
     contents: {
-      es: "3 botellas · fichas de cata",
-      en: "3 bottles · tasting notes",
+      es: "3 botellas de edición limitada · fichas de cata",
+      en: "3 limited-edition bottles · tasting notes",
     },
-    priceCents: 8000,
+    priceCents: 7000,
     featured: false,
   },
 ];

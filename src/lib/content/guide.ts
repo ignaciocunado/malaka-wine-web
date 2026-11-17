@@ -126,7 +126,7 @@ const es: Guide = {
     {
       heading: "¿Dónde comprar vinos de Málaga?",
       body: [
-        "Muchas bodegas pequeñas venden casi toda su producción en su propio pueblo, así que fuera de la provincia cuesta encontrarlas. Malaka Wine las reúne en una suscripción: cada dos meses, una caja con vinos de distintas zonas, elegidos según tus gustos y enviados a cualquier dirección de la España peninsular.",
+        "Muchas bodegas pequeñas venden casi toda su producción en su propio pueblo, así que fuera de la provincia cuesta encontrarlas. Malaka Wine las reúne en una suscripción: cada mes, una caja con vinos de distintas zonas, elegidos según tus gustos y enviados a cualquier dirección de la España peninsular.",
       ],
     },
   ],
@@ -528,7 +528,7 @@ const en: Guide = {
     {
       heading: "Where can you buy Málaga wines?",
       body: [
-        "Many small wineries sell almost everything they make in their own village, so their wines are hard to find outside the province. Malaka Wine brings them together in a subscription: every two months, a box of wines from different areas, chosen to match your taste and delivered to any address in mainland Spain.",
+        "Many small wineries sell almost everything they make in their own village, so their wines are hard to find outside the province. Malaka Wine brings them together in a subscription: each month, a box of wines from different areas, chosen to match your taste and delivered to any address in mainland Spain.",
       ],
     },
   ],
