@@ -120,31 +120,64 @@ export const en: Dictionary = {
       questions: [
         {
           q: "What is Malaka Wine?",
-          a: "Malaka Wine is a Málaga wine subscription: every two months you receive a box of two or three bottles from small wineries in the province, chosen to match your taste and sent with tasting notes.",
+          a: [
+            "Malaka Wine sets out to transform the way people discover and enjoy Málaga wine, turning exclusive products from small producers into personalised experiences. The goal is to create an \"intelligent\" gourmet club: a way of combining tradition with new artificial intelligence technology, so that every customer receives only the wines they like.",
+            "With it we want to build the largest community of Málaga wine lovers and help Málaga's producers make a living from their passion without having to leave their land. In this way we help keep people in the countryside, fight climate change, and make our province a more sustainable place.",
+            "The project combines gastronomy, technology, exclusivity and territory in a subscription model designed to start with a small, controlled validation in Málaga.",
+            "Every two months the subscriber receives at home a box of two or three bottles from wineries in the province, the vast majority of them small businesses, chosen to match your taste and sent with tasting notes.",
+          ],
         },
         {
-          q: "Who are the wineries?",
-          a: "Family wineries from all over the province of Málaga (Axarquía, Montes de Málaga, Serranía de Ronda, the western coast and the north) that make small batches which are hard to find outside their own village.",
+          q: "Which wineries do we mean?",
+          a: [
+            "Malaka Wine covers wineries across the whole province of Málaga, many of them family-run. These wineries make small batches that are hard to find on the market.",
+            "The province has more than 300 wines, of which only about thirty can be found on the market with any ease, made by around 53 wineries. Of these, 46 are registered in the Málaga and Sierras de Málaga designations of origin (spread across about 24 municipalities), and the rest are wines without a Designation of Origin (DO): small or niche projects, or wineries not entered in the DO register.",
+          ],
         },
         {
-          q: "What kinds of Málaga wine can I get?",
-          a: "Dry and sweet whites from Moscatel de Alejandría, traditional sweet Pedro Ximénez, rosés and light reds from the Romé grape, and high-altitude reds from the Serranía de Ronda. Not all Málaga wine is sweet: you choose the styles.",
+          q: "What kinds of Málaga wine can I receive?",
+          a: [
+            "Those made in the province, above all the ones within the Málaga or Sierras de Málaga Protected Designation of Origin (PDO), which number over a hundred.",
+            "The **Málaga PDO** dates from 1933 and is one of the oldest in Spain. It has traditionally specialised in **sweet, liqueur and fortified wines** made mainly from Pedro Ximénez and Moscatel de Alejandría grapes. Other complementary white varieties exist too, such as Doradilla and Lairén, as well as Romé, a very rare native variety that adds colour and structure. Its production area covers 67 municipalities spread over five geographical areas: Axarquía, Montes de Málaga, Norte, Manilva and Serranía de Ronda.",
+            "The **Sierras de Málaga PDO**, for its part, was created in 2001 to protect **still wines** (whites, rosés and dry reds, plus some sweet reds) that are neither fortified nor traditional sweet wines. Its production area extends across the whole province of Málaga, divided into seven geographical units (Axarquía, Costa Occidental, Manilva, Montes de Málaga, Norte de Málaga, Serranía de Ronda and Sierra de las Nieves). A range of grape varieties are used here to make wine, such as:",
+            {
+              list: [
+                "**White varieties.** Local grapes are used (Pedro Ximénez, Moscatel de Alejandría, Moscatel Morisco, Doradilla, Lairén, Vijariego Blanco, Montúa, Perruno and Pardina). Spanish and international varieties are also grown, such as Chardonnay, Sauvignon Blanc, Verdejo, Viognier, Riesling, Gewürztraminer, Macabeo, Colombard, Garnacha Blanca, Malvasía Aromática and Vermentino.",
+                "**Red varieties.** The native Romé grape stands out, along with varieties historically recovered in the area such as Melonera or Tintilla de Rota. The most widespread varieties for aged reds (especially in the Serranía de Ronda) are Syrah, Cabernet Sauvignon, Merlot, Petit Verdot, Tempranillo, Garnacha, Cabernet Franc, Pinot Noir, Graciano, Malbec, Monastrell, Jaén Tinto and Blauer Limberger.",
+              ],
+            },
+            "As you can see, not all Málaga wine is sweet. But that's not all. We will also include wines from producers who are not yet within the PDO because they don't yet meet all the requirements a designation of origin demands, which takes nothing away from their quality, variety or finesse (sparkling wines, vermouths, and so on). In our project you choose the wine you like best after a \"virtual tasting\", and our \"digital sommelier\" will start to make recommendations. The more you drink and the longer you are part of the Club, the better we will know your tastes and the better we can meet your interests.",
+          ],
         },
         {
-          q: "How do you choose the wines in my box?",
-          a: "Your taste profile sets the styles, body and budget. Each time we match it against our wineries' new releases, and we include tasting notes so you know what you're opening. After each box you can tell us what you thought, and we adjust your profile.",
+          q: "How are the wines in my box chosen?",
+          a: [
+            "Your taste profile sets the styles, body and budget. Each month we match it against our wineries' new releases and include tasting notes so you know what you're opening. After each box you can tell us what you thought, and we adjust your profile.",
+          ],
         },
         {
           q: "When does my box arrive?",
-          a: "Boxes ship every two months, in the first week of the month, to any address in mainland Spain.",
+          a: [
+            "Boxes ship in the first week, every two months, to any address in mainland Spain.",
+          ],
+        },
+        {
+          q: "What other benefits do I get from being part of the Club?",
+          a: [
+            "Besides the subscription, the Club includes cross-selling of products, limited editions, and exclusive experiences and events for members, such as tastings or winery visits.",
+          ],
         },
         {
           q: "Can I change plan or cancel?",
-          a: "Yes. Change plan or cancel whenever you like from your account. There is no minimum term.",
+          a: [
+            "Yes. Change plan or cancel your subscription whenever you like from your account, with no minimum term.",
+          ],
         },
         {
-          q: "Is there a minimum age?",
-          a: "Yes. We only sell wine to people aged 18 or over, and an adult must receive the delivery.",
+          q: "Is there a minimum age to subscribe?",
+          a: [
+            "Yes. We only sell wine to people aged 18 or over, and an adult must receive the delivery.",
+          ],
         },
       ],
     },

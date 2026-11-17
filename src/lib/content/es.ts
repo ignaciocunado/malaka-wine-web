@@ -1,3 +1,5 @@
+import type { FaqQuestion } from "./faq";
+
 /** Every piece of Spanish text on the site outside the wine guide. `en.ts` mirrors this file key by key. */
 export const es = {
   meta: {
@@ -122,33 +124,66 @@ export const es = {
       questions: [
         {
           q: "¿Qué es Malaka Wine?",
-          a: "Malaka Wine es una suscripción de vinos de Málaga: cada dos meses recibes en casa una caja de dos o tres botellas de pequeñas bodegas de la provincia, elegidas según tus gustos y acompañadas de fichas de cata.",
+          a: [
+            "Malaka Wine propone transformar la manera de descubrir y consumir el vino malagueño, convirtiendo productos exclusivos de pequeños productores en experiencias personalizadas. El objetivo es crear un Club Gourmet \"Inteligente\", esto es, una forma de conjugar lo tradicional con las nuevas tecnologías de la inteligencia artificial, de forma que cada cliente reciba sólo los vinos que le gustan.",
+            "Con ello queremos crear la mayor comunidad de vinos de Málaga y ayudar a los productores malagueños a que puedan vivir de su pasión sin tener que abandonar sus tierras. Así ayudamos a fijar la población al territorio, luchamos contra el cambio climático, y hacemos de nuestra provincia un territorio más sostenible.",
+            "El proyecto combina gastronomía, tecnología, exclusividad y territorio en un modelo de suscripción diseñado para comenzar con una validación pequeña y controlada en Málaga.",
+            "Cada dos meses el suscriptor recibe en casa una caja de dos o tres botellas de las bodegas de la provincia, la gran mayoría pequeñas empresas, elegidas según tus gustos y acompañadas de fichas de cata.",
+          ],
         },
         {
-          q: "¿Quiénes son las bodegas?",
-          a: "Bodegas familiares de toda la provincia de Málaga (Axarquía, Montes de Málaga, Serranía de Ronda, Costa Occidental y Norte) que elaboran pequeñas partidas difíciles de encontrar fuera de su pueblo.",
+          q: "¿A qué bodegas nos referimos?",
+          a: [
+            "Malaka Wine abarca las bodegas de toda la provincia de Málaga, muchas de ellas familiares. Estas bodegas elaboran pequeñas partidas difíciles de encontrar en el mercado.",
+            "La provincia cuenta con más de 300 referencias, de las cuales sólo una treintena se consiguen con más o menos facilidad en el mercado, pertenecientes a unas 53 bodegas. De ellas, 46 están registradas en las denominaciones de origen Málaga y Sierras de Málaga (distribuidas en unos 24 municipios) y el resto son vinos sin Denominación de Origen (DO), proyectos pequeños o de nicho o bodegas no inscritas en el registro de la DO.",
+          ],
         },
         {
-          q: "¿Qué tipos de vino de Málaga puedo recibir?",
-          a: "Blancos secos y dulces de Moscatel de Alejandría, dulces tradicionales de Pedro Ximénez, rosados y tintos ligeros de Romé y tintos de altura de la Serranía de Ronda. No todo el vino de Málaga es dulce: tú eliges los estilos.",
+          q: "¿Qué tipos de vinos de Málaga puedo recibir?",
+          a: [
+            "Los que se producen en la provincia, sobre todo los que están dentro de la Denominación de Origen Protegida (DOP) Málaga o Sierras de Málaga, que superan el centenar.",
+            "La **DOP Málaga** data de 1933 y es una de las más antiguas de España y se ha especializado tradicionalmente en **vinos dulces, de licor y generosos** elaborados principalmente con uvas Pedro Ximénez y Moscatel de Alejandría, pero también existen otras variedades blancas complementarias como la Doradilla y la Lairén, así como la Romé, una variedad autóctona muy escasa que aporta notas de color y estructura. Su zona de producción abarca 67 municipios repartidos en cinco ámbitos geográficos: Axarquía, Montes de Málaga, Norte, Manilva y Serranía de Ronda.",
+            "Por su parte, la **DOP Sierras de Málaga** nació en 2001 para amparar **los vinos tranquilos** (blancos, rosados y tintos secos, además de algunos tintos dulces) que no son encabezados ni dulces tradicionales. Su zona de producción se extiende por toda la provincia de Málaga, dividida en siete unidades geográficas (Axarquía, Costa Occidental, Manilva, Montes de Málaga, Norte de Málaga, Serranía de Ronda y Sierra de las Nieves). Aquí se utilizan distintas variedades de uva para la producción de vino, como:",
+            {
+              list: [
+                "**Variedades blancas.** Se emplean las uvas locales (Pedro Ximénez, Moscatel de Alejandría, Moscatel Morisco, Doradilla, Lairén, Vijariego Blanco, Montúa, Perruno y Pardina). También se cultivan variedades nacionales e internacionales como Chardonnay, Sauvignon Blanc, Verdejo, Viognier, Riesling, Gewürztraminer, Macabeo, Colombard, Garnacha Blanca, Malvasía Aromática y Vermentino.",
+                "**Variedades tintas.** Destaca la uva autóctona Romé, junto a variedades recuperadas históricamente en la zona como la Melonera o Tintilla de Rota. Las variedades más extendidas para tintos de crianza (especialmente en la Serranía de Ronda) son Syrah, Cabernet Sauvignon, Merlot, Petit Verdot, Tempranillo, Garnacha, Cabernet Franc, Pinot Noir, Graciano, Malbec, Monastrell, Jaén Tinto y Blauer Limberger.",
+              ],
+            },
+            "Como ves, no todo el vino de Málaga es dulce. Pero eso no es todo. También incluiremos vinos de productores que aún no están dentro de la DOP porque aún no cumplen con todos los requisitos que exige una denominación de origen; lo cual no quita calidad, variedad y exquisitez a los mismos (espumosos, vermuts, etc.). En nuestro proyecto tú eliges el vino que más te gusta tras una \"cata virtual\" y nuestro \"sumiller digital\" empezará a recomendarte. Mientras más consumas y más tiempo formes parte del Club mejor conoceremos tus gustos y podremos satisfacer tus intereses.",
+          ],
         },
         {
-          q: "¿Cómo elegís los vinos de mi caja?",
-          a: "Tu perfil de gustos marca los estilos, el cuerpo y el presupuesto. Cada vez lo cruzamos con las novedades de nuestras bodegas e incluimos fichas de cata para que sepas qué estás abriendo. Después de cada caja puedes contarnos qué te ha parecido, y ajustamos tu perfil.",
+          q: "¿Cómo se eligen los vinos de mi caja?",
+          a: [
+            "Tu perfil de gustos marca los estilos, el cuerpo y el presupuesto. Cada mes lo cruzamos con las novedades de nuestras bodegas e incluimos fichas de cata para que sepas qué estás abriendo. Después de cada caja puedes contarnos qué te ha parecido, y ajustamos tu perfil.",
+          ],
         },
         {
           q: "¿Cuándo llega mi caja?",
-          a: "Las cajas salen cada dos meses, durante la primera semana del mes, a cualquier dirección de la España peninsular.",
+          a: [
+            "Las cajas salen la primera semana cada dos meses a cualquier dirección de la España peninsular.",
+          ],
+        },
+        {
+          q: "¿Qué otros beneficios obtengo por formar parte del Club?",
+          a: [
+            "Además de la suscripción, el Club contempla venta cruzada de productos, ediciones limitadas y experiencias y eventos exclusivos para miembros, tales como catas o visitas a bodegas.",
+          ],
         },
         {
           q: "¿Puedo cambiar de plan o cancelar?",
-          a: "Sí. Cambia de plan o cancela cuando quieras desde tu cuenta, sin permanencia.",
+          a: [
+            "Sí. Cambia de plan o cancela tu suscripción cuando quieras desde tu cuenta, sin permanencia.",
+          ],
         },
         {
-          q: "¿Hay una edad mínima?",
-          a: "Sí. Solo vendemos vino a mayores de 18 años, y la entrega debe recogerla un adulto.",
+          q: "¿Hay una edad mínima para suscribirse?",
+          a: [
+            "Sí. Solo vendemos vino a mayores de 18 años, y la entrega debe recogerla un adulto.",
+          ],
         },
-      ],
+      ] as FaqQuestion[],
     },
   },
 
