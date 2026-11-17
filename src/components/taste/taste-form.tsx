@@ -73,7 +73,7 @@ export function TasteForm({ lang }: { lang: Lang }) {
           <p className="mt-1 text-subheadline text-label-secondary">{plan.contents}</p>
           <p className="mt-3 flex items-baseline gap-1">
             <span className="text-title1">{formatEuros(plan.priceCents, lang)}</span>
-            <span className="text-subheadline text-label-secondary">{text.result.perShipment}</span>
+            <span className="text-subheadline text-label-secondary">{text.result.perMonth}</span>
           </p>
         </div>
         <p className="mx-auto mt-6 max-w-sm text-footnote text-label-secondary">
@@ -195,17 +195,25 @@ export function TasteForm({ lang }: { lang: Lang }) {
                     />
                   </div>
                 </Question>
-                <Question title={text.budget.title} value={euros(profile.budgetEur)}>
+                <Question title={text.frequency.title}>
+                  <SegmentedControl
+                    label={text.frequency.label}
+                    options={optionsOf(text.frequency.options)}
+                    value={profile.deliveryFrequency}
+                    onChange={(deliveryFrequency) => update({ deliveryFrequency })}
+                  />
+                </Question>
+                <Question title={text.budget.title} value={euros(profile.monthlyBudgetEur)}>
                   <Slider
                     label={text.budget.title}
                     min={20}
                     max={150}
                     step={5}
-                    value={profile.budgetEur}
-                    onChange={(budgetEur) => update({ budgetEur })}
+                    value={profile.monthlyBudgetEur}
+                    onChange={(monthlyBudgetEur) => update({ monthlyBudgetEur })}
                     minLabel={euros(20)}
                     maxLabel={euros(150)}
-                    valueText={text.budget.valueText(profile.budgetEur)}
+                    valueText={text.budget.valueText(profile.monthlyBudgetEur)}
                   />
                 </Question>
                 <Question title={text.notes.title} hint={text.notes.hint}>
@@ -313,8 +321,8 @@ function Review({
       </GroupedSection>
       <GroupedSection header={header(labels.box, "box")} className="[&>div]:bg-fill-quaternary">
         <SummaryRow label={labels.bottles} value={String(profile.bottlesPerBox)} />
-        <SummaryRow label={labels.delivery} value={text.frequency} />
-        <SummaryRow label={labels.budget} value={text.budget.perBox(euros(profile.budgetEur))} />
+        <SummaryRow label={labels.delivery} value={text.frequency.options[profile.deliveryFrequency]} />
+        <SummaryRow label={labels.budget} value={text.budget.perBox(euros(profile.monthlyBudgetEur))} />
         {profile.notes.trim() && <SummaryRow label={labels.notes} value={profile.notes.trim()} />}
       </GroupedSection>
     </div>
