@@ -6,14 +6,14 @@ export const es = {
     home: {
       title: "Vinos de Málaga a domicilio · Suscripción de vino | Malaka Wine",
       description:
-        "Suscripción de vinos de Málaga: cada dos meses, una caja con vinos de pequeñas bodegas de la Axarquía, Ronda y los Montes de Málaga, elegidos según tus gustos. Envío gratis a la península.",
+        "Suscripción de vinos de Málaga: cada mes, una caja con vinos de pequeñas bodegas de la Axarquía, Ronda y los Montes de Málaga, elegidos según tus gustos. Envío gratis a la península.",
       keywords: [
         "vinos de Málaga",
         "vino de Málaga",
         "suscripción de vino",
         "suscripción de vinos",
         "club de vinos",
-        "caja de vino bimestral",
+        "caja de vino mensual",
         "comprar vino de Málaga online",
         "vino Moscatel de Málaga",
         "vinos de Ronda",
@@ -76,9 +76,9 @@ export const es = {
 
   home: {
     hero: {
-      eyebrow: "La mayor comunidad de vinos de Málaga",
-      title: "Málaga, cada dos meses en tu copa.",
-      body: "Una comunidad que apoya los vinos de Málaga. Recibe una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
+      eyebrow: "Suscripción de vinos de Málaga",
+      title: "Málaga, cada mes en tu copa.",
+      body: "Una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
       cta: "Apúntate",
       plans: "Ver planes",
       scroll: "Baja hasta el lagar",
@@ -92,9 +92,9 @@ export const es = {
       body: "Empiezas con un test de dos minutos. Después de cada caja nos cuentas qué te ha parecido, y la siguiente se acerca más.",
       steps: [
         { title: "Cuéntanos qué te gusta", body: "Dos minutos sobre estilos, cuerpo y presupuesto." },
-        { title: "Elegimos tus vinos", body: "Botellas seleccionadas entre las novedades de toda la provincia." },
+        { title: "Elegimos tus vinos", body: "Botellas seleccionadas entre las novedades del mes de toda la provincia." },
         { title: "Cuéntanos qué te ha parecido", body: "Unas palabras sobre cada botella cuando la hayas abierto." },
-        { title: "Tu siguiente caja encaja mejor", body: "Ajustamos tu perfil con cada respuesta, así cada vez acertamos más." },
+        { title: "Tu siguiente caja encaja mejor", body: "Ajustamos tu perfil con cada respuesta, así cada mes acertamos más." },
       ],
       cta: "Apúntate y te avisamos cuando abramos",
       /** What the cellar scene behind this section shows, for screen readers. */
@@ -116,7 +116,7 @@ export const es = {
       title: "Elige tu caja de vinos de Málaga.",
       body: "Envío gratis a la península. Cambia de plan o cancela cuando quieras.",
       featured: "El más elegido",
-      perShipment: "/ cada dos meses",
+      perMonth: "/ mes",
       choose: (plan: string) => `Elegir ${plan}`,
     },
     faq: {
@@ -220,7 +220,7 @@ export const es = {
     steps: {
       styles: { title: "¿Qué vinos te gustan?", subtitle: "Del Moscatel de la Axarquía a los tintos de altura de Ronda." },
       palate: { title: "Tu paladar", subtitle: "Así sabremos por dónde empezar." },
-      box: { title: "Tu caja", subtitle: "Cuánto y lo que debamos saber." },
+      box: { title: "Tu caja", subtitle: "Cuánto, cada cuánto y lo que debamos saber." },
       review: { title: "Revisa tus respuestas", subtitle: "Comprueba que todo está bien antes de terminar." },
     },
     progress: (step: number, total: number) => `Paso ${step} de ${total}`,
@@ -261,8 +261,11 @@ export const es = {
       decrease: "Reducir botellas por caja",
       increase: "Aumentar botellas por caja",
     },
-    /** Boxes always ship every two months, so this is shown in the review but never asked. */
-    frequency: "Cada 2 meses",
+    frequency: {
+      title: "¿Cada cuánto?",
+      label: "Frecuencia de envío",
+      options: { MONTHLY: "Cada mes", BIMONTHLY: "Cada 2 meses" },
+    },
     budget: {
       title: "Presupuesto por caja",
       valueText: (amount: number) => `${amount} euros`,
@@ -292,7 +295,7 @@ export const es = {
       recommendedTitle: (plan: string) => `Te recomendamos ${plan}.`,
       chosenBody: "Con tus respuestas elegiremos cada botella de tu caja.",
       recommendedBody: "Es el plan que mejor encaja con tus respuestas.",
-      perShipment: "/ cada dos meses",
+      perMonth: "/ mes",
       demo: "Esto es una demo: las suscripciones abrirán muy pronto.",
       allPlans: "Ver todos los planes",
       editAnswers: "Editar mis respuestas",

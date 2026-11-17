@@ -1,6 +1,6 @@
 # Malaka Wine
 
-> Malaka Wine is a wine subscription from Málaga, Spain. Every two months subscribers receive a box of two or three wines from small family wineries in the province of Málaga, chosen to match a taste profile they fill in online. The site is in Spanish (default) and English.
+> Malaka Wine is a wine subscription from Málaga, Spain. Each month subscribers receive a box of two or three wines from small family wineries in the province of Málaga, chosen to match a taste profile they fill in online. The site is in Spanish (default) and English.
 
 Key facts:
 
