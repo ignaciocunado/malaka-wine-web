@@ -17,7 +17,7 @@ export function PlanCard({ plan, lang }: { plan: Plan; lang: Lang }) {
       <p className="mt-2 flex-1 text-body text-label-secondary">{plan.tagline}</p>
       <p className="mt-6 flex items-baseline gap-1.5">
         <span className="font-display text-[3.75rem] leading-none tracking-tight">{formatEuros(plan.priceCents, lang)}</span>
-        <span className="text-subheadline text-label-secondary">{text.perMonth}</span>
+        <span className="text-subheadline text-label-secondary">{text.perShipment}</span>
       </p>
       <p className="mt-4 text-subheadline">{plan.contents}</p>
       <ButtonLink href={`${pagePath(lang, "interest")}?plan=${plan.code}`} variant={plan.featured ? "filled" : "tinted"} className="mt-7 w-full">

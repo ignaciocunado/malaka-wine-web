@@ -6,14 +6,14 @@ export const en: Dictionary = {
     home: {
       title: "Málaga Wine Subscription · Spanish Wine Club | Malaka Wine",
       description:
-        "A monthly Málaga wine subscription: a box of wines from small family wineries in the Axarquía, Ronda and the Montes de Málaga, chosen to match your taste. Free delivery across mainland Spain.",
+        "A Málaga wine subscription: every two months, a box of wines from small family wineries in the Axarquía, Ronda and the Montes de Málaga, chosen to match your taste. Free delivery across mainland Spain.",
       keywords: [
         "Málaga wines",
         "Malaga wine",
         "wine subscription",
         "wine subscription Spain",
         "Spanish wine club",
-        "monthly wine box",
+        "wine box every two months",
         "buy Málaga wine online",
         "Moscatel wine Málaga",
         "Ronda wines",
@@ -75,9 +75,9 @@ export const en: Dictionary = {
 
   home: {
     hero: {
-      eyebrow: "Málaga wine subscription",
-      title: "Málaga in your glass, every month.",
-      body: "A box of wines from the province's best small wineries, chosen to match your taste.",
+      eyebrow: "The largest Málaga wine community",
+      title: "Málaga in your glass, every two months.",
+      body: "A community that backs Málaga wines. Get a box of wines from the province's best small wineries, chosen to match your taste.",
       cta: "Register your interest",
       plans: "See the plans",
       scroll: "Scroll to walk down to the lagar",
@@ -90,9 +90,9 @@ export const en: Dictionary = {
       body: "It starts with a two-minute taste test. After each box you tell us what you thought, and the next one gets closer.",
       steps: [
         { title: "Tell us what you like", body: "Two minutes on styles, body and budget." },
-        { title: "We choose your wines", body: "Bottles picked from the month's new releases across the province." },
+        { title: "We choose your wines", body: "Bottles picked from the new releases across the province." },
         { title: "Tell us what you thought", body: "A few words on each bottle once you've opened it." },
-        { title: "Your next box fits better", body: "We update your profile with every answer, so each month is a closer match." },
+        { title: "Your next box fits better", body: "We update your profile with every answer, so every box is a closer match." },
       ],
       cta: "Register and we'll tell you when we open",
       scene: "Inside the lagar: a 3D model of a solera cellar, with whitewashed arches, lanterns and barrels stacked three high.",
@@ -112,7 +112,7 @@ export const en: Dictionary = {
       title: "Choose your Málaga wine box.",
       body: "Free delivery across mainland Spain. Change plan or cancel whenever you like.",
       featured: "Most popular",
-      perMonth: "/ month",
+      perShipment: "/ every two months",
       choose: (plan: string) => `Choose ${plan}`,
     },
     faq: {
@@ -120,7 +120,7 @@ export const en: Dictionary = {
       questions: [
         {
           q: "What is Malaka Wine?",
-          a: "Malaka Wine is a Málaga wine subscription: every month you receive a box of two or three bottles from small wineries in the province, chosen to match your taste and sent with tasting notes.",
+          a: "Malaka Wine is a Málaga wine subscription: every two months you receive a box of two or three bottles from small wineries in the province, chosen to match your taste and sent with tasting notes.",
         },
         {
           q: "Who are the wineries?",
@@ -132,11 +132,11 @@ export const en: Dictionary = {
         },
         {
           q: "How do you choose the wines in my box?",
-          a: "Your taste profile sets the styles, body and budget. Each month we match it against our wineries' new releases, and we include tasting notes so you know what you're opening. After each box you can tell us what you thought, and we adjust your profile.",
+          a: "Your taste profile sets the styles, body and budget. Each time we match it against our wineries' new releases, and we include tasting notes so you know what you're opening. After each box you can tell us what you thought, and we adjust your profile.",
         },
         {
           q: "When does my box arrive?",
-          a: "Boxes ship in the first week of each month (or every two months, if you prefer) to any address in mainland Spain.",
+          a: "Boxes ship every two months, in the first week of the month, to any address in mainland Spain.",
         },
         {
           q: "Can I change plan or cancel?",
@@ -182,7 +182,7 @@ export const en: Dictionary = {
     steps: {
       styles: { title: "Which wines do you like?", subtitle: "From Axarquía Moscatel to the high-altitude reds of Ronda." },
       palate: { title: "Your palate", subtitle: "So we know where to start." },
-      box: { title: "Your box", subtitle: "How much, how often and anything we should know." },
+      box: { title: "Your box", subtitle: "How much and anything we should know." },
       review: { title: "Check your answers", subtitle: "Make sure everything is right before you finish." },
     },
     progress: (step: number, total: number) => `Step ${step} of ${total}`,
@@ -223,11 +223,7 @@ export const en: Dictionary = {
       decrease: "Fewer bottles per box",
       increase: "More bottles per box",
     },
-    frequency: {
-      title: "How often?",
-      label: "Delivery frequency",
-      options: { MONTHLY: "Every month", BIMONTHLY: "Every 2 months" },
-    },
+    frequency: "Every 2 months",
     budget: {
       title: "Budget per box",
       valueText: (amount: number) => `${amount} euros`,
@@ -257,7 +253,7 @@ export const en: Dictionary = {
       recommendedTitle: (plan: string) => `We recommend ${plan}.`,
       chosenBody: "We'll use your answers to choose every bottle in your box.",
       recommendedBody: "It's the plan that fits your answers best.",
-      perMonth: "/ month",
+      perShipment: "/ every two months",
       demo: "This is a demo: subscriptions will open very soon.",
       allPlans: "See all plans",
       editAnswers: "Edit my answers",
