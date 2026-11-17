@@ -4,14 +4,14 @@ export const es = {
     home: {
       title: "Vinos de Málaga a domicilio · Suscripción de vino | Malaka Wine",
       description:
-        "Suscripción de vinos de Málaga: cada mes, una caja con vinos de pequeñas bodegas de la Axarquía, Ronda y los Montes de Málaga, elegidos según tus gustos. Envío gratis a la península.",
+        "Suscripción de vinos de Málaga: cada dos meses, una caja con vinos de pequeñas bodegas de la Axarquía, Ronda y los Montes de Málaga, elegidos según tus gustos. Envío gratis a la península.",
       keywords: [
         "vinos de Málaga",
         "vino de Málaga",
         "suscripción de vino",
         "suscripción de vinos",
         "club de vinos",
-        "caja de vino mensual",
+        "caja de vino bimestral",
         "comprar vino de Málaga online",
         "vino Moscatel de Málaga",
         "vinos de Ronda",
@@ -74,9 +74,9 @@ export const es = {
 
   home: {
     hero: {
-      eyebrow: "Suscripción de vinos de Málaga",
-      title: "Málaga, cada mes en tu copa.",
-      body: "Una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
+      eyebrow: "La mayor comunidad de vinos de Málaga",
+      title: "Málaga, cada dos meses en tu copa.",
+      body: "Una comunidad que apoya los vinos de Málaga. Recibe una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
       cta: "Apúntate",
       plans: "Ver planes",
       scroll: "Baja hasta el lagar",
@@ -90,9 +90,9 @@ export const es = {
       body: "Empiezas con un test de dos minutos. Después de cada caja nos cuentas qué te ha parecido, y la siguiente se acerca más.",
       steps: [
         { title: "Cuéntanos qué te gusta", body: "Dos minutos sobre estilos, cuerpo y presupuesto." },
-        { title: "Elegimos tus vinos", body: "Botellas seleccionadas entre las novedades del mes de toda la provincia." },
+        { title: "Elegimos tus vinos", body: "Botellas seleccionadas entre las novedades de toda la provincia." },
         { title: "Cuéntanos qué te ha parecido", body: "Unas palabras sobre cada botella cuando la hayas abierto." },
-        { title: "Tu siguiente caja encaja mejor", body: "Ajustamos tu perfil con cada respuesta, así cada mes acertamos más." },
+        { title: "Tu siguiente caja encaja mejor", body: "Ajustamos tu perfil con cada respuesta, así cada vez acertamos más." },
       ],
       cta: "Apúntate y te avisamos cuando abramos",
       /** What the cellar scene behind this section shows, for screen readers. */
@@ -114,7 +114,7 @@ export const es = {
       title: "Elige tu caja de vinos de Málaga.",
       body: "Envío gratis a la península. Cambia de plan o cancela cuando quieras.",
       featured: "El más elegido",
-      perMonth: "/ mes",
+      perShipment: "/ cada dos meses",
       choose: (plan: string) => `Elegir ${plan}`,
     },
     faq: {
@@ -122,7 +122,7 @@ export const es = {
       questions: [
         {
           q: "¿Qué es Malaka Wine?",
-          a: "Malaka Wine es una suscripción de vinos de Málaga: cada mes recibes en casa una caja de dos o tres botellas de pequeñas bodegas de la provincia, elegidas según tus gustos y acompañadas de fichas de cata.",
+          a: "Malaka Wine es una suscripción de vinos de Málaga: cada dos meses recibes en casa una caja de dos o tres botellas de pequeñas bodegas de la provincia, elegidas según tus gustos y acompañadas de fichas de cata.",
         },
         {
           q: "¿Quiénes son las bodegas?",
@@ -134,11 +134,11 @@ export const es = {
         },
         {
           q: "¿Cómo elegís los vinos de mi caja?",
-          a: "Tu perfil de gustos marca los estilos, el cuerpo y el presupuesto. Cada mes lo cruzamos con las novedades de nuestras bodegas e incluimos fichas de cata para que sepas qué estás abriendo. Después de cada caja puedes contarnos qué te ha parecido, y ajustamos tu perfil.",
+          a: "Tu perfil de gustos marca los estilos, el cuerpo y el presupuesto. Cada vez lo cruzamos con las novedades de nuestras bodegas e incluimos fichas de cata para que sepas qué estás abriendo. Después de cada caja puedes contarnos qué te ha parecido, y ajustamos tu perfil.",
         },
         {
           q: "¿Cuándo llega mi caja?",
-          a: "Las cajas salen la primera semana de cada mes (o cada dos meses, si lo prefieres) a cualquier dirección de la España peninsular.",
+          a: "Las cajas salen cada dos meses, durante la primera semana del mes, a cualquier dirección de la España peninsular.",
         },
         {
           q: "¿Puedo cambiar de plan o cancelar?",
@@ -185,7 +185,7 @@ export const es = {
     steps: {
       styles: { title: "¿Qué vinos te gustan?", subtitle: "Del Moscatel de la Axarquía a los tintos de altura de Ronda." },
       palate: { title: "Tu paladar", subtitle: "Así sabremos por dónde empezar." },
-      box: { title: "Tu caja", subtitle: "Cuánto, cada cuánto y lo que debamos saber." },
+      box: { title: "Tu caja", subtitle: "Cuánto y lo que debamos saber." },
       review: { title: "Revisa tus respuestas", subtitle: "Comprueba que todo está bien antes de terminar." },
     },
     progress: (step: number, total: number) => `Paso ${step} de ${total}`,
@@ -226,11 +226,8 @@ export const es = {
       decrease: "Reducir botellas por caja",
       increase: "Aumentar botellas por caja",
     },
-    frequency: {
-      title: "¿Cada cuánto?",
-      label: "Frecuencia de envío",
-      options: { MONTHLY: "Cada mes", BIMONTHLY: "Cada 2 meses" },
-    },
+    /** Boxes always ship every two months, so this is shown in the review but never asked. */
+    frequency: "Cada 2 meses",
     budget: {
       title: "Presupuesto por caja",
       valueText: (amount: number) => `${amount} euros`,
@@ -260,7 +257,7 @@ export const es = {
       recommendedTitle: (plan: string) => `Te recomendamos ${plan}.`,
       chosenBody: "Con tus respuestas elegiremos cada botella de tu caja.",
       recommendedBody: "Es el plan que mejor encaja con tus respuestas.",
-      perMonth: "/ mes",
+      perShipment: "/ cada dos meses",
       demo: "Esto es una demo: las suscripciones abrirán muy pronto.",
       allPlans: "Ver todos los planes",
       editAnswers: "Editar mis respuestas",
