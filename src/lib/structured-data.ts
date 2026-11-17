@@ -1,5 +1,6 @@
 import { getCatalog } from "./catalog";
 import { getDictionary } from "./content";
+import { faqAnswerText, type FaqQuestion } from "./content/faq";
 import { GUIDE_UPDATED, getGuide, type Section, type Topic } from "./content/guide";
 import { SITE_NAME, SITE_URL, absoluteUrl, homeAnchor, ogImage, pagePath, topicPath, type Lang } from "./site";
 
@@ -52,7 +53,8 @@ const faqPage = (questions: { q: string; a: string }[]): Thing => ({
 });
 
 export function homeFaqJsonLd(lang: Lang) {
-  return graph(faqPage(getDictionary(lang).home.faq.questions));
+  const questions = getDictionary(lang).home.faq.questions.map(({ q, a }: FaqQuestion) => ({ q, a: faqAnswerText(a) }));
+  return graph(faqPage(questions));
 }
 
 /**
