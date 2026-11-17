@@ -6,14 +6,13 @@ export const DEFAULT_TASTE_PROFILE: TasteProfile = {
   wineSweetness: "DRY",
   adventurousness: 3,
   bottlesPerBox: 3,
-  deliveryFrequency: "MONTHLY",
-  monthlyBudgetEur: 50,
+  budgetEur: 60,
   notes: "",
 };
 
 /** The plan that best fits the answers: a bigger budget means Reserva, more bottles means Bodega. */
-export function recommendedPlan(profile: Pick<TasteProfile, "bottlesPerBox" | "monthlyBudgetEur">) {
-  if (profile.monthlyBudgetEur >= 70) return "RESERVA";
+export function recommendedPlan(profile: Pick<TasteProfile, "bottlesPerBox" | "budgetEur">) {
+  if (profile.budgetEur >= 80) return "RESERVA";
   if (profile.bottlesPerBox >= 3) return "BODEGA";
   return "VINO";
 }
