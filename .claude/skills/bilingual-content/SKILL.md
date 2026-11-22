@@ -50,7 +50,15 @@ Follow the copy that is already there:
 4. Add the page's text, its `meta` title and description included, to a file in `content/site/` in both
    languages, read it in `src/lib/content/index.ts`, and add a builder for it in
    `src/lib/metadata.ts`.
-5. Add it to `src/app/sitemap.ts` and `public/llms.txt`.
-6. Link it from the nav or footer if visitors need to reach it.
+5. Add the page's text to `public/admin/config.yml` so it can be edited at `/admin`: every key of its JSON file
+   gets a field, in the file's key order, with `i18n: true` (or `i18n: duplicate` for a value shared by both
+   languages). A key without a field can be lost when the CMS saves the file.
+6. Add its addresses to `RESERVED` in `src/lib/content/pages.ts` and to the `slug` pattern of the «Páginas»
+   collection in `config.yml`, so no page made in the editor can take them.
+7. Add it to `src/app/sitemap.ts` and `public/llms.txt`.
+8. Link it from the nav or footer if visitors need to reach it.
+
+Editors can make simple pages themselves at `/admin` («Páginas», saved in `content/pages/`). Add a coded page only
+when it needs a layout of its own.
 
 The language switch needs no work: `alternatePath` in `src/lib/site.ts` follows `PATHS`.
