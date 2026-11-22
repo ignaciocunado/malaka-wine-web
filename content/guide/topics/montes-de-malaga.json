@@ -1,0 +1,92 @@
+{
+  "es": {
+    "order": 2,
+    "name": "Montes de Málaga",
+    "summary": "Los montes que rodean la capital, cuna de los dulces de Pedro Ximénez.",
+    "title": "Vinos de los Montes de Málaga",
+    "metaTitle": "Vinos de los Montes de Málaga: dulces de Pedro Ximénez | Malaka Wine",
+    "description": "Los Montes de Málaga, la sierra que rodea la capital, fueron el corazón histórico del vino dulce de Málaga. Uvas Pedro Ximénez y Moscatel, lagares y suelos de pizarra.",
+    "intro": "Los Montes de Málaga son la sierra que rodea la ciudad por el norte. Fueron el corazón histórico del vino de Málaga hasta la filoxera, y hoy conservan un viñedo pequeño dedicado sobre todo a los dulces tradicionales.",
+    "facts": [
+      {
+        "label": "Dónde",
+        "value": "Al norte de la ciudad de Málaga"
+      },
+      {
+        "label": "Uvas",
+        "value": "Pedro Ximénez y Moscatel de Alejandría"
+      },
+      {
+        "label": "Suelos",
+        "value": "Pizarra en laderas pronunciadas"
+      },
+      {
+        "label": "Vinos",
+        "value": "Dulces tradicionales de uva asoleada"
+      },
+      {
+        "label": "Para visitar",
+        "value": "Lagar de Torrijos, ecomuseo en el Parque Natural Montes de Málaga"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "¿Qué vinos se hacen en los Montes de Málaga?",
+        "body": "Sobre todo dulces de Pedro Ximénez y Moscatel elaborados con uva asoleada. Son vinos de color ámbar a caoba, con aromas de pasa, higo seco, café y frutos secos, que ganan complejidad con la crianza en bota."
+      },
+      {
+        "heading": "¿Qué es un lagar?",
+        "body": "En Málaga se llama lagar a la casa de campo que tenía su propia prensa para hacer vino. Los Montes estaban salpicados de lagares cuando el viñedo cubría sus laderas; de ellos salía el vino que los ingleses llamaban «Mountain wine»."
+      },
+      {
+        "heading": "¿Qué pasó con el viñedo de los Montes?",
+        "body": "La filoxera, llegada en 1878, destruyó casi todas las viñas. Muchas laderas se abandonaron y, a partir de la década de 1930, se repoblaron con pinos para frenar las riadas del río Guadalmedina sobre la ciudad. Ese bosque es hoy el Parque Natural Montes de Málaga."
+      }
+    ]
+  },
+  "en": {
+    "order": 2,
+    "name": "Montes de Málaga",
+    "summary": "The hills around the city, home of sweet Pedro Ximénez.",
+    "title": "Wines of the Montes de Málaga",
+    "metaTitle": "Montes de Málaga Wines: Sweet Pedro Ximénez | Malaka Wine",
+    "description": "The Montes de Málaga, the hills around the city, were the historic heart of Málaga's sweet wine. Pedro Ximénez and Moscatel grapes, old wine-press farmhouses and slate soils.",
+    "intro": "The Montes de Málaga are the hills that ring the city to the north. They were the historic heart of Málaga wine until phylloxera arrived, and today they have a small vineyard devoted mostly to traditional sweet wines.",
+    "facts": [
+      {
+        "label": "Where",
+        "value": "North of the city of Málaga"
+      },
+      {
+        "label": "Grapes",
+        "value": "Pedro Ximénez and Moscatel de Alejandría"
+      },
+      {
+        "label": "Soils",
+        "value": "Slate, on steep hillsides"
+      },
+      {
+        "label": "Wines",
+        "value": "Traditional sweet wines from sun-dried grapes"
+      },
+      {
+        "label": "To visit",
+        "value": "Lagar de Torrijos, a museum in the Montes de Málaga Natural Park"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "What wines are made in the Montes de Málaga?",
+        "body": "Mostly sweet wines from sun-dried Pedro Ximénez and Moscatel. They range from amber to mahogany in colour, with aromas of raisin, dried fig, coffee and nuts, and they grow more complex as they age in barrel."
+      },
+      {
+        "heading": "What is a lagar?",
+        "body": "In Málaga, a lagar is a farmhouse with its own wine press. The hills were dotted with them when vineyards covered the slopes, and they produced the wine the English called “Mountain wine”."
+      },
+      {
+        "heading": "What happened to the vineyards?",
+        "body": "Phylloxera arrived in 1878 and destroyed nearly all the vines. Many slopes were abandoned, and from the 1930s they were replanted with pine trees to stop the Guadalmedina river from flooding the city. That forest is now the Montes de Málaga Natural Park."
+      }
+    ]
+  }
+}

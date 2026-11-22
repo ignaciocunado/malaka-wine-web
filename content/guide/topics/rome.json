@@ -1,0 +1,92 @@
+{
+  "es": {
+    "order": 8,
+    "name": "Romé",
+    "summary": "La uva tinta autóctona, casi desaparecida.",
+    "title": "Romé, la uva tinta autóctona de Málaga",
+    "metaTitle": "Uva Romé: la tinta autóctona de Málaga | Malaka Wine",
+    "description": "La Romé es la uva tinta autóctona de Málaga. Quedan pocas viñas, casi todas en la Axarquía, y con ella se elaboran rosados y tintos ligeros y afrutados dentro de la DO Sierras de Málaga.",
+    "intro": "La Romé es la uva tinta autóctona de Málaga. Estuvo cerca de desaparecer y hoy quedan pocas viñas, casi todas en la Axarquía. Da vinos de poco color, ligeros y afrutados.",
+    "facts": [
+      {
+        "label": "Tipo",
+        "value": "Uva tinta autóctona de poco color"
+      },
+      {
+        "label": "Zona",
+        "value": "Axarquía"
+      },
+      {
+        "label": "Aromas",
+        "value": "Fruta roja fresca, flores, hierbas de monte"
+      },
+      {
+        "label": "Vinos",
+        "value": "Rosados, tintos ligeros y algún blanco de uva tinta"
+      },
+      {
+        "label": "Denominación",
+        "value": "Autorizada en la DO Sierras de Málaga"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "¿Cómo son los vinos de Romé?",
+        "body": "Su piel tiene poco color, así que da de forma natural rosados pálidos y tintos claros, de cuerpo ligero y buena acidez. Recuerdan a fresa, granada y hierbas mediterráneas, y se beben frescos."
+      },
+      {
+        "heading": "¿Por qué es tan poco conocida?",
+        "body": "Tras la filoxera, la Axarquía se replantó sobre todo con Moscatel, más rentable para pasa y para vino dulce. La Romé sobrevivió mezclada en viñas viejas, y solo en los últimos años algunas bodegas pequeñas han empezado a vinificarla por separado."
+      },
+      {
+        "heading": "¿Con qué se toma?",
+        "body": "Con arroces, verduras a la brasa, embutidos suaves y pescado azul. Un tinto de Romé admite servirse ligeramente frío."
+      }
+    ]
+  },
+  "en": {
+    "order": 8,
+    "name": "Romé",
+    "summary": "The native red grape that almost disappeared.",
+    "title": "Romé, Málaga's native red grape",
+    "metaTitle": "Romé Grape: Málaga's Native Red Variety | Malaka Wine",
+    "description": "Romé is the native red grape of Málaga. Few vines remain, nearly all in the Axarquía, and it is made into light, fruity rosés and reds under DO Sierras de Málaga.",
+    "intro": "Romé is the native red grape of Málaga. It came close to disappearing, and few vines remain today, nearly all of them in the Axarquía. It gives pale, light and fruity wines.",
+    "facts": [
+      {
+        "label": "Type",
+        "value": "Native red grape with little colour"
+      },
+      {
+        "label": "Area",
+        "value": "Axarquía"
+      },
+      {
+        "label": "Aromas",
+        "value": "Fresh red fruit, flowers, wild herbs"
+      },
+      {
+        "label": "Wines",
+        "value": "Rosés, light reds and the occasional white made from red grapes"
+      },
+      {
+        "label": "Appellation",
+        "value": "Permitted in DO Sierras de Málaga"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "What are Romé wines like?",
+        "body": "The skins have little colour, so the grape naturally gives pale rosés and light-coloured reds with a light body and good acidity. They recall strawberry, pomegranate and Mediterranean herbs, and are best served cool."
+      },
+      {
+        "heading": "Why is it so little known?",
+        "body": "After phylloxera, the Axarquía was replanted mostly with Moscatel, which paid better for raisins and sweet wine. Romé survived mixed into old vineyards, and only in recent years have a few small wineries begun to make wine from it on its own."
+      },
+      {
+        "heading": "What do you drink it with?",
+        "body": "With rice dishes, grilled vegetables, mild cured meats and oily fish. A red Romé can be served lightly chilled."
+      }
+    ]
+  }
+}

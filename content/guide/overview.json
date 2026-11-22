@@ -1,0 +1,161 @@
+{
+  "es": {
+    "updated": "2026-11-10",
+    "metaTitle": "Vinos de Málaga: guía de zonas, uvas y estilos | Malaka Wine",
+    "description": "Guía de los vinos de Málaga: las DO Málaga y Sierras de Málaga, sus cinco zonas (Axarquía, Montes, Norte, Manilva y Serranía de Ronda), las uvas Moscatel, Pedro Ximénez y Romé, y cómo maridarlos.",
+    "keywords": [
+      "vinos de Málaga",
+      "vino de Málaga",
+      "DO Málaga",
+      "DO Sierras de Málaga",
+      "vino dulce de Málaga",
+      "Moscatel de Málaga",
+      "vinos de la Axarquía",
+      "vinos de Ronda",
+      "uva Romé",
+      "Pedro Ximénez Málaga"
+    ],
+    "eyebrow": "Guía",
+    "title": "Vinos de Málaga: zonas, uvas y estilos",
+    "intro": "Los vinos de Málaga son los que se elaboran en la provincia de Málaga, al sur de España: dulces históricos de Moscatel y Pedro Ximénez, blancos secos y aromáticos de la Axarquía y tintos de montaña de la Serranía de Ronda. Esta guía resume qué son, dónde se hacen y con qué uvas.",
+    "opening": [
+      {
+        "heading": "¿Qué son los vinos de Málaga?",
+        "body": "Son los vinos amparados por las dos denominaciones de origen de la provincia, que comparten Consejo Regulador. La DO Málaga, reconocida en 1933, protege los vinos dulces y de licor que dieron fama a la ciudad. La DO Sierras de Málaga, creada en 2001, ampara los vinos tranquilos: blancos, rosados y tintos. El mismo Consejo regula la DO Pasas de Málaga.\n\nEn Málaga se hace vino desde la Antigüedad. La ciudad la fundaron los fenicios hacia el siglo VIII a. C. con el nombre de Malaka, y de ahí viene el nuestro."
+      },
+      {
+        "heading": "¿Todos los vinos de Málaga son dulces?",
+        "body": "No. Los dulces son los más conocidos, pero hoy buena parte de las bodegas pequeñas elabora vinos secos: blancos de Moscatel de Alejandría en la Axarquía y Manilva, tintos de Syrah, Tempranillo o Petit Verdot en la Serranía de Ronda, y rosados y tintos ligeros de Romé."
+      }
+    ],
+    "zones": {
+      "heading": "¿Cuáles son las zonas del vino de Málaga?",
+      "body": "La zona de producción se reparte en cinco áreas con suelos y climas muy distintos: la Axarquía al este, los Montes de Málaga alrededor de la capital, el Norte en la comarca de Antequera, Manilva en la costa occidental y la Serranía de Ronda en el interior oeste."
+    },
+    "grapes": {
+      "heading": "¿Qué uvas se cultivan en Málaga?",
+      "body": "Las dos variedades principales de la DO Málaga son blancas: Pedro Ximénez y Moscatel de Alejandría. También están autorizadas la Moscatel Morisco (de grano menudo), la Doradilla y la Lairén. Entre las tintas destaca la Romé, autóctona de la provincia. La DO Sierras de Málaga admite además variedades como Chardonnay, Sauvignon Blanc, Syrah, Tempranillo, Cabernet Sauvignon, Merlot o Petit Verdot."
+    },
+    "closing": [
+      {
+        "heading": "¿Cómo se elaboran los vinos dulces de Málaga?",
+        "body": "Hay dos grandes familias. Los vinos de licor se encabezan: se les añade alcohol de vino para detener la fermentación y conservar el azúcar de la uva. Los vinos naturalmente dulces no llevan alcohol añadido; su dulzor procede solo de uvas muy maduras o asoleadas, es decir, secadas al sol sobre esteras o en paseros hasta que casi son pasas.\n\nAlgunos estilos tradicionales incorporan arrope, mosto cocido y concentrado que da el color oscuro y las notas de caramelo. Según el tiempo de crianza en madera, la etiqueta puede decir Málaga (de 6 a 24 meses), Málaga Noble (de 2 a 3 años), Málaga Añejo (de 3 a 5 años) o Málaga Trasañejo (más de 5 años)."
+      },
+      {
+        "heading": "¿Cuál es la historia del vino de Málaga?",
+        "body": "Los vinos dulces de Málaga se exportaron durante siglos por el puerto de la ciudad. En la Inglaterra de los siglos XVII y XVIII se conocían como «Mountain wine», el vino de los montes.\n\nEn 1878 se detectó la filoxera en un lagar de Moclinejo, en la Axarquía: fue el primer foco de la plaga en España y arrasó el viñedo de la provincia. La recuperación ha sido lenta, y en las últimas décadas la han impulsado sobre todo bodegas pequeñas y familiares."
+      },
+      {
+        "heading": "¿Con qué se maridan los vinos de Málaga?",
+        "body": "El Moscatel seco, fresco y aromático, va bien con pescaíto frito, espetos de sardinas, mariscos y ensaladas. Los dulces de Moscatel acompañan frutas, repostería y foie. Los dulces oscuros de Pedro Ximénez piden quesos azules, frutos secos, chocolate o helado de vainilla. Los tintos de la Serranía de Ronda acompañan carnes a la brasa, guisos e ibéricos."
+      },
+      {
+        "heading": "¿Dónde comprar vinos de Málaga?",
+        "body": "Muchas bodegas pequeñas venden casi toda su producción en su propio pueblo, así que fuera de la provincia cuesta encontrarlas. Malaka Wine las reúne en una suscripción: cada cuatro meses, una caja con vinos de distintas zonas, elegidos según tus gustos y enviados a cualquier dirección de la España peninsular."
+      }
+    ],
+    "cta": {
+      "title": "Prueba los vinos de Málaga en casa.",
+      "body": "Abrimos muy pronto. Déjanos tu email y te avisaremos.",
+      "button": "Apúntate"
+    },
+    "labels": {
+      "breadcrumbHome": "Inicio",
+      "kind": {
+        "zone": "Zona",
+        "grape": "Uva"
+      },
+      "facts": "En resumen",
+      "related": "Sigue leyendo",
+      "backToGuide": "Guía de vinos de Málaga",
+      "updated": "Actualizado el",
+      "table": {
+        "alt": "Maqueta en relieve de la provincia de Málaga, hecha con datos reales de altitud, con una aguja luminosa en cada zona del vino",
+        "hint": "Elige una zona y la maqueta gira hasta ella. Arrastra para girarla tú.",
+        "whole": "Toda la provincia",
+        "city": "Málaga",
+        "credit": "Relieve real de la provincia, con la altura exagerada."
+      }
+    }
+  },
+  "en": {
+    "updated": "2026-11-10",
+    "metaTitle": "Málaga Wines: A Guide to Regions, Grapes and Styles | Malaka Wine",
+    "description": "A guide to the wines of Málaga, Spain: the DO Málaga and DO Sierras de Málaga appellations, the five wine areas (Axarquía, Montes, Norte, Manilva and Serranía de Ronda), the Moscatel, Pedro Ximénez and Romé grapes, and food pairings.",
+    "keywords": [
+      "Málaga wines",
+      "Malaga wine",
+      "wines of Málaga",
+      "DO Málaga",
+      "DO Sierras de Málaga",
+      "Málaga sweet wine",
+      "Málaga Moscatel",
+      "Axarquía wine",
+      "Ronda wine",
+      "Romé grape",
+      "Pedro Ximénez Málaga"
+    ],
+    "eyebrow": "Guide",
+    "title": "Málaga wines: regions, grapes and styles",
+    "intro": "Málaga wines are the wines made in the province of Málaga, in southern Spain: historic sweet wines from Moscatel and Pedro Ximénez, dry aromatic whites from the Axarquía and mountain reds from the Serranía de Ronda. This guide explains what they are, where they are made and which grapes go into them.",
+    "opening": [
+      {
+        "heading": "What are Málaga wines?",
+        "body": "They are the wines covered by the province's two appellations (denominaciones de origen, or DOs), which share one regulatory council. DO Málaga, recognised in 1933, protects the sweet and fortified wines that made the city famous. DO Sierras de Málaga, created in 2001, covers still wines: whites, rosés and reds. The same council also regulates DO Pasas de Málaga, for raisins.\n\nWine has been made in Málaga since antiquity. The Phoenicians founded the city around the 8th century BC and called it Malaka, which is where our name comes from."
+      },
+      {
+        "heading": "Are all Málaga wines sweet?",
+        "body": "No. The sweet wines are the best known, but many small wineries now make dry wines: Moscatel de Alejandría whites in the Axarquía and Manilva, reds from Syrah, Tempranillo or Petit Verdot in the Serranía de Ronda, and rosés and light reds from Romé."
+      }
+    ],
+    "zones": {
+      "heading": "What are the wine areas of Málaga?",
+      "body": "The production zone is split into five areas with very different soils and climates: the Axarquía in the east, the Montes de Málaga around the city, the Norte zone around Antequera, Manilva on the western coast and the Serranía de Ronda in the inland west."
+    },
+    "grapes": {
+      "heading": "Which grapes are grown in Málaga?",
+      "body": "The two main grapes of DO Málaga are white: Pedro Ximénez and Moscatel de Alejandría (Muscat of Alexandria). Moscatel Morisco (small-berried Muscat), Doradilla and Lairén are also permitted. The best-known red is Romé, which is native to the province. DO Sierras de Málaga also allows grapes such as Chardonnay, Sauvignon Blanc, Syrah, Tempranillo, Cabernet Sauvignon, Merlot and Petit Verdot."
+    },
+    "closing": [
+      {
+        "heading": "How are Málaga's sweet wines made?",
+        "body": "There are two broad families. Fortified wines (vinos de licor) have grape spirit added to stop fermentation and keep the grapes' sugar. Naturally sweet wines have no added alcohol: their sweetness comes only from very ripe or sun-dried grapes, laid out on mats or drying beds until they are almost raisins.\n\nSome traditional styles include arrope, grape must boiled down to a syrup, which gives a dark colour and caramel notes. Depending on how long the wine ages in wood, the label may say Málaga (6 to 24 months), Málaga Noble (2 to 3 years), Málaga Añejo (3 to 5 years) or Málaga Trasañejo (more than 5 years)."
+      },
+      {
+        "heading": "What is the history of Málaga wine?",
+        "body": "Málaga's sweet wines were shipped from the city's port for centuries. In 17th- and 18th-century England they were known as “Mountain wine”.\n\nIn 1878 phylloxera was found at a farm in Moclinejo, in the Axarquía. It was the first outbreak of the pest in Spain, and it devastated the province's vineyards. Recovery has been slow, and in recent decades it has been led mostly by small family wineries."
+      },
+      {
+        "heading": "What food goes with Málaga wines?",
+        "body": "Dry Moscatel, fresh and aromatic, suits fried fish, grilled sardines, shellfish and salads. Sweet Moscatel goes with fruit, pastries and foie gras. Dark, sweet Pedro Ximénez calls for blue cheese, nuts, chocolate or vanilla ice cream. Reds from the Serranía de Ronda go with grilled meat, stews and Ibérico ham."
+      },
+      {
+        "heading": "Where can you buy Málaga wines?",
+        "body": "Many small wineries sell almost everything they make in their own village, so their wines are hard to find outside the province. Malaka Wine brings them together in a subscription: every four months, a box of wines from different areas, chosen to match your taste and delivered to any address in mainland Spain."
+      }
+    ],
+    "cta": {
+      "title": "Taste Málaga wines at home.",
+      "body": "We open very soon. Leave your email and we'll let you know.",
+      "button": "Register your interest"
+    },
+    "labels": {
+      "breadcrumbHome": "Home",
+      "kind": {
+        "zone": "Wine area",
+        "grape": "Grape"
+      },
+      "facts": "At a glance",
+      "related": "Keep reading",
+      "backToGuide": "Guide to Málaga wines",
+      "updated": "Updated",
+      "table": {
+        "alt": "A relief model of the province of Málaga, built from real elevation data, with a glowing needle on each wine area",
+        "hint": "Pick an area and the table turns to it. Drag to turn it yourself.",
+        "whole": "The whole province",
+        "city": "Málaga",
+        "credit": "The province's real relief, with the heights exaggerated."
+      }
+    }
+  }
+}

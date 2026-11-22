@@ -1,0 +1,92 @@
+{
+  "es": {
+    "order": 7,
+    "name": "Pedro Ximénez",
+    "summary": "La uva de los dulces oscuros tradicionales.",
+    "title": "Pedro Ximénez en Málaga",
+    "metaTitle": "Pedro Ximénez de Málaga: la uva del vino dulce | Malaka Wine",
+    "description": "La Pedro Ximénez, llamada Pero Ximén en Málaga, es la uva de los dulces tradicionales de la DO Málaga. Se cultiva en el Norte y los Montes y se asolea para concentrar su azúcar.",
+    "intro": "La Pedro Ximénez es una uva blanca de piel fina y mucho azúcar, y la variedad histórica de los vinos dulces de Málaga, donde también se la llama Pero Ximén. Se cultiva sobre todo en la zona Norte y en los Montes de Málaga.",
+    "facts": [
+      {
+        "label": "Tipo",
+        "value": "Uva blanca de piel fina y alto contenido en azúcar"
+      },
+      {
+        "label": "Nombre local",
+        "value": "Pero Ximén"
+      },
+      {
+        "label": "Zonas",
+        "value": "Norte de Málaga y Montes de Málaga"
+      },
+      {
+        "label": "Aromas (en dulce)",
+        "value": "Pasa, higo seco, dátil, café, caramelo"
+      },
+      {
+        "label": "Vinos",
+        "value": "Dulces y de licor, con o sin crianza; también blancos secos"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "¿Cómo se hace un dulce de Pedro Ximénez?",
+        "body": "Tras la vendimia, los racimos se extienden al sol durante varios días. La uva pierde agua y concentra azúcar hasta casi convertirse en pasa. De su prensado sale un mosto muy denso que apenas fermenta. Después el vino puede criarse años en botas de roble, donde se oscurece y gana complejidad."
+      },
+      {
+        "heading": "¿En qué se diferencia del Pedro Ximénez de otras zonas?",
+        "body": "La misma uva se cultiva en Montilla-Moriles, en Córdoba, y se usa en los vinos de Jerez. En Málaga se etiqueta dentro de la DO Málaga con sus propias menciones de crianza: Noble, Añejo y Trasañejo."
+      },
+      {
+        "heading": "¿Con qué se toma?",
+        "body": "Con queso azul, frutos secos, chocolate negro o sobre helado de vainilla. Se sirve fresco, no helado, en copa pequeña."
+      }
+    ]
+  },
+  "en": {
+    "order": 7,
+    "name": "Pedro Ximénez",
+    "summary": "The grape of the traditional dark sweet wines.",
+    "title": "Pedro Ximénez in Málaga",
+    "metaTitle": "Pedro Ximénez from Málaga: The Sweet Wine Grape | Malaka Wine",
+    "description": "Pedro Ximénez, called Pero Ximén in Málaga, is the grape of DO Málaga's traditional sweet wines. It grows in the Norte zone and the Montes and is dried in the sun to concentrate its sugar.",
+    "intro": "Pedro Ximénez is a thin-skinned white grape that is high in sugar, and the historic variety of Málaga's sweet wines. Locally it is also called Pero Ximén. It is grown mostly in the Norte zone and the Montes de Málaga.",
+    "facts": [
+      {
+        "label": "Type",
+        "value": "Thin-skinned white grape, high in sugar"
+      },
+      {
+        "label": "Local name",
+        "value": "Pero Ximén"
+      },
+      {
+        "label": "Areas",
+        "value": "Norte de Málaga and Montes de Málaga"
+      },
+      {
+        "label": "Aromas (sweet)",
+        "value": "Raisin, dried fig, date, coffee, caramel"
+      },
+      {
+        "label": "Wines",
+        "value": "Sweet and fortified wines, aged or unaged; also dry whites"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "How is sweet Pedro Ximénez made?",
+        "body": "After the harvest, the bunches are spread out in the sun for several days. The grapes lose water and concentrate their sugar until they are almost raisins. Pressing them gives a very dense must that barely ferments. The wine may then age for years in oak casks, where it darkens and gains complexity."
+      },
+      {
+        "heading": "How does it differ from Pedro Ximénez from elsewhere?",
+        "body": "The same grape is grown in Montilla-Moriles, in the province of Córdoba, and is used in Sherry. In Málaga it is labelled under DO Málaga with the appellation's own ageing terms: Noble, Añejo and Trasañejo."
+      },
+      {
+        "heading": "What do you drink it with?",
+        "body": "With blue cheese, nuts, dark chocolate, or poured over vanilla ice cream. Serve it cool, not ice-cold, in a small glass."
+      }
+    ]
+  }
+}

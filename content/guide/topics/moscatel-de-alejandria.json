@@ -1,0 +1,92 @@
+{
+  "es": {
+    "order": 6,
+    "name": "Moscatel de Alejandría",
+    "summary": "La uva blanca aromática de la Axarquía y Manilva.",
+    "title": "Moscatel de Alejandría, la uva aromática de Málaga",
+    "metaTitle": "Moscatel de Alejandría: la uva del Moscatel de Málaga | Malaka Wine",
+    "description": "La Moscatel de Alejandría es la uva blanca aromática de los vinos Moscatel de Málaga. Se cultiva en la Axarquía y Manilva y da blancos secos, dulces de uva asoleada y pasas.",
+    "intro": "La Moscatel de Alejandría es una uva blanca muy antigua y muy aromática, y una de las dos variedades principales de la DO Málaga. En la provincia se cultiva sobre todo en la Axarquía y en Manilva.",
+    "facts": [
+      {
+        "label": "Tipo",
+        "value": "Uva blanca aromática, de grano grueso"
+      },
+      {
+        "label": "Zonas",
+        "value": "Axarquía y Manilva"
+      },
+      {
+        "label": "Aromas",
+        "value": "Azahar, jazmín, cítricos, uva fresca"
+      },
+      {
+        "label": "Vinos",
+        "value": "Blancos secos, naturalmente dulces y de licor"
+      },
+      {
+        "label": "Otros usos",
+        "value": "Uva de mesa y pasas de Málaga"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "¿A qué sabe un vino de Moscatel de Alejandría?",
+        "body": "En seco es un blanco ligero y muy perfumado: azahar, jazmín, piel de limón y la propia uva. En dulce, con la uva asoleada, aparecen la pasa, la miel, el albaricoque seco y la naranja confitada."
+      },
+      {
+        "heading": "¿Moscatel es siempre un vino dulce?",
+        "body": "No. La Moscatel es una uva, no un estilo. Tradicionalmente se usaba para dulces, pero las bodegas malagueñas llevan años elaborando Moscatel seco, que se ha convertido en uno de los blancos más reconocibles de la provincia."
+      },
+      {
+        "heading": "¿Con qué se toma?",
+        "body": "El seco, muy frío, con pescado frito, mariscos, ensaladas y cocina asiática. El dulce, con fruta, repostería, foie o quesos cremosos."
+      }
+    ]
+  },
+  "en": {
+    "order": 6,
+    "name": "Moscatel de Alejandría",
+    "summary": "The aromatic white grape of the Axarquía and Manilva.",
+    "title": "Moscatel de Alejandría, Málaga's aromatic grape",
+    "metaTitle": "Moscatel de Alejandría: The Grape Behind Málaga Moscatel | Malaka Wine",
+    "description": "Moscatel de Alejandría (Muscat of Alexandria) is the aromatic white grape behind Málaga's Moscatel wines. It grows in the Axarquía and Manilva and gives dry whites, sweet wines and raisins.",
+    "intro": "Moscatel de Alejandría, known in English as Muscat of Alexandria, is a very old and very aromatic white grape, and one of the two main varieties of DO Málaga. In the province it is grown mostly in the Axarquía and Manilva.",
+    "facts": [
+      {
+        "label": "Type",
+        "value": "Aromatic white grape with large berries"
+      },
+      {
+        "label": "Areas",
+        "value": "Axarquía and Manilva"
+      },
+      {
+        "label": "Aromas",
+        "value": "Orange blossom, jasmine, citrus, fresh grape"
+      },
+      {
+        "label": "Wines",
+        "value": "Dry whites, naturally sweet wines and fortified wines"
+      },
+      {
+        "label": "Other uses",
+        "value": "Table grapes and Málaga raisins"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "What does Moscatel de Alejandría taste like?",
+        "body": "Dry, it is a light and very perfumed white: orange blossom, jasmine, lemon peel and the grape itself. Sweet, made from sun-dried grapes, it shows raisin, honey, dried apricot and candied orange."
+      },
+      {
+        "heading": "Is Moscatel always a sweet wine?",
+        "body": "No. Moscatel is a grape, not a style. It was traditionally used for sweet wines, but Málaga wineries have been making dry Moscatel for years, and it has become one of the province's most recognisable whites."
+      },
+      {
+        "heading": "What do you drink it with?",
+        "body": "Dry and well chilled, with fried fish, shellfish, salads and Asian food. Sweet, with fruit, pastries, foie gras or creamy cheeses."
+      }
+    ]
+  }
+}

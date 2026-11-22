@@ -1,0 +1,92 @@
+{
+  "es": {
+    "order": 4,
+    "name": "Norte de Málaga",
+    "summary": "Las llanuras de Antequera y Mollina, tierra de Pedro Ximénez.",
+    "title": "Vinos del Norte de Málaga",
+    "metaTitle": "Vinos del Norte de Málaga: Mollina y Antequera | Malaka Wine",
+    "description": "La zona Norte de Málaga, en la comarca de Antequera: llanuras a unos 500 metros, clima continental y uvas Pedro Ximénez y Doradilla en pueblos como Mollina, Humilladero y Fuente de Piedra.",
+    "intro": "La zona Norte ocupa las llanuras de la comarca de Antequera, en el límite con Córdoba y Sevilla. Reúne una de las mayores superficies de viñedo de la provincia y es la tierra de la Pedro Ximénez malagueña.",
+    "facts": [
+      {
+        "label": "Dónde",
+        "value": "Comarca de Antequera, al norte de la provincia"
+      },
+      {
+        "label": "Pueblos del vino",
+        "value": "Mollina, Humilladero, Fuente de Piedra, Antequera"
+      },
+      {
+        "label": "Altitud",
+        "value": "En torno a 500 metros"
+      },
+      {
+        "label": "Uvas",
+        "value": "Pedro Ximénez, Doradilla y Lairén"
+      },
+      {
+        "label": "Vinos",
+        "value": "Dulces y de licor, blancos, rosados y tintos jóvenes"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "¿Cómo son los vinos del Norte de Málaga?",
+        "body": "Aquí nacen muchos de los vinos dulces y de licor de Pedro Ximénez de la DO Málaga, además de blancos secos y, cada vez más, rosados y tintos jóvenes dentro de la DO Sierras de Málaga."
+      },
+      {
+        "heading": "¿En qué se diferencia del resto de la provincia?",
+        "body": "El paisaje es una meseta suave, no una ladera. El clima es continental, con inviernos fríos y veranos muy calurosos y secos, y los suelos son calizos. Las viñas se pueden trabajar con maquinaria, algo imposible en la Axarquía."
+      },
+      {
+        "heading": "¿Qué fiestas del vino hay?",
+        "body": "Mollina celebra su Feria de la Vendimia cada mes de septiembre."
+      }
+    ]
+  },
+  "en": {
+    "order": 4,
+    "name": "Norte de Málaga",
+    "summary": "The plains of Antequera and Mollina, Pedro Ximénez country.",
+    "title": "Wines of the Norte de Málaga",
+    "metaTitle": "Norte de Málaga Wines: Mollina and Antequera | Malaka Wine",
+    "description": "The Norte wine zone of Málaga, around Antequera: plains at about 500 metres, a continental climate, and Pedro Ximénez and Doradilla grapes in villages such as Mollina, Humilladero and Fuente de Piedra.",
+    "intro": "The Norte (northern) zone covers the plains around Antequera, on the border with the provinces of Córdoba and Seville. It has one of the largest vineyard areas in the province and is the home of Málaga's Pedro Ximénez.",
+    "facts": [
+      {
+        "label": "Where",
+        "value": "The Antequera district, in the north of the province"
+      },
+      {
+        "label": "Wine villages",
+        "value": "Mollina, Humilladero, Fuente de Piedra, Antequera"
+      },
+      {
+        "label": "Altitude",
+        "value": "About 500 metres"
+      },
+      {
+        "label": "Grapes",
+        "value": "Pedro Ximénez, Doradilla and Lairén"
+      },
+      {
+        "label": "Wines",
+        "value": "Sweet and fortified wines, whites, rosés and young reds"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "What are the wines of the Norte zone like?",
+        "body": "Many of DO Málaga's sweet and fortified Pedro Ximénez wines come from here, along with dry whites and a growing number of rosés and young reds under DO Sierras de Málaga."
+      },
+      {
+        "heading": "How is it different from the rest of the province?",
+        "body": "The landscape is a gentle plateau, not a hillside. The climate is continental, with cold winters and very hot, dry summers, and the soils are limestone. The vineyards can be worked by machine, which is impossible in the Axarquía."
+      },
+      {
+        "heading": "Are there any wine festivals?",
+        "body": "Mollina holds its Feria de la Vendimia (harvest fair) every September."
+      }
+    ]
+  }
+}

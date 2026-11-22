@@ -1,0 +1,92 @@
+{
+  "es": {
+    "order": 3,
+    "name": "Serranía de Ronda",
+    "summary": "Viñedos de montaña y tintos frescos y con estructura.",
+    "title": "Vinos de la Serranía de Ronda",
+    "metaTitle": "Vinos de Ronda: tintos de altura de la Serranía | Malaka Wine",
+    "description": "Los vinos de la Serranía de Ronda: viñedos de montaña entre unos 600 y 1000 metros, noches frescas y tintos de Syrah, Tempranillo, Cabernet Sauvignon y Petit Verdot de bodegas pequeñas.",
+    "intro": "La Serranía de Ronda, en el interior occidental de la provincia, es la zona de los tintos de Málaga. Sus viñedos de montaña, entre unos 600 y 1000 metros de altitud, dan vinos frescos y con estructura que se etiquetan dentro de la DO Sierras de Málaga.",
+    "facts": [
+      {
+        "label": "Dónde",
+        "value": "Oeste de la provincia, en torno a Ronda y Arriate"
+      },
+      {
+        "label": "Altitud",
+        "value": "Entre unos 600 y 1000 metros"
+      },
+      {
+        "label": "Uvas",
+        "value": "Syrah, Tempranillo, Cabernet Sauvignon, Merlot, Petit Verdot, Pinot Noir"
+      },
+      {
+        "label": "Clima",
+        "value": "De montaña, con gran diferencia de temperatura entre el día y la noche"
+      },
+      {
+        "label": "Vinos",
+        "value": "Tintos sobre todo; también blancos y rosados"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "¿Cómo son los vinos de Ronda?",
+        "body": "Son tintos de color intenso, con fruta madura y buena acidez. La altitud alarga la maduración: los días son cálidos y las noches frescas, y la uva conserva frescura a pesar de la latitud. Muchos se crían en barrica."
+      },
+      {
+        "heading": "¿Desde cuándo se hace vino en Ronda?",
+        "body": "Desde época romana. La ciudad de Acinipo, cuyas ruinas están a unos veinte kilómetros de Ronda, acuñó monedas con racimos de uva. La filoxera acabó con el viñedo a finales del siglo XIX, y la recuperación empezó en las últimas décadas del siglo XX con bodegas nuevas, casi todas pequeñas."
+      },
+      {
+        "heading": "¿Qué bodegas hay en la Serranía de Ronda?",
+        "body": "Hoy trabajan en la zona más de una veintena de bodegas, la mayoría familiares y de producción limitada. Muchas cultivan sus propias viñas y venden buena parte del vino en la propia bodega."
+      }
+    ]
+  },
+  "en": {
+    "order": 3,
+    "name": "Serranía de Ronda",
+    "summary": "Mountain vineyards and fresh, structured reds.",
+    "title": "Wines of the Serranía de Ronda",
+    "metaTitle": "Ronda Wines: High-Altitude Reds from Málaga | Malaka Wine",
+    "description": "The wines of the Serranía de Ronda: mountain vineyards at roughly 600 to 1,000 metres, cool nights, and reds from Syrah, Tempranillo, Cabernet Sauvignon and Petit Verdot made by small wineries.",
+    "intro": "The Serranía de Ronda, in the inland west of the province, is Málaga's red wine country. Its mountain vineyards, at roughly 600 to 1,000 metres above sea level, give fresh, structured wines that are labelled under DO Sierras de Málaga.",
+    "facts": [
+      {
+        "label": "Where",
+        "value": "West of the province, around Ronda and Arriate"
+      },
+      {
+        "label": "Altitude",
+        "value": "Roughly 600 to 1,000 metres"
+      },
+      {
+        "label": "Grapes",
+        "value": "Syrah, Tempranillo, Cabernet Sauvignon, Merlot, Petit Verdot, Pinot Noir"
+      },
+      {
+        "label": "Climate",
+        "value": "Mountain, with a wide gap between day and night temperatures"
+      },
+      {
+        "label": "Wines",
+        "value": "Mostly reds; also whites and rosés"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "What are Ronda wines like?",
+        "body": "They are deeply coloured reds with ripe fruit and good acidity. Altitude stretches out the ripening season: days are warm and nights are cool, so the grapes stay fresh despite the southern latitude. Many of the wines are aged in oak."
+      },
+      {
+        "heading": "How long has wine been made in Ronda?",
+        "body": "Since Roman times. The city of Acinipo, whose ruins lie about twenty kilometres from Ronda, minted coins showing bunches of grapes. Phylloxera ended winegrowing here at the end of the 19th century, and the revival began in the last decades of the 20th with new wineries, almost all of them small."
+      },
+      {
+        "heading": "Which wineries are in the Serranía de Ronda?",
+        "body": "More than twenty wineries now work in the area, most of them family-run with limited production. Many grow their own grapes and sell much of their wine at the cellar door."
+      }
+    ]
+  }
+}

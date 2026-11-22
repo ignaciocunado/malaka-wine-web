@@ -14,7 +14,7 @@ Every change a visitor can see is made in Spanish and English in the same change
 | --- | --- | --- |
 | `content/site/*.json` | All site text outside the guide, the plans and the privacy policy (including page `meta`, the FAQ, the About page and the 404 page). Each file holds `{ "es": …, "en": … }`; `getDictionary` in `src/lib/content/index.ts` reads them | A field missing from `en`. Not a Spanish value that changed while the English one went stale (the Stop hook flags a file where only one language changed) |
 | `src/lib/content/taste.ts` | The parked taste quiz's text, kept in code because some of it is functions | A key missing from `en` |
-| `src/lib/content/guide.ts` | The wine guide: an `es` and an `en` `Guide`, with the same topic slugs in both | Missing fields. Not a different number or order of sections, facts or list items: keep those in step by hand |
+| `content/guide/` | The wine guide: `overview.json` for the overview page and its date, and one file per area or grape in `topics/`, named after its slug, each with `es` and `en`; `getGuide` in `src/lib/content/guide.ts` reads them | Missing fields in the overview. Topic files are read at build time, so nothing checks them: keep the two languages' sections, facts and list items in step by hand |
 | `src/lib/content/privacy.ts` | Both privacy policies | Missing fields. When the policy changes, also update `PRIVACY_UPDATED` in `src/lib/site.ts` |
 | `content/plans.json` | The plans, prices in whole euros, and the `sample` switch; `src/lib/catalog.ts` reads it | A field missing from `en` |
 | `src/lib/site.ts` | `PATHS` and `ANCHORS`: each language has its own slugs | A page missing from one language |

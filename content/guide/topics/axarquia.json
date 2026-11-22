@@ -1,0 +1,92 @@
+{
+  "es": {
+    "order": 1,
+    "name": "Axarquía",
+    "summary": "Laderas de pizarra sobre el mar, Moscatel de Alejandría y Romé.",
+    "title": "Vinos de la Axarquía",
+    "metaTitle": "Vinos de la Axarquía: Moscatel y Romé en Málaga | Malaka Wine",
+    "description": "Los vinos de la Axarquía, la comarca oriental de Málaga: Moscatel de Alejandría seco y dulce, la uva tinta Romé, laderas de pizarra y vendimia a mano en pueblos como Cómpeta y Moclinejo.",
+    "intro": "La Axarquía es la comarca oriental de la provincia de Málaga y la zona más conocida de sus vinos de Moscatel. Sus viñas crecen en laderas de pizarra muy inclinadas que miran al Mediterráneo, y se vendimian a mano.",
+    "facts": [
+      {
+        "label": "Dónde",
+        "value": "Este de la provincia de Málaga; capital comarcal, Vélez-Málaga"
+      },
+      {
+        "label": "Pueblos del vino",
+        "value": "Cómpeta, Sayalonga, Moclinejo, Almáchar, El Borge"
+      },
+      {
+        "label": "Uvas",
+        "value": "Moscatel de Alejandría y Romé"
+      },
+      {
+        "label": "Suelos",
+        "value": "Pizarra en pendientes que a menudo superan el 30 %"
+      },
+      {
+        "label": "Vinos",
+        "value": "Blancos secos, dulces de uva asoleada, rosados y tintos ligeros"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "¿Cómo son los vinos de la Axarquía?",
+        "body": "Los blancos secos de Moscatel de Alejandría son muy aromáticos, con recuerdos de azahar, cítricos y uva fresca, y un punto salino. Los dulces se elaboran con uva asoleada y saben a pasa, miel y fruta escarchada. Con la Romé, la tinta autóctona, se hacen rosados y tintos ligeros."
+      },
+      {
+        "heading": "¿Por qué se vendimia a mano?",
+        "body": "Las pendientes impiden mecanizar el trabajo. Las cajas de uva se sacan de la viña a hombros o con mulos, como se ha hecho siempre. Parte de la cosecha se tiende al sol en los paseros, unas eras inclinadas donde la uva se convierte en pasa. Este sistema de cultivo de la uva pasa está reconocido por la FAO como Sistema Importante del Patrimonio Agrícola Mundial."
+      },
+      {
+        "heading": "¿Qué tradiciones del vino tiene la Axarquía?",
+        "body": "Cómpeta celebra cada 15 de agosto la Noche del Vino, una de las fiestas del vino más conocidas de la provincia. En Moclinejo se detectó en 1878 el primer foco de filoxera de España, que acabó con buena parte del viñedo histórico de la comarca."
+      }
+    ]
+  },
+  "en": {
+    "order": 1,
+    "name": "Axarquía",
+    "summary": "Slate slopes above the sea, Moscatel de Alejandría and Romé.",
+    "title": "Wines of the Axarquía",
+    "metaTitle": "Axarquía Wines: Moscatel and Romé from Málaga | Malaka Wine",
+    "description": "The wines of the Axarquía, the eastern district of Málaga: dry and sweet Moscatel de Alejandría, the red Romé grape, slate slopes and hand harvests in villages such as Cómpeta and Moclinejo.",
+    "intro": "The Axarquía is the eastern district of the province of Málaga and the best-known source of its Moscatel wines. The vines grow on very steep slate slopes facing the Mediterranean and are harvested by hand.",
+    "facts": [
+      {
+        "label": "Where",
+        "value": "East of the province of Málaga; the main town is Vélez-Málaga"
+      },
+      {
+        "label": "Wine villages",
+        "value": "Cómpeta, Sayalonga, Moclinejo, Almáchar, El Borge"
+      },
+      {
+        "label": "Grapes",
+        "value": "Moscatel de Alejandría and Romé"
+      },
+      {
+        "label": "Soils",
+        "value": "Slate, on slopes that often exceed a 30% gradient"
+      },
+      {
+        "label": "Wines",
+        "value": "Dry whites, sweet wines from sun-dried grapes, rosés and light reds"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "What are Axarquía wines like?",
+        "body": "The dry whites from Moscatel de Alejandría are very aromatic, with orange blossom, citrus and fresh grape, and a saline edge. The sweet wines are made from sun-dried grapes and taste of raisins, honey and candied fruit. Romé, the native red grape, is made into rosés and light reds."
+      },
+      {
+        "heading": "Why are the grapes picked by hand?",
+        "body": "The slopes are too steep for machines. Crates of grapes are carried out of the vineyard on people's shoulders or by mule, as they always have been. Part of the crop is laid in the sun on paseros, sloping drying beds where the grapes turn into raisins. The FAO recognises this raisin-growing system as a Globally Important Agricultural Heritage System."
+      },
+      {
+        "heading": "What wine traditions does the Axarquía have?",
+        "body": "Every 15 August the village of Cómpeta holds the Noche del Vino (Night of Wine), one of the best-known wine festivals in the province. Moclinejo is where Spain's first phylloxera outbreak was found in 1878; it wiped out much of the district's historic vineyard."
+      }
+    ]
+  }
+}

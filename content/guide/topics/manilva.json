@@ -1,0 +1,84 @@
+{
+  "es": {
+    "order": 5,
+    "name": "Manilva",
+    "summary": "Moscatel sobre tierras blancas frente al Estrecho.",
+    "title": "Vinos de Manilva",
+    "metaTitle": "Vinos de Manilva: Moscatel de la Costa del Sol | Malaka Wine",
+    "description": "Manilva, en la costa occidental de Málaga, cultiva Moscatel de Alejandría sobre tierras blancas calizas a la vista del mar. Blancos secos y dulces con carácter marino.",
+    "intro": "Manilva es la zona vinícola más occidental de Málaga, en el extremo de la Costa del Sol y junto a la provincia de Cádiz. Sus viñas de Moscatel de Alejandría crecen sobre tierras blancas calizas a la vista del mar.",
+    "facts": [
+      {
+        "label": "Dónde",
+        "value": "Costa occidental de Málaga, junto a Cádiz"
+      },
+      {
+        "label": "Uva",
+        "value": "Moscatel de Alejandría"
+      },
+      {
+        "label": "Suelos",
+        "value": "Albarizas: tierras blancas, calizas, que retienen la humedad"
+      },
+      {
+        "label": "Clima",
+        "value": "Marítimo, con vientos de levante y poniente"
+      },
+      {
+        "label": "Vinos",
+        "value": "Blancos secos y dulces de Moscatel"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "¿Cómo son los vinos de Manilva?",
+        "body": "Moscateles secos, florales y salinos, y dulces de uva asoleada. La cercanía del mar y las tierras albarizas, parecidas a las del vecino Marco de Jerez, les dan frescura."
+      },
+      {
+        "heading": "¿Qué tradición tiene la uva en Manilva?",
+        "body": "La Moscatel de Manilva se ha cultivado tradicionalmente como uva de mesa y para pasa, además de para vino. El pueblo celebra la Fiesta de la Vendimia el primer fin de semana de septiembre."
+      }
+    ]
+  },
+  "en": {
+    "order": 5,
+    "name": "Manilva",
+    "summary": "Moscatel on white soils facing the Strait of Gibraltar.",
+    "title": "Wines of Manilva",
+    "metaTitle": "Manilva Wines: Moscatel from the Costa del Sol | Malaka Wine",
+    "description": "Manilva, on Málaga's western coast, grows Moscatel de Alejandría on white limestone soils within sight of the sea. Dry and sweet whites with a maritime character.",
+    "intro": "Manilva is Málaga's westernmost wine area, at the far end of the Costa del Sol and next to the province of Cádiz. Its Moscatel de Alejandría vines grow on white limestone soils within sight of the sea.",
+    "facts": [
+      {
+        "label": "Where",
+        "value": "Western coast of Málaga, next to Cádiz"
+      },
+      {
+        "label": "Grape",
+        "value": "Moscatel de Alejandría"
+      },
+      {
+        "label": "Soils",
+        "value": "Albariza: white, chalky soils that hold moisture"
+      },
+      {
+        "label": "Climate",
+        "value": "Maritime, with easterly and westerly winds"
+      },
+      {
+        "label": "Wines",
+        "value": "Dry and sweet Moscatel whites"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "What are Manilva wines like?",
+        "body": "Dry, floral, saline Moscatel, and sweet wines from sun-dried grapes. The nearby sea and the albariza soils, similar to those of the neighbouring Sherry region, keep them fresh."
+      },
+      {
+        "heading": "What is Manilva's grape-growing tradition?",
+        "body": "Manilva's Moscatel has traditionally been grown as a table grape and for raisins as well as for wine. The town holds its Fiesta de la Vendimia (harvest festival) on the first weekend of September."
+      }
+    ]
+  }
+}
