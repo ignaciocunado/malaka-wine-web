@@ -76,7 +76,7 @@ export const en: Dictionary = {
   home: {
     hero: {
       eyebrow: "Málaga wine subscription",
-      title: "Málaga in your glass, every four months.",
+      title: "Málaga wines, your way.",
       body: "The largest Málaga wine community. A box of wines from the province's best small wineries, chosen to match your taste.",
       cta: "Register your interest",
       plans: "See the plans",

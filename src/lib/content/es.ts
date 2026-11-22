@@ -77,7 +77,7 @@ export const es = {
   home: {
     hero: {
       eyebrow: "Suscripción de vinos de Málaga",
-      title: "Málaga, cada cuatro meses en tu copa.",
+      title: "Los vinos de Málaga, a tu gusto.",
       body: "La mayor comunidad de vinos de Málaga. Una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
       cta: "Apúntate",
       plans: "Ver planes",
