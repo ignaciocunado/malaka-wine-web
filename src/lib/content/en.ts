@@ -6,7 +6,7 @@ export const en: Dictionary = {
     home: {
       title: "Málaga Wine Subscription · Spanish Wine Club | Malaka Wine",
       description:
-        "A Málaga wine subscription: every four months, a box of wines from small family wineries in the Axarquía, Ronda and the Montes de Málaga, chosen to match your taste.",
+        "The largest Málaga wine community: every four months, a box of wines from small family wineries in the Axarquía, Ronda and the Montes de Málaga, chosen to match your taste.",
       keywords: [
         "Málaga wines",
         "Malaga wine",
@@ -77,7 +77,7 @@ export const en: Dictionary = {
     hero: {
       eyebrow: "Málaga wine subscription",
       title: "Málaga in your glass, every four months.",
-      body: "A box of wines from the province's best small wineries, chosen to match your taste.",
+      body: "The largest Málaga wine community. A box of wines from the province's best small wineries, chosen to match your taste.",
       cta: "Register your interest",
       plans: "See the plans",
       scroll: "Scroll to walk down to the lagar",

@@ -6,7 +6,7 @@ export const es = {
     home: {
       title: "Vinos de Málaga a domicilio · Suscripción de vino | Malaka Wine",
       description:
-        "Suscripción de vinos de Málaga: cada cuatro meses, una caja con vinos de pequeñas bodegas de la Axarquía, Ronda y los Montes de Málaga, elegidos según tus gustos.",
+        "La mayor comunidad de vinos de Málaga: cada cuatro meses, una caja con vinos de pequeñas bodegas de la Axarquía, Ronda y los Montes de Málaga, elegidos según tus gustos.",
       keywords: [
         "vinos de Málaga",
         "vino de Málaga",
@@ -78,7 +78,7 @@ export const es = {
     hero: {
       eyebrow: "Suscripción de vinos de Málaga",
       title: "Málaga, cada cuatro meses en tu copa.",
-      body: "Una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
+      body: "La mayor comunidad de vinos de Málaga. Una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
       cta: "Apúntate",
       plans: "Ver planes",
       scroll: "Baja hasta el lagar",

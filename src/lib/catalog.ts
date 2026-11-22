@@ -43,12 +43,12 @@ const PLANS: Localized<Plan, "tagline" | "contents">[] = [
     code: "RESERVA",
     name: "Reserva",
     tagline: {
-      es: "Vinos de producción muy limitada, crianzas y dulces de añada.",
-      en: "Very limited releases, oak-aged wines and vintage sweet wines.",
+      es: "Crianzas y dulces de añada.",
+      en: "Oak-aged wines and vintage sweet wines.",
     },
     contents: {
-      es: "3 botellas de edición limitada · fichas de cata",
-      en: "3 limited-edition bottles · tasting notes",
+      es: "3 botellas · fichas de cata",
+      en: "3 bottles · tasting notes",
     },
     priceCents: 8000,
     featured: false,
