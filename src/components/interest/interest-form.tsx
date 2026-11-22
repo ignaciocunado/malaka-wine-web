@@ -121,7 +121,8 @@ export function InterestForm({ lang }: { lang: Lang }) {
           className="mt-0.5 size-5 shrink-0 accent-tint"
         />
         <span>
-          {text.consent}
+          {/* The CMS trims the text it saves, so the space before the link is added here. */}
+          {`${text.consent} `}
           <Link href={pagePath(lang, "privacy")} className="text-accent underline underline-offset-2">
             {text.consentLink}
           </Link>

@@ -1,0 +1,519 @@
+# Sveltia CMS settings for the editor at /admin (see "Editing content" in the README).
+#
+# Every field has an `i18n` option: `true` for text written in each language, `duplicate` for values that are the
+# same in both (prices, codes, dates), which are edited in Spanish and copied to English. A field without it would
+# only be saved in Spanish, and the English site would lose it. Fields are listed in the same order as the keys in
+# the JSON files, because the CMS writes them in this order.
+
+backend:
+  name: github
+  repo: ignaciocunado/malaka-wine-web
+  # The branch the editor saves to. Changes reach the live site when this branch is merged into main.
+  branch: feat/cms
+  # TODO: the URL of the sveltia-cms-auth Worker that handles "Sign in with GitHub" (see the README).
+  # base_url: https://<worker>.workers.dev
+  commit_messages:
+    create: "Crear {{collection}} «{{slug}}» desde el editor"
+    update: "Editar {{collection}} «{{slug}}» desde el editor"
+    delete: "Borrar {{collection}} «{{slug}}» desde el editor"
+    uploadMedia: "Subir «{{path}}» desde el editor"
+    deleteMedia: "Borrar «{{path}}» desde el editor"
+
+site_url: https://malakawine.com
+
+# Uploaded photos are committed to public/uploads and served at /uploads. They're converted to WebP and scaled
+# down to at most 2400 px on upload, so a photo straight from a phone doesn't weigh down the page.
+media_folder: public/uploads
+public_folder: /uploads
+media_libraries:
+  default:
+    config:
+      transformations:
+        raster_image: { format: webp, quality: 82, width: 2400, height: 2400 }
+
+i18n:
+  structure: single_file
+  locales: [es, en]
+  default_locale: es
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: textos
+    label: Textos de la web
+    i18n: true
+    editor: { preview: false }
+    files:
+      - name: home
+        label: Página de inicio
+        file: content/site/home.json
+        i18n: true
+        fields:
+          - name: meta
+            label: SEO (título y descripción para Google)
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - { name: title, label: Título de la pestaña y de Google, widget: string, i18n: true }
+              - { name: description, label: Descripción para Google, widget: text, i18n: true }
+              - { name: keywords, label: Palabras clave, widget: list, i18n: true }
+          - name: hero
+            label: Portada
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: title, label: Titular, widget: string, i18n: true }
+              - { name: body, label: Texto, widget: text, i18n: true }
+              - { name: cta, label: Botón principal, widget: string, i18n: true }
+              - { name: plans, label: Enlace a los planes, widget: string, i18n: true }
+              - { name: scroll, label: Enlace para bajar, widget: string, i18n: true }
+              - name: scene
+                label: Descripción de la imagen 3D
+                widget: text
+                i18n: true
+                hint: La leen los lectores de pantalla de las personas ciegas; no se ve en la web.
+          - name: how
+            label: Cómo funciona
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: body, label: Texto, widget: text, i18n: true }
+              - name: steps
+                label: Pasos
+                label_singular: Paso
+                widget: list
+                i18n: true
+                fields:
+                  - { name: title, label: Título, widget: string, i18n: true }
+                  - { name: body, label: Texto, widget: text, i18n: true }
+              - { name: cta, label: Enlace al final, widget: string, i18n: true }
+              - name: scene
+                label: Descripción de la imagen 3D
+                widget: text
+                i18n: true
+                hint: La leen los lectores de pantalla de las personas ciegas; no se ve en la web.
+          - name: profile
+            label: Perfil de gusto
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: body, label: Texto, widget: text, i18n: true }
+              - name: stages
+                label: Etapas (siempre tres, una por dibujo)
+                label_singular: Etapa
+                widget: list
+                i18n: true
+                min: 3
+                max: 3
+                fields:
+                  - { name: title, label: Título, widget: string, i18n: true }
+                  - { name: body, label: Texto, widget: text, i18n: true }
+              - { name: note, label: Nota al pie, widget: string, i18n: true }
+          - name: plans
+            label: Sección de planes
+            widget: object
+            i18n: true
+            hint: Los planes en sí (nombres y precios) están en «Planes y precios».
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: body, label: Texto, widget: text, i18n: true }
+              - { name: featured, label: Etiqueta del plan destacado, widget: string, i18n: true }
+              - { name: period, label: Texto junto al precio, widget: string, i18n: true }
+              - name: choose
+                label: Texto del botón
+                widget: string
+                i18n: true
+                hint: Escribe {plan} donde va el nombre del plan.
+                pattern: ['\{plan\}', 'Tiene que incluir {plan}.']
+
+      - name: faq
+        label: Preguntas frecuentes
+        file: content/site/faq.json
+        i18n: true
+        fields:
+          - { name: title, label: Título de la sección, widget: string, i18n: true }
+          - name: questions
+            label: Preguntas
+            label_singular: Pregunta
+            widget: list
+            i18n: true
+            summary: "{{fields.q}}"
+            fields:
+              - { name: q, label: Pregunta, widget: string, i18n: true }
+              - name: a
+                label: Respuesta
+                widget: markdown
+                i18n: true
+                buttons: [bold, bulleted-list]
+                editor_components: []
+
+      - name: plans
+        label: Planes y precios
+        file: content/plans.json
+        i18n: true
+        fields:
+          - name: sample
+            label: Contenido de ejemplo
+            widget: boolean
+            i18n: duplicate
+            hint: >-
+              Mientras esté activado, los planes y precios se tratan como de ejemplo y no se publican para Google.
+              Desactívalo cuando sean los de verdad.
+          - name: plans
+            label: Planes
+            label_singular: Plan
+            widget: list
+            i18n: true
+            summary: "{{fields.name}} · {{fields.price}} €"
+            fields:
+              - name: code
+                label: Código
+                widget: string
+                i18n: duplicate
+                hint: En mayúsculas y sin espacios, p. ej. BODEGA. Se guarda con cada persona que se apunta a este plan.
+                pattern: ['^[A-Z_]{1,30}$', 'Solo mayúsculas y guiones bajos, hasta 30.']
+              - { name: name, label: Nombre, widget: string, i18n: duplicate }
+              - { name: price, label: Precio (€), widget: number, value_type: int, min: 1, i18n: duplicate }
+              - { name: featured, label: Plan destacado, widget: boolean, i18n: duplicate }
+              - { name: tagline, label: Descripción, widget: text, i18n: true }
+              - { name: contents, label: Qué incluye, widget: string, i18n: true }
+
+      - name: interest
+        label: Página «Apúntate»
+        file: content/site/interest.json
+        i18n: true
+        fields:
+          - name: meta
+            label: SEO (título y descripción para Google)
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - { name: title, label: Título de la pestaña y de Google, widget: string, i18n: true }
+              - { name: description, label: Descripción para Google, widget: text, i18n: true }
+          - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+          - { name: title, label: Título, widget: string, i18n: true }
+          - { name: body, label: Texto, widget: text, i18n: true }
+          - { name: emailLabel, label: Etiqueta del email, widget: string, i18n: true }
+          - { name: emailPlaceholder, label: Ejemplo dentro de la casilla del email, widget: string, i18n: true }
+          - name: consent
+            label: "Consentimiento: antes del enlace"
+            widget: text
+            i18n: true
+            hint: La frase es este texto, el enlace a la política de privacidad y el final.
+          - { name: consentLink, label: "Consentimiento: texto del enlace", widget: string, i18n: true }
+          - { name: consentEnd, label: "Consentimiento: final", widget: string, i18n: true }
+          - { name: submit, label: Botón, widget: string, i18n: true }
+          - { name: sending, label: Botón mientras envía, widget: string, i18n: true }
+          - { name: note, label: Nota bajo el botón, widget: string, i18n: true }
+          - name: errors
+            label: Mensajes de error
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - { name: email, label: Email no válido, widget: string, i18n: true }
+              - { name: consent, label: Falta el consentimiento, widget: string, i18n: true }
+              - { name: send, label: No se ha podido enviar, widget: string, i18n: true }
+          - name: success
+            label: Después de apuntarse
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: body, label: Texto, widget: text, i18n: true }
+              - { name: guide, label: Enlace a la guía, widget: string, i18n: true }
+              - { name: home, label: Enlace al inicio, widget: string, i18n: true }
+
+      - name: about
+        label: Página «Quiénes somos»
+        file: content/site/about.json
+        i18n: true
+        fields:
+          - name: meta
+            label: SEO (título y descripción para Google)
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - { name: title, label: Título de la pestaña y de Google, widget: string, i18n: true }
+              - { name: description, label: Descripción para Google, widget: text, i18n: true }
+          - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+          - { name: title, label: Titular, widget: string, i18n: true }
+          - { name: intro, label: Entradilla, widget: text, i18n: true }
+          - name: founder
+            label: El fundador
+            widget: object
+            i18n: true
+            hint: Su nombre y su enlace de LinkedIn no se cambian aquí.
+            fields:
+              - { name: role, label: Cargo, widget: string, i18n: true }
+              - name: body
+                label: Texto
+                widget: text
+                i18n: true
+                hint: Separa los párrafos con una línea en blanco.
+              - { name: linkedIn, label: Texto del enlace a LinkedIn, widget: string, i18n: true }
+          - name: projects
+            label: Proyectos
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - name: items
+                label: Lista de proyectos
+                label_singular: Proyecto
+                widget: list
+                i18n: true
+                summary: "{{fields.name}}"
+                fields:
+                  - name: name
+                    label: Nombre
+                    widget: string
+                    # Shared by both languages, which also keeps the lists in the same order.
+                    i18n: duplicate
+                    hint: Se escribe igual en los dos idiomas.
+                  - { name: description, label: Qué es, widget: string, i18n: true }
+          - name: why
+            label: Por qué Malaka Wine
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - name: body
+                label: Texto
+                widget: text
+                i18n: true
+                hint: Separa los párrafos con una línea en blanco.
+          - name: cta
+            label: Recuadro final
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: body, label: Texto, widget: text, i18n: true }
+              - { name: button, label: Botón, widget: string, i18n: true }
+
+      - name: general
+        label: Menú, pie y avisos
+        file: content/site/general.json
+        i18n: true
+        fields:
+          - name: meta
+            label: SEO de otras páginas
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - name: privacy
+                label: Política de privacidad
+                widget: object
+                i18n: true
+                fields:
+                  - { name: title, label: Título de la pestaña y de Google, widget: string, i18n: true }
+                  - { name: description, label: Descripción para Google, widget: text, i18n: true }
+              - name: notFound
+                label: Página no encontrada
+                widget: object
+                i18n: true
+                fields:
+                  - { name: title, label: Título de la pestaña, widget: string, i18n: true }
+          - name: nav
+            label: Menú superior
+            widget: object
+            i18n: true
+            fields:
+              - { name: home, label: Logo (para lectores de pantalla), widget: string, i18n: true }
+              - { name: howItWorks, label: Cómo funciona, widget: string, i18n: true }
+              - { name: plans, label: Planes, widget: string, i18n: true }
+              - { name: guide, label: Guía, widget: string, i18n: true }
+              - { name: about, label: Quiénes somos, widget: string, i18n: true }
+              - { name: register, label: Botón Apúntate, widget: string, i18n: true }
+              - { name: switchLabel, label: Cambio de idioma, widget: string, i18n: true }
+              - { name: switchTitle, label: Cambio de idioma (descripción), widget: string, i18n: true }
+          - name: footer
+            label: Pie de página
+            widget: object
+            i18n: true
+            fields:
+              - { name: legal, label: Aviso legal, widget: text, i18n: true }
+              - { name: made, label: Hecho en, widget: string, i18n: true }
+              - { name: credit, label: Créditos, widget: string, i18n: true }
+              - { name: plans, label: Enlace a planes, widget: string, i18n: true }
+              - { name: register, label: Enlace Apúntate, widget: string, i18n: true }
+              - { name: about, label: Enlace a «Quiénes somos», widget: string, i18n: true }
+              - { name: privacy, label: Enlace a privacidad, widget: string, i18n: true }
+              - { name: linkedin, label: Enlace a LinkedIn, widget: string, i18n: true }
+              - name: email
+                label: Icono del email (para lectores de pantalla)
+                widget: string
+                i18n: true
+                hint: Escribe {address} donde va la dirección de email.
+                pattern: ['\{address\}', 'Tiene que incluir {address}.']
+              - { name: otherLanguage, label: Enlace al otro idioma, widget: string, i18n: true }
+          - name: ageGate
+            label: Aviso de mayoría de edad
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Pregunta, widget: string, i18n: true }
+              - { name: body, label: Texto, widget: text, i18n: true }
+              - { name: "yes", label: Botón «sí», widget: string, i18n: true }
+              - { name: "no", label: Botón «no», widget: string, i18n: true }
+              - { name: deniedTitle, label: Título si es menor, widget: string, i18n: true }
+              - { name: deniedBody, label: Texto si es menor, widget: text, i18n: true }
+              - { name: back, label: Botón para volver, widget: string, i18n: true }
+          - name: notFound
+            label: Página no encontrada (error 404)
+            widget: object
+            i18n: true
+            fields:
+              - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: body, label: Texto, widget: text, i18n: true }
+              - { name: cta, label: Botón, widget: string, i18n: true }
+
+  - name: guia
+    label: Guía de vinos
+    i18n: true
+    editor: { preview: false }
+    files:
+      - name: overview
+        label: Página principal de la guía
+        file: content/guide/overview.json
+        i18n: true
+        fields:
+          - name: updated
+            label: Fecha de actualización
+            widget: datetime
+            type: date
+            format: YYYY-MM-DD
+            i18n: duplicate
+            hint: Se muestra en todas las páginas de la guía. Cámbiala cuando actualices la guía.
+          - { name: metaTitle, label: Título de la pestaña y de Google, widget: string, i18n: true }
+          - { name: description, label: Descripción para Google, widget: text, i18n: true }
+          - { name: keywords, label: Palabras clave, widget: list, i18n: true }
+          - { name: eyebrow, label: Antetítulo, widget: string, i18n: true }
+          - { name: title, label: Título, widget: string, i18n: true }
+          - { name: intro, label: Entradilla, widget: text, i18n: true }
+          - name: opening
+            label: Secciones del principio
+            label_singular: Sección
+            widget: list
+            i18n: true
+            summary: "{{fields.heading}}"
+            # Shared with the other sections of the guide below.
+            fields: &section_fields
+              - { name: heading, label: Título (una pregunta), widget: string, i18n: true }
+              - name: body
+                label: Texto
+                widget: text
+                i18n: true
+                hint: Separa los párrafos con una línea en blanco.
+          - name: zones
+            label: Sección de las zonas (junto a la maqueta)
+            widget: object
+            i18n: true
+            fields: *section_fields
+          - name: grapes
+            label: Sección de las uvas
+            widget: object
+            i18n: true
+            fields: *section_fields
+          - name: closing
+            label: Secciones del final
+            label_singular: Sección
+            widget: list
+            i18n: true
+            summary: "{{fields.heading}}"
+            fields: *section_fields
+          - name: cta
+            label: Recuadro final
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Título, widget: string, i18n: true }
+              - { name: body, label: Texto, widget: text, i18n: true }
+              - { name: button, label: Botón, widget: string, i18n: true }
+          - name: labels
+            label: Rótulos
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - { name: breadcrumbHome, label: "Migas de pan: inicio", widget: string, i18n: true }
+              - name: kind
+                label: Tipo de artículo
+                widget: object
+                i18n: true
+                fields:
+                  - { name: zone, label: Zona, widget: string, i18n: true }
+                  - { name: grape, label: Uva, widget: string, i18n: true }
+              - { name: facts, label: Título del resumen, widget: string, i18n: true }
+              - { name: related, label: Título de «sigue leyendo», widget: string, i18n: true }
+              - { name: backToGuide, label: Enlace a la guía, widget: string, i18n: true }
+              - { name: updated, label: Texto antes de la fecha, widget: string, i18n: true }
+              - name: table
+                label: Maqueta de la provincia
+                widget: object
+                i18n: true
+                fields:
+                  - { name: alt, label: Descripción para lectores de pantalla, widget: text, i18n: true }
+                  - { name: hint, label: Instrucciones, widget: string, i18n: true }
+                  - { name: whole, label: Botón «toda la provincia», widget: string, i18n: true }
+                  - { name: city, label: Nombre de la ciudad, widget: string, i18n: true }
+                  - { name: credit, label: Créditos, widget: string, i18n: true }
+
+  - name: articulos
+    label: Artículos de la guía
+    label_singular: Artículo
+    description: >-
+      Una página por zona y por uva. Los artículos nuevos se publican como páginas de uva; para añadir una zona del
+      vino a la maqueta 3D hace falta un desarrollador.
+    folder: content/guide/topics
+    format: json
+    create: true
+    i18n: true
+    identifier_field: name
+    sortable_fields:
+      - { field: order, default_sort: asc }
+      - name
+    editor: { preview: false }
+    fields:
+      - name: order
+        label: Orden
+        widget: number
+        value_type: int
+        min: 1
+        i18n: duplicate
+        hint: Posición en las listas de la guía y del pie de página.
+      - { name: name, label: Nombre corto, widget: string, i18n: true, hint: Se usa en enlaces y en las migas de pan. }
+      - { name: summary, label: Resumen de una línea, widget: string, i18n: true }
+      - { name: title, label: Título, widget: string, i18n: true }
+      - { name: metaTitle, label: Título de la pestaña y de Google, widget: string, i18n: true }
+      - { name: description, label: Descripción para Google, widget: text, i18n: true }
+      - { name: intro, label: Entradilla, widget: text, i18n: true }
+      - name: facts
+        label: En resumen (tabla)
+        label_singular: Dato
+        widget: list
+        i18n: true
+        summary: "{{fields.label}}: {{fields.value}}"
+        fields:
+          - { name: label, label: Dato, widget: string, i18n: true }
+          - { name: value, label: Valor, widget: string, i18n: true }
+      - name: sections
+        label: Secciones
+        label_singular: Sección
+        widget: list
+        i18n: true
+        summary: "{{fields.heading}}"
+        fields: *section_fields
