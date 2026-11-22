@@ -4,6 +4,8 @@ on:
   push:
     branches: [main, develop]
   pull_request:
+  # Started by the Combine PRs workflow on its combined branch (see combine-prs.yml).
+  workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.ref }}

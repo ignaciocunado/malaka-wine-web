@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 import { glowTexture, halo, instances, lerp, matte, rng, smoothstep, type Instance, type Tier } from "./kit";
+import { buildWineBox } from "./wine-box";
 
 /**
  * Inside the lagar: a traditional Málaga solera cellar, the scene behind "how it works" on the homepage.
@@ -382,6 +383,20 @@ export function buildCellar(tier: Tier): Cellar {
     mesh.castShadow = mesh.receiveShadow = true;
     scene.add(mesh);
   }
+
+  // Where the walk ends: a subscriber's box, opened, on another upended cask, in a pool of lamplight of its own.
+  const boxX = 0.78, boxZ = -19;
+  const stand = new THREE.Mesh(botaGeometry(16).rotateZ(Math.PI / 2).scale(0.62, 0.56, 0.62), staves);
+  stand.position.set(boxX, 0.476, boxZ);
+  const standLid = new THREE.Mesh(new THREE.CylinderGeometry(0.25, 0.25, 0.02, 16), matte("#8a6444"));
+  standLid.position.set(boxX, 0.94, boxZ);
+  for (const mesh of [stand, standLid]) mesh.castShadow = mesh.receiveShadow = true;
+  const wineBox = buildWineBox();
+  wineBox.position.set(boxX, 0.95, boxZ);
+  wineBox.rotation.y = -0.18;
+  const boxLight = new THREE.PointLight("#ffb068", 4.5, 0, 2);
+  boxLight.position.set(boxX - 0.2, 2.4, boxZ + 0.9);
+  scene.add(stand, standLid, wineBox, boxLight);
 
   // Fill: indigo from above, plum from the floor, so the shadows stay colored rather than black.
   scene.add(new THREE.HemisphereLight("#5557b4", "#34203a", 0.75));
