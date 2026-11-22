@@ -10,6 +10,7 @@ permissions:
   contents: write
   pull-requests: write
   checks: read
+  actions: write # to start CI on the combined branch
 
 jobs:
   combine-prs:
@@ -21,3 +22,12 @@ jobs:
         uses: github/combine-prs@v5.2.0
         with:
           labels: combined-pr # Optional: add a label to the combined PR
+
+      # A pull request opened with the workflow's own token doesn't start other workflows, so CI never ran on the
+      # combined PR. workflow_dispatch is the exception to that rule: starting CI this way puts its checks on the
+      # combined branch's head commit, which is where the PR shows them.
+      - name: Run CI on the combined branch
+        if: steps.combine-prs.outputs.pr_number != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run ci.yml --repo "$GITHUB_REPOSITORY" --ref combined-prs-branch
