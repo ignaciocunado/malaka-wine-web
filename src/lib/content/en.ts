@@ -6,14 +6,14 @@ export const en: Dictionary = {
     home: {
       title: "Málaga Wine Subscription · Spanish Wine Club | Malaka Wine",
       description:
-        "A monthly Málaga wine subscription: a box of wines from small family wineries in the Axarquía, Ronda and the Montes de Málaga, chosen to match your taste. Free delivery across mainland Spain.",
+        "A Málaga wine subscription: every four months, a box of wines from small family wineries in the Axarquía, Ronda and the Montes de Málaga, chosen to match your taste.",
       keywords: [
         "Málaga wines",
         "Malaga wine",
         "wine subscription",
         "wine subscription Spain",
         "Spanish wine club",
-        "monthly wine box",
+        "wine box subscription",
         "buy Málaga wine online",
         "Moscatel wine Málaga",
         "Ronda wines",
@@ -76,7 +76,7 @@ export const en: Dictionary = {
   home: {
     hero: {
       eyebrow: "Málaga wine subscription",
-      title: "Málaga in your glass, every month.",
+      title: "Málaga in your glass, every four months.",
       body: "A box of wines from the province's best small wineries, chosen to match your taste.",
       cta: "Register your interest",
       plans: "See the plans",
@@ -90,9 +90,9 @@ export const en: Dictionary = {
       body: "It starts with a two-minute taste test. After each box you tell us what you thought, and the next one gets closer.",
       steps: [
         { title: "Tell us what you like", body: "Two minutes on styles, body and budget." },
-        { title: "We choose your wines", body: "Bottles picked from the month's new releases across the province." },
+        { title: "We choose your wines", body: "Bottles picked from the latest releases across the province." },
         { title: "Tell us what you thought", body: "A few words on each bottle once you've opened it." },
-        { title: "Your next box fits better", body: "We update your profile with every answer, so each month is a closer match." },
+        { title: "Your next box fits better", body: "We update your profile with every answer, so each box is a closer match." },
       ],
       cta: "Register and we'll tell you when we open",
       scene: "Inside the lagar: a 3D model of a solera cellar, with whitewashed arches, lanterns and barrels stacked three high.",
@@ -110,9 +110,9 @@ export const en: Dictionary = {
     plans: {
       eyebrow: "Plans",
       title: "Choose your Málaga wine box.",
-      body: "Free delivery across mainland Spain. Change plan or cancel whenever you like.",
+      body: "Change plan or cancel whenever you like.",
       featured: "Most popular",
-      perMonth: "/ month",
+      period: "/ every 4 months",
       choose: (plan: string) => `Choose ${plan}`,
     },
     faq: {
@@ -124,7 +124,7 @@ export const en: Dictionary = {
             "Malaka Wine sets out to transform the way people discover and enjoy Málaga wine, turning exclusive products from small producers into personalised experiences. The goal is to create an \"intelligent\" gourmet club: a way of combining tradition with new artificial intelligence technology, so that every customer receives only the wines they like.",
             "With it we want to build the largest community of Málaga wine lovers and help Málaga's producers make a living from their passion without having to leave their land. In this way we help keep people in the countryside, fight climate change, and make our province a more sustainable place.",
             "The project combines gastronomy, technology, exclusivity and territory in a subscription model designed to start with a small, controlled validation in Málaga.",
-            "Every two months the subscriber receives at home a box of two or three bottles from wineries in the province, the vast majority of them small businesses, chosen to match your taste and sent with tasting notes.",
+            "Every four months the subscriber receives at home a box of two or three bottles from wineries in the province, the vast majority of them small businesses, chosen to match your taste and sent with tasting notes.",
           ],
         },
         {
@@ -152,13 +152,13 @@ export const en: Dictionary = {
         {
           q: "How are the wines in my box chosen?",
           a: [
-            "Your taste profile sets the styles, body and budget. Each month we match it against our wineries' new releases and include tasting notes so you know what you're opening. After each box you can tell us what you thought, and we adjust your profile.",
+            "Your taste profile sets the styles, body and budget. For each box we match it against our wineries' new releases and include tasting notes so you know what you're opening. After each box you can tell us what you thought, and we adjust your profile.",
           ],
         },
         {
           q: "When does my box arrive?",
           a: [
-            "Boxes ship in the first week, every two months, to any address in mainland Spain.",
+            "Boxes ship in the first week, every four months, to any address in mainland Spain.",
           ],
         },
         {
@@ -257,9 +257,7 @@ export const en: Dictionary = {
       increase: "More bottles per box",
     },
     frequency: {
-      title: "How often?",
-      label: "Delivery frequency",
-      options: { MONTHLY: "Every month", BIMONTHLY: "Every 2 months" },
+      value: "Every 4 months",
     },
     budget: {
       title: "Budget per box",
@@ -290,7 +288,7 @@ export const en: Dictionary = {
       recommendedTitle: (plan: string) => `We recommend ${plan}.`,
       chosenBody: "We'll use your answers to choose every bottle in your box.",
       recommendedBody: "It's the plan that fits your answers best.",
-      perMonth: "/ month",
+      period: "/ every 4 months",
       demo: "This is a demo: subscriptions will open very soon.",
       allPlans: "See all plans",
       editAnswers: "Edit my answers",
