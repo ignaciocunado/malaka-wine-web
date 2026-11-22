@@ -57,6 +57,14 @@ export async function createHomeScene(canvas: HTMLCanvasElement, { tier, signal,
   // passage ends, and a metre is a metre in both.
   const place = new THREE.Vector3(), turn = new THREE.Quaternion(), upright = new THREE.Quaternion();
   const ENTRY_END = PORTAL_AT - CELLAR_DOOR + CELLAR_START.z; // the lagar-frame z at which the walk ends in the first bay
+  /**
+   * How far short of the passage's inner mouth (metres) the cellar takes over the whole frame. Closer than the
+   * vineyard camera's near plane (0.2 units, which is 0.32 m) the mouth's stencil quad and the stand-in glow behind
+   * it are clipped away, and for a few frames the screen showed the glow, then the back wall of the house. By then
+   * the mouth fills the view anyway (the passage is two metres wide, and half a metre from it the lens takes in
+   * well under one), so drawing the cellar alone is the same picture, without the quad to lose.
+   */
+  const HANDOVER = 0.5;
 
   /** Clears, then draws the cellar alone: the camera is past the door, or has come to the nave. */
   const drawCellar = (scene: Cellar) => {
@@ -86,7 +94,7 @@ export async function createHomeScene(canvas: HTMLCanvasElement, { tier, signal,
     // The lagar's frame to the cellar's: one more metre into the passage is one more metre into the nave.
     place.set(view.position.x, view.position.y, view.position.z - PORTAL_AT + CELLAR_DOOR);
 
-    if (view.position.z < PORTAL_AT) {
+    if (view.position.z < PORTAL_AT + HANDOVER) {
       // Through the door. The camera settles to the nave's lens and its place in the first bay as it goes.
       const blend = smoothstep(0, 1, (PORTAL_AT - view.position.z) / (PORTAL_AT - ENTRY_END));
       place.x = THREE.MathUtils.lerp(view.position.x, CELLAR_START.x, blend);

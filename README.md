@@ -1,6 +1,6 @@
 # Malaka · Málaga
 
-Demo landing site for **Malaka Wine**, a monthly subscription box of wine from small producers in Málaga.
+Demo landing site for **Malaka Wine**, a subscription box of wine delivered every four months, from small producers in Málaga.
 The site is in Spanish (the default, at `/`) and English (under `/en`). It is dark, styled after Apple's Human
 Interface Guidelines, and built round live 3D scenes of Málaga (see [3D scenes](#3d-scenes)).
 
