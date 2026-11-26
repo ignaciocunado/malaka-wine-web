@@ -238,6 +238,17 @@ export const en: Dictionary = {
         ["Málaga No Caduca", "The province's initiative against food waste."],
       ],
     },
+    name: {
+      title: "Where the name comes from",
+      inscription: "Malaka, written in the Phoenician alphabet",
+      caption: "It reads from right to left: mem, lamedh, kaph and aleph.",
+      body: [
+        "Phoenicians from Tyre founded the city around the 8th century BC and named it Malaka. To the Romans it was Malaca and in Arabic Mālaqa, which gave us Málaga. We took the oldest.",
+        // m‑l‑k is written with non-breaking hyphens (U+2011) so the root never splits across lines.
+        "Phoenician wrote only the consonants, so Malaka takes just four letters. Nobody knows for certain what it meant; the most widely accepted explanation links it to the Semitic root m‑l‑k, “to reign”.",
+        "Centuries later the city minted coins with the same name in Neo-Punic letters, a later form of the same alphabet.",
+      ],
+    },
     why: {
       title: "Why Malaka Wine",
       body: [

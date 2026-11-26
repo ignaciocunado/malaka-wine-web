@@ -1,3 +1,4 @@
+import { Inscription } from "@/components/about/inscription";
 import { ScenePoster } from "@/components/scene/poster";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ButtonLink, buttonClasses } from "@/components/ui/button";
@@ -6,7 +7,7 @@ import { getDictionary } from "@/lib/content";
 import { FOUNDER, pagePath, type Lang } from "@/lib/site";
 import { aboutJsonLd } from "@/lib/structured-data";
 
-/** Who is behind Malaka Wine: the founder, the projects that built the contacts with producers, and why. */
+/** Who is behind Malaka Wine: the founder, the projects that built the contacts with producers, the name, and why. */
 export function AboutPage({ lang }: { lang: Lang }) {
   const { about } = getDictionary(lang);
   return (
@@ -49,6 +50,19 @@ export function AboutPage({ lang }: { lang: Lang }) {
               </div>
             ))}
           </dl>
+        </section>
+        <section className="mt-16">
+          <h2 className="text-title2">{about.name.title}</h2>
+          {/* The inscription is the word itself, so it takes the text colour rather than the background device's wine. */}
+          <figure className="mt-6 rounded-md bg-elevated p-6 ring-1 ring-separator/60">
+            <Inscription label={about.name.inscription} className="mx-auto h-16 w-auto max-w-full text-label sm:h-24" />
+            <figcaption className="mt-4 text-center text-footnote text-label-secondary">{about.name.caption}</figcaption>
+          </figure>
+          {about.name.body.map((paragraph) => (
+            <p key={paragraph} className="mt-4 text-body text-label-secondary">
+              {paragraph}
+            </p>
+          ))}
         </section>
         <section className="mt-16">
           <h2 className="text-title2">{about.why.title}</h2>
