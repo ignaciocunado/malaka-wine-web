@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 
-import { halo, instances, lit, rng, type Instance } from "./kit";
+import { halo, instances, lit, rng, smoothstep, type Instance } from "./kit";
 
 /**
  * The lagar at the end of the vineyard track: a whitewashed press-house with a clay-tile roof, its stone arch open
@@ -362,8 +362,11 @@ export type Lagar = {
   group: THREE.Group;
   /** The mouth of the passage: draws nothing, but marks where the cellar shows through. */
   portal: THREE.Mesh;
-  /** Swings the doors: 0 is shut, 1 is wide open. The light of the cellar spills out as they open. */
-  setDoor(open: number): void;
+  /**
+   * Swings the doors: 0 is shut, 1 is wide open. The light of the cellar spills out as they open. `eyeZ` is the
+   * camera's z in the lagar's frame, so the glow in front of the door can fade as the camera comes up to it.
+   */
+  setDoor(open: number, eyeZ: number): void;
 };
 
 export function buildLagar(glow: THREE.Texture): Lagar {
@@ -575,14 +578,18 @@ export function buildLagar(glow: THREE.Texture): Lagar {
   portal.renderOrder = 10;
   group.add(portal);
 
-  const setDoor = (open: number) => {
+  const setDoor = (open: number, eyeZ: number) => {
     for (const { pivot, s } of leaves) pivot.rotation.y = -s * open * 1.5; // in, to just short of flat against the wall
     // Behind a shut door the cellar's light stays in; it spills out as the door opens.
     passageLight.intensity = 1.2 * open;
-    doorGlow.material.color.copy(glowColor).multiplyScalar(open);
-    doorGlow.visible = open > 0.002;
+    // The glow is a sprite half a metre out from the door. Left on, it filled the screen as the camera came up to it,
+    // then vanished in one frame when it fell inside the camera's near plane (0.32 m). It fades out instead, from
+    // 2.5 m away to 0.5 m.
+    const glowing = open * smoothstep(doorGlow.position.z + 0.5, doorGlow.position.z + 2.5, eyeZ);
+    doorGlow.material.color.copy(glowColor).multiplyScalar(glowing);
+    doorGlow.visible = glowing > 0.002;
   };
-  setDoor(0);
+  setDoor(0, Infinity);
 
   return { group, portal, setDoor };
 }

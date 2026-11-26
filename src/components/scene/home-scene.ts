@@ -1,10 +1,17 @@
 import * as THREE from "three";
 
-import { buildCellar, CELLAR_DOOR, CELLAR_START, type Cellar } from "./cellar";
+import { AISLE, buildCellar, CELLAR_DOOR, CELLAR_START, type Cellar } from "./cellar";
 import { whenIdle } from "./device";
 import { createRenderer, disposeScene, loadPack, smoothstep, type Tier } from "./kit";
 import { PORTAL_AT } from "./lagar";
-import { BAY_PACK, buildVineyard } from "./vineyard";
+import { ARRIVAL_SPEED, BAY_PACK, buildVineyard } from "./vineyard";
+
+/**
+ * How much of the eased progress the aisle takes, against the walk's 1: as much as the walk would take to cover the
+ * aisle's length at the speed it arrives in the first bay. A step of progress then moves the camera as far on either
+ * side of the door, so the easing carries its speed through unchanged.
+ */
+const AISLE_SPAN = AISLE / ARRIVAL_SPEED;
 
 /**
  * The homepage's live 3D: the vineyard above the bay, then the cellar, drawn on one canvas.
@@ -39,7 +46,10 @@ export async function createHomeScene(canvas: HTMLCanvasElement, { tier, signal,
   let size = fit();
   vineyard.setViewport(size.height * renderer.getPixelRatio());
 
-  const target = { walk: 0, aisle: 0 }, shown = { walk: 0, aisle: 0 };
+  // How far along the camera is: 0 to 1 is the walk in through the door, then `AISLE_SPAN` more is the aisle. The
+  // scroll sets `target` and `shown` eases after it. It is one number so the move through the door is continuous: eased as two, the aisle
+  // ran ahead unseen while the walk finished easing, and the camera stalled at the door, then jumped down the nave.
+  let target = 0, shown = 0;
   let frame = 0, last = 0, first = true, disposed = false;
   const shadowed = new Set<string>();
   let slow = 0, scale = 1;
@@ -81,15 +91,15 @@ export async function createHomeScene(canvas: HTMLCanvasElement, { tier, signal,
   /** Draws the scene the scroll is in, with the camera where the easing has brought it. */
   const paint = () => {
     const { width, height } = size;
-    if (shown.walk >= 0.9995) {
+    if (shown >= 0.9995) {
       // In the nave: the camera drifts down the aisle.
       const scene = ensureCellar();
-      scene.pose(shown.aisle, width, height);
+      scene.pose(Math.max(0, shown - 1) / AISLE_SPAN, width, height);
       drawCellar(scene);
       return;
     }
 
-    vineyard.pose(shown.walk, width / height);
+    vineyard.pose(shown, width / height);
     const view = vineyard.view;
     // The lagar's frame to the cellar's: one more metre into the passage is one more metre into the nave.
     place.set(view.position.x, view.position.y, view.position.z - PORTAL_AT + CELLAR_DOOR);
@@ -136,7 +146,7 @@ export async function createHomeScene(canvas: HTMLCanvasElement, { tier, signal,
    * breath, so the cellar frame never reaches the screen. (It then also shows through the lagar's door.)
    */
   const warmCellar = () => {
-    if (disposed || cellar || shown.walk >= 0.9995) return;
+    if (disposed || cellar || shown >= 0.9995) return;
     drawCellar(ensureCellar());
     paint();
   };
@@ -147,10 +157,9 @@ export async function createHomeScene(canvas: HTMLCanvasElement, { tier, signal,
     const dt = last ? Math.min(0.1, (now - last) / 1000) : 0.016;
     // Ease towards the scroll position so a mouse wheel's steps become one continuous move.
     const ease = 1 - Math.exp(-dt * 11);
-    shown.walk += (target.walk - shown.walk) * ease;
-    shown.aisle += (target.aisle - shown.aisle) * ease;
-    const settled = Math.abs(target.walk - shown.walk) < 0.0004 && Math.abs(target.aisle - shown.aisle) < 0.0004;
-    if (settled) Object.assign(shown, target);
+    shown += (target - shown) * ease;
+    const settled = Math.abs(target - shown) < 0.0004;
+    if (settled) shown = target;
 
     paint();
     if (first) {
@@ -190,12 +199,10 @@ export async function createHomeScene(canvas: HTMLCanvasElement, { tier, signal,
 
   return {
     setProgress(walk, aisle) {
+      const along = walk < 1 ? walk : 1 + aisle * AISLE_SPAN;
       // Scrolling the rest of the page, with the stage out of sight, changes nothing here and draws nothing.
-      if (walk === target.walk && aisle === target.aisle) return;
-      // Coming in through the door starts the nave from its first bay, not from wherever it was left.
-      if (walk >= 1 && target.walk < 1) shown.aisle = 0;
-      target.walk = walk;
-      target.aisle = aisle;
+      if (along === target) return;
+      target = along;
       invalidate();
     },
     resize() {
