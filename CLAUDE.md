@@ -122,7 +122,7 @@ Departures the owner has accepted (don't "fix" these without asking):
 | --- | --- |
 | New or edited copy, in either language | `humanizer:humanizer`, on both versions |
 | Buttons, labels, form errors, confirmations, empty states | `design:ux-copy` |
-| A new section or page of copy | `marketing:brand-review`, against the design system's README (its Voice section is the style guide) and the existing copy in `src/lib/content/` |
+| A new section or page of copy | `marketing:brand-review`, against the design system's README (its Voice section is the style guide) and the existing copy in `content/` |
 | A change to a component's markup, interaction or styles | `design:accessibility-review`, on what changed |
 | Adding a page, or changing a page's title, description, keywords or structured data | `marketing:seo-audit`: on-page checks for that page only, not a full-site audit |
 
@@ -131,7 +131,8 @@ If one of these skills isn't available in the session, carry on and say which on
 ## Code conventions
 
 - Route files under `src/app/(es)/` and `src/app/en/` stay thin: they export the page's metadata, pick the language and render a shared component from `src/components/`.
-- No visible text in components. It goes in `src/lib/content/`, or next to its plan in `src/lib/catalog.ts`.
+- No visible text in components. It goes in `content/`, where each JSON file holds the Spanish and the English
+  (`content/plans.json` for the plans). Only the privacy policy and the parked taste quiz stay in `src/lib/content/`.
 - Reuse what exists: the controls in `src/components/ui/`, `pagePath`, `homeAnchor` and `alternatePath` in `src/lib/site.ts`, the metadata builders in `src/lib/metadata.ts`.
 - Before finishing, run what CI runs: `npm run lint -- --max-warnings=0`, `npm run typecheck` and `npm run build` (`npm ci` first if `node_modules` is missing).
 
@@ -139,5 +140,5 @@ If one of these skills isn't available in the session, carry on and say which on
 
 - Every page's metadata comes from a builder in `src/lib/metadata.ts`, fed by its title and description in both languages; the canonical URL and hreflang links come with it.
 - A new page also needs an entry in `src/app/sitemap.ts` and a line in `public/llms.txt`.
-- No Product/Offer structured data while `CATALOG_IS_SAMPLE` in `src/lib/catalog.ts` is `true`.
+- No Product/Offer structured data while `sample` in `content/plans.json` (`CATALOG_IS_SAMPLE`) is `true`.
 - Use native elements (`button`, `a`, `input`, `label`); every input has a label; images have alt text in both languages; everything works from the keyboard; motion respects `prefers-reduced-motion`; text that must stand out on the dark ground uses `accent`, not `tint`.

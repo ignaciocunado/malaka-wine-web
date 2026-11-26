@@ -1,0 +1,98 @@
+{
+  "es": {
+    "meta": {
+      "privacy": {
+        "title": "Política de privacidad | Malaka Wine",
+        "description": "Qué datos personales recoge Malaka Wine cuando te apuntas a la lista de interesados, para qué los usa y cómo puedes ejercer tus derechos."
+      },
+      "notFound": {
+        "title": "Página no encontrada | Malaka Wine"
+      }
+    },
+    "nav": {
+      "home": "Malaka Wine, inicio",
+      "howItWorks": "Cómo funciona",
+      "plans": "Planes",
+      "guide": "Vinos de Málaga",
+      "about": "Quiénes somos",
+      "register": "Apúntate",
+      "switchLabel": "EN",
+      "switchTitle": "Read this page in English"
+    },
+    "footer": {
+      "legal": "Malaka solo vende bebidas alcohólicas a mayores de 18 años. Bebe con moderación.",
+      "made": "Hecho en Málaga.",
+      "credit": "Relieve 3D: datos de elevación abiertos de Mapzen Terrain Tiles.",
+      "plans": "Planes",
+      "register": "Apúntate",
+      "about": "Quiénes somos",
+      "privacy": "Privacidad",
+      "linkedin": "LinkedIn",
+      "email": "Escríbenos a {address}",
+      "otherLanguage": "English"
+    },
+    "ageGate": {
+      "title": "¿Tienes 18 años o más?",
+      "body": "Malaka vende bebidas alcohólicas y solo puede mostrarte la web si eres mayor de edad.",
+      "yes": "Sí, tengo 18 años o más",
+      "no": "No, soy menor",
+      "deniedTitle": "Lo sentimos",
+      "deniedBody": "Malaka solo vende bebidas alcohólicas a mayores de 18 años, así que no puedes acceder a la web.",
+      "back": "Volver"
+    },
+    "notFound": {
+      "eyebrow": "Error 404",
+      "title": "No encontramos esta página.",
+      "body": "Puede que el enlace esté mal o que la página ya no exista.",
+      "cta": "Volver al inicio"
+    }
+  },
+  "en": {
+    "meta": {
+      "privacy": {
+        "title": "Privacy Policy | Malaka Wine",
+        "description": "What personal data Malaka Wine collects when you register your interest, what it is used for and how to exercise your rights."
+      },
+      "notFound": {
+        "title": "Page not found | Malaka Wine"
+      }
+    },
+    "nav": {
+      "home": "Malaka Wine, home",
+      "howItWorks": "How it works",
+      "plans": "Plans",
+      "guide": "Málaga wines",
+      "about": "About us",
+      "register": "Register interest",
+      "switchLabel": "ES",
+      "switchTitle": "Leer esta página en español"
+    },
+    "footer": {
+      "legal": "Malaka only sells alcoholic drinks to people aged 18 or over. Please drink responsibly.",
+      "made": "Made in Málaga.",
+      "credit": "3D relief: open elevation data from Mapzen Terrain Tiles.",
+      "plans": "Plans",
+      "register": "Register your interest",
+      "about": "About us",
+      "privacy": "Privacy",
+      "linkedin": "LinkedIn",
+      "email": "Email us at {address}",
+      "otherLanguage": "Español"
+    },
+    "ageGate": {
+      "title": "Are you 18 or over?",
+      "body": "Malaka sells alcoholic drinks and can only show you the site if you are of legal drinking age.",
+      "yes": "Yes, I'm 18 or over",
+      "no": "No, I'm under 18",
+      "deniedTitle": "Sorry",
+      "deniedBody": "Malaka only sells alcoholic drinks to people aged 18 or over, so you can't enter the site.",
+      "back": "Go back"
+    },
+    "notFound": {
+      "eyebrow": "Error 404",
+      "title": "We can't find this page.",
+      "body": "The link may be wrong, or the page may no longer exist.",
+      "cta": "Back to the homepage"
+    }
+  }
+}

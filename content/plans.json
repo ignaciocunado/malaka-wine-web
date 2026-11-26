@@ -1,0 +1,60 @@
+{
+  "es": {
+    "sample": true,
+    "plans": [
+      {
+        "code": "VINO",
+        "name": "Descubre",
+        "price": 40,
+        "featured": false,
+        "tagline": "Dos vinos de pequeñas bodegas malagueñas cada cuatro meses.",
+        "contents": "2 botellas · fichas de cata"
+      },
+      {
+        "code": "BODEGA",
+        "name": "Bodega",
+        "price": 60,
+        "featured": true,
+        "tagline": "Tres vinos para recorrer la provincia, de los blancos de Moscatel a los tintos de Ronda.",
+        "contents": "3 botellas · fichas de cata · maridajes"
+      },
+      {
+        "code": "RESERVA",
+        "name": "Reserva",
+        "price": 80,
+        "featured": false,
+        "tagline": "Crianzas y dulces de añada más exclusivos, acceso a eventos privados.",
+        "contents": "3 botellas · fichas de cata"
+      }
+    ]
+  },
+  "en": {
+    "sample": true,
+    "plans": [
+      {
+        "code": "VINO",
+        "name": "Descubre",
+        "price": 40,
+        "featured": false,
+        "tagline": "Two wines from small Málaga wineries every four months.",
+        "contents": "2 bottles · tasting notes"
+      },
+      {
+        "code": "BODEGA",
+        "name": "Bodega",
+        "price": 60,
+        "featured": true,
+        "tagline": "Three wines to travel the province, from Moscatel whites to the reds of Ronda.",
+        "contents": "3 bottles · tasting notes · food pairings"
+      },
+      {
+        "code": "RESERVA",
+        "name": "Reserva",
+        "price": 80,
+        "featured": false,
+        "tagline": "Our most exclusive oak-aged and vintage sweet wines, with access to private events.",
+        "contents": "3 bottles · tasting notes"
+      }
+    ]
+  }
+}

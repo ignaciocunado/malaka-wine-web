@@ -1,0 +1,98 @@
+{
+  "es": {
+    "meta": {
+      "title": "Quiénes somos: Antonio Cuñado Bernal | Malaka Wine",
+      "description": "El fundador de Malaka Wine, Antonio Cuñado Bernal, lleva más de 20 años en el turismo de Málaga, del Caminito del Rey a la Gran Senda, y conoce a sus productores."
+    },
+    "eyebrow": "Quiénes somos",
+    "title": "Conocemos a quien hace el vino.",
+    "intro": "Malaka Wine es el proyecto de Antonio Cuñado Bernal, que lleva más de veinte años trabajando en el turismo de Málaga y conoce a los pequeños productores de toda la provincia.",
+    "founder": {
+      "role": "Fundador",
+      "body": "Antonio ha sido responsable de proyectos como el Caminito del Rey, la Gran Senda de Málaga, la Senda Litoral, Málaga Destino o Málaga No Caduca.\n\nSon proyectos que recorren la provincia de punta a punta. Por el camino, Antonio ha conocido a bodegueros y pequeños productores de cada comarca.",
+      "linkedIn": "Antonio en LinkedIn"
+    },
+    "projects": {
+      "title": "Algunos de sus proyectos",
+      "items": [
+        {
+          "name": "Caminito del Rey",
+          "description": "La pasarela del Desfiladero de los Gaitanes, reabierta en 2015."
+        },
+        {
+          "name": "Gran Senda de Málaga",
+          "description": "El sendero de gran recorrido GR 249, que da la vuelta a la provincia."
+        },
+        {
+          "name": "Senda Litoral",
+          "description": "El proyecto para recorrer a pie toda la costa de la provincia, de Nerja a Manilva."
+        },
+        {
+          "name": "Málaga Destino",
+          "description": "Descuentos para comprar en comercios y negocios locales de toda la provincia."
+        },
+        {
+          "name": "Málaga No Caduca",
+          "description": "La iniciativa provincial contra el desperdicio de alimentos."
+        }
+      ]
+    },
+    "why": {
+      "title": "Por qué Malaka Wine",
+      "body": "Muchas bodegas de Málaga hacen vinos muy buenos en partidas tan pequeñas que casi no salen de su pueblo, y mucho menos llegan a las tiendas. Queremos llevarlos a tu casa y ayudar a que quienes los hacen vivan de su trabajo sin dejar su tierra.\n\nComo conocemos a quienes los hacen, podemos elegir para ti botellas que no encontrarías por tu cuenta y contarte de dónde viene cada una."
+    },
+    "cta": {
+      "title": "¿Quieres probar estos vinos?",
+      "body": "Malaka Wine abre muy pronto. Déjanos tu email y te avisamos cuando puedas pedir tu primera caja.",
+      "button": "Apúntate"
+    }
+  },
+  "en": {
+    "meta": {
+      "title": "About Us: Antonio Cuñado Bernal | Malaka Wine",
+      "description": "Malaka Wine's founder, Antonio Cuñado Bernal, has spent 20+ years in Málaga tourism, from the Caminito del Rey to the Gran Senda, and knows its small producers."
+    },
+    "eyebrow": "About us",
+    "title": "We know the people who make the wine.",
+    "intro": "Malaka Wine was started by Antonio Cuñado Bernal, who has worked in tourism in Málaga for more than twenty years and knows small producers all over the province.",
+    "founder": {
+      "role": "Founder",
+      "body": "Antonio has been in charge of projects such as the Caminito del Rey, the Gran Senda de Málaga, the Senda Litoral, Málaga Destino and Málaga No Caduca.\n\nBetween them, these projects cover the province from end to end. Along the way Antonio has got to know winemakers and small producers in every part of it.",
+      "linkedIn": "Antonio on LinkedIn"
+    },
+    "projects": {
+      "title": "Some of Antonio's projects",
+      "items": [
+        {
+          "name": "Caminito del Rey",
+          "description": "The walkway through the Desfiladero de los Gaitanes gorge, reopened in 2015."
+        },
+        {
+          "name": "Gran Senda de Málaga",
+          "description": "The GR 249 long-distance trail, which loops around the province."
+        },
+        {
+          "name": "Senda Litoral",
+          "description": "The project to walk the province's whole coastline, from Nerja to Manilva."
+        },
+        {
+          "name": "Málaga Destino",
+          "description": "Discounts for shopping at local shops and businesses across the province."
+        },
+        {
+          "name": "Málaga No Caduca",
+          "description": "The province's initiative against food waste."
+        }
+      ]
+    },
+    "why": {
+      "title": "Why Malaka Wine",
+      "body": "Many of Málaga's wineries make very good wine in batches so small that it hardly leaves the village, let alone reaches the shops. We want to bring those wines to your door, and help the people who make them earn a living without leaving their land.\n\nBecause we know the people behind them, we can choose bottles you wouldn't find on your own and tell you where each one comes from."
+    },
+    "cta": {
+      "title": "Want to try these wines?",
+      "body": "Malaka Wine opens soon. Leave your email and we'll let you know when you can order your first box.",
+      "button": "Register your interest"
+    }
+  }
+}

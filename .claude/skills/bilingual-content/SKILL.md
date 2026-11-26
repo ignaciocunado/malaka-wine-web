@@ -12,10 +12,11 @@ Every change a visitor can see is made in Spanish and English in the same change
 
 | File | What it holds | What TypeScript catches |
 | --- | --- | --- |
-| `src/lib/content/es.ts`, `en.ts` | All site text outside the guide and the privacy policy, key for key (including page `meta`, FAQ and the 404 page) | A key missing from `en.ts`. Not a Spanish value that changed while the English one went stale |
+| `content/site/*.json` | All site text outside the guide, the plans and the privacy policy (including page `meta`, the FAQ, the About page and the 404 page). Each file holds `{ "es": …, "en": … }`; `getDictionary` in `src/lib/content/index.ts` reads them | A field missing from `en`. Not a Spanish value that changed while the English one went stale (the Stop hook flags a file where only one language changed) |
+| `src/lib/content/taste.ts` | The parked taste quiz's text, kept in code because some of it is functions | A key missing from `en` |
 | `src/lib/content/guide.ts` | The wine guide: an `es` and an `en` `Guide`, with the same topic slugs in both | Missing fields. Not a different number or order of sections, facts or list items: keep those in step by hand |
 | `src/lib/content/privacy.ts` | Both privacy policies | Missing fields. When the policy changes, also update `PRIVACY_UPDATED` in `src/lib/site.ts` |
-| `src/lib/catalog.ts` | Plan text as `{ es, en }` pairs | A pair missing a language |
+| `content/plans.json` | The plans, prices in whole euros, and the `sample` switch; `src/lib/catalog.ts` reads it | A field missing from `en` |
 | `src/lib/site.ts` | `PATHS` and `ANCHORS`: each language has its own slugs | A page missing from one language |
 | `public/llms.txt` | Plain-text summary for AI assistants, linking both languages | Nothing: update it by hand |
 
@@ -24,7 +25,7 @@ Every change a visitor can see is made in Spanish and English in the same change
 Follow the copy that is already there:
 
 - **Spanish**: Spanish from Spain, speaking to the reader as *tú* ("Déjanos tu email", "Elige tu caja").
-- **English**: British spelling, as in `en.ts` ("colour", "favourite"); the site's English locale is `en-GB`.
+- **English**: British spelling ("colour", "favourite"), as in the existing English text; the site's English locale is `en-GB`.
 - Place, grape and appellation names stay in Spanish, accents included, in both languages: Axarquía, Montes de
   Málaga, Serranía de Ronda, Moscatel de Alejandría, Pedro Ximénez, Romé, DO Málaga.
 - Translate the meaning, not the words. Each version should read as if it had been written in that language first.
@@ -46,7 +47,8 @@ Follow the copy that is already there:
 2. Write one shared component under `src/components/` that takes `lang`.
 3. Add a thin route file under each language, `src/app/(es)/<slug>/page.tsx` and `src/app/en/<slug>/page.tsx`,
    that exports the page's metadata and renders the shared component (see `src/app/(es)/apuntate/page.tsx`).
-4. Add the page's `meta` title and description to `es.ts` and `en.ts`, and a builder for it in
+4. Add the page's text, its `meta` title and description included, to a file in `content/site/` in both
+   languages, read it in `src/lib/content/index.ts`, and add a builder for it in
    `src/lib/metadata.ts`.
 5. Add it to `src/app/sitemap.ts` and `public/llms.txt`.
 6. Link it from the nav or footer if visitors need to reach it.

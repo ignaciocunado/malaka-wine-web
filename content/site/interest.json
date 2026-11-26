@@ -1,0 +1,58 @@
+{
+  "es": {
+    "meta": {
+      "title": "Apúntate: te avisamos cuando abramos | Malaka Wine",
+      "description": "Déjanos tu email y te avisaremos cuando abra Malaka Wine, la suscripción de vinos de pequeñas bodegas de Málaga."
+    },
+    "eyebrow": "Muy pronto",
+    "title": "Apúntate y te avisamos.",
+    "body": "Malaka Wine todavía no ha abierto. Déjanos tu email y te escribiremos cuando puedas pedir tu primera caja.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "tu@email.com",
+    "consent": "Tengo 18 años o más y acepto que Malaka Wine me escriba por email sobre su lanzamiento, según la ",
+    "consentLink": "política de privacidad",
+    "consentEnd": ".",
+    "submit": "Apuntarme",
+    "sending": "Enviando…",
+    "note": "Solo te escribiremos sobre el lanzamiento. Puedes borrarte cuando quieras.",
+    "errors": {
+      "email": "Escribe un email válido.",
+      "consent": "Marca la casilla para poder apuntarte.",
+      "send": "No hemos podido apuntarte. Inténtalo de nuevo dentro de un momento."
+    },
+    "success": {
+      "title": "Ya estás en la lista.",
+      "body": "Te escribiremos en cuanto abramos. Mientras tanto, conoce los vinos de la provincia.",
+      "guide": "Leer la guía de vinos de Málaga",
+      "home": "Volver al inicio"
+    }
+  },
+  "en": {
+    "meta": {
+      "title": "Register Your Interest | Malaka Wine",
+      "description": "Leave your email and we'll let you know when Malaka Wine opens: a subscription of wines from small wineries in Málaga."
+    },
+    "eyebrow": "Coming soon",
+    "title": "Register your interest.",
+    "body": "Malaka Wine isn't open yet. Leave your email and we'll write to you when you can order your first box.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@email.com",
+    "consent": "I'm 18 or over and I agree to Malaka Wine emailing me about its launch, as set out in the ",
+    "consentLink": "privacy policy",
+    "consentEnd": ".",
+    "submit": "Register",
+    "sending": "Sending…",
+    "note": "We'll only write to you about the launch. You can be removed at any time.",
+    "errors": {
+      "email": "Enter a valid email address.",
+      "consent": "Tick the box to register.",
+      "send": "We couldn't register you. Please try again in a moment."
+    },
+    "success": {
+      "title": "You're on the list.",
+      "body": "We'll write to you as soon as we open. Until then, get to know the province's wines.",
+      "guide": "Read the guide to Málaga wines",
+      "home": "Back to the homepage"
+    }
+  }
+}

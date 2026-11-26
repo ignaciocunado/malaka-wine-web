@@ -1,0 +1,76 @@
+{
+  "es": {
+    "title": "¿Preguntas? Respuestas.",
+    "questions": [
+      {
+        "q": "¿Qué es Malaka Wine?",
+        "a": "Malaka Wine propone transformar la manera de descubrir y consumir el vino malagueño, convirtiendo productos exclusivos de pequeños productores en experiencias personalizadas. El objetivo es crear un Club Gourmet \"Inteligente\", esto es, una forma de conjugar lo tradicional con las nuevas tecnologías de la inteligencia artificial, de forma que cada cliente reciba sólo los vinos que le gustan.\n\nCon ello queremos crear la mayor comunidad de vinos de Málaga y ayudar a los productores malagueños a que puedan vivir de su pasión sin tener que abandonar sus tierras. Así ayudamos a fijar la población al territorio, luchamos contra el cambio climático, y hacemos de nuestra provincia un territorio más sostenible.\n\nEl proyecto combina gastronomía, tecnología, exclusividad y territorio en un modelo de suscripción diseñado para comenzar con una validación pequeña y controlada en Málaga.\n\nCada cuatro meses el suscriptor recibe en casa una caja de dos o tres botellas de las bodegas de la provincia, la gran mayoría pequeñas empresas, elegidas según tus gustos y acompañadas de fichas de cata."
+      },
+      {
+        "q": "¿A qué bodegas nos referimos?",
+        "a": "Malaka Wine abarca las bodegas de toda la provincia de Málaga, muchas de ellas familiares. Estas bodegas elaboran pequeñas partidas difíciles de encontrar en el mercado.\n\nLa provincia cuenta con más de 300 referencias, de las cuales sólo una treintena se consiguen con más o menos facilidad en el mercado, pertenecientes a unas 53 bodegas. De ellas, 46 están registradas en las denominaciones de origen Málaga y Sierras de Málaga (distribuidas en unos 24 municipios) y el resto son vinos sin Denominación de Origen (DO), proyectos pequeños o de nicho o bodegas no inscritas en el registro de la DO."
+      },
+      {
+        "q": "¿Qué tipos de vinos de Málaga puedo recibir?",
+        "a": "Los que se producen en la provincia, sobre todo los que están dentro de la Denominación de Origen Protegida (DOP) Málaga o Sierras de Málaga, que superan el centenar.\n\nLa **DOP Málaga** data de 1933 y es una de las más antiguas de España y se ha especializado tradicionalmente en **vinos dulces, de licor y generosos** elaborados principalmente con uvas Pedro Ximénez y Moscatel de Alejandría, pero también existen otras variedades blancas complementarias como la Doradilla y la Lairén, así como la Romé, una variedad autóctona muy escasa que aporta notas de color y estructura. Su zona de producción abarca 67 municipios repartidos en cinco ámbitos geográficos: Axarquía, Montes de Málaga, Norte, Manilva y Serranía de Ronda.\n\nPor su parte, la **DOP Sierras de Málaga** nació en 2001 para amparar **los vinos tranquilos** (blancos, rosados y tintos secos, además de algunos tintos dulces) que no son encabezados ni dulces tradicionales. Su zona de producción se extiende por toda la provincia de Málaga, dividida en siete unidades geográficas (Axarquía, Costa Occidental, Manilva, Montes de Málaga, Norte de Málaga, Serranía de Ronda y Sierra de las Nieves). Aquí se utilizan distintas variedades de uva para la producción de vino, como:\n\n- **Variedades blancas.** Se emplean las uvas locales (Pedro Ximénez, Moscatel de Alejandría, Moscatel Morisco, Doradilla, Lairén, Vijariego Blanco, Montúa, Perruno y Pardina). También se cultivan variedades nacionales e internacionales como Chardonnay, Sauvignon Blanc, Verdejo, Viognier, Riesling, Gewürztraminer, Macabeo, Colombard, Garnacha Blanca, Malvasía Aromática y Vermentino.\n- **Variedades tintas.** Destaca la uva autóctona Romé, junto a variedades recuperadas históricamente en la zona como la Melonera o Tintilla de Rota. Las variedades más extendidas para tintos de crianza (especialmente en la Serranía de Ronda) son Syrah, Cabernet Sauvignon, Merlot, Petit Verdot, Tempranillo, Garnacha, Cabernet Franc, Pinot Noir, Graciano, Malbec, Monastrell, Jaén Tinto y Blauer Limberger.\n\nComo ves, no todo el vino de Málaga es dulce. Pero eso no es todo. También incluiremos vinos de productores que aún no están dentro de la DOP porque aún no cumplen con todos los requisitos que exige una denominación de origen; lo cual no quita calidad, variedad y exquisitez a los mismos (espumosos, vermuts, etc.). En nuestro proyecto tú eliges el vino que más te gusta tras una \"cata virtual\" y nuestro \"sumiller digital\" empezará a recomendarte. Mientras más consumas y más tiempo formes parte del Club mejor conoceremos tus gustos y podremos satisfacer tus intereses."
+      },
+      {
+        "q": "¿Cómo se eligen los vinos de mi caja?",
+        "a": "Tu perfil de gustos marca los estilos, el cuerpo y el presupuesto. Con cada caja lo cruzamos con las novedades de nuestras bodegas e incluimos fichas de cata para que sepas qué estás abriendo. Después de cada caja puedes contarnos qué te ha parecido, y ajustamos tu perfil."
+      },
+      {
+        "q": "¿Cuándo llega mi caja?",
+        "a": "Las cajas salen la primera semana cada cuatro meses a cualquier dirección de la España peninsular."
+      },
+      {
+        "q": "¿Qué otros beneficios obtengo por formar parte del Club?",
+        "a": "Además de la suscripción, el Club contempla venta cruzada de productos, ediciones limitadas y experiencias y eventos exclusivos para miembros, tales como catas o visitas a bodegas."
+      },
+      {
+        "q": "¿Puedo cambiar de plan o cancelar?",
+        "a": "Sí. Cambia de plan o cancela tu suscripción cuando quieras desde tu cuenta, sin permanencia."
+      },
+      {
+        "q": "¿Hay una edad mínima para suscribirse?",
+        "a": "Sí. Solo vendemos vino a mayores de 18 años, y la entrega debe recogerla un adulto."
+      }
+    ]
+  },
+  "en": {
+    "title": "Questions? Answers.",
+    "questions": [
+      {
+        "q": "What is Malaka Wine?",
+        "a": "Malaka Wine sets out to transform the way people discover and enjoy Málaga wine, turning exclusive products from small producers into personalised experiences. The goal is to create an \"intelligent\" gourmet club: a way of combining tradition with new artificial intelligence technology, so that every customer receives only the wines they like.\n\nWith it we want to build the largest community of Málaga wine lovers and help Málaga's producers make a living from their passion without having to leave their land. In this way we help keep people in the countryside, fight climate change, and make our province a more sustainable place.\n\nThe project combines gastronomy, technology, exclusivity and territory in a subscription model designed to start with a small, controlled validation in Málaga.\n\nEvery four months the subscriber receives at home a box of two or three bottles from wineries in the province, the vast majority of them small businesses, chosen to match your taste and sent with tasting notes."
+      },
+      {
+        "q": "Which wineries do we mean?",
+        "a": "Malaka Wine covers wineries across the whole province of Málaga, many of them family-run. These wineries make small batches that are hard to find on the market.\n\nThe province has more than 300 wines, of which only about thirty can be found on the market with any ease, made by around 53 wineries. Of these, 46 are registered in the Málaga and Sierras de Málaga designations of origin (spread across about 24 municipalities), and the rest are wines without a Designation of Origin (DO): small or niche projects, or wineries not entered in the DO register."
+      },
+      {
+        "q": "What kinds of Málaga wine can I receive?",
+        "a": "Those made in the province, above all the ones within the Málaga or Sierras de Málaga Protected Designation of Origin (PDO), which number over a hundred.\n\nThe **Málaga PDO** dates from 1933 and is one of the oldest in Spain. It has traditionally specialised in **sweet, liqueur and fortified wines** made mainly from Pedro Ximénez and Moscatel de Alejandría grapes. Other complementary white varieties exist too, such as Doradilla and Lairén, as well as Romé, a very rare native variety that adds colour and structure. Its production area covers 67 municipalities spread over five geographical areas: Axarquía, Montes de Málaga, Norte, Manilva and Serranía de Ronda.\n\nThe **Sierras de Málaga PDO**, for its part, was created in 2001 to protect **still wines** (whites, rosés and dry reds, plus some sweet reds) that are neither fortified nor traditional sweet wines. Its production area extends across the whole province of Málaga, divided into seven geographical units (Axarquía, Costa Occidental, Manilva, Montes de Málaga, Norte de Málaga, Serranía de Ronda and Sierra de las Nieves). A range of grape varieties are used here to make wine, such as:\n\n- **White varieties.** Local grapes are used (Pedro Ximénez, Moscatel de Alejandría, Moscatel Morisco, Doradilla, Lairén, Vijariego Blanco, Montúa, Perruno and Pardina). Spanish and international varieties are also grown, such as Chardonnay, Sauvignon Blanc, Verdejo, Viognier, Riesling, Gewürztraminer, Macabeo, Colombard, Garnacha Blanca, Malvasía Aromática and Vermentino.\n- **Red varieties.** The native Romé grape stands out, along with varieties historically recovered in the area such as Melonera or Tintilla de Rota. The most widespread varieties for aged reds (especially in the Serranía de Ronda) are Syrah, Cabernet Sauvignon, Merlot, Petit Verdot, Tempranillo, Garnacha, Cabernet Franc, Pinot Noir, Graciano, Malbec, Monastrell, Jaén Tinto and Blauer Limberger.\n\nAs you can see, not all Málaga wine is sweet. But that's not all. We will also include wines from producers who are not yet within the PDO because they don't yet meet all the requirements a designation of origin demands, which takes nothing away from their quality, variety or finesse (sparkling wines, vermouths, and so on). In our project you choose the wine you like best after a \"virtual tasting\", and our \"digital sommelier\" will start to make recommendations. The more you drink and the longer you are part of the Club, the better we will know your tastes and the better we can meet your interests."
+      },
+      {
+        "q": "How are the wines in my box chosen?",
+        "a": "Your taste profile sets the styles, body and budget. For each box we match it against our wineries' new releases and include tasting notes so you know what you're opening. After each box you can tell us what you thought, and we adjust your profile."
+      },
+      {
+        "q": "When does my box arrive?",
+        "a": "Boxes ship in the first week, every four months, to any address in mainland Spain."
+      },
+      {
+        "q": "What other benefits do I get from being part of the Club?",
+        "a": "Besides the subscription, the Club includes cross-selling of products, limited editions, and exclusive experiences and events for members, such as tastings or winery visits."
+      },
+      {
+        "q": "Can I change plan or cancel?",
+        "a": "Yes. Change plan or cancel your subscription whenever you like from your account, with no minimum term."
+      },
+      {
+        "q": "Is there a minimum age to subscribe?",
+        "a": "Yes. We only sell wine to people aged 18 or over, and an adult must receive the delivery."
+      }
+    ]
+  }
+}

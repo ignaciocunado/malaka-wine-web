@@ -21,7 +21,7 @@ export function PlanCard({ plan, lang }: { plan: Plan; lang: Lang }) {
       </p>
       <p className="mt-4 text-subheadline">{plan.contents}</p>
       <ButtonLink href={`${pagePath(lang, "interest")}?plan=${plan.code}`} variant={plan.featured ? "filled" : "tinted"} className="mt-7 w-full">
-        {text.choose(plan.name)}
+        {text.choose.replace("{plan}", plan.name)}
       </ButtonLink>
     </article>
   );

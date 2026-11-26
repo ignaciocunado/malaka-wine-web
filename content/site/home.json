@@ -1,0 +1,162 @@
+{
+  "es": {
+    "meta": {
+      "title": "Vinos de Málaga a domicilio · Suscripción de vino | Malaka Wine",
+      "description": "La mayor comunidad de vinos de Málaga: cada cuatro meses, una caja con vinos de pequeñas bodegas de la Axarquía, Ronda y los Montes de Málaga, elegidos según tus gustos.",
+      "keywords": [
+        "vinos de Málaga",
+        "vino de Málaga",
+        "suscripción de vino",
+        "suscripción de vinos",
+        "club de vinos",
+        "suscripción caja de vino",
+        "comprar vino de Málaga online",
+        "vino Moscatel de Málaga",
+        "vinos de Ronda",
+        "vinos de la Axarquía",
+        "regalar vino de Málaga"
+      ]
+    },
+    "hero": {
+      "eyebrow": "Suscripción de vinos de Málaga",
+      "title": "Los vinos de Málaga, a tu gusto.",
+      "body": "La mayor comunidad de vinos de Málaga. Una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
+      "cta": "Apúntate",
+      "plans": "Ver planes",
+      "scroll": "Baja hasta el lagar",
+      "scene": "Maqueta 3D de Málaga al anochecer vista desde una viña de los Montes: hileras de cepas a los lados de un camino que baja hasta un lagar iluminado, con Gibralfaro, la catedral, la bahía y la sierra de Mijas al fondo."
+    },
+    "how": {
+      "eyebrow": "Cómo funciona",
+      "title": "Cada caja nos enseña tu gusto.",
+      "body": "Empiezas con un test de dos minutos. Después de cada caja nos cuentas qué te ha parecido, y la siguiente se acerca más.",
+      "steps": [
+        {
+          "title": "Cuéntanos qué te gusta",
+          "body": "Dos minutos sobre estilos, cuerpo y presupuesto."
+        },
+        {
+          "title": "Elegimos tus vinos",
+          "body": "Botellas seleccionadas entre las últimas novedades de toda la provincia."
+        },
+        {
+          "title": "Cuéntanos qué te ha parecido",
+          "body": "Unas palabras sobre cada botella cuando la hayas abierto."
+        },
+        {
+          "title": "Tu siguiente caja encaja mejor",
+          "body": "Ajustamos tu perfil con cada respuesta, así cada caja acertamos más."
+        }
+      ],
+      "cta": "Apúntate y te avisamos cuando abramos",
+      "scene": "Dentro del lagar: maqueta 3D de una bodega de solera, con arcos encalados, faroles y botas apiladas en tres alturas."
+    },
+    "profile": {
+      "title": "Tu perfil de gusto, caja a caja.",
+      "body": "El test nos da un margen amplio donde elegir. Cada respuesta lo estrecha, y las botellas que te mandamos se acercan más a lo que te gusta.",
+      "stages": [
+        {
+          "title": "Después del test",
+          "body": "Sabemos qué estilos has pedido, así que empezamos con margen."
+        },
+        {
+          "title": "Después de tu primera caja",
+          "body": "Lo que te ha parecido cada botella mueve el margen y lo estrecha."
+        },
+        {
+          "title": "Después de unas cuantas",
+          "body": "Elegimos dentro de una franja estrecha que es solo tuya."
+        }
+      ],
+      "note": "Es una ilustración de la idea, no un perfil real."
+    },
+    "plans": {
+      "eyebrow": "Planes",
+      "title": "Elige tu caja de vinos de Málaga.",
+      "body": "Cambia de plan o cancela cuando quieras.",
+      "featured": "El más elegido",
+      "period": "/ cada 4 meses",
+      "choose": "Elegir {plan}"
+    }
+  },
+  "en": {
+    "meta": {
+      "title": "Málaga Wine Subscription · Spanish Wine Club | Malaka Wine",
+      "description": "The largest Málaga wine community: every four months, a box of wines from small family wineries in the Axarquía, Ronda and the Montes de Málaga, chosen to match your taste.",
+      "keywords": [
+        "Málaga wines",
+        "Malaga wine",
+        "wine subscription",
+        "wine subscription Spain",
+        "Spanish wine club",
+        "wine box subscription",
+        "buy Málaga wine online",
+        "Moscatel wine Málaga",
+        "Ronda wines",
+        "Axarquía wines",
+        "Málaga wine gift"
+      ]
+    },
+    "hero": {
+      "eyebrow": "Málaga wine subscription",
+      "title": "Málaga wines, your way.",
+      "body": "The largest Málaga wine community. A box of wines from the province's best small wineries, chosen to match your taste.",
+      "cta": "Register your interest",
+      "plans": "See the plans",
+      "scroll": "Scroll to walk down to the lagar",
+      "scene": "A 3D model of Málaga at dusk seen from a vineyard in the Montes: rows of vines either side of a track that leads down to a lit lagar, with Gibralfaro, the cathedral, the bay and Sierra de Mijas beyond."
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "title": "Every box teaches us your taste.",
+      "body": "It starts with a two-minute taste test. After each box you tell us what you thought, and the next one gets closer.",
+      "steps": [
+        {
+          "title": "Tell us what you like",
+          "body": "Two minutes on styles, body and budget."
+        },
+        {
+          "title": "We choose your wines",
+          "body": "Bottles picked from the latest releases across the province."
+        },
+        {
+          "title": "Tell us what you thought",
+          "body": "A few words on each bottle once you've opened it."
+        },
+        {
+          "title": "Your next box fits better",
+          "body": "We update your profile with every answer, so each box is a closer match."
+        }
+      ],
+      "cta": "Register and we'll tell you when we open",
+      "scene": "Inside the lagar: a 3D model of a solera cellar, with whitewashed arches, lanterns and barrels stacked three high."
+    },
+    "profile": {
+      "title": "Your taste profile, box by box.",
+      "body": "The taste test gives us a wide range to pick from. Every answer narrows it, so the bottles we send sit closer to what you like.",
+      "stages": [
+        {
+          "title": "After the taste test",
+          "body": "We know the styles you asked for, so we start wide."
+        },
+        {
+          "title": "After your first box",
+          "body": "What you thought of each bottle moves the range and tightens it."
+        },
+        {
+          "title": "After a few boxes",
+          "body": "We pick from a narrow band that is yours alone."
+        }
+      ],
+      "note": "An illustration of the idea, not a real profile."
+    },
+    "plans": {
+      "eyebrow": "Plans",
+      "title": "Choose your Málaga wine box.",
+      "body": "Change plan or cancel whenever you like.",
+      "featured": "Most popular",
+      "period": "/ every 4 months",
+      "choose": "Choose {plan}"
+    }
+  }
+}

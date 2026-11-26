@@ -50,11 +50,29 @@ const added = [...lines(git("diff", "--name-only", "--diff-filter=A", base)), ..
 
 const problems = [];
 
-const ES = "src/lib/content/es.ts";
-const EN = "src/lib/content/en.ts";
-if (changed.has(ES) !== changed.has(EN)) {
-  const [done, missing] = changed.has(ES) ? [ES, EN] : [EN, ES];
-  problems.push(`${done} changed but ${missing} did not. Make the same change in the other language.`);
+// The site's text is in content/**/*.json, each file holding the Spanish under `es` and the English under `en`.
+const readJson = (text) => {
+  try {
+    return JSON.parse(text);
+  } catch {
+    return null;
+  }
+};
+for (const file of [...changed].filter((file) => file.startsWith("content/") && file.endsWith(".json") && existsSync(file))) {
+  let before = null;
+  try {
+    before = readJson(git("show", `${base}:${file}`));
+  } catch {
+    // a new file
+  }
+  const after = readJson(readFileSync(file, "utf8"));
+  if (!before || !after) continue;
+  const esChanged = JSON.stringify(before.es) !== JSON.stringify(after.es);
+  const enChanged = JSON.stringify(before.en) !== JSON.stringify(after.en);
+  if (esChanged !== enChanged) {
+    const [done, missing] = esChanged ? ["Spanish (es)", "English (en)"] : ["English (en)", "Spanish (es)"];
+    problems.push(`${file}: the ${done} text changed but the ${missing} did not. Make the same change in the other language.`);
+  }
 }
 
 const countPages = (dir) => readdirSync(dir, { recursive: true }).filter((file) => basename(file) === "page.tsx").length;

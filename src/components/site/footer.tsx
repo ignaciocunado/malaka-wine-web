@@ -47,7 +47,7 @@ export function Footer({ lang }: { lang: Lang }) {
               {/* -my-1 keeps the 24px target from making the row taller than the text links. */}
               <a
                 href={`mailto:${CONTROLLER.email}`}
-                aria-label={footer.email(CONTROLLER.email)}
+                aria-label={footer.email.replace("{address}", CONTROLLER.email)}
                 className={`-my-1 flex size-6 items-center justify-center ${link}`}
               >
                 <MailIcon className="size-5" />

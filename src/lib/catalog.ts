@@ -1,64 +1,24 @@
+import plansFile from "@content/plans.json";
+
 import type { Lang } from "./site";
 import type { Plan } from "./types";
 
+// The plans live in `content/plans.json`, where the CMS edits them, with the same fields in Spanish and English.
+// Typing both languages as the Spanish one fails the build if the English is missing a field.
+const PLANS: Record<Lang, typeof plansFile.es> = plansFile;
+
 /**
- * Demo content: the plans and their prices are fictional samples. Replace them before launch, then set this to
- * `false`: the homepage starts publishing the plans and prices to search engines as structured data (see
- * `plansJsonLd` in `src/lib/structured-data.ts`).
+ * Demo content: the plans and their prices are fictional samples. Replace them before launch, then turn off
+ * `sample` in `content/plans.json`: the homepage starts publishing the plans and prices to search engines as
+ * structured data (see `plansJsonLd` in `src/lib/structured-data.ts`).
  */
-export const CATALOG_IS_SAMPLE = true;
-
-/** A text in both languages. */
-type Text = Record<Lang, string>;
-/** Swaps the listed text fields of `T` for their two-language version. */
-type Localized<T, K extends keyof T> = Omit<T, K> & { [P in K]: Text };
-
-const PLANS: Localized<Plan, "tagline" | "contents">[] = [
-  {
-    code: "VINO",
-    name: "Descubre",
-    tagline: {
-      es: "Dos vinos de pequeñas bodegas malagueñas cada cuatro meses.",
-      en: "Two wines from small Málaga wineries every four months.",
-    },
-    contents: { es: "2 botellas · fichas de cata", en: "2 bottles · tasting notes" },
-    priceCents: 4000,
-    featured: false,
-  },
-  {
-    code: "BODEGA",
-    name: "Bodega",
-    tagline: {
-      es: "Tres vinos para recorrer la provincia, de los blancos de Moscatel a los tintos de Ronda.",
-      en: "Three wines to travel the province, from Moscatel whites to the reds of Ronda.",
-    },
-    contents: {
-      es: "3 botellas · fichas de cata · maridajes",
-      en: "3 bottles · tasting notes · food pairings",
-    },
-    priceCents: 6000,
-    featured: true,
-  },
-  {
-    code: "RESERVA",
-    name: "Reserva",
-    tagline: {
-      es: "Crianzas y dulces de añada más exclusivos, acceso a eventos privados.",
-      en: "Our most exclusive oak-aged and vintage sweet wines, with access to private events.",
-    },
-    contents: {
-      es: "3 botellas · fichas de cata",
-      en: "3 bottles · tasting notes",
-    },
-    priceCents: 8000,
-    featured: false,
-  },
-];
+export const CATALOG_IS_SAMPLE = PLANS.es.sample;
 
 export type Catalog = { plans: Plan[] };
 
+// Prices are written in whole euros in the CMS; the site counts in cents.
 const build = (lang: Lang): Catalog => ({
-  plans: PLANS.map((plan) => ({ ...plan, tagline: plan.tagline[lang], contents: plan.contents[lang] })),
+  plans: PLANS[lang].plans.map(({ price, ...plan }) => ({ ...plan, priceCents: price * 100 })),
 });
 
 const CATALOGS: Record<Lang, Catalog> = { es: build("es"), en: build("en") };
