@@ -15,7 +15,6 @@
   --label-tertiary: rgba(241, 233, 220, 0.45);
 
   --system-bg: #0b0a17;
-  --system-bg-secondary: #0b0a17;
   --grouped-bg: #0b0a17;
   --grouped-bg-secondary: #15142a;
   --elevated-bg: #15142a;
@@ -27,10 +26,8 @@
   --fill-quaternary: rgba(241, 233, 220, 0.08);
   --segment-selected: #34315a;
 
-  --system-blue: #6aa7ff;
   --system-green: #4cd27a;
   --system-red: #ff8076;
-  --system-orange: #ffab3d;
 
   --tint: #8e1c3b;
   --tint-contrast: #ffffff;
@@ -50,7 +47,6 @@
   --color-label-secondary: var(--label-secondary);
   --color-label-tertiary: var(--label-tertiary);
   --color-system: var(--system-bg);
-  --color-system-secondary: var(--system-bg-secondary);
   --color-grouped: var(--grouped-bg);
   --color-grouped-secondary: var(--grouped-bg-secondary);
   /* Cards that sit on a secondary (gray) background. */
@@ -61,10 +57,8 @@
   --color-fill-tertiary: var(--fill-tertiary);
   --color-fill-quaternary: var(--fill-quaternary);
   --color-segment-selected: var(--segment-selected);
-  --color-system-blue: var(--system-blue);
   --color-system-green: var(--system-green);
   --color-system-red: var(--system-red);
-  --color-system-orange: var(--system-orange);
   --color-tint: var(--tint);
   --color-tint-contrast: var(--tint-contrast);
   --color-accent: var(--accent);

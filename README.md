@@ -150,12 +150,6 @@ public/3d/                what those scripts write: data files and still images
 public/_redirects         Cloudflare redirects from the old quiz URLs
 ```
 
-## Adding the full web app later
-
-An earlier version had a Spring Boot + MySQL API with sign-up/login (Auth.js), saved taste profiles and
-subscriptions. It was removed to keep this demo front-end only. The code is in git history: commit `d4ce9e7` on
-`main` has the complete stack (`backend/`, `frontend/`, `docker-compose.yml`) to start from.
-
 ## 3D scenes
 
 The site has three live scenes, drawn with three.js. All three are models, built in code from real data, not
