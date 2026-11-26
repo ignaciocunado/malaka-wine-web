@@ -2,7 +2,8 @@ import Link from "next/link";
 
 import { MailIcon } from "@/components/ui/icons";
 import { getDictionary } from "@/lib/content";
-import { CONTROLLER, LINKEDIN_URL, homeAnchor, pagePath, type Lang } from "@/lib/site";
+import { CUSTOM_PAGES, PAGE_ALTERNATES } from "@/lib/content/pages";
+import { CONTROLLER, LINKEDIN_URL, customPagePath, homeAnchor, pagePath, type Lang } from "@/lib/site";
 
 import { LanguageSwitch } from "./language-switch";
 
@@ -33,6 +34,14 @@ export function Footer({ lang }: { lang: Lang }) {
                 {footer.about}
               </Link>
             </li>
+            {/* Pages created in the CMS. */}
+            {CUSTOM_PAGES.map((page) => (
+              <li key={page.es.slug}>
+                <Link href={customPagePath(lang, page[lang].slug)} className={link}>
+                  {page[lang].title}
+                </Link>
+              </li>
+            ))}
             <li>
               <Link href={pagePath(lang, "privacy")} className={link}>
                 {footer.privacy}
@@ -54,7 +63,7 @@ export function Footer({ lang }: { lang: Lang }) {
               </a>
             </li>
             <li>
-              <LanguageSwitch lang={lang} label={footer.otherLanguage} className={link} />
+              <LanguageSwitch lang={lang} label={footer.otherLanguage} className={link} alternates={PAGE_ALTERNATES} />
             </li>
           </ul>
         </div>

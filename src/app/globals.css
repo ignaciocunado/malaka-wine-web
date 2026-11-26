@@ -427,3 +427,50 @@ textarea {
 .relief[data-live] .relief-poster {
   visibility: hidden;
 }
+
+/*
+ * The text of a page created in the CMS (see `CustomPage`), which arrives as HTML from Markdown: set like the About
+ * page's sections, with the FAQ's lists and bold, on the design system's spacing steps and radii.
+ */
+.page-body > :first-child {
+  @apply mt-0;
+}
+.page-body h2 {
+  @apply mt-16 text-title2;
+  /* The serif that `.text-title2` above gives headings elsewhere, which @apply doesn't carry over. */
+  font-family: var(--font-display);
+}
+.page-body h3 {
+  @apply mt-10 text-title3;
+}
+.page-body p,
+.page-body ul,
+.page-body ol {
+  @apply mt-4 text-body text-label-secondary;
+}
+.page-body ul,
+.page-body ol {
+  @apply space-y-2 pl-6;
+}
+/* Bullets are decoration and can be faint; a numbered list's numbers are text and keep the text's contrast. */
+.page-body ul {
+  @apply list-disc marker:text-label-tertiary;
+}
+.page-body ol {
+  @apply list-decimal;
+}
+.page-body strong {
+  @apply font-semibold text-label;
+}
+.page-body a {
+  @apply text-accent underline underline-offset-2;
+}
+.page-body img {
+  @apply mt-10 w-full rounded-md;
+}
+.page-body blockquote {
+  @apply mt-10 border-l-2 border-accent pl-4 text-title3 font-normal text-label-secondary;
+}
+.page-body blockquote p {
+  @apply mt-0 text-[length:inherit] text-inherit;
+}

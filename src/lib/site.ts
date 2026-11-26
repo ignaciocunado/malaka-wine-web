@@ -45,6 +45,8 @@ const PATHS: Record<Lang, Record<PageKey, string>> = {
 export const pagePath = (lang: Lang, page: PageKey) => PATHS[lang][page];
 /** A page of the wine guide about one area or grape. Slugs are the same in both languages. */
 export const topicPath = (lang: Lang, slug: string) => `${PATHS[lang].guide}/${slug}`;
+/** A page created in the CMS, e.g. `/catas` or `/en/tastings`. Its slug is different in each language. */
+export const customPagePath = (lang: Lang, slug: string) => `${PATHS[lang].home.replace(/\/$/, "")}/${slug}`;
 
 /** Ids of the homepage sections that the navigation links to. */
 export const ANCHORS: Record<Lang, { how: string; plans: string }> = {

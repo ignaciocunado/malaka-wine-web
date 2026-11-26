@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 
 import { getDictionary } from "./content";
 import { getGuide, type Topic } from "./content/guide";
-import { pageMetadata, pagePath, topicPath, type Lang, type PageKey } from "./site";
+import { customPagePaths, type CustomPage } from "./content/pages";
+import { SITE_NAME, pageMetadata, pagePath, topicPath, type Lang, type PageKey } from "./site";
 
 const paths = (page: PageKey) => ({ es: pagePath("es", page), en: pagePath("en", page) });
 
@@ -35,4 +36,9 @@ export function topicMetadata(lang: Lang, topic: Topic): Metadata {
     paths: { es: topicPath("es", topic.slug), en: topicPath("en", topic.slug) },
     type: "article",
   });
+}
+
+export function customPageMetadata(lang: Lang, page: CustomPage): Metadata {
+  const { title, description } = page[lang];
+  return pageMetadata({ lang, title: `${title} | ${SITE_NAME}`, description, paths: customPagePaths(page), type: "article" });
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { ButtonLink } from "@/components/ui/button";
 import { getDictionary } from "@/lib/content";
+import { PAGE_ALTERNATES } from "@/lib/content/pages";
 import { homeAnchor, pagePath, type Lang } from "@/lib/site";
 
 import { LanguageSwitch } from "./language-switch";
@@ -34,6 +35,7 @@ export function NavBar({ lang }: { lang: Lang }) {
             lang={lang}
             label={nav.switchLabel}
             title={nav.switchTitle}
+            alternates={PAGE_ALTERNATES}
             // Padding gives the two letters a 44px target; the matching negative margin keeps the bar's layout as it was.
             className="-mx-3.5 flex h-11 items-center rounded-full px-3.5 text-footnote font-semibold text-label-secondary transition-colors hover:text-label"
           />

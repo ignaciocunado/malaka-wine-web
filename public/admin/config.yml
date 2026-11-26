@@ -517,3 +517,47 @@ collections:
         i18n: true
         summary: "{{fields.heading}}"
         fields: *section_fields
+
+  - name: paginas
+    label: Páginas
+    label_singular: Página
+    description: >-
+      Páginas nuevas, con su propia dirección en cada idioma. Aparecen enlazadas en el pie de página.
+    folder: content/pages
+    format: json
+    create: true
+    i18n: true
+    identifier_field: title
+    editor: { preview: false }
+    fields:
+      - name: slug
+        label: Dirección
+        widget: string
+        i18n: true
+        hint: >-
+          El final de la dirección de la página, en minúsculas y con guiones: catas se verá en
+          malakawine.com/catas, y tastings en malakawine.com/en/tastings. Si la cambias después, los enlaces
+          que ya se hayan compartido dejarán de funcionar.
+        # Keep the reserved words in sync with RESERVED in src/lib/content/pages.ts.
+        pattern:
+          - '^(?!(en|apuntate|privacidad|vinos-de-malaga|quienes-somos|register|privacy|malaga-wines|about|admin|uploads|3d|taste)$)[a-z0-9]+(-[a-z0-9]+)*$'
+          - Solo minúsculas sin acentos, números y guiones, y que no sea una dirección que ya usa la web.
+      - { name: title, label: Título, widget: string, i18n: true }
+      - name: description
+        label: Entradilla
+        widget: text
+        i18n: true
+        hint: Se muestra bajo el título y es la descripción que ve Google.
+      - { name: cover, label: Foto de portada, widget: image, required: false, i18n: duplicate }
+      - name: coverAlt
+        label: Qué se ve en la foto
+        widget: string
+        required: false
+        i18n: true
+        hint: Una frase para quien no puede ver la foto (lectores de pantalla y Google).
+      - name: body
+        label: Texto
+        widget: markdown
+        i18n: true
+        buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list, quote]
+        editor_components: [image]
