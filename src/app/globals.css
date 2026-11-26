@@ -2,7 +2,9 @@
 
 /*
  * Design tokens follow Apple's Human Interface Guidelines: the system color roles (labels, fills, grouped
- * backgrounds, separators), the HIG text styles, and translucent "materials".
+ * backgrounds, separators), the HIG text styles, and translucent "materials". Their values come from the Malaka
+ * Wine design system (colours, fonts, type sizes, radii); where a role carries one of its tokens, the token's name
+ * is noted beside it.
  *
  * The site is dark, always, whatever the visitor's system setting: its ground is the night sky of the homepage's 3D
  * scene and its text the color of whitewash. Two brand colors sit on top. `--tint` (wine) fills buttons, as the app
@@ -10,15 +12,15 @@
  * stand out on the dark ground, where wine red would be too dim to read.
  */
 :root {
-  --label: #f1e9dc;
-  --label-secondary: rgba(241, 233, 220, 0.7);
+  --label: #f1e9dc; /* ink */
+  --label-secondary: #d5cec6; /* ink-soft */
   --label-tertiary: rgba(241, 233, 220, 0.45);
 
-  --system-bg: #0b0a17;
+  --system-bg: #0b0a17; /* surface */
   --system-bg-secondary: #0b0a17;
   --grouped-bg: #0b0a17;
   --grouped-bg-secondary: #15142a;
-  --elevated-bg: #15142a;
+  --elevated-bg: #15142a; /* surface-raised */
 
   --separator: rgba(241, 233, 220, 0.16);
   --fill: rgba(241, 233, 220, 0.22);
@@ -32,19 +34,17 @@
   --system-red: #ff8076;
   --system-orange: #ffab3d;
 
-  --tint: #8e1c3b;
-  --tint-contrast: #ffffff;
-  --accent: #e7a85a;
+  --tint: #8e1c3b; /* brand */
+  --tint-contrast: #f1e9dc; /* on-brand */
+  --accent: #e7a85a; /* accent, and accent-text on the dark ground */
 
   --material: rgba(11, 10, 23, 0.72);
 }
 
 @theme inline {
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", var(--font-inter), "Helvetica Neue",
-    Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
 
-  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
 
   --color-label: var(--label);
   --color-label-secondary: var(--label-secondary);
@@ -73,25 +73,33 @@
 
 /* HIG text styles (web sizes), used as text-large-title, text-headline, text-footnote, ... */
 @theme {
-  --text-hero: clamp(2.75rem, 7vw, 5rem);
-  --text-hero--line-height: 1.05;
-  --text-hero--letter-spacing: -0.03em;
-  --text-hero--font-weight: 400;
+  /* The design system's radii, under its own names: `rounded-sm` for inputs and small cards, `rounded-md` for cards. */
+  --radius-sm: 12px;
+  --radius-md: 22px;
 
-  --text-large-title: clamp(2rem, 4.5vw, 3rem);
-  --text-large-title--line-height: 1.08;
+  /*
+   * The display styles are the design system's Fraunces 600: hero is its `display` (56/60, smaller on phones),
+   * large-title its `headline` (36/42) and title2 its `title` (22/28). title1 sits between the last two.
+   */
+  --text-hero: clamp(2.75rem, 7vw, 3.5rem);
+  --text-hero--line-height: 1.07;
+  --text-hero--letter-spacing: -0.03em;
+  --text-hero--font-weight: 600;
+
+  --text-large-title: clamp(2rem, 4.5vw, 2.25rem);
+  --text-large-title--line-height: 1.17;
   --text-large-title--letter-spacing: -0.028em;
-  --text-large-title--font-weight: 400;
+  --text-large-title--font-weight: 600;
 
   --text-title1: 1.75rem;
   --text-title1--line-height: 2.125rem;
   --text-title1--letter-spacing: -0.02em;
-  --text-title1--font-weight: 450;
+  --text-title1--font-weight: 600;
 
   --text-title2: 1.375rem;
   --text-title2--line-height: 1.75rem;
   --text-title2--letter-spacing: -0.015em;
-  --text-title2--font-weight: 500;
+  --text-title2--font-weight: 600;
 
   --text-title3: 1.25rem;
   --text-title3--line-height: 1.5625rem;
@@ -103,8 +111,9 @@
   --text-headline--letter-spacing: -0.022em;
   --text-headline--font-weight: 600;
 
-  --text-body: 1.0625rem;
-  --text-body--line-height: 1.47;
+  /* The design system's `body` (16/24); footnote is its `small` (13/18). */
+  --text-body: 1rem;
+  --text-body--line-height: 1.5rem;
   --text-body--letter-spacing: -0.022em;
 
   --text-callout: 1rem;
@@ -187,8 +196,8 @@ h3 {
 }
 
 /*
- * The four largest text styles are set in the display serif (Fraunces); everything from title3 down stays in the
- * system sans. This departs from the HIG, which uses one family throughout, to give headlines a wine-label character.
+ * The four largest text styles are set in the display serif (Fraunces), as the design system sets headlines;
+ * everything from title3 down stays in Inter. This departs from the HIG, which uses one family throughout.
  */
 .text-hero,
 .text-large-title,
@@ -334,7 +343,7 @@ textarea {
 /* Increased contrast: stronger secondary text and separators, solid bar with a defined edge. */
 @media (prefers-contrast: more) {
   :root {
-    --label-secondary: rgba(241, 233, 220, 0.88);
+    --label-secondary: rgba(241, 233, 220, 0.94);
     --label-tertiary: rgba(241, 233, 220, 0.7);
     --separator: rgba(241, 233, 220, 0.5);
     --material: var(--system-bg);

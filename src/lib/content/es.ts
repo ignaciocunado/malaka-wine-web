@@ -35,7 +35,7 @@ export const es = {
   },
 
   nav: {
-    home: "Malaka, inicio",
+    home: "Malaka Wine, inicio",
     howItWorks: "Cómo funciona",
     plans: "Planes",
     guide: "Vinos de Málaga",
@@ -47,13 +47,14 @@ export const es = {
 
   footer: {
     legal: "Malaka solo vende bebidas alcohólicas a mayores de 18 años. Bebe con moderación.",
-    sample: "Las bodegas, los precios y las cajas que aparecen en esta web son contenido de ejemplo.",
     made: "Hecho en Málaga.",
     credit: "Relieve 3D: datos de elevación abiertos de Mapzen Terrain Tiles.",
     plans: "Planes",
     register: "Apúntate",
     privacy: "Privacidad",
-    guide: "Guía de vinos de Málaga",
+    linkedin: "LinkedIn",
+    /** Names the footer's mail icon, which has no visible text. */
+    email: (address: string) => `Escríbenos a ${address}`,
     otherLanguage: "English",
   },
 

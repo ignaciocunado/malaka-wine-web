@@ -16,7 +16,7 @@ export function PlanCard({ plan, lang }: { plan: Plan; lang: Lang }) {
       {/* flex-1 keeps the prices aligned across columns with taglines of different lengths */}
       <p className="mt-2 flex-1 text-body text-label-secondary">{plan.tagline}</p>
       <p className="mt-6 flex items-baseline gap-1.5">
-        <span className="font-display text-[3.75rem] leading-none tracking-tight">{formatEuros(plan.priceCents, lang)}</span>
+        <span className="text-hero leading-none">{formatEuros(plan.priceCents, lang)}</span>
         <span className="text-subheadline text-label-secondary">{text.period}</span>
       </p>
       <p className="mt-4 text-subheadline">{plan.contents}</p>

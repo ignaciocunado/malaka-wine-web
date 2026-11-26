@@ -2,7 +2,7 @@ import { getCatalog } from "./catalog";
 import { getDictionary } from "./content";
 import { faqAnswerText, type FaqQuestion } from "./content/faq";
 import { GUIDE_UPDATED, getGuide, type Section, type Topic } from "./content/guide";
-import { SITE_NAME, SITE_URL, absoluteUrl, homeAnchor, ogImage, pagePath, topicPath, type Lang } from "./site";
+import { LINKEDIN_URL, SITE_NAME, SITE_URL, absoluteUrl, homeAnchor, ogImage, pagePath, topicPath, type Lang } from "./site";
 
 /**
  * schema.org descriptions of the site's pages, published as JSON-LD so search engines and AI assistants can read
@@ -31,6 +31,7 @@ export function siteJsonLd(lang: Lang) {
       description: meta.home.description,
       address: { "@type": "PostalAddress", addressLocality: "Málaga", addressRegion: "Andalucía", addressCountry: "ES" },
       areaServed: { "@type": "Country", name: "Spain" },
+      sameAs: [LINKEDIN_URL],
     },
     {
       "@type": "WebSite",

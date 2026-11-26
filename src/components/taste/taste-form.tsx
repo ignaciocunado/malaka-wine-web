@@ -68,7 +68,7 @@ export function TasteForm({ lang }: { lang: Lang }) {
         <p className="mx-auto mt-2 max-w-sm text-body text-label-secondary">
           {chosen ? text.result.chosenBody : text.result.recommendedBody}
         </p>
-        <div className="mx-auto mt-8 max-w-sm rounded-2xl bg-fill-quaternary p-5 text-left">
+        <div className="mx-auto mt-8 max-w-sm rounded-sm bg-fill-quaternary p-6 text-left">
           <p className="text-headline">{plan.name}</p>
           <p className="mt-1 text-subheadline text-label-secondary">{plan.contents}</p>
           <p className="mt-3 flex items-baseline gap-1">
@@ -182,7 +182,7 @@ export function TasteForm({ lang }: { lang: Lang }) {
             {stepId === "box" && (
               <>
                 <Question title={text.bottles.title}>
-                  <div className="flex items-center justify-between rounded-xl bg-fill-quaternary px-4 py-3">
+                  <div className="flex items-center justify-between rounded-sm bg-fill-quaternary px-4 py-3">
                     <span className="text-body">{text.bottles.count(profile.bottlesPerBox)}</span>
                     <Stepper
                       label={text.bottles.title}
@@ -216,7 +216,7 @@ export function TasteForm({ lang }: { lang: Lang }) {
                     rows={3}
                     aria-label={text.notes.label}
                     placeholder={text.notes.placeholder}
-                    className="block w-full resize-none rounded-xl bg-fill-quaternary px-4 py-3 text-body outline-none placeholder:text-label-tertiary focus:ring-2 focus:ring-accent/60"
+                    className="block w-full resize-none rounded-sm bg-fill-quaternary px-4 py-3 text-body outline-none placeholder:text-label-tertiary focus:ring-2 focus:ring-accent/60"
                   />
                 </Question>
               </>
@@ -246,7 +246,7 @@ export function TasteForm({ lang }: { lang: Lang }) {
 }
 
 function Card({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn("rounded-3xl bg-grouped-secondary p-6 shadow-sm sm:p-9", className)}>{children}</div>;
+  return <div className={cn("rounded-md bg-grouped-secondary p-6 shadow-sm", className)}>{children}</div>;
 }
 
 function Question({
