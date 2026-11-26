@@ -140,6 +140,22 @@ export function instances(
   return mesh;
 }
 
+/** A texture painted on a canvas at start-up: `draw` paints it, the texture is read as sRGB. */
+export function canvasTexture(
+  width: number,
+  height: number,
+  draw: (ctx: CanvasRenderingContext2D, width: number, height: number) => void,
+) {
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  draw(canvas.getContext("2d")!, width, height);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 8;
+  return texture;
+}
+
 /**
  * A soft round glow, drawn additively wherever something should look like it gives off light.
  *

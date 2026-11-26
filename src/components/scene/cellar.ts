@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import { glowTexture, halo, instances, lerp, matte, rng, smoothstep, type Instance, type Tier } from "./kit";
+import { canvasTexture, glowTexture, halo, instances, lerp, matte, rng, smoothstep, type Instance, type Tier } from "./kit";
 import { buildWineBox } from "./wine-box";
 
 /**
@@ -78,19 +78,9 @@ function botaGeometry(segments: number) {
   return geometry;
 }
 
-function canvasTexture(size: number, draw: (ctx: CanvasRenderingContext2D, size: number) => void) {
-  const canvas = document.createElement("canvas");
-  canvas.width = canvas.height = size;
-  draw(canvas.getContext("2d")!, size);
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.colorSpace = THREE.SRGBColorSpace;
-  texture.anisotropy = 8;
-  return texture;
-}
-
 /** Oak barrel head: vertical boards, a darker rim, some grain. */
 const headTexture = (rand: () => number) =>
-  canvasTexture(256, (ctx, s) => {
+  canvasTexture(256, 256, (ctx, s) => {
     ctx.fillStyle = "#8a6444";
     ctx.fillRect(0, 0, s, s);
     const edges = [0, 30, 70, 112, 150, 192, 228, 256];
@@ -114,7 +104,7 @@ const headTexture = (rand: () => number) =>
 
 /** Chalk on a transparent ground: the cellar-master's marks. */
 const chalkTexture = (rand: () => number, lines: [string, number, number][], cross: number) =>
-  canvasTexture(512, (ctx, s) => {
+  canvasTexture(512, 512, (ctx, s) => {
     ctx.clearRect(0, 0, s, s);
     ctx.translate(s / 2, s / 2);
     ctx.rotate((rand() - 0.5) * 0.16);
@@ -156,7 +146,7 @@ const chalkTexture = (rand: () => number, lines: [string, number, number][], cro
 
 /** Worn stone flags along the nave. */
 const floorTexture = (rand: () => number) =>
-  canvasTexture(1024, (ctx, s) => {
+  canvasTexture(1024, 1024, (ctx, s) => {
     ctx.fillStyle = "#8d7c69";
     ctx.fillRect(0, 0, s, s);
     const rows = 8;

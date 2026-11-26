@@ -1,23 +1,12 @@
 import * as THREE from "three";
 
-import { matte, rng } from "./kit";
+import { canvasTexture, matte, rng } from "./kit";
 
 /**
  * The box a subscriber receives, shown at the end of the cellar walk: a pine gift box with its hinged lid propped
  * open, the brand burnt into the inside of the lid, and three bottles bedded in wood wool, their maroon capsules
  * towards the aisle. Surfaces are painted on canvases at start-up, like the rest of the cellar.
  */
-
-function canvasTexture(width: number, height: number, draw: (ctx: CanvasRenderingContext2D) => void) {
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  draw(canvas.getContext("2d")!);
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.colorSpace = THREE.SRGBColorSpace;
-  texture.anisotropy = 8;
-  return texture;
-}
 
 /** Pale pine boards with grain and the odd knot; `brand` burns the Malaka mark into the middle. */
 function pineTexture(rand: () => number, width: number, height: number, brand: boolean) {

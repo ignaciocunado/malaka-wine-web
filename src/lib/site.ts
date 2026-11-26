@@ -38,6 +38,9 @@ const PATHS: Record<Lang, Record<PageKey, string>> = {
 export const pagePath = (lang: Lang, page: PageKey) => PATHS[lang][page];
 /** A page of the wine guide about one area or grape. Slugs are the same in both languages. */
 export const topicPath = (lang: Lang, slug: string) => `${PATHS[lang].guide}/${slug}`;
+/** A page's path in each language, for its hreflang links and its sitemap entry. */
+export const pagePaths = (page: PageKey): Record<Lang, string> => ({ es: pagePath("es", page), en: pagePath("en", page) });
+export const topicPaths = (slug: string): Record<Lang, string> => ({ es: topicPath("es", slug), en: topicPath("en", slug) });
 
 /** Ids of the homepage sections that the navigation links to. */
 export const ANCHORS: Record<Lang, { how: string; plans: string }> = {
