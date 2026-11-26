@@ -35,7 +35,7 @@ export const en: Dictionary = {
   },
 
   nav: {
-    home: "Malaka, home",
+    home: "Malaka Wine, home",
     howItWorks: "How it works",
     plans: "Plans",
     guide: "Málaga wines",

@@ -35,7 +35,7 @@ export const es = {
   },
 
   nav: {
-    home: "Malaka, inicio",
+    home: "Malaka Wine, inicio",
     howItWorks: "Cómo funciona",
     plans: "Planes",
     guide: "Vinos de Málaga",
