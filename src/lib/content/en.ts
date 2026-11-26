@@ -52,6 +52,7 @@ export const en: Dictionary = {
     plans: "Plans",
     register: "Register your interest",
     privacy: "Privacy",
+    linkedin: "LinkedIn",
     guide: "Guide to Málaga wines",
     otherLanguage: "Español",
   },

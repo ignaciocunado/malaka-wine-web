@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 /** The production origin. Canonical URLs, the sitemap, hreflang links and structured data are all built from it. */
 export const SITE_URL = "https://malakawine.com";
 export const SITE_NAME = "Malaka Wine";
+/** The company page on LinkedIn, linked from the footer and listed in the Organization structured data. */
+export const LINKEDIN_URL = "https://www.linkedin.com/company/145518537";
 
 /**
  * Where the "register your interest" form sends each sign-up: the `/exec` URL of the Google Apps Script web app in

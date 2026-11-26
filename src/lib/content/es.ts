@@ -53,6 +53,7 @@ export const es = {
     plans: "Planes",
     register: "Apúntate",
     privacy: "Privacidad",
+    linkedin: "LinkedIn",
     guide: "Guía de vinos de Málaga",
     otherLanguage: "English",
   },

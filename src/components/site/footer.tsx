@@ -3,7 +3,7 @@ import Link from "next/link";
 import { CATALOG_IS_SAMPLE } from "@/lib/catalog";
 import { getDictionary } from "@/lib/content";
 import { getGuide } from "@/lib/content/guide";
-import { homeAnchor, pagePath, topicPath, type Lang } from "@/lib/site";
+import { LINKEDIN_URL, homeAnchor, pagePath, topicPath, type Lang } from "@/lib/site";
 
 import { LanguageSwitch } from "./language-switch";
 
@@ -53,6 +53,11 @@ export function Footer({ lang }: { lang: Lang }) {
               <Link href={pagePath(lang, "privacy")} className={link}>
                 {footer.privacy}
               </Link>
+            </li>
+            <li>
+              <a href={LINKEDIN_URL} className={link}>
+                {footer.linkedin}
+              </a>
             </li>
             <li>
               <LanguageSwitch lang={lang} label={footer.otherLanguage} className={link} />
