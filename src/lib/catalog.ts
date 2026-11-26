@@ -3,8 +3,8 @@ import type { Plan } from "./types";
 
 /**
  * Demo content: the plans and their prices are fictional samples. Replace them before launch, then set this to
- * `false`: the footer drops its "sample content" notice and the homepage starts publishing the plans and prices
- * to search engines as structured data (see `plansJsonLd` in `src/lib/structured-data.ts`).
+ * `false`: the homepage starts publishing the plans and prices to search engines as structured data (see
+ * `plansJsonLd` in `src/lib/structured-data.ts`).
  */
 export const CATALOG_IS_SAMPLE = true;
 

@@ -114,7 +114,7 @@ The site keeps some Apple HIG styles the design system doesn't define (`text-tit
 Departures the owner has accepted (don't "fix" these without asking):
 
 - The "La mayor comunidad de vinos de Málaga" / "The largest Málaga wine community" line in the hero, the homepage description and the FAQ stays, by the owner's choice.
-- The sample plan prices stay on the plan cards and the taste-test result while `CATALOG_IS_SAMPLE` is `true`, with the footer's sample-content note. This is an open item.
+- The sample plan prices stay on the plan cards and the taste-test result while `CATALOG_IS_SAMPLE` is `true`. This is an open item.
 
 ## Skills to use without being asked
 

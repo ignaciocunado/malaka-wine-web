@@ -46,7 +46,6 @@ export const en: Dictionary = {
 
   footer: {
     legal: "Malaka only sells alcoholic drinks to people aged 18 or over. Please drink responsibly.",
-    sample: "The wineries, prices and boxes shown on this site are sample content.",
     made: "Made in Málaga.",
     credit: "3D relief: open elevation data from Mapzen Terrain Tiles.",
     plans: "Plans",
@@ -54,7 +53,6 @@ export const en: Dictionary = {
     privacy: "Privacy",
     linkedin: "LinkedIn",
     email: (address: string) => `Email us at ${address}`,
-    guide: "Guide to Málaga wines",
     otherLanguage: "Español",
   },
 
