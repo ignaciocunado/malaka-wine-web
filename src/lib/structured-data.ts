@@ -2,7 +2,7 @@ import { getCatalog } from "./catalog";
 import { getDictionary } from "./content";
 import { faqAnswerText, type FaqQuestion } from "./content/faq";
 import { GUIDE_UPDATED, getGuide, type Section, type Topic } from "./content/guide";
-import { SITE_NAME, SITE_URL, absoluteUrl, homeAnchor, ogImage, pagePath, topicPath, type Lang } from "./site";
+import { FOUNDER, SITE_NAME, SITE_URL, absoluteUrl, homeAnchor, ogImage, pagePath, topicPath, type Lang } from "./site";
 
 /**
  * schema.org descriptions of the site's pages, published as JSON-LD so search engines and AI assistants can read
@@ -13,6 +13,7 @@ type Thing = Record<string, unknown>;
 
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
+const FOUNDER_ID = `${SITE_URL}/#founder`;
 
 const graph = (...things: Thing[]) => ({ "@context": "https://schema.org", "@graph": things });
 
@@ -79,6 +80,30 @@ export function plansJsonLd(lang: Lang) {
         seller: { "@id": ORGANIZATION_ID },
       },
     })),
+  );
+}
+
+/** The About page: what Malaka Wine is about and who founded it. */
+export function aboutJsonLd(lang: Lang) {
+  const { about } = getDictionary(lang);
+  return graph(
+    {
+      "@type": "AboutPage",
+      name: about.title,
+      description: about.intro,
+      inLanguage: lang,
+      url: absoluteUrl(pagePath(lang, "about")),
+      about: { "@id": ORGANIZATION_ID },
+      mainEntity: { "@id": FOUNDER_ID },
+    },
+    {
+      "@type": "Person",
+      "@id": FOUNDER_ID,
+      name: FOUNDER.name,
+      jobTitle: about.founder.role,
+      worksFor: { "@id": ORGANIZATION_ID },
+      sameAs: [FOUNDER.linkedIn],
+    },
   );
 }
 

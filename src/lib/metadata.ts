@@ -18,6 +18,10 @@ export function privacyMetadata(lang: Lang): Metadata {
   return pageMetadata({ lang, ...getDictionary(lang).meta.privacy, paths: paths("privacy") });
 }
 
+export function aboutMetadata(lang: Lang): Metadata {
+  return pageMetadata({ lang, ...getDictionary(lang).meta.about, paths: paths("about") });
+}
+
 export function guideMetadata(lang: Lang): Metadata {
   const { metaTitle, description, keywords } = getGuide(lang);
   return pageMetadata({ lang, title: metaTitle, description, keywords, paths: paths("guide"), type: "article" });

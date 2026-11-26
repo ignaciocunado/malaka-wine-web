@@ -21,6 +21,11 @@ export const CONTROLLER = {
   address: "29016, Malaga",
   email: "info@malakawine.com",
 };
+/** The founder, as the About page and its structured data present them. */
+export const FOUNDER = {
+  name: "Antonio Cuñado Bernal",
+  linkedIn: "https://www.linkedin.com/in/antonio-cu%C3%B1ado-bernal-a429a316/",
+};
 /** Date of the current privacy policy. It is saved with each sign-up as the version the person agreed to. */
 export const PRIVACY_UPDATED = "2026-11-13";
 
@@ -28,11 +33,11 @@ export const PRIVACY_UPDATED = "2026-11-13";
 export const LANGS = ["es", "en"] as const;
 export type Lang = (typeof LANGS)[number];
 
-export type PageKey = "home" | "interest" | "guide" | "privacy";
+export type PageKey = "home" | "interest" | "guide" | "privacy" | "about";
 
 const PATHS: Record<Lang, Record<PageKey, string>> = {
-  es: { home: "/", interest: "/apuntate", guide: "/vinos-de-malaga", privacy: "/privacidad" },
-  en: { home: "/en", interest: "/en/register", guide: "/en/malaga-wines", privacy: "/en/privacy" },
+  es: { home: "/", interest: "/apuntate", guide: "/vinos-de-malaga", privacy: "/privacidad", about: "/quienes-somos" },
+  en: { home: "/en", interest: "/en/register", guide: "/en/malaga-wines", privacy: "/en/privacy", about: "/en/about" },
 };
 
 export const pagePath = (lang: Lang, page: PageKey) => PATHS[lang][page];

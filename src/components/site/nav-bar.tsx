@@ -14,6 +14,7 @@ export function NavBar({ lang }: { lang: Lang }) {
     { href: homeAnchor(lang, "how"), label: nav.howItWorks },
     { href: homeAnchor(lang, "plans"), label: nav.plans },
     { href: pagePath(lang, "guide"), label: nav.guide },
+    { href: pagePath(lang, "about"), label: nav.about },
   ];
   return (
     <header className="bar-material sticky top-0 z-50">
@@ -22,7 +23,7 @@ export function NavBar({ lang }: { lang: Lang }) {
         <ul className="hidden items-center gap-7 text-footnote text-label/80 md:flex">
           {links.map((link) => (
             <li key={link.href}>
-              <Link href={link.href} className="transition-colors hover:text-label">
+              <Link href={link.href} className="whitespace-nowrap transition-colors hover:text-label">
                 {link.label}
               </Link>
             </li>

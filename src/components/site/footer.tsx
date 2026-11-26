@@ -50,6 +50,11 @@ export function Footer({ lang }: { lang: Lang }) {
               </Link>
             </li>
             <li>
+              <Link href={pagePath(lang, "about")} className={link}>
+                {footer.about}
+              </Link>
+            </li>
+            <li>
               <Link href={pagePath(lang, "privacy")} className={link}>
                 {footer.privacy}
               </Link>
