@@ -1,13 +1,6 @@
 import type { Lang } from "./site";
 import type { Plan } from "./types";
 
-/**
- * Demo content: the plans and their prices are fictional samples. Replace them before launch, then set this to
- * `false`: the footer drops its "sample content" notice and the homepage starts publishing the plans and prices
- * to search engines as structured data (see `plansJsonLd` in `src/lib/structured-data.ts`).
- */
-export const CATALOG_IS_SAMPLE = true;
-
 /** A text in both languages. */
 type Text = Record<Lang, string>;
 /** Swaps the listed text fields of `T` for their two-language version. */

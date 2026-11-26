@@ -4,7 +4,7 @@ import { PlanCard } from "@/components/landing/plan-card";
 import { ButtonLink } from "@/components/ui/button";
 import { ChevronRightIcon } from "@/components/ui/icons";
 import { JsonLd } from "@/components/seo/json-ld";
-import { CATALOG_IS_SAMPLE, getCatalog } from "@/lib/catalog";
+import { getCatalog } from "@/lib/catalog";
 import { getDictionary } from "@/lib/content";
 import { ANCHORS, pagePath, type Lang } from "@/lib/site";
 import { homeFaqJsonLd, plansJsonLd } from "@/lib/structured-data";
@@ -34,7 +34,7 @@ export function HomePage({ lang }: { lang: Lang }) {
     // The stage slides up under the translucent navigation bar, so the opening picture fills the whole screen.
     <div className="-mt-13">
       <JsonLd data={homeFaqJsonLd(lang)} />
-      {!CATALOG_IS_SAMPLE && <JsonLd data={plansJsonLd(lang)} />}
+      <JsonLd data={plansJsonLd(lang)} />
 
       <HomeStage description={home.hero.scene}>
         {/* Hero: the headline sits in the sky, the buttons on the vineyard at the foot of the screen. */}

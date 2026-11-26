@@ -58,8 +58,8 @@ export function homeFaqJsonLd(lang: Lang) {
 }
 
 /**
- * The subscription plans and their prices. Only publish this once the catalog holds the real plans: structured
- * prices that don't match what a customer can actually buy break search engines' rules.
+ * The subscription plans and their prices, built from the catalog so the two always agree: structured prices that
+ * don't match what a customer can actually buy break search engines' rules.
  */
 export function plansJsonLd(lang: Lang) {
   return graph(

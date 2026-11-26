@@ -103,5 +103,4 @@ If one of these skills isn't available in the session, carry on and say which on
 
 - Every page's metadata comes from a builder in `src/lib/metadata.ts`, fed by its title and description in both languages; the canonical URL and hreflang links come with it.
 - A new page also needs an entry in `src/app/sitemap.ts` and a line in `public/llms.txt`.
-- No Product/Offer structured data while `CATALOG_IS_SAMPLE` in `src/lib/catalog.ts` is `true`.
 - Use native elements (`button`, `a`, `input`, `label`); every input has a label; images have alt text in both languages; everything works from the keyboard; motion respects `prefers-reduced-motion`; text that must stand out on the dark ground uses `accent`, not `tint`.

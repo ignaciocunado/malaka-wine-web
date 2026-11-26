@@ -47,7 +47,6 @@ export const es = {
 
   footer: {
     legal: "Malaka solo vende bebidas alcohólicas a mayores de 18 años. Bebe con moderación.",
-    sample: "Las bodegas, los precios y las cajas que aparecen en esta web son contenido de ejemplo.",
     made: "Hecho en Málaga.",
     credit: "Relieve 3D: datos de elevación abiertos de Mapzen Terrain Tiles.",
     plans: "Planes",

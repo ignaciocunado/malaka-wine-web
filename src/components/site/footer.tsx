@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { CATALOG_IS_SAMPLE } from "@/lib/catalog";
 import { getDictionary } from "@/lib/content";
 import { getGuide } from "@/lib/content/guide";
 import { homeAnchor, pagePath, topicPath, type Lang } from "@/lib/site";
@@ -32,7 +31,6 @@ export function Footer({ lang }: { lang: Lang }) {
         </nav>
         <p className="border-b border-separator py-4 leading-relaxed">
           {footer.legal}
-          {CATALOG_IS_SAMPLE && ` ${footer.sample}`}
         </p>
         <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:items-center sm:justify-between">
           <p>
