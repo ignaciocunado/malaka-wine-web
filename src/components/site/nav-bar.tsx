@@ -19,7 +19,7 @@ export function NavBar({ lang }: { lang: Lang }) {
     <header className="bar-material sticky top-0 z-50">
       <nav className="mx-auto flex h-13 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6">
         <Logo lang={lang} />
-        <ul className="hidden items-center gap-7 text-footnote text-label/80 md:flex">
+        <ul className="hidden items-center gap-7 text-footnote text-label-secondary md:flex">
           {links.map((link) => (
             <li key={link.href}>
               <Link href={link.href} className="transition-colors hover:text-label">
@@ -33,7 +33,7 @@ export function NavBar({ lang }: { lang: Lang }) {
             lang={lang}
             label={nav.switchLabel}
             title={nav.switchTitle}
-            className="text-footnote font-semibold text-label/80 transition-colors hover:text-label"
+            className="text-footnote font-semibold text-label-secondary transition-colors hover:text-label"
           />
           <ButtonLink href={pagePath(lang, "interest")} size="sm">
             {nav.register}

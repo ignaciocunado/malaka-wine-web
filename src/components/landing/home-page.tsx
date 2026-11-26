@@ -44,7 +44,7 @@ export function HomePage({ lang }: { lang: Lang }) {
             <span className="block font-sans text-headline text-accent">{home.hero.eyebrow}</span>
             <span className="mt-4 block text-hero">{home.hero.title}</span>
           </h1>
-          <p className="mt-6 max-w-md text-title3 font-normal text-label/85">{home.hero.body}</p>
+          <p className="mt-6 max-w-md text-title3 font-normal text-label-secondary">{home.hero.body}</p>
           <div className="mt-auto flex flex-wrap items-center justify-between gap-x-7 gap-y-3 pt-10">
             <div className="flex w-full flex-col items-center gap-x-7 gap-y-2 sm:w-auto sm:flex-row">
               <ButtonLink href={interestPath} size="lg" className="w-full shadow-[0_14px_40px_rgb(142_28_59/0.35)] sm:w-auto">
@@ -56,7 +56,7 @@ export function HomePage({ lang }: { lang: Lang }) {
             </div>
             <a
               href={`#${anchors.how}`}
-              className="hidden h-11 items-center gap-2 text-subheadline text-label/85 transition-colors hover:text-label sm:inline-flex"
+              className="hidden h-11 items-center gap-2 text-subheadline text-label-secondary transition-colors hover:text-label sm:inline-flex"
             >
               {home.hero.scroll} <ChevronRightIcon className="size-4 rotate-90" />
             </a>
@@ -75,8 +75,8 @@ export function HomePage({ lang }: { lang: Lang }) {
           <div className="max-w-xl">
             <p className="sr-only">{home.how.scene}</p>
             <p className="text-headline text-accent">{home.how.eyebrow}</p>
-            <h2 className="mt-2 text-large-title md:text-[3.5rem] md:leading-[1.03]">{home.how.title}</h2>
-            <p className="mt-5 text-title3 font-normal text-label/85">{home.how.body}</p>
+            <h2 className="mt-2 text-large-title md:text-hero">{home.how.title}</h2>
+            <p className="mt-5 text-title3 font-normal text-label-secondary">{home.how.body}</p>
             <ol className="mt-10 border-b border-separator">
               {home.how.steps.map((step, index) => (
                 <li key={step.title} className="flex gap-5 border-t border-separator py-5">
@@ -85,7 +85,7 @@ export function HomePage({ lang }: { lang: Lang }) {
                   </span>
                   <div>
                     <h3 className="text-title3">{step.title}</h3>
-                    <p className="mt-1 text-body text-label/80">{step.body}</p>
+                    <p className="mt-1 text-body text-label-secondary">{step.body}</p>
                   </div>
                 </li>
               ))}
@@ -112,7 +112,7 @@ export function HomePage({ lang }: { lang: Lang }) {
                   const [start, width] = PROFILE_BANDS[stageIndex][scaleIndex];
                   return (
                     <div key={min} className="mt-6">
-                      <div className="flex justify-between gap-3 text-footnote text-label/80">
+                      <div className="flex justify-between gap-3 text-footnote text-label-secondary">
                         <span>{min}</span>
                         <span className="text-right">{max}</span>
                       </div>
@@ -133,7 +133,7 @@ export function HomePage({ lang }: { lang: Lang }) {
       {/* Plans */}
       <section id={anchors.plans} className="mx-auto max-w-6xl scroll-mt-14 px-4 pb-24 sm:px-6">
         <p className="text-headline text-accent">{home.plans.eyebrow}</p>
-        <h2 className="mt-2 max-w-3xl text-large-title md:text-[3.5rem] md:leading-[1.03]">{home.plans.title}</h2>
+        <h2 className="mt-2 max-w-3xl text-large-title md:text-hero">{home.plans.title}</h2>
         <p className="mt-4 max-w-xl text-body text-label-secondary">{home.plans.body}</p>
         <div className="mt-14 grid gap-x-12 md:grid-cols-3">
           {plans.map((plan) => (

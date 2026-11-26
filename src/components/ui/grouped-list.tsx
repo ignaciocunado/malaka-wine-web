@@ -21,7 +21,7 @@ export function GroupedSection({
   return (
     <section className={className}>
       {header && <h2 className="mb-1.5 px-4 text-footnote text-label-secondary uppercase">{header}</h2>}
-      <div className="overflow-hidden rounded-xl bg-grouped-secondary">{children}</div>
+      <div className="overflow-hidden rounded-sm bg-grouped-secondary">{children}</div>
       {footer && <p className="mt-1.5 px-4 text-footnote text-label-secondary">{footer}</p>}
     </section>
   );

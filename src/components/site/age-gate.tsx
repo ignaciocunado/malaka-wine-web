@@ -68,7 +68,7 @@ export function AgeGate({ lang }: { lang: Lang }) {
         aria-modal="true"
         aria-labelledby="age-gate-title"
         aria-describedby="age-gate-description"
-        className="w-full max-w-sm rounded-3xl bg-elevated p-8 text-center shadow-2xl ring-1 ring-separator"
+        className="w-full max-w-sm rounded-md bg-elevated p-6 text-center shadow-2xl ring-1 ring-separator"
       >
         <div className="mb-6 flex justify-center">
           <Logo lang={lang} />
