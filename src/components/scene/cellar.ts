@@ -31,6 +31,8 @@ export const CELLAR_START = new THREE.Vector3(0.4, 1.55, 1.1);
 
 const BAY = 6.3; // pillar to pillar
 const BAYS = 12;
+/** How far down the nave the camera drifts as `pose` goes 0 to 1, in metres. */
+export const AISLE = BAY * 2.5;
 const ARCADE_X = 2.0; // centre line of the pillars
 const PILLAR = 0.56;
 const SPRING = 3.4; // where the arches spring from
@@ -434,7 +436,7 @@ export function buildCellar(tier: Tier): Cellar {
     camera,
     pose(t, width, height) {
       // One-point perspective down the aisle, drifting two and a half bays as the page scrolls.
-      camera.position.set(CELLAR_START.x, CELLAR_START.y, lerp(CELLAR_START.z, CELLAR_START.z - BAY * 2.5, t));
+      camera.position.set(CELLAR_START.x, CELLAR_START.y, lerp(CELLAR_START.z, CELLAR_START.z - AISLE, t));
       camera.quaternion.copy(level);
       fog.density = FOG;
       lens(0, 1, width, height);

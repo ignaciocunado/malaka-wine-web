@@ -37,6 +37,13 @@ const [LX, LY, LZ, LROT] = meta.lagar;
 const FLOOR = LY + 0.2;
 /** The lagar is 27 units down the track, on its axis. */
 const LAGAR_AT = 27;
+// The walk ends in the cellar's first bay: this far along the door's axis, which is `SCALE` units to a metre, and
+// past the lagar's centre, since the nave lies beyond the passage.
+const END = SCALE * (CELLAR_START.z - CELLAR_DOOR + PORTAL_AT);
+/** The camera's speed as it arrives in the first bay, as a share of its average speed over the last stretch. */
+const ARRIVAL = 0.5;
+/** Metres the camera covers per unit of `pose`'s `t` as it arrives in the first bay. */
+export const ARRIVAL_SPEED = (ARRIVAL * (LAGAR_AT - END)) / SCALE;
 const FOG = 0.00042;
 /** Half the width of the sun's shadow map, in units. */
 const SHADOW = 80;
@@ -403,9 +410,6 @@ export function buildVineyard(pack: Pack, tier: Tier): Vineyard {
     const f = Math.min(track.length - 1.001, Math.max(0, v + 14)), i = Math.floor(f);
     return eye.copy(track[i]).lerp(track[i + 1], f - i);
   };
-  // The walk ends in the cellar's first bay: this far along the door's axis, which is `SCALE` units to a metre, and
-  // past the lagar's centre, since the nave lies beyond the passage.
-  const END = SCALE * (CELLAR_START.z - CELLAR_DOOR + PORTAL_AT);
   const eyeEnd = FLOOR + SCALE * CELLAR_START.y;
   const view = { position: new THREE.Vector3(), quaternion: new THREE.Quaternion(), fov: 44, open: 0 };
   let viewportHeight = 1;
@@ -419,7 +423,7 @@ export function buildVineyard(pack: Pack, tier: Tier): Vineyard {
    * How far along the way in, 0 to 1. The camera eases off the mark, runs down the track and then slows steadily as
    * it nears the door, with no change of speed between the two stretches, so the zoom is one continuous move.
    */
-  const covered = (t: number) => (t < 0.66 ? hermite(t / 0.66, 0, 0, 0.78, 0.9 * 0.66) : hermite((t - 0.66) / 0.34, 0.78, 0.9 * 0.34, 1, 0.5 * 0.34));
+  const covered = (t: number) => (t < 0.66 ? hermite(t / 0.66, 0, 0, 0.78, 0.9 * 0.66) : hermite((t - 0.66) / 0.34, 0.78, 0.9 * 0.34, 1, ARRIVAL * 0.34));
 
   return {
     scene,
@@ -458,7 +462,7 @@ export function buildVineyard(pack: Pack, tier: Tier): Vineyard {
       view.fov = camera.fov;
       // The doors swing in as the camera comes up to them, a few seconds of scrolling before it reaches the wall.
       view.open = smoothstep(5.5, 1.9, s);
-      lagar.setDoor(view.open);
+      lagar.setDoor(view.open, view.position.z);
     },
   };
 }
