@@ -252,6 +252,18 @@ export const es = {
         "Como conocemos a quienes los hacen, podemos elegir para ti botellas que no encontrarías por tu cuenta y contarte de dónde viene cada una.",
       ],
     },
+    name: {
+      title: "De dónde viene el nombre",
+      /** What the Phoenician inscription says, for screen readers. */
+      inscription: "Malaka, escrito en alfabeto fenicio",
+      caption: "Se lee de derecha a izquierda: mem, lámed, kaf y álef.",
+      body: [
+        "Los fenicios de Tiro fundaron la ciudad hacia el siglo VIII a. C. y la llamaron Malaka. Para los romanos fue Malaca y en árabe Mālaqa, de donde viene Málaga. Nosotros nos quedamos con el más antiguo.",
+        // m‑l‑k is written with non-breaking hyphens (U+2011) so the root never splits across lines.
+        "El fenicio solo escribía las consonantes, así que a Malaka le bastan cuatro letras. No se sabe con certeza qué significaba; la explicación más aceptada lo relaciona con la raíz semítica m‑l‑k, «reinar».",
+        "Siglos después, la ciudad acuñó monedas con ese mismo nombre en letras neopúnicas, una forma más tardía del mismo alfabeto.",
+      ],
+    },
     cta: {
       title: "¿Quieres probar estos vinos?",
       body: "Malaka Wine abre muy pronto. Déjanos tu email y te avisamos cuando puedas pedir tu primera caja.",

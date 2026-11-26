@@ -1,5 +1,3 @@
-@AGENTS.md
-
 # CLAUDE.md
 
 Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
@@ -108,6 +106,7 @@ The **Malaka Wine design system** is the source of truth for how the site looks 
 | `radius-sm`, `radius-md`, `radius-pill` | `rounded-sm` (12px), `rounded-md` (22px), `rounded-full`: `globals.css` redefines Tailwind's `sm` and `md` |
 | `malaka-compact-on-dark.svg` | `public/brand/`, the header logo (`src/components/site/logo.tsx`) |
 | `favicon.svg`, `malaka-icon.svg` | `src/app/icon.svg`; `src/app/apple-icon.png` and `public/logo.png` are rendered from `malaka-icon.svg` |
+| `malaka-inscription.svg` | `src/components/about/inscription.tsx`, its path inlined so it takes `currentColor` |
 
 The site keeps some Apple HIG styles the design system doesn't define (`text-title1`, `title3`, `headline`, `callout`, `subheadline`, `caption`) for in-between sizes; use the design system's own styles first.
 

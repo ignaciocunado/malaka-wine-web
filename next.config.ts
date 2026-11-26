@@ -5,6 +5,8 @@ import type { NextConfig } from "next";
 // the request, cookies or server actions) or the build will fail.
 const nextConfig: NextConfig = {
   output: "export",
+  // Stop `next dev` from writing AGENTS.md whenever an AI agent runs it; the project's rules live in CLAUDE.md.
+  agentRules: false,
   experimental: {
     // Spanish and English each have their own root layout (`app/(es)` and `app/en`), so the 404 page can't be built
     // from a shared layout; `app/global-not-found.tsx` is a standalone document instead.
