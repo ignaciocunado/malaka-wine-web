@@ -40,7 +40,7 @@ export const en: Dictionary = {
   },
 
   nav: {
-    home: "Malaka, home",
+    home: "Malaka Wine, home",
     howItWorks: "How it works",
     plans: "Plans",
     guide: "Málaga wines",
@@ -52,14 +52,14 @@ export const en: Dictionary = {
 
   footer: {
     legal: "Malaka only sells alcoholic drinks to people aged 18 or over. Please drink responsibly.",
-    sample: "The wineries, prices and boxes shown on this site are sample content.",
     made: "Made in Málaga.",
     credit: "3D relief: open elevation data from Mapzen Terrain Tiles.",
     plans: "Plans",
     register: "Register your interest",
     about: "About us",
     privacy: "Privacy",
-    guide: "Guide to Málaga wines",
+    linkedin: "LinkedIn",
+    email: (address: string) => `Email us at ${address}`,
     otherLanguage: "Español",
   },
 

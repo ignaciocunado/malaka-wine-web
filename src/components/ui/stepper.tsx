@@ -18,10 +18,10 @@ export function Stepper({ label, decreaseLabel, increaseLabel, value, min, max, 
     "flex h-8 w-11 items-center justify-center text-label transition duration-300 ease-spring active:bg-fill " +
     "active:duration-0 disabled:text-label-tertiary";
   return (
-    <div role="group" aria-label={label} className="inline-flex items-center rounded-lg bg-fill-tertiary">
+    <div role="group" aria-label={label} className="inline-flex items-center rounded-sm bg-fill-tertiary">
       <button
         type="button"
-        className={`${button} rounded-l-lg`}
+        className={`${button} rounded-l-sm`}
         aria-label={decreaseLabel}
         disabled={value <= min}
         onClick={() => onChange(value - 1)}
@@ -31,7 +31,7 @@ export function Stepper({ label, decreaseLabel, increaseLabel, value, min, max, 
       <span className="h-4.5 w-px bg-separator" aria-hidden />
       <button
         type="button"
-        className={`${button} rounded-r-lg`}
+        className={`${button} rounded-r-sm`}
         aria-label={increaseLabel}
         disabled={value >= max}
         onClick={() => onChange(value + 1)}

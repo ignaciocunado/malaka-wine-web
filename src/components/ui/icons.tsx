@@ -76,6 +76,13 @@ export const HandshakeIcon = (props: IconProps) => (
   </Icon>
 );
 
+export const MailIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
+    <path d="M4.5 7.5L12 13l7.5-5.5" />
+  </Icon>
+);
+
 export const PlusIcon = (props: IconProps) => (
   <Icon {...props}>
     <path d="M12 5v14M5 12h14" />

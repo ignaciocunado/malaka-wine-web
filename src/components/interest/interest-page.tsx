@@ -16,8 +16,8 @@ export function InterestPage({ lang }: { lang: Lang }) {
         <div className="max-w-xl">
           <header className="mb-10">
             <p className="text-headline text-accent">{interest.eyebrow}</p>
-            <h1 className="mt-2 text-large-title sm:text-[3.5rem] sm:leading-[1.03]">{interest.title}</h1>
-            <p className="mt-4 max-w-md text-title3 font-normal text-label/85">{interest.body}</p>
+            <h1 className="mt-2 text-large-title sm:text-hero">{interest.title}</h1>
+            <p className="mt-4 max-w-md text-title3 font-normal text-label-secondary">{interest.body}</p>
           </header>
           <InterestForm lang={lang} />
         </div>
