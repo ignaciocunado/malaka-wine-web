@@ -23,7 +23,7 @@ const variants: Record<Variant, string> = {
 const sizes: Record<Size, string> = {
   sm: "h-9 px-4 text-footnote",
   md: "h-11 px-5 text-callout",
-  lg: "h-[52px] px-7 text-headline",
+  lg: "h-[52px] px-7 text-callout",
 };
 
 type StyleProps = { variant?: Variant; size?: Size };

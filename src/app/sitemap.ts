@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { paths: { es: pagePath("es", "guide"), en: pagePath("en", "guide") }, priority: 0.9 },
     ...TOPIC_SLUGS.map((slug) => ({ paths: { es: topicPath("es", slug), en: topicPath("en", slug) }, priority: 0.7 })),
     { paths: { es: pagePath("es", "interest"), en: pagePath("en", "interest") }, priority: 0.6 },
+    { paths: { es: pagePath("es", "about"), en: pagePath("en", "about") }, priority: 0.5 },
     { paths: { es: pagePath("es", "privacy"), en: pagePath("en", "privacy") }, priority: 0.2 },
   ];
   return pages.flatMap(({ paths, priority }) =>

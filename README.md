@@ -14,6 +14,7 @@ goes to a Google Sheet (see [Collecting emails](#collecting-emails)).
 | --- | --- | --- |
 | `/` | `/en` | Landing page: the bay seen from a vineyard, a walk down into the cellar for "how it works", the taste profile, plans, FAQ |
 | `/apuntate` | `/en/register` | "Register your interest" form: an email address and a consent box. The plan buttons on the landing page link here with `?plan=BODEGA`, which is saved with the sign-up |
+| `/quienes-somos` | `/en/about` | About page: the founder, Antonio Cuñado Bernal, the projects behind the contacts with the province's small producers, and why Malaka Wine exists |
 | `/privacidad` | `/en/privacy` | Privacy policy (GDPR) for the emails the form collects |
 | `/vinos-de-malaga` | `/en/malaga-wines` | Guide to Málaga wines: a relief table of the province to explore the areas, then appellations, grapes, styles, history, pairings |
 | `/vinos-de-malaga/<slug>` | `/en/malaga-wines/<slug>` | One page per wine area (Axarquía, Montes de Málaga, Serranía de Ronda, Norte de Málaga, Manilva) and grape (Moscatel de Alejandría, Pedro Ximénez, Romé) |

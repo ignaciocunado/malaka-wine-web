@@ -13,7 +13,7 @@ export function PrivacyPage({ lang }: { lang: Lang }) {
     <div>
       <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
         <header>
-          <h1 className="text-large-title sm:text-[3rem] sm:leading-[1.05]">{policy.title}</h1>
+          <h1 className="text-large-title">{policy.title}</h1>
           <p className="mt-3 text-footnote text-label-secondary">
             {policy.updated} <time dateTime={PRIVACY_UPDATED}>{updated}</time>
           </p>

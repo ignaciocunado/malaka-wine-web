@@ -32,10 +32,10 @@ function TopicLinks({ lang, topics }: { lang: Lang; topics: Topic[] }) {
         <li key={topic.slug}>
           <Link
             href={topicPath(lang, topic.slug)}
-            className="flex h-full items-center justify-between gap-4 rounded-2xl bg-elevated p-5 ring-1 ring-separator/60 transition-colors duration-300 hover:ring-accent/60"
+            className="flex h-full items-center justify-between gap-4 rounded-md bg-elevated p-6 ring-1 ring-separator/60 transition-colors duration-300 hover:ring-accent/60"
           >
             <span>
-              <span className="block text-headline">{topic.name}</span>
+              <span className="block font-display text-headline">{topic.name}</span>
               <span className="mt-1 block text-subheadline text-label-secondary">{topic.summary}</span>
             </span>
             <ChevronRightIcon className="size-4 shrink-0 text-label-tertiary" />
@@ -81,7 +81,7 @@ function Closing({ lang }: { lang: Lang }) {
       <p className="mt-14 text-footnote text-label-secondary">
         {labels.updated} <time dateTime={GUIDE_UPDATED}>{updated}</time>
       </p>
-      <aside className="mt-8 rounded-3xl bg-elevated p-8 ring-1 ring-separator/60 sm:p-10">
+      <aside className="mt-8 rounded-md bg-elevated p-6 ring-1 ring-separator/60">
         <h2 className="text-title1">{cta.title}</h2>
         <p className="mt-2 max-w-md text-body text-label-secondary">{cta.body}</p>
         <ButtonLink href={pagePath(lang, "interest")} size="lg" className="mt-6">
@@ -108,8 +108,8 @@ export function GuidePage({ lang }: { lang: Lang }) {
         <Breadcrumbs items={[{ label: guide.labels.breadcrumbHome, href: pagePath(lang, "home") }, { label: guide.labels.backToGuide }]} />
         <header className="mt-6 max-w-3xl">
           <p className="text-headline text-accent">{guide.eyebrow}</p>
-          <h1 className="mt-2 text-large-title sm:text-[3.5rem] sm:leading-[1.03]">{guide.title}</h1>
-          <p className="mt-5 text-title3 font-normal text-label/85">{guide.intro}</p>
+          <h1 className="mt-2 text-large-title sm:text-hero">{guide.title}</h1>
+          <p className="mt-5 text-title3 font-normal text-label-secondary">{guide.intro}</p>
         </header>
         <section className="mt-14">
           <h2 className="text-title1">{guide.zones.heading}</h2>
@@ -146,8 +146,8 @@ export function TopicPage({ lang, topic }: { lang: Lang; topic: Topic }) {
       />
       <header className="mt-6">
         <p className="text-headline text-accent">{guide.labels.kind[topic.kind]}</p>
-        <h1 className="mt-2 text-large-title sm:text-[3.5rem] sm:leading-[1.03]">{topic.title}</h1>
-        <p className="mt-5 text-title3 font-normal text-label/85">{topic.intro}</p>
+        <h1 className="mt-2 text-large-title sm:text-hero">{topic.title}</h1>
+        <p className="mt-5 text-title3 font-normal text-label-secondary">{topic.intro}</p>
       </header>
     </>
   );

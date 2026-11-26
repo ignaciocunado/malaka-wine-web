@@ -31,14 +31,20 @@ export const es = {
       description:
         "Qué datos personales recoge Malaka Wine cuando te apuntas a la lista de interesados, para qué los usa y cómo puedes ejercer tus derechos.",
     },
+    about: {
+      title: "Quiénes somos: Antonio Cuñado Bernal | Malaka Wine",
+      description:
+        "El fundador de Malaka Wine, Antonio Cuñado Bernal, lleva más de 20 años en el turismo de Málaga, del Caminito del Rey a la Gran Senda, y conoce a sus productores.",
+    },
     notFound: { title: "Página no encontrada | Malaka Wine" },
   },
 
   nav: {
-    home: "Malaka, inicio",
+    home: "Malaka Wine, inicio",
     howItWorks: "Cómo funciona",
     plans: "Planes",
     guide: "Vinos de Málaga",
+    about: "Quiénes somos",
     register: "Apúntate",
     /** The link to the other language: its visible label and what it says to screen readers. */
     switchLabel: "EN",
@@ -47,13 +53,15 @@ export const es = {
 
   footer: {
     legal: "Malaka solo vende bebidas alcohólicas a mayores de 18 años. Bebe con moderación.",
-    sample: "Las bodegas, los precios y las cajas que aparecen en esta web son contenido de ejemplo.",
     made: "Hecho en Málaga.",
     credit: "Relieve 3D: datos de elevación abiertos de Mapzen Terrain Tiles.",
     plans: "Planes",
     register: "Apúntate",
+    about: "Quiénes somos",
     privacy: "Privacidad",
-    guide: "Guía de vinos de Málaga",
+    linkedin: "LinkedIn",
+    /** Names the footer's mail icon, which has no visible text. */
+    email: (address: string) => `Escríbenos a ${address}`,
     otherLanguage: "English",
   },
 
@@ -210,6 +218,44 @@ export const es = {
       body: "Te escribiremos en cuanto abramos. Mientras tanto, conoce los vinos de la provincia.",
       guide: "Leer la guía de vinos de Málaga",
       home: "Volver al inicio",
+    },
+  },
+
+  about: {
+    eyebrow: "Quiénes somos",
+    title: "Conocemos a quien hace el vino.",
+    intro:
+      "Malaka Wine es el proyecto de Antonio Cuñado Bernal, que lleva más de veinte años trabajando en el turismo de Málaga y conoce a los pequeños productores de toda la provincia.",
+    founder: {
+      role: "Fundador",
+      body: [
+        "Antonio ha sido responsable de proyectos como el Caminito del Rey, la Gran Senda de Málaga, la Senda Litoral, Málaga Destino o Málaga No Caduca.",
+        "Son proyectos que recorren la provincia de punta a punta. Por el camino, Antonio ha conocido a bodegueros y pequeños productores de cada comarca.",
+      ],
+      linkedIn: "Antonio en LinkedIn",
+    },
+    projects: {
+      title: "Algunos de sus proyectos",
+      /** Each project as [name, what it is]. Names stay in Spanish in both languages. */
+      items: [
+        ["Caminito del Rey", "La pasarela del Desfiladero de los Gaitanes, reabierta en 2015."],
+        ["Gran Senda de Málaga", "El sendero de gran recorrido GR 249, que da la vuelta a la provincia."],
+        ["Senda Litoral", "El proyecto para recorrer a pie toda la costa de la provincia, de Nerja a Manilva."],
+        ["Málaga Destino", "Descuentos para comprar en comercios y negocios locales de toda la provincia."],
+        ["Málaga No Caduca", "La iniciativa provincial contra el desperdicio de alimentos."],
+      ] as [string, string][],
+    },
+    why: {
+      title: "Por qué Malaka Wine",
+      body: [
+        "Muchas bodegas de Málaga hacen vinos muy buenos en partidas tan pequeñas que casi no salen de su pueblo, y mucho menos llegan a las tiendas. Queremos llevarlos a tu casa y ayudar a que quienes los hacen vivan de su trabajo sin dejar su tierra.",
+        "Como conocemos a quienes los hacen, podemos elegir para ti botellas que no encontrarías por tu cuenta y contarte de dónde viene cada una.",
+      ],
+    },
+    cta: {
+      title: "¿Quieres probar estos vinos?",
+      body: "Malaka Wine abre muy pronto. Déjanos tu email y te avisamos cuando puedas pedir tu primera caja.",
+      button: "Apúntate",
     },
   },
 

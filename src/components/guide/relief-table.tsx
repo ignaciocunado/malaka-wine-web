@@ -89,7 +89,7 @@ function ReliefTable({
 
   const still = `/3d/posters/relief-${focus ?? "overview"}`;
   return (
-    <div ref={root} role="img" aria-label={labels.alt} className={cn("relief group relative overflow-hidden rounded-xl bg-[#0a0914]", className)}>
+    <div ref={root} role="img" aria-label={labels.alt} className={cn("relief group relative overflow-hidden rounded-md bg-[#0a0914]", className)}>
       <picture>
         <source type="image/avif" srcSet={`${still}.avif`} />
         <img src={`${still}.webp`} alt="" decoding="async" className="relief-poster absolute inset-0 size-full object-cover" />
@@ -126,7 +126,7 @@ function ReliefTable({
             </span>
           ),
         )}
-        <span data-place="malaga" hidden className="absolute -translate-x-[calc(100%+0.6rem)] -translate-y-1/2 text-footnote text-label/80 [text-shadow:0_1px_8px_#08070f]">
+        <span data-place="malaga" hidden className="absolute -translate-x-[calc(100%+0.6rem)] -translate-y-1/2 text-footnote text-label-secondary [text-shadow:0_1px_8px_#08070f]">
           {labels.city}
         </span>
       </div>
@@ -203,7 +203,7 @@ export function AreaExplorer({ labels, areas, overview }: { labels: TableLabels;
       {areas.map((area) => (
         <section key={area.key} hidden={focus !== area.key} aria-label={area.name} className="mt-10 grid gap-x-14 gap-y-6 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
           <div>
-            <p className="text-body text-label/85">{area.intro}</p>
+            <p className="text-body text-label-secondary">{area.intro}</p>
             <Link href={area.href} className="mt-4 inline-flex h-11 items-center gap-1.5 text-callout text-accent underline-offset-4 hover:underline">
               {area.more} <ChevronRightIcon className="size-4" />
             </Link>

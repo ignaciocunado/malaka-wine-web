@@ -31,14 +31,20 @@ export const en: Dictionary = {
       description:
         "What personal data Malaka Wine collects when you register your interest, what it is used for and how to exercise your rights.",
     },
+    about: {
+      title: "About Us: Antonio Cuñado Bernal | Malaka Wine",
+      description:
+        "Malaka Wine's founder, Antonio Cuñado Bernal, has spent 20+ years in Málaga tourism, from the Caminito del Rey to the Gran Senda, and knows its small producers.",
+    },
     notFound: { title: "Page not found | Malaka Wine" },
   },
 
   nav: {
-    home: "Malaka, home",
+    home: "Malaka Wine, home",
     howItWorks: "How it works",
     plans: "Plans",
     guide: "Málaga wines",
+    about: "About us",
     register: "Register interest",
     switchLabel: "ES",
     switchTitle: "Leer esta página en español",
@@ -46,13 +52,14 @@ export const en: Dictionary = {
 
   footer: {
     legal: "Malaka only sells alcoholic drinks to people aged 18 or over. Please drink responsibly.",
-    sample: "The wineries, prices and boxes shown on this site are sample content.",
     made: "Made in Málaga.",
     credit: "3D relief: open elevation data from Mapzen Terrain Tiles.",
     plans: "Plans",
     register: "Register your interest",
+    about: "About us",
     privacy: "Privacy",
-    guide: "Guide to Málaga wines",
+    linkedin: "LinkedIn",
+    email: (address: string) => `Email us at ${address}`,
     otherLanguage: "Español",
   },
 
@@ -205,6 +212,43 @@ export const en: Dictionary = {
       body: "We'll write to you as soon as we open. Until then, get to know the province's wines.",
       guide: "Read the guide to Málaga wines",
       home: "Back to the homepage",
+    },
+  },
+
+  about: {
+    eyebrow: "About us",
+    title: "We know the people who make the wine.",
+    intro:
+      "Malaka Wine was started by Antonio Cuñado Bernal, who has worked in tourism in Málaga for more than twenty years and knows small producers all over the province.",
+    founder: {
+      role: "Founder",
+      body: [
+        "Antonio has been in charge of projects such as the Caminito del Rey, the Gran Senda de Málaga, the Senda Litoral, Málaga Destino and Málaga No Caduca.",
+        "Between them, these projects cover the province from end to end. Along the way Antonio has got to know winemakers and small producers in every part of it.",
+      ],
+      linkedIn: "Antonio on LinkedIn",
+    },
+    projects: {
+      title: "Some of Antonio's projects",
+      items: [
+        ["Caminito del Rey", "The walkway through the Desfiladero de los Gaitanes gorge, reopened in 2015."],
+        ["Gran Senda de Málaga", "The GR 249 long-distance trail, which loops around the province."],
+        ["Senda Litoral", "The project to walk the province's whole coastline, from Nerja to Manilva."],
+        ["Málaga Destino", "Discounts for shopping at local shops and businesses across the province."],
+        ["Málaga No Caduca", "The province's initiative against food waste."],
+      ],
+    },
+    why: {
+      title: "Why Malaka Wine",
+      body: [
+        "Many of Málaga's wineries make very good wine in batches so small that it hardly leaves the village, let alone reaches the shops. We want to bring those wines to your door, and help the people who make them earn a living without leaving their land.",
+        "Because we know the people behind them, we can choose bottles you wouldn't find on your own and tell you where each one comes from.",
+      ],
+    },
+    cta: {
+      title: "Want to try these wines?",
+      body: "Malaka Wine opens soon. Leave your email and we'll let you know when you can order your first box.",
+      button: "Register your interest",
     },
   },
 
