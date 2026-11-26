@@ -53,6 +53,7 @@ export const en: Dictionary = {
     register: "Register your interest",
     privacy: "Privacy",
     linkedin: "LinkedIn",
+    email: (address: string) => `Email us at ${address}`,
     guide: "Guide to Málaga wines",
     otherLanguage: "Español",
   },

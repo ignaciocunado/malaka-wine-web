@@ -54,6 +54,8 @@ export const es = {
     register: "Apúntate",
     privacy: "Privacidad",
     linkedin: "LinkedIn",
+    /** Names the footer's mail icon, which has no visible text. */
+    email: (address: string) => `Escríbenos a ${address}`,
     guide: "Guía de vinos de Málaga",
     otherLanguage: "English",
   },
