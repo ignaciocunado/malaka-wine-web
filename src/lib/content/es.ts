@@ -245,6 +245,13 @@ export const es = {
         ["Málaga No Caduca", "La iniciativa provincial contra el desperdicio de alimentos."],
       ] as [string, string][],
     },
+    why: {
+      title: "Por qué Malaka Wine",
+      body: [
+        "Muchas bodegas de Málaga hacen vinos muy buenos en partidas tan pequeñas que casi no salen de su pueblo, y mucho menos llegan a las tiendas. Queremos llevarlos a tu casa y ayudar a que quienes los hacen vivan de su trabajo sin dejar su tierra.",
+        "Como conocemos a quienes los hacen, podemos elegir para ti botellas que no encontrarías por tu cuenta y contarte de dónde viene cada una.",
+      ],
+    },
     name: {
       title: "De dónde viene el nombre",
       /** What the Phoenician inscription says, for screen readers. */
@@ -255,13 +262,6 @@ export const es = {
         // m‑l‑k is written with non-breaking hyphens (U+2011) so the root never splits across lines.
         "El fenicio solo escribía las consonantes, así que a Malaka le bastan cuatro letras. No se sabe con certeza qué significaba; la explicación más aceptada lo relaciona con la raíz semítica m‑l‑k, «reinar».",
         "Siglos después, la ciudad acuñó monedas con ese mismo nombre en letras neopúnicas, una forma más tardía del mismo alfabeto.",
-      ],
-    },
-    why: {
-      title: "Por qué Malaka Wine",
-      body: [
-        "Muchas bodegas de Málaga hacen vinos muy buenos en partidas tan pequeñas que casi no salen de su pueblo, y mucho menos llegan a las tiendas. Queremos llevarlos a tu casa y ayudar a que quienes los hacen vivan de su trabajo sin dejar su tierra.",
-        "Como conocemos a quienes los hacen, podemos elegir para ti botellas que no encontrarías por tu cuenta y contarte de dónde viene cada una.",
       ],
     },
     cta: {

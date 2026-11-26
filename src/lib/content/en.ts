@@ -238,6 +238,13 @@ export const en: Dictionary = {
         ["Málaga No Caduca", "The province's initiative against food waste."],
       ],
     },
+    why: {
+      title: "Why Malaka Wine",
+      body: [
+        "Many of Málaga's wineries make very good wine in batches so small that it hardly leaves the village, let alone reaches the shops. We want to bring those wines to your door, and help the people who make them earn a living without leaving their land.",
+        "Because we know the people behind them, we can choose bottles you wouldn't find on your own and tell you where each one comes from.",
+      ],
+    },
     name: {
       title: "Where the name comes from",
       inscription: "Malaka, written in the Phoenician alphabet",
@@ -247,13 +254,6 @@ export const en: Dictionary = {
         // m‑l‑k is written with non-breaking hyphens (U+2011) so the root never splits across lines.
         "Phoenician wrote only the consonants, so Malaka takes just four letters. Nobody knows for certain what it meant; the most widely accepted explanation links it to the Semitic root m‑l‑k, “to reign”.",
         "Centuries later the city minted coins with the same name in Neo-Punic letters, a later form of the same alphabet.",
-      ],
-    },
-    why: {
-      title: "Why Malaka Wine",
-      body: [
-        "Many of Málaga's wineries make very good wine in batches so small that it hardly leaves the village, let alone reaches the shops. We want to bring those wines to your door, and help the people who make them earn a living without leaving their land.",
-        "Because we know the people behind them, we can choose bottles you wouldn't find on your own and tell you where each one comes from.",
       ],
     },
     cta: {
