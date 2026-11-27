@@ -1,13 +1,6 @@
 import type { Lang } from "./site";
 import type { Plan } from "./types";
 
-/**
- * Demo content: the plans and their prices are fictional samples. Replace them before launch, then set this to
- * `false`: the homepage starts publishing the plans and prices to search engines as structured data (see
- * `plansJsonLd` in `src/lib/structured-data.ts`).
- */
-export const CATALOG_IS_SAMPLE = true;
-
 /** A text in both languages. */
 type Text = Record<Lang, string>;
 /** Swaps the listed text fields of `T` for their two-language version. */
@@ -65,3 +58,6 @@ const CATALOGS: Record<Lang, Catalog> = { es: build("es"), en: build("en") };
 
 /** The plans with their text in one language. */
 export const getCatalog = (lang: Lang) => CATALOGS[lang];
+
+/** Every plan sends one box every four months, three a year, and the year is billed in a single payment. */
+export const yearlyPriceCents = (plan: Plan) => plan.priceCents * 3;

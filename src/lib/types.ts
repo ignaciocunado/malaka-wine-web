@@ -3,6 +3,7 @@ export type Plan = {
   name: string;
   tagline: string;
   contents: string;
+  /** The price of one box. Members pay for the year's three boxes at once: see `yearlyPriceCents`. */
   priceCents: number;
   featured: boolean;
 };

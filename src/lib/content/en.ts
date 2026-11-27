@@ -6,12 +6,13 @@ export const en: Dictionary = {
     home: {
       title: "Málaga Wine Subscription · Spanish Wine Club | Malaka Wine",
       description:
-        "The largest Málaga wine community: every four months, a box of wines from small family wineries in the Axarquía, Ronda and the Montes de Málaga, chosen to match your taste.",
+        "The largest Málaga wine community: three boxes a year of wines from small wineries in the Axarquía, Ronda and the Montes de Málaga, chosen to match your taste.",
       keywords: [
         "Málaga wines",
         "Malaga wine",
         "wine subscription",
         "wine subscription Spain",
+        "annual wine subscription",
         "Spanish wine club",
         "wine box subscription",
         "buy Málaga wine online",
@@ -87,7 +88,7 @@ export const en: Dictionary = {
     hero: {
       eyebrow: "Málaga wine subscription",
       title: "Málaga wines, your way.",
-      body: "The largest Málaga wine community. A box of wines from the province's best small wineries, chosen to match your taste.",
+      body: "The largest Málaga wine community. Three boxes a year of wines from the province's best small wineries, chosen to match your taste.",
       cta: "Register your interest",
       plans: "See the plans",
       scroll: "Scroll to walk down to the lagar",
@@ -119,10 +120,11 @@ export const en: Dictionary = {
     },
     plans: {
       eyebrow: "Plans",
-      title: "Choose your Málaga wine box.",
-      body: "Change plan or cancel whenever you like.",
+      title: "Choose your annual Málaga wine plan.",
+      body: "Three boxes a year, one every four months. Your plan renews every year, and you can cancel the renewal whenever you like.",
       featured: "Most popular",
       period: "/ every 4 months",
+      billing: (total: string) => `${total} a year, in a single payment`,
       choose: (plan: string) => `Choose ${plan}`,
     },
     faq: {
@@ -134,7 +136,7 @@ export const en: Dictionary = {
             "Malaka Wine sets out to transform the way people discover and enjoy Málaga wine, turning exclusive products from small producers into personalised experiences. The goal is to create an \"intelligent\" gourmet club: a way of combining tradition with new artificial intelligence technology, so that every customer receives only the wines they like.",
             "With it we want to build the largest community of Málaga wine lovers and help Málaga's producers make a living from their passion without having to leave their land. In this way we help keep people in the countryside, fight climate change, and make our province a more sustainable place.",
             "The project combines gastronomy, technology, exclusivity and territory in a subscription model designed to start with a small, controlled validation in Málaga.",
-            "Every four months the subscriber receives at home a box of two or three bottles from wineries in the province, the vast majority of them small businesses, chosen to match your taste and sent with tasting notes.",
+            "The subscriber receives three boxes a year at home, one every four months, each with two or three bottles from wineries in the province, the vast majority of them small businesses, chosen to match your taste and sent with tasting notes.",
           ],
         },
         {
@@ -168,7 +170,7 @@ export const en: Dictionary = {
         {
           q: "When does my box arrive?",
           a: [
-            "Boxes ship in the first week, every four months, to any address in mainland Spain.",
+            "You get three boxes a year. They ship in the first week, every four months, to any address in mainland Spain.",
           ],
         },
         {
@@ -178,9 +180,15 @@ export const en: Dictionary = {
           ],
         },
         {
+          q: "How do I pay?",
+          a: [
+            "In a single payment a year that covers all three boxes. Each plan shows the price per box and the total for the year.",
+          ],
+        },
+        {
           q: "Can I change plan or cancel?",
           a: [
-            "Yes. Change plan or cancel your subscription whenever you like from your account, with no minimum term.",
+            "Yes. Your plan renews every year, and you can cancel the renewal whenever you like from your account. The boxes you've already paid for keep arriving until the year is up. If you change plan, the new one starts at your next renewal.",
           ],
         },
         {
@@ -315,7 +323,7 @@ export const en: Dictionary = {
       increase: "More bottles per box",
     },
     frequency: {
-      value: "Every 4 months",
+      value: "Every 4 months, 3 boxes a year",
     },
     budget: {
       title: "Budget per box",

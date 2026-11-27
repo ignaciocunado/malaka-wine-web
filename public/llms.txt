@@ -1,13 +1,14 @@
 # Malaka Wine
 
-> Malaka Wine is a wine subscription from Málaga, Spain. Every four months subscribers receive a box of two or three wines from small family wineries in the province of Málaga, chosen to match a taste profile they fill in online. The site is in Spanish (default) and English.
+> Malaka Wine is an annual wine subscription from Málaga, Spain. Subscribers receive three boxes a year, one every four months, each with two or three wines from small family wineries in the province of Málaga, chosen to match a taste profile they fill in online. The site is in Spanish (default) and English.
 
 Key facts:
 
 - Based in Málaga, Andalusia, Spain. Delivery to mainland Spain. Sales to adults (18+) only.
 - Wines come from the province's five wine areas: Axarquía, Montes de Málaga, Norte de Málaga, Manilva and Serranía de Ronda, under the DO Málaga and DO Sierras de Málaga appellations.
 - Typical styles: dry and sweet Moscatel de Alejandría, sweet Pedro Ximénez, rosés and light reds from the native Romé grape, and high-altitude reds from Ronda.
-- The service is pre-launch: the plans and prices currently shown on the homepage are sample content and should not be quoted as real offers.
+- Three annual plans: Descubre (2 bottles a box, 40 € a box), Bodega (3 bottles and food pairings, 60 € a box) and Reserva (3 bottles of oak-aged and vintage sweet wines, with access to private events, 80 € a box). The year is billed in a single payment: 120 €, 180 € or 240 €. Plans renew every year and the renewal can be cancelled at any time.
+- The service is pre-launch: subscriptions are not open yet, and the homepage takes sign-ups from people who want to hear when they do.
 - The name comes from Malaka, the Phoenician name of the city of Málaga.
 - Founded by Antonio Cuñado Bernal, who has worked in tourism in the province of Málaga for more than 20 years, on projects such as the Caminito del Rey, the Gran Senda de Málaga and the Senda Litoral.
 

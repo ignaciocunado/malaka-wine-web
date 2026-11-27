@@ -1,4 +1,4 @@
-import { getCatalog } from "./catalog";
+import { getCatalog, yearlyPriceCents } from "./catalog";
 import { getDictionary } from "./content";
 import { faqAnswerText, type FaqQuestion } from "./content/faq";
 import { GUIDE_UPDATED, getGuide, type Section, type Topic } from "./content/guide";
@@ -60,27 +60,31 @@ export function homeFaqJsonLd(lang: Lang) {
 }
 
 /**
- * The subscription plans and their prices. Only publish this once the catalog holds the real plans: structured
- * prices that don't match what a customer can actually buy break search engines' rules.
+ * The annual plans and what a year of each costs, billed in a single payment. The prices must match the plan cards:
+ * structured prices that differ from what a customer pays break search engines' rules.
  */
 export function plansJsonLd(lang: Lang) {
   return graph(
-    ...getCatalog(lang).plans.map((plan) => ({
-      "@type": "Product",
-      name: `${SITE_NAME} ${plan.name}`,
-      description: `${plan.tagline} ${plan.contents}`,
-      image: absoluteUrl(ogImage(lang).url),
-      brand: { "@id": ORGANIZATION_ID },
-      offers: {
-        "@type": "Offer",
-        url: absoluteUrl(homeAnchor(lang, "plans")),
-        price: (plan.priceCents / 100).toFixed(2),
-        priceCurrency: "EUR",
-        availability: "https://schema.org/InStock",
-        eligibleRegion: { "@type": "Country", name: "Spain" },
-        seller: { "@id": ORGANIZATION_ID },
-      },
-    })),
+    ...getCatalog(lang).plans.map((plan) => {
+      const price = (yearlyPriceCents(plan) / 100).toFixed(2);
+      return {
+        "@type": "Product",
+        name: `${SITE_NAME} ${plan.name}`,
+        description: `${plan.tagline} ${plan.contents}`,
+        image: absoluteUrl(ogImage(lang).url),
+        brand: { "@id": ORGANIZATION_ID },
+        // No `availability` yet: the plan buttons only take sign-ups. Add InStock when subscriptions open.
+        offers: {
+          "@type": "Offer",
+          url: absoluteUrl(homeAnchor(lang, "plans")),
+          price,
+          priceCurrency: "EUR",
+          priceSpecification: { "@type": "UnitPriceSpecification", price, priceCurrency: "EUR", billingDuration: "P1Y" },
+          eligibleRegion: { "@type": "Country", name: "Spain" },
+          seller: { "@id": ORGANIZATION_ID },
+        },
+      };
+    }),
   );
 }
 
