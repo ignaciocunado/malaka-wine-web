@@ -70,7 +70,7 @@ export function HomePage({ lang }: { lang: Lang }) {
         <section
           id={anchors.how}
           data-stage-cellar
-          className="mx-auto flex min-h-svh max-w-6xl scroll-mt-14 flex-col justify-center px-4 pt-24 pb-[32svh] sm:px-6"
+          className="mx-auto flex min-h-svh max-w-6xl flex-col justify-center px-4 pt-24 pb-[32svh] sm:px-6"
         >
           <div className="max-w-xl">
             <p className="sr-only">{home.how.scene}</p>
@@ -131,7 +131,7 @@ export function HomePage({ lang }: { lang: Lang }) {
       </section>
 
       {/* Plans */}
-      <section id={anchors.plans} className="mx-auto max-w-6xl scroll-mt-14 px-4 pb-24 sm:px-6">
+      <section id={anchors.plans} className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
         <p className="text-headline text-accent">{home.plans.eyebrow}</p>
         <h2 className="mt-2 max-w-3xl text-large-title md:text-hero">{home.plans.title}</h2>
         <p className="mt-4 max-w-xl text-body text-label-secondary">{home.plans.body}</p>

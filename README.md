@@ -141,7 +141,7 @@ src/
     legal/                the privacy policy page
     taste/                the taste quiz, not routed for now
     guide/                the wine guide pages and the relief table
-    site/                 document shell, nav bar, footer, logo, language switch, age gate
+    site/                 document shell, nav bar and phone menu, footer, logo, language switch, age gate
     seo/json-ld.tsx       structured data script tag
     ui/                   HIG-style controls
   lib/
