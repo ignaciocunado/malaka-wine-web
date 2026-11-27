@@ -49,6 +49,11 @@ export const es = {
     /** The link to the other language: its visible label and what it says to screen readers. */
     switchLabel: "EN",
     switchTitle: "Read this page in English",
+    /** The other language by name, as the phone menu lists it. */
+    otherLanguage: "English",
+    /** What screen readers call the main navigation, and the button that opens it on phones. */
+    label: "Principal",
+    menu: "Menú",
   },
 
   footer: {

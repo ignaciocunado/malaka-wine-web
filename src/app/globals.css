@@ -171,6 +171,8 @@
 html {
   color-scheme: dark;
   -webkit-text-size-adjust: 100%;
+  /* Keeps anchored sections and focused controls clear of the sticky 52px bar. */
+  scroll-padding-top: calc(var(--spacing) * 14);
   /* Lets height transitions run to `auto` (the FAQ disclosures). */
   interpolate-size: allow-keywords;
 }
@@ -305,6 +307,58 @@ textarea {
   }
 }
 
+/*
+ * The phone menu's panel (see `NavMenu`): a popover fixed under the bar, in the same material, that unrolls downwards
+ * on the spring. Reduced motion only fades it.
+ */
+.nav-panel {
+  inset: calc(var(--spacing) * 13) 0 auto;
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: calc(100dvh - var(--spacing) * 13);
+  margin: 0;
+  border: 0;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: var(--label);
+  background: var(--material);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 0.5px 0 var(--separator);
+  transition:
+    opacity 200ms ease,
+    display 300ms allow-discrete,
+    overlay 300ms allow-discrete;
+}
+.nav-panel:not(:popover-open) {
+  opacity: 0;
+}
+@starting-style {
+  .nav-panel:popover-open {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .nav-panel {
+    clip-path: inset(0 0 -1px 0);
+    transition:
+      opacity 300ms var(--ease-spring),
+      clip-path 300ms var(--ease-spring),
+      display 300ms allow-discrete,
+      overlay 300ms allow-discrete;
+  }
+  .nav-panel:not(:popover-open) {
+    clip-path: inset(0 0 100% 0);
+  }
+  @starting-style {
+    .nav-panel:popover-open {
+      clip-path: inset(0 0 100% 0);
+    }
+  }
+}
+
 /* Disclosure that grows open on the spring instead of popping (where ::details-content is supported). */
 .disclosure::details-content {
   block-size: 0;
@@ -329,12 +383,13 @@ textarea {
   }
 }
 
-/* Reduced transparency: the bar turns solid. */
+/* Reduced transparency: the bar and the menu panel turn solid. */
 @media (prefers-reduced-transparency: reduce) {
   :root {
     --material: var(--system-bg);
   }
-  .bar-material {
+  .bar-material,
+  .nav-panel {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -348,7 +403,8 @@ textarea {
     --separator: rgba(241, 233, 220, 0.5);
     --material: var(--system-bg);
   }
-  .bar-material {
+  .bar-material,
+  .nav-panel {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }

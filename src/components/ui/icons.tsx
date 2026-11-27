@@ -94,3 +94,15 @@ export const MinusIcon = (props: IconProps) => (
     <path d="M5 12h14" />
   </Icon>
 );
+
+export const MenuIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M4.5 7h15M4.5 12h15M4.5 17h15" />
+  </Icon>
+);
+
+export const CloseIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M6.5 6.5l11 11M17.5 6.5l-11 11" />
+  </Icon>
+);
