@@ -48,6 +48,9 @@ export const en: Dictionary = {
     register: "Register interest",
     switchLabel: "ES",
     switchTitle: "Leer esta página en español",
+    otherLanguage: "Español",
+    label: "Main",
+    menu: "Menu",
   },
 
   footer: {
