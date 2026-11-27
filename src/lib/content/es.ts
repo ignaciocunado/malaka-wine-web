@@ -6,12 +6,13 @@ export const es = {
     home: {
       title: "Vinos de Málaga a domicilio · Suscripción de vino | Malaka Wine",
       description:
-        "La mayor comunidad de vinos de Málaga: cada cuatro meses, una caja con vinos de pequeñas bodegas de la Axarquía, Ronda y los Montes de Málaga, elegidos según tus gustos.",
+        "La mayor comunidad de vinos de Málaga: tres cajas al año con vinos de pequeñas bodegas de la Axarquía, Ronda y los Montes de Málaga, elegidos según tus gustos.",
       keywords: [
         "vinos de Málaga",
         "vino de Málaga",
         "suscripción de vino",
         "suscripción de vinos",
+        "suscripción anual de vino",
         "club de vinos",
         "suscripción caja de vino",
         "comprar vino de Málaga online",
@@ -91,7 +92,7 @@ export const es = {
     hero: {
       eyebrow: "Suscripción de vinos de Málaga",
       title: "Los vinos de Málaga, a tu gusto.",
-      body: "La mayor comunidad de vinos de Málaga. Una caja con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
+      body: "La mayor comunidad de vinos de Málaga. Tres cajas al año con los vinos de las mejores pequeñas bodegas de la provincia, elegidos según tus gustos.",
       cta: "Apúntate",
       plans: "Ver planes",
       scroll: "Baja hasta el lagar",
@@ -126,10 +127,12 @@ export const es = {
     },
     plans: {
       eyebrow: "Planes",
-      title: "Elige tu caja de vinos de Málaga.",
-      body: "Cambia de plan o cancela cuando quieras.",
+      title: "Elige tu plan anual de vinos de Málaga.",
+      body: "Tres cajas al año, una cada cuatro meses. Tu plan se renueva cada año y puedes cancelar la renovación cuando quieras.",
       featured: "El más elegido",
       period: "/ cada 4 meses",
+      /** The line under the price: what the year costs, paid at once. */
+      billing: (total: string) => `${total} al año, en un solo pago`,
       choose: (plan: string) => `Elegir ${plan}`,
     },
     faq: {
@@ -141,7 +144,7 @@ export const es = {
             "Malaka Wine propone transformar la manera de descubrir y consumir el vino malagueño, convirtiendo productos exclusivos de pequeños productores en experiencias personalizadas. El objetivo es crear un Club Gourmet \"Inteligente\", esto es, una forma de conjugar lo tradicional con las nuevas tecnologías de la inteligencia artificial, de forma que cada cliente reciba sólo los vinos que le gustan.",
             "Con ello queremos crear la mayor comunidad de vinos de Málaga y ayudar a los productores malagueños a que puedan vivir de su pasión sin tener que abandonar sus tierras. Así ayudamos a fijar la población al territorio, luchamos contra el cambio climático, y hacemos de nuestra provincia un territorio más sostenible.",
             "El proyecto combina gastronomía, tecnología, exclusividad y territorio en un modelo de suscripción diseñado para comenzar con una validación pequeña y controlada en Málaga.",
-            "Cada cuatro meses el suscriptor recibe en casa una caja de dos o tres botellas de las bodegas de la provincia, la gran mayoría pequeñas empresas, elegidas según tus gustos y acompañadas de fichas de cata.",
+            "El suscriptor recibe en casa tres cajas al año, una cada cuatro meses, de dos o tres botellas de las bodegas de la provincia, la gran mayoría pequeñas empresas, elegidas según tus gustos y acompañadas de fichas de cata.",
           ],
         },
         {
@@ -175,7 +178,7 @@ export const es = {
         {
           q: "¿Cuándo llega mi caja?",
           a: [
-            "Las cajas salen la primera semana cada cuatro meses a cualquier dirección de la España peninsular.",
+            "Recibes tres cajas al año. Salen la primera semana, cada cuatro meses, a cualquier dirección de la España peninsular.",
           ],
         },
         {
@@ -185,9 +188,15 @@ export const es = {
           ],
         },
         {
+          q: "¿Cómo se paga?",
+          a: [
+            "Con un solo pago al año que cubre las tres cajas. En cada plan verás el precio por caja y el total del año.",
+          ],
+        },
+        {
           q: "¿Puedo cambiar de plan o cancelar?",
           a: [
-            "Sí. Cambia de plan o cancela tu suscripción cuando quieras desde tu cuenta, sin permanencia.",
+            "Sí. Tu plan se renueva cada año y puedes cancelar la renovación cuando quieras desde tu cuenta. Las cajas que ya has pagado te siguen llegando hasta que termine el año. Si cambias de plan, el nuevo empieza con la siguiente renovación.",
           ],
         },
         {
@@ -325,7 +334,7 @@ export const es = {
       increase: "Aumentar botellas por caja",
     },
     frequency: {
-      value: "Cada 4 meses",
+      value: "Cada 4 meses, 3 cajas al año",
     },
     budget: {
       title: "Presupuesto por caja",

@@ -1,5 +1,6 @@
 import { ButtonLink } from "@/components/ui/button";
 import { cn } from "@/components/ui/cn";
+import { yearlyPriceCents } from "@/lib/catalog";
 import { formatEuros } from "@/lib/format";
 import { getDictionary } from "@/lib/content";
 import { pagePath, type Lang } from "@/lib/site";
@@ -19,6 +20,7 @@ export function PlanCard({ plan, lang }: { plan: Plan; lang: Lang }) {
         <span className="text-hero leading-none">{formatEuros(plan.priceCents, lang)}</span>
         <span className="text-subheadline text-label-secondary">{text.period}</span>
       </p>
+      <p className="mt-1 text-subheadline text-label-secondary">{text.billing(formatEuros(yearlyPriceCents(plan), lang))}</p>
       <p className="mt-4 text-subheadline">{plan.contents}</p>
       <ButtonLink href={`${pagePath(lang, "interest")}?plan=${plan.code}`} variant={plan.featured ? "filled" : "tinted"} className="mt-7 w-full">
         {text.choose(plan.name)}

@@ -10,7 +10,7 @@ import { CheckIcon, ChevronLeftIcon } from "@/components/ui/icons";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { Slider } from "@/components/ui/slider";
 import { Stepper } from "@/components/ui/stepper";
-import { getCatalog } from "@/lib/catalog";
+import { getCatalog, yearlyPriceCents } from "@/lib/catalog";
 import { getDictionary, type Dictionary } from "@/lib/content";
 import { formatEuros } from "@/lib/format";
 import { homeAnchor, type Lang } from "@/lib/site";
@@ -29,7 +29,9 @@ type Result = { plan: Plan; chosen: boolean };
  * landing page (`/taste?plan=BODEGA`) or, when none was picked, the one recommended for the answers.
  */
 export function TasteForm({ lang }: { lang: Lang }) {
-  const text = getDictionary(lang).taste;
+  const dictionary = getDictionary(lang);
+  const text = dictionary.taste;
+  const { billing } = dictionary.home.plans;
   const { plans } = getCatalog(lang);
   const euros = (amount: number) => formatEuros(amount * 100, lang);
   const [profile, setProfile] = useState<TasteProfile>(DEFAULT_TASTE_PROFILE);
@@ -75,6 +77,7 @@ export function TasteForm({ lang }: { lang: Lang }) {
             <span className="text-title1">{formatEuros(plan.priceCents, lang)}</span>
             <span className="text-subheadline text-label-secondary">{text.result.period}</span>
           </p>
+          <p className="mt-1 text-subheadline text-label-secondary">{billing(formatEuros(yearlyPriceCents(plan), lang))}</p>
         </div>
         <p className="mx-auto mt-6 max-w-sm text-footnote text-label-secondary">
           {text.result.demo}
